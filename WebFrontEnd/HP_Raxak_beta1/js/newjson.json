@@ -1,0 +1,29 @@
+[{
+        "@self": "/csa/api/mpp/mpp-offering/8a7040664c0a81f8014c151691734a8a",
+        "@type": "urn:x-hp:2012:software:cloud:data_model:service-offering",
+        "name": "Raxak-CSA_Integration_467d0016-f660-4fab-87ee-ab65d6b23da6",
+        "ext": {
+            "csa_name_key": "Raxak-CSA_Integration_467d0016-f660-4fab-87ee-ab65d6b23da6"
+        },
+        "id": "8a7040664c0a81f8014c151691734a8a",
+        "catalogId": "90d9650a36988e5d0136988f03ab000f",
+        "catalogName": "Global Shared Catalog",
+        "displayName": "Raxak-CSA Integration",
+        "offeringVersion": "1.0.0",
+        "category": {
+            "displayName": "Application Services",
+            "name": "APPLICATION_SERVICES"
+        },
+        "image": "csa/images/library/Access_RGB_blue_NT.png",
+        "requireApproval": false,
+        "publishedDate": "2015-03-13T21:42:44.738Z",
+        "initPrice": {
+            "currency": "USD",
+            "price": 0
+        },
+        "recurringPrice": {
+            "currency": "USD",
+            "price": 0,
+            "basedOn": "Yearly"
+        }
+    }]

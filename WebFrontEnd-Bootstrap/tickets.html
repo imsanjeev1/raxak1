@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="">
+<meta name="author" content="">
+<title>Raxak Admin</title>
+<!-- Bootstrap Core CSS -->
+<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="css/DT_bootstrap.css" />
+<link rel="stylesheet" href="css/datatables.css" type="text/css">
+<link rel="stylesheet" href="css/sweetalert2.css">
+<!-- Custom CSS -->
+<link rel="stylesheet" type="text/css" href="css/sb-admin.css">
+<link rel="stylesheet" type="text/css" href="font-awesome/css/font-awesome.min.css">
+</head>
+<body>
+<div id="wrapper"> 
+  <div id="admin_nav"></div> 
+  <!-- Navigation -->
+  <div id="page-wrapper">
+    <div class="container-fluid"> 
+      <!-- Page Heading -->
+      <div class="row">
+        <div class="col-lg-12">
+          <h1 class="page-header">Tickets</h1>
+          <ol id="enrolled_server_breadcrumb" class="breadcrumb">
+            <li> <i class="fa fa-dashboard"></i> <a href="index.html">Dashboard</a> </li>
+            <li class="active"><i class="fa fa-fw fa-ticket"></i>Tickets</li>
+            <span style="font-weight:bold;padding-left:0px;" class="text-primary">(<span id="usercounts">3</span>)</span>
+          </ol>
+        </div>
+      </div>
+      <div class="row">
+        <div class="bs-example">
+          <section class="panel">
+            <div class="panel-body">
+              <div class="adv-table editable-table table-responsive">
+                <table class="table table-striped table-hover table-bordered" id="editable-sample" style="width:100%">
+                  <thead>
+                    <tr>
+                      <th width="5%">Sr. No.</th>
+                      <th width="10%">Issue Type</th>
+                      <th width="7%" >Issue Title</th>
+                      <th width="7%" >VM Or Group</th>
+                      <th width="10%">Issue Description</th>
+                      <th width="10%">Raised By</th>
+                      <th width="7%" >Status</th>
+                      <th width="7%">Who Work's</th>
+                      <th width="7%" align="center">Action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>1</td>
+                      <td>Network</td>
+                      <td>Network</td>
+                      <td>Raxak</td>
+                      <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin rutrum risus et erat ornare vehicula.</td>
+                      <td>Admin</td>
+                      <td>Pending</td>
+                      <td></td>
+                      <td align="center"><a data-target="#editticket" data-toggle="modal" href="#"> <i class="fa fa-fw fa-pencil"></i> </a> <a class="delete" title="Delete" href="javascript:void(0);"> <i class="fa fa-fw fa-trash-o"></i> </a></td>
+                    </tr>
+                    <tr>
+                      <td>2</td>
+                      <td>Network</td>
+                      <td>Network</td>
+                      <td>Raxak</td>
+                      <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin rutrum risus et erat ornare vehicula.</td>
+                      <td>Admin</td>
+                      <td>Pending</td>
+                      <td></td>
+                      <td align="center"><a data-target="#editticket" data-toggle="modal" href="#"> <i class="fa fa-fw fa-pencil"></i> </a> <a class="delete" title="Delete" href="javascript:void(0);"> <i class="fa fa-fw fa-trash-o"></i> </a></td>
+                    </tr>
+                    <tr>
+                      <td>3</td>
+                      <td>Network</td>
+                      <td>Network</td>
+                      <td>Raxak</td>
+                      <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin rutrum risus et erat ornare vehicula.</td>
+                      <td>Admin</td>
+                      <td>Pending</td>
+                      <td></td>
+                      <td align="center"><a data-target="#editticket" data-toggle="modal" href="#"> <i class="fa fa-fw fa-pencil"></i> </a> <a class="delete" title="Delete" href="javascript:void(0);"> <i class="fa fa-fw fa-trash-o"></i> </a></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </section>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div id="footer_content" class="navbar navbar-inverse navbar-fixed-bottom"></div>
+<div aria-hidden="false" aria-labelledby="basicModal" role="dialog" tabindex="-1" id="editticket" class="modal fade in"  >
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button aria-hidden="true" data-dismiss="modal" class="close" type="button"><i class="fa fa-times fa-fw"></i></button>
+        <h4 id="myModalLabel" class="modal-title">Edit Ticket</h4>
+      </div>
+      <form class="form-horizontal" method="post" id="" novalidate>
+        <div class="modal-body">
+          <div class="form-group"> 
+            <!--  <p style="padding:10px; ">Send us your ideas and suggestions. The best suggestions will be featured.</p>-->
+            <div class="col-lg-12">
+              <div class="col-md-3">
+                <label>Issue Type : </label>
+              </div>
+              <div class="col-md-9">
+                <select style="display: flex;" id=" " class="form-control">
+                  <option value="">Select </option>
+                </select>
+              </div>
+              <div class="col-md-3">
+                <label>Issue Title :</label>
+              </div>
+              <div class="col-md-9">
+                <input id=" " class="form-control" type="text" maxlength="20" required name="" placeholder="" >
+              </div>
+              <div class="col-md-3">
+                <label> VM Or Group :</label>
+              </div>
+              <div class="col-md-9">
+                <select style="display: flex;" id=" " class="form-control">
+                  <option value="">Select </option>
+                </select>
+              </div>
+              <div class="col-md-3">
+                <label> Issue Description :</label>
+              </div>
+              <div class="col-md-9">
+                <textarea id="" name="" placeholder="" class="form-control" rows="3"></textarea>
+              </div>
+              <div class="col-md-3">
+                <label> Raised By :</label>
+              </div>
+              <div class="col-md-9">
+                <input id=" " class="form-control" type="text" maxlength="20" required name="" placeholder="" >
+              </div>
+              <div class="col-md-3">
+                <label>Status :</label>
+              </div>
+              <div class="col-md-9">
+                <select style="display: flex;" id=" " class="form-control">
+                  <option value="">Select </option>
+                </select>
+              </div>
+              <div class="col-md-3">
+                <label> Who Work's :</label>
+              </div>
+              <div class="col-md-9">
+                <input id=" " class="form-control" type="text" maxlength="20" required name="" placeholder="" >
+              </div>
+            </div>
+            <div class="clearfix"></div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button title="" class="btn btn-default" type="submit" id="">Submit</button>
+          <button title="" class="btn btn-default" type="submit" id="">Close</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+
+</body>
+<!-- js -->
+<script type="text/javascript" src="js/jquery-1.10.2.js"></script>
+<script type="text/javascript" src="js/jquery-migrate-1.2.1.min.js"></script>
+<script type="text/javascript" src="js/bootstrap.min.js"></script>
+<script type="text/javascript" src="js/jquery.dataTables.js"></script>
+<script type="text/javascript" src="js/rxk_admin_users_table.js"></script>
+<script type="text/javascript" src="js/DT_bootstrap.js"></script>
+<script type="text/javascript" src="js/sweetalert2.min.js"></script>
+<!--<script type="text/javascript" src="js/rxk_admin_users.js"></script>-->
+<script type="text/javascript">
+        $(function () {
+          $("#admin_nav").load("admin_nav.html");
+            $("#footer_content").load("footer.html");
+            EditableTable.init();
+        });
+    </script>
+     <script type="text/javascript" src="js/rxk_admincommon.js"></script>
+</html>

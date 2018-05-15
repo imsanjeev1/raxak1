@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Meta -->
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>Raxak-server-Status</title>
+    <!-- css -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/select2.min.css" rel="stylesheet">
+    <link href="css/sb-admin.css" rel="stylesheet" type="text/css">
+    <link href="css/sweetalert2.css" rel="stylesheet" >
+    <link href="css/rxk_app.css" rel="stylesheet" type="text/css">
+    <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="css/rxk_app.css" rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" type="text/css" media="screen" href="css/sortable.css" />
+    <style>
+      .rulelinks{
+          margin-left: 25px;
+          font-size:15px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="image-holder-page" id="image-holder-page"></div>
+    <div id="wrapper" style="margin-bottom:50px;">
+      <div id="admin_nav"></div>
+      <div id="page-wrapper">
+        <div class="container-fluid">
+          <!-- Page Heading -->
+          <div class="row">
+            <div class="col-lg-12">
+              <h1 class="page-header">Server Status</h1>
+              <ol class="breadcrumb">
+                <li><i class="fa fa-dashboard"></i><a href="index.html"> Dashboard</a> </li>
+                <li class="active"><i class="fa fa-fw fa-clone"></i> Server Status </li>
+              </ol>
+              <span class="percentage inprogress"></span>
+            </div>
+          </div>
+          <!--<div class="modal fade in" id="ajaxloader"><img src="images/loader4.gif"></div>-->
+          <div class="row">
+            <div class="col-md-12 " style="padding: 0px;">
+              <div class="panel panel-default">
+                <div class="panel-body">
+                  <div class="col-md-4">
+                    <!--<select data-placeholder="Your Favorite Type of Bear"  class="form-control" tabindex="7" id="tst">-->
+                    <select style="max-width: 100%;display:flex; " class="form-control" id="getuser">
+                      <option value="Select User">Select User</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row" id="alltabid">
+            <div class="modal fade in" id="ajaxloader"><img src="images/loader4.gif"></div>
+            <div class="col-lg-12">
+              <div id="horizontalTab">
+                <ul class="resp-tabs-list">
+                  <li  class="tab-success">Success Rules (<span class="success_count_html">0</span>)</li>
+                  <li  class="tab-failure">Failure Rules (<span class="failure_count_html">0</span>)</li>
+                  <li class="tab-manual">Manual Rules (<span class="manual_count_html">0</span>)</li>
+                  <li class="tab-console">Console Log (<span class="console_count_html">0</span>)</li>
+                </ul>
+                <div class="resp-tabs-container">
+                  <div>
+                    <section id="tab-one" class="">
+                      <div class="">
+                        <div class="col-md-12" style="padding:0px;">
+                          <div class="panel  border-success">
+                            <div class="panel-heading">
+                            </div>
+                            <div class="panel-body text-left">
+                              <div class="col-md-3">
+                                <div  class="styled-select">
+                                  <a class="demo" style="text-decoration: none;"> <select style="display: flex;cursor:pointer;" id="myselect1" class="form-control"></select><span class="tooltip" ><span  id="tooltip_success"></span></span></a>
+                                </div>
+                              </div>
+                              <div class="col-md-3">
+                                <div  class="styled-select">
+                                  <select style="max-width: 100%;display:flex; " class="form-control" id="myselect1varlog">
+                                  </select>
+                                </div>
+                              </div>
+                              <div class="col-md-6">
+                                <table cellspacing="0" id="profile_success" class="profile_tabel" border="0" width="100%" cellpadding="8" style="line-height:32px;">
+                                  <thead>
+                                    <tr>
+                                      <td width="60">Profile : </td>
+                                      <th style="font-weight:bold; text-align:left" class="sel_prof_name" id="success_profile_val_Id">Demonstration Profile</th>
+                                      <!--<th style="font-weight:bold;display:none;color:orange;" class="percentage"></th>-->
+                                      <th><span style="cursor:pointer;float: right;"><img src="images/Refresh.svg" onClick="get_refresh_rules();" title="Refresh this page"> </span></th>
+                                    </tr>
+                                  </thead>
+                                </table>
+                              </div>
+                              <div class="clear"></div>
+                              <div class="col-md-12">
+                                <div class="panel panel-default">
+                                  <div class="panel-body">
+                                    <div class="col-lg-8 text-left">
+                                      <h4>Rules that passed</h4>
+                                    </div>
+                                    <div class="col-lg-4  text-left" style="margin-top:8px;">
+                                      <div class="form-group input-group">
+                                        <input type="text" class="form-control" id="success-search"  placeholder="Search here">
+                                        <span class="input-group-btn">
+                                          <button class="btn btn-default" type="button" ><i class="fa fa-search"></i></button>
+                                        </span> </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="col-md-12">
+                                <div class="table-responsive">
+                                  <table class="table table-striped table-hover table-bordered dataTable table-list-search success-search" width="100%" cellpadding="0" cellspacing="0" id="success_table_id">
+                                    <thead>
+                                      <tr class="tr_heading">
+                                        <th width="70%">Rules</th>
+                                        <th width="19%">Status</th>
+                                        <th width="11%">Description</th>
+                                      </tr>
+                                    </thead>
+                                    <tbody>
+                                      <!--
+                                      <tr>
+                                        <td>V-38480 - Users must be warned 7 days in advance of password expiration.</td>
+                                        <td> successful</td>
+                                        <td align="center"><i class="fa fa-fw fa-list-alt"></i></td>
+                                      </tr>
+                                      -->
+                                    </tbody>
+                                  </table>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div> 
+                      </div>
+                    </section>
+                  </div>
+                  <div>   <section id="tab-three" class=""> 
+                      <div class=""> 
+                        <div class="col-md-12"  style="padding:0px;">
+                          <div class="panel  border-danger">
+                            <div class="panel-heading">
+                            </div>
+                            <div class="panel-body text-left">
+                              <div class="col-md-3">
+                                <div  class="styled-select">
+                                  <a class="demo" style="text-decoration: none;"> <select style="display: flex;cursor:pointer;" id="myselect2" class="form-control"></select><span class="tooltip" ><span id="tooltip_failure"></span></span></a>
+                                </div>
+                              </div>
+                              <div class="col-md-3">
+                                <div  class="styled-select">
+                                  <select style="max-width: 100%;display:flex; " class="form-control" id="myselect2varlog">
+                                    <option>Thu Jul 02 2015 16:23:25 </option>
+                                  </select>
+                                </div>
+                              </div>
+                              <div class="col-md-6">
+                                <table cellspacing="0" id="profile_success" class="profile_tabel" border="0" width="100%" cellpadding="8" style="line-height:32px;">
+                                  <tbody>
+                                    <tr>
+                                      <td width="60">Profile : </td>
+                                      <td style="font-weight:bold; text-align:left" class="sel_prof_name" id="failure_profile_val_Id">Demonstration Profile</td>
+                                      <!--<th style="font-weight:bold;display:none;color:orange;" class="percentage"></th>-->
+                                      <td><span style="cursor:pointer;float: right;"><img src="images/Refresh.svg" onclick="get_refresh_rules();" title="Refresh this page"> </span></td>
+                                    </tr>
+                                  </tbody>
+                                </table>
+                              </div>
+                              <div class="clear"></div>
+                              <div class="col-md-12">
+                                <div class="panel panel-default">
+                                  <div class="panel-body">
+                                    <div class="col-lg-8 text-left">
+                                      <h4>Rules that failed</h4>
+                                    </div>
+                                    <div class="col-lg-4  text-left" style="margin-top:8px;">
+                                      <div class="form-group input-group">
+                                        <input type="text" class="form-control" id="failure-search"  placeholder="Search here">
+                                        <span class="input-group-btn">
+                                          <button class="btn btn-default" type="button" ><i class="fa fa-search"></i></button>
+                                        </span> </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="col-md-12">
+                                <div class="adv-table editable-table table-responsive">
+                                  <table class="table table-list-search table-bordered failure-search" width="100%" cellpadding="0" cellspacing="0" id="failure_table_id">
+                                    <thead>
+                                      <tr>
+                                        <th width="53%">Rules</th>
+                                        <th width="17%">Status</th>
+                                        <th width="11%">Description</th>
+                                        <th width="9%">Remediate</th>
+                                        <th width="9%">Test Again</th>
+                                      </tr>
+                                    </thead>
+                                    <tbody></tbody>
+                                  </table>
+                                </div>
+                              </div>
+                            </div>           
+                          </div>
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                  <div>
+                    <section id="tab-two" class="">
+                      <div class=""> 
+                        <div class="col-md-12"  style="padding:0px;">
+                          <div class="panel border-info">
+                            <div class="panel-heading">
+                            </div>
+                            <div class="panel-body text-left">
+                              <div class="col-md-3">
+                                <div  class="styled-select">
+                                  <a class="demo" style="text-decoration: none;"> <select style="display: flex;cursor:pointer;" id="myselect3"  class="form-control"></select><span class="tooltip" ><span id="tooltip_manual"></span></span></a>
+                                </div>
+                              </div>
+                              <div class="col-md-3">
+                                <div  class="styled-select">
+                                  <select style="max-width: 100%;display:flex; " class="form-control" id="myselect3varlog">
+                                    <option>Thu Jul 02 2015 16:23:42 </option>
+                                    <option>Thu Jul 02 2015 16:23:25 </option>
+                                  </select>
+                                </div>
+                              </div>
+                              <div class="col-md-6">
+                                <table cellspacing="0" id="profile_success" class="profile_tabel" border="0" width="100%" cellpadding="8" style="line-height:32px;">
+                                  <tbody>
+                                    <tr>
+                                      <td width="60">Profile : </td>
+                                      <td style="font-weight:bold; text-align:left" class="sel_prof_name" id="manual_profile_val_Id">Demonstration Profile</td>
+                                      <!--<th style="font-weight:bold;display:none;color:orange;" class="percentage"></th>-->
+                                      <td><span style="cursor:pointer;float: right;"><img src="images/Refresh.svg" onclick="get_refresh_rules();" title="Refresh this page"> </span></td>
+                                    </tr>
+                                  </tbody>
+                                </table>
+                              </div>
+                              <div class="clear"></div>
+                              <div class="col-md-12">
+                                <div class="panel panel-default">
+                                  <div class="panel-body">
+                                    <div class="col-lg-8 text-left">
+                                      <h4>Rules that need manual intervention</h4>
+                                    </div>
+                                    <div class="col-lg-4  text-left" style="margin-top:8px;">
+                                      <div class="form-group input-group">
+                                        <input type="text" class="form-control" id="manual-search"  placeholder="Search here">
+                                        <span class="input-group-btn">
+                                          <button class="btn btn-default" type="button" ><i class="fa fa-search"></i></button>
+                                        </span> </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="col-md-12">
+                                <div class="adv-table editable-table table-responsive">
+                                  <table class="table table-list-search table-bordered manual-search" width="100%" cellpadding="0" cellspacing="0" id="manual_table_id">
+                                    <thead>
+                                      <tr>
+                                        <th width="53%">Rules</th>
+                                        <th width="16%">Status</th>
+                                        <th width="11%">Description</th>
+                                        <th width="6%">Dismiss</th>
+                                        <th width="11%">Force Remediate</th>
+                                      </tr>
+                                    </thead>
+                                    <tbody>
+                                      <tr>
+                                        <td>V-38469 - All system command files must have mode 755 or less permissive.</td>
+                                        <td>needs manual intervention</td>
+                                        <td align="center"><i class="fa fa-fw fa-list-alt"></i></td>
+                                        <td><i class="fa fa-check-circle-o"></i></td>
+                                        <td><img src="images/issue (1).png" width="16" height="16"></td>
+                                      </tr>
+                                      <tr>
+                                        <td>V-38480 - Users must be warned 7 days in advance of password expiration.</td>
+                                        <td>needs manual intervention</td>
+                                        <td align="center"><i class="fa fa-fw fa-list-alt"></i></td>
+                                        <td></td>
+                                        <td></td>
+                                      </tr>
+                                    </tbody>
+                                  </table>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                  <div>
+                    <section id="tab-four" class="">
+                      <div class=""> 
+                        <div class="col-md-12"  style="padding:0px;">
+                          <div class="panel  border-console">
+                            <div class="panel-heading">
+                            </div>
+                            <div class="panel-body text-left">
+                              <div class="col-md-3">
+                                <div  class="styled-select">
+                                  <a class="demo" style="text-decoration: none;"> <select style="display: flex;cursor:pointer;" id="myselect4"  class="form-control"></select><span class="tooltip" ><span id="tooltip_console"></span></span></a>
+                                </div>
+                              </div>
+                              <div class="col-md-3">
+                                <div  class="styled-select">
+                                  <select style="max-width: 100%;display:flex; " class="form-control" id="myselect4varlog">
+                                    <option>Thu Sep 10 2015 15:42:49 </option>
+                                    <option>Thu Jul 02 2015 16:23:25 </option>
+                                  </select>
+                                </div>
+                              </div>
+                              <div class="col-md-6">
+                                <table cellspacing="0" id="profile_success" class="profile_tabel" border="0" width="100%" cellpadding="8" style="line-height:32px;" >
+                                  <tbody>
+                                    <tr>
+                                      <td width="60">Profile : </td>
+                                      <td style="font-weight:bold; text-align:left" class="sel_prof_name" id="console_profile_val_Id">I - Mission Critical Public</td>
+                                      <!--<th style="font-weight:bold;display:none;color:orange;" class="percentage"></th>-->
+                                      <td><span style="cursor:pointer;float: right;"><img src="images/Refresh.svg" onclick="get_refresh_rules();" title="Refresh this page"> </span></td>
+                                    </tr>
+                                  </tbody>
+                                </table>
+                              </div>
+                              <div class="clear"></div>
+                              <div class="col-md-12">
+                                <div class="panel panel-default">
+                                  <div class="panel-body">
+                                    <div class="col-lg-8 text-left">
+                                      <h4>
+                                        Console Log</h4>
+                                    </div>
+                                    <div class="col-lg-4  text-left" style="margin-top:8px;">
+                                      <div class="form-group input-group">
+                                        <input type="text" class="form-control" id="console-search" placeholder="Search by rule number">
+                                        <span class="input-group-btn">
+                                          <button class="btn btn-default" type="button" ><i class="fa fa-search"></i></button>
+                                        </span> </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="col-md-12">
+                                <div class="form-group" id="console_textarea">
+                                  <textarea class="form-control" id="console-text-area" rows="15"></textarea>
+                                </div>
+                                <table class="table table-list-search" width="100%" cellpadding="0" cellspacing="0" id="console_table" style="display: none;"></table>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row" id="no_info" style="display: none;">
+            <div class="col-lg-12">
+              <div class="panel panel-default" style="font-size:larger;text-align:center;margin-top: 30px; opacity:0.7">
+                <div class="panel-body">
+                  <div style="font-size: x-large;">No information is available</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- /#page-wrapper -->
+        </div>
+        <!-- /#wrapper -->
+        <div class="modal fade" id="ruleDescription" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+          <div class="modal-dialog" >
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                  <i class="fa fa-times fa-fw"></i>
+                </button>
+                <h4 class="modal-title" id="my_header">Console Log</h4>
+              </div>
+              <div style="max-height: 500px;overflow:auto" class="modal-body" id="modal_body"></div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal fade" id="info" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                  <i class="fa fa-times fa-fw"></i>
+                </button>
+                <h4 class="modal-title" id="myModalLabel">Information</h4>
+              </div>
+              <div class="modal-body">
+                <div id="enrolledInfoBody">
+
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Ok</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="footer_content" class="navbar navbar-inverse navbar-fixed-bottom"></div>
+    <!-- js -->
+    <script type="text/javascript" src="js/jquery-1.10.2.js"></script>
+    <script type="text/javascript" src="js/jquery-ui-1.9.2.custom.min.js"></script>
+    <script type="text/javascript" src="js/jquery-migrate-1.2.1.min.js"></script>
+    <script type="text/javascript" src="js_report/jquery.tablesorter.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/select2.min.js"></script>
+    <script type="text/javascript" src="js/sweetalert2.min.js"></script>
+    <script type="text/javascript">
+                                        $(function () {
+                                            $("#admin_nav").load("admin_nav.html");
+                                            $("#footer_content").load("footer.html");
+                                            $('select').select2();
+                                        });
+    </script>
+    <script type="text/javascript" src="js/rxk_admincommon.js"></script>
+    <script type="text/javascript" src="js/rxk_admin_rules.js"></script>
+    <script type="text/javascript" src="js/easyresponsivetabs.js"></script>
+    <script type="text/javascript">
+                                        $(function () {
+                                            $('#horizontalTab').easyResponsiveTabs({
+                                                type: 'default', //Types: default, vertical, accordion           
+                                                width: 'auto', //auto or any width like 600px
+                                                fit: true, // 100% fit in a container
+                                                closed: 'accordion', // Start closed if in accordion view
+                                                activate: function (event) { // Callback function if tab is switched
+                                                    $('select').select2();
+                                                    var $tab = $(this);
+                                                    var $info = $('#tabInfo');
+                                                    var $name = $('span', $info);
+                                                    $name.text($tab.text());
+                                                    $info.show();
+                                                }
+                                            });
+                                            $('#verticalTab').easyResponsiveTabs({
+                                                type: 'vertical',
+                                                width: 'auto',
+                                                fit: true
+                                            });
+                                        });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,172 @@
+<!DOCTYPE html> 
+<html>
+  <head>
+    <meta charset="utf-8"/>
+    <!--<script type="text/javascript" charset="utf-8" src="lib/js/jquery.min.js" ></script>-->
+    <script type="text/javascript" src="js_report/jquery-1.10.2.min.js"></script>
+    <script type="text/javascript" charset="utf-8" src="lib/js/featherlight.min.js"></script>
+    <script type="text/javascript" src="js_report/jquery.tablesorter.min.js"></script>
+    <link rel="stylesheet" type="text/css" media="screen" href="lib/css/featherlight.min.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="lib/css/report.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="css/sortable.css" />
+    <link rel="stylesheet" type="text/css" media="print"  href="lib/css/print.css" />
+    <link rel="shortcut icon" href="http://d15dxvojnvxp1x.cloudfront.net/assets/favicon.ico">
+    <link rel="icon" href="http://d15dxvojnvxp1x.cloudfront.net/assets/favicon.ico">
+    <style>
+      .image-holder-page {
+          background: #fff url("../images/loader4.gif") no-repeat scroll center center;
+          height: 100%;
+          left: 0;
+          position: fixed;
+          top: 0;
+          width: 100%;
+          z-index: 9999;
+      }
+      table {
+          border-collapse: collapse;
+      }
+      table td, table th {
+          border: 1px solid #ccc; 
+      }
+      .btn {
+          -moz-user-select: none;
+          background-image: none;
+          border: 1px solid transparent;
+          border-radius: 4px;
+          cursor: pointer;
+          display: inline-block;
+          font-size: 14px;
+          font-weight: 400;
+          line-height: 1.41257;
+          margin-bottom: 0;
+          padding: 6px 12px;
+          text-align: center;
+          vertical-align: middle;
+          white-space: nowrap;
+      }
+      .btn-default {
+          background-color: #4e5457;
+          color: #fff;
+      }
+
+      #ajaxloader {
+          background-color: #efefef;
+          left: 50%;
+          opacity: 0.65;
+          position: fixed;
+          z-index: 980;
+      }
+
+      .load_per {
+          color: #131ce7;
+          font-size: 20px;
+          font-weight: 100;
+          left: 50%;
+          margin: 210px 0 0 20px !important;
+          padding: 0 0px 0px -10px;
+          position: absolute;
+          top: 25%;
+          z-index: 9999;
+          text-align: center;
+      }
+      #ajaxloader img {
+          left: 50%;
+          margin: 0 0 0 -150px;
+          padding: 0 4px 4px;
+          position: absolute;
+          top: 25%;
+          z-index: 990;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="image-holder-page" class="image-holder-page"></div>
+    <div style="margin:0 auto;width:700px;">
+      <a href="javascript:void(0);" id="generatepdf" style="margin-top: 20px;"><img src="lib/images/pdf.jpeg" title="Download"></a>
+      <img src="lib/images/print_icon.gif" alt="Print" title="Print" onclick="window.print();
+            return false" class="print_button">
+    </div>
+    <div style="clear:both;"></div>
+    <div class="modal fade in" id="ajaxloader" style="display: none;"><div id="load_percentage" class="load_per">Loading Pdf</div><img src="images/loader4.gif"></div>
+    <div id="report_container"></div>
+    <script type="text/javascript" class="init">
+      $(document).ready(function () {
+          $.urlParam = function (name) {
+              var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
+              if (results == null) {
+                  return null;
+              } else {
+                  return results[1];
+              }
+          }
+
+          var role = $.urlParam('role'); // check role to get report from admin panel
+          var reportData = $.urlParam('reportData');
+          var report_type = $.urlParam('report_type');
+          if (report_type === 'full_report') {
+              $('#generatepdf').hide(); // hide link to generate PDF foe full report, not working properly
+          }
+
+          if (reportData) {
+              var url = '/raxakapi/v1/getReportHtml';
+              if (role === "admin")
+                  var url = '/raxakapi/v1/getUsersReportHtml';
+              $.ajax({
+                  method: "POST",
+                  data: {reportData: reportData},
+                  url: url,
+                  success: function (response) {
+                      $('#report_container').html(response.detailed_report);
+
+                      if (report_type == "summary") {
+                          $(".result_class_hide").hide();
+                          $("#cron_head_cont").hide();
+                          $("#last_exec_cont").hide();
+                          $("#txt_change").text('Summary Report');
+                      }
+                      if (report_type == "executive_summary") {
+                          $(".rule_hide_cons").hide();
+                          $(".rule_title").css('border', 'none');
+                          $("#cron_head_cont").hide();
+                          $("#last_exec_cont").hide();
+
+                          $("#txt_change").text('Executive Summary Report');
+                      }
+
+                      $.tablesorter.addParser({
+                          // set a unique id 
+                          id: 'grades',
+                          is: function (s) {
+                              // return false so this parser is not auto detected 
+                              return false;
+                          },
+                          format: function (s) {
+                              // format your data for normalization 
+                              return s.toLowerCase().replace(/high/, 2).replace(/medium/, 1).replace(/low/, 0);
+                          }
+                          // set type, either numeric or text 
+                          //type: 'numeric'
+                      });
+                      $("table.table").tablesorter({
+                          headers: {
+                              1: {
+                                  sorter: 'grades' // sorter header for column index 1.
+                              }
+                          }
+                      });
+                      $(document).prop('title', response.page_title);
+                      $("#image-holder-page").hide();
+                  },
+                  //timeout: 1000,
+                  error: function (xhr, status, err) {
+                      console.log(status, err);
+                  },
+              });
+          }
+      });
+    </script>
+    <script type="text/javascript" src="js_report/jspdf.min.js"></script>
+    <script type="text/javascript" src="js_report/html2canvas.js"></script>
+    <script type="text/javascript" src="js_report/app.js"></script>
+  </body>
+</html>

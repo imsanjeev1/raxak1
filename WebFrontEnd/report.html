@@ -1,0 +1,99 @@
+<!DOCTYPE html> 
+<html>
+    <head>
+        <meta charset="utf-8"/>
+        <script type="text/javascript" src="js_report/jquery-1.10.2.min.js"></script>
+        <script type="text/javascript" charset="utf-8" src="lib/js/featherlight.min.js"></script>
+        <link rel="stylesheet" type="text/css" media="screen" href="lib/css/featherlight.min.css" />
+        <link rel="stylesheet" type="text/css" media="screen" href="lib/css/report.css" />
+        <link rel="stylesheet" type="text/css" media="print"  href="lib/css/print.css" />
+        <link rel="shortcut icon" href="http://d15dxvojnvxp1x.cloudfront.net/assets/favicon.ico">
+        <link rel="icon" href="http://d15dxvojnvxp1x.cloudfront.net/assets/favicon.ico">
+        <script type="text/javascript" src="js_report/jquery.tablesorter.min.js"></script>
+        <style>
+            table {
+                border-collapse: collapse;
+            }
+            table td, table th {
+                border: 1px solid #ccc;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="report_container"></div>
+        <script type="text/javascript" class="init">
+            $(document).ready(function () {
+                $.urlParam = function (name) {
+                    var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
+                    if (results == null) {
+                        return null;
+                    } else {
+                        //return results[1] || 0;
+                        return results[1];
+                    }
+                }
+                // add parser through the tablesorter addParser method 
+                $.tablesorter.addParser({
+                    // set a unique id 
+                    id: 'grades',
+                    is: function (s) {
+                        // return false so this parser is not auto detected 
+                        return false;
+                    },
+                    format: function (s) {
+                        // format your data for normalization 
+                        return s.toLowerCase().replace(/high/, 2).replace(/medium/, 1).replace(/low/, 0);
+                    }
+                    // set type, either numeric or text 
+                    //type: 'numeric'
+                });
+                var reportData = $.urlParam('reportData');
+                var reportData1 = $.urlParam('report_type');
+		//var prodId = $.getQueryString('val');
+                if (reportData) {
+                    $.ajax({
+                        method: "POST",
+                        data: {reportData: reportData},
+                        url: '/raxakapi/v1/getReportHtml',
+                        success: function (response) {
+                            $('#report_container').html(response.detailed_report);
+                            //$('table.table').tablesorter();
+			    if(reportData1 == "summary")
+				{
+				$(".result_class_hide").hide();
+				$("#cron_head_cont").hide();
+				$("#last_exec_cont").hide();
+				$("#image-loader-page1").hide();
+				}
+			     if(reportData1 == "executive_summary")
+				{
+				$(".rule_hide_cons").hide();
+				$(".rule_title").css('border', 'none');
+				$("#cron_head_cont").hide();
+				$("#last_exec_cont").hide();
+				$("#image-loader-page1").hide();
+				}
+                            $("table.table").tablesorter({
+                                headers: {
+                                    1: {
+                                        sorter: 'grades' // sorter header for column index 1.
+                                    }
+                                }
+                            });
+                            $(document).prop('title', response.page_title);
+                            document.getElementById('image-loader-page1').style.display = 'none';
+                        },
+                        //timeout: 1000,
+                        error: function (xhr, status, err) {
+                            console.log(status, err);
+                        },
+                    });
+                }
+            });
+        </script>
+		<div class="image-loader-page" id="image-loader-page1" style="display:block;text-align: center; margin-top: 231px;;">
+            <img src="images/loader4.gif" height="175" width="300" class="csv-loader-imgtxt">
+            <br />Detailed Report is loading, please wait...
+        </div>
+    </body>
+</html>

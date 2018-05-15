@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<!-- saved from url=(0042)https://15.125.87.19:8089/org/CSA_CONSUMER -->
+<html class=" js flexbox flexboxlegacy canvas canvastext webgl no-touch geolocation postmessage websqldatabase indexeddb hashchange history draganddrop websockets rgba hsla multiplebgs backgroundsize borderimage borderradius boxshadow textshadow opacity cssanimations csscolumns cssgradients cssreflections csstransforms csstransforms3d csstransitions fontface generatedcontent video audio localstorage sessionstorage webworkers applicationcache svg inlinesvg smil svgclippaths">
+<!--<![endif]-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<style type="text/css">
+@charset "UTF-8";
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak, .ng-hide {
+display:none !important;
+}
+ng\:form {
+	display: block;
+}
+.ng-animate-block-transitions {
+	transition: 0s all!important;
+	-webkit-transition: 0s all!important;
+}
+</style>
+<!--<base href="https://15.125.87.19:8089/">-->
+<base href=".">
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>Browse Catalog</title>
+<meta name="description" content="">
+<meta name="viewport" content="width=device-width">
+<!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+
+<link id="styleLink" rel="stylesheet" href="css/main.css">
+</head>
+
+<body ng-app="mppApp" class="bg-body ng-scope" mpp-dir="" mpp-html-lang="" ng-show="$root.loaded" style="display: block;" dir="ltr">
+
+<!-- Framebusting logic. See: http://seclab.stanford.edu/websec/framebusting/framebust.pdf -->
+<style>
+  body {
+    display: none;
+  }
+  </style>
+<script>
+  if (self == top) {
+    document.getElementsByTagName("body")[0].style.display = 'block';
+  } else {
+    top.location = self.location;
+  }
+  </script> 
+<script>
+  /**
+   * Rewrite base.href to be an absolute URL. Only necessary for IE 9, but works fine in other browsers.
+   */
+  function toAbsURL(s) {
+    var l = location,
+      h, p, f, i;
+    if (/^\w+:/.test(s)) {
+      return s;
+    }
+    h = l.protocol + '//' + l.host + (l.port != '' ? (':' + l.port) : '');
+    if (s.indexOf('/') == 0) {
+      return h + s;
+    }
+    p = l.pathname.replace(/\/[^\/]*$/, '');
+    f = s.match(/\.\.\//g);
+    if (f) {
+      s = s.substring(f.length * 3);
+      for (i = f.length;;) {
+        i =
+          p = p.substring(0, p.lastIndexOf('/'));
+      }
+    }
+    return h + p + '/' + s;
+  }
+
+  var base = document.getElementsByTagName('base')[0];
+  base.href = toAbsURL(base.href);
+  </script> 
+
+<!--[if lt IE 7]>
+  <p class="chromeframe">You are using an outdated browser. <a href="http://browsehappy.com/">Upgrade your browser today</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
+<![endif]--> 
+
+<!--[if lt IE 9]>
+  <script src="bower_components/es5-shim/es5-shim.js"></script>
+  <script src="bower_components/json3/lib/json3.min.js"></script>
+<![endif]--> 
+
+<!-- Add your site or application content here --> 
+<!-- ngView:  -->
+<div ng-view="" class="full-height ng-scope">
+  <navbar back-url="#/" nav-title="Browse Catalog" item-count="totalCount" back-label="Dashboard" class="ng-scope ng-isolate-scope">
+    <div ng-controller="NavigationCtrl" class="st-container st-effect-3 ng-scope" ng-class="{'st-menu-open':visible}">
+      <div class="st-pusher">
+        <nav class="st-menu st-effect-3" id="menu-3" focus=""><a ></a>
+          <h2><span class="ng-binding">Sidebar Menu</span></h2>
+          <ul>
+            <li><a  id="dashboard-btn"><i class="h3 icon-dashboard"></i><span class="ng-binding">Dashboard</span></a></li>
+            <li><a  id="catalog-btn"><i class="h3 icon-catalog"></i><span class="ng-binding">Browse Catalog</span></a></li>
+            <li><a  id="notification-btn"><i class="h3 icon-notification"></i><span class="ng-binding">Notifications</span></a></li>
+            <li><a  id="review-request-btn"><i class="h3 icon-review"></i><span class="ng-binding">Review Requests</span></a></li>
+            <li><a id="request-btn"><i class="h3 icon-services"></i><span class="ng-binding">Requests</span></a></li>
+            <li><a  id="subscription-btn"><i class="h3 icon-subscription"></i><span class="ng-binding">Subscriptions</span></a></li>
+            <li><a  id="my-service-btn"><i class="h3 icon-mystuff"></i><span class="ng-binding">My Services</span></a></li>
+          </ul>
+        </nav>
+        <!-- ngIf: visible -->
+        <div class="st-content">
+          <div class="st-content-inner app-wrapper">
+            <div class="navbar navbar-default navbar-fixed-top bs-docs-nav navbar-shadow" id="navbar" ng-class="{'security':org.securityLevel}"><!-- ngIf: org.securityLevel -->
+              <div>
+                <div class="row">
+                  <div class="col-xs-8"><!-- ngInclude:  -->
+                    <div class="full-width ng-scope" ng-include="" src="'views/common/header/navigation.html'"><a  class="navbar-brand full-width ellipses ng-scope" id="nav_home" aria-label="Dashboard" ng-hotkeys="ctrl+shift+1" ng-hotkeys-click=""><img ng-src="images/HP_Blue_RGB_150_MN.png" height="48" alt="" src="images/HP_Blue_RGB_150_MN.png"> <span class="ng-binding">Cloud Service Automation</span></a></div>
+                  </div>
+                  <div class="col-xs-2"><a  id="cart-btn" class="navbar-brand ellipses full-width" aria-label="Shopping Cart" ng-hotkeys="ctrl+shift+2" ng-hotkeys-click="">
+                    <div class="btn-primary glyph-btn compact"><i class="icon-cart"></i></div>
+                    <span translate="cart.items" translate-values="{&quot;count&quot;:0,&quot;NUMBER&quot;:0}" translate-interpolation="messageformat" class="ng-scope">0 Items</span></a></div>
+                  <div class="col-xs-2"><!-- ngInclude:  -->
+                    <div ng-include="" src="'views/common/header/user.html'" class="ng-scope">
+                      <div class="navbar-header dropdown navbar-nav full-width ng-scope"><a  class="navbar-brand dropdown-toggle full-width ellipses" data-toggle="dropdown" role="button" id="nav_dropdown" aria-label="Log Out">
+                        <div class="btn-info glyph-btn" ng-style="avatarStyle"><!-- ngIf: !avatarStyle --><i ng-if="!avatarStyle" class="icon-user ng-scope"></i><!-- end ngIf: !avatarStyle --></div>
+                        <span class="ng-binding">consumer</span></a>
+                        <ul class="dropdown-menu pull-right" role="menu">
+                          <li role="presentation"><a  role="menuitem" target="_blank"  translate="common.assistance" class="ng-scope">Help</a></li>
+                          <li role="presentation" class="divider"></li>
+                          <li role="presentation"><a  role="menuitem" translate="common.about" id="about" class="ng-scope">About</a></li>
+                          <li role="presentation" class="divider"></li>
+                          <li role="presentation"><a  role="menuitem" translate="common.logout" id="logout" target="_self"  class="ng-scope">Log Out</a></li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row sub-nav">
+                  <div class="col-xs-8">
+                    <ul class="nav navbar-nav">
+                      <!-- ngIf: !hideSidebar -->
+                      <li ng-if="!hideSidebar" class="ng-scope"><a id="show-sidebar"  ng-click="showSideBar()" class="compact text-center">
+                        <h3 class="icon-list"></h3>
+                        </a></li>
+                      <!-- end ngIf: !hideSidebar --><!-- ngIf: backUrl && !hideBackBtn -->
+                      <li ng-if="backUrl &amp;&amp; !hideBackBtn" class="ng-scope"><a id="back-btn" class="compact text-center"onclick="history.go(-1);"><span class="h3 icon-arrow-line-back"></span> <!-- ngIf: backLabel --><span ng-if="backLabel" class="nav-label h5 ng-scope ng-binding">Dashboard</span><!-- end ngIf: backLabel --></a></li>
+                      <!-- end ngIf: backUrl && !hideBackBtn --><!-- ngIf: !backUrl && !hideBackBtn --><!-- ngIf: navTitle -->
+                      <li ng-if="navTitle" class="ng-scope">
+                        <h5 id="nav-title" class="navbar-text"><span><strong class="ng-binding">Browse Catalog</strong></span> <!-- ngIf: itemCount !== undefined && itemCount !== null --><span ng-if="itemCount !== undefined &amp;&amp; itemCount !== null" class="text-info ng-scope ng-binding">(5)</span><!-- end ngIf: itemCount !== undefined && itemCount !== null --></h5>
+                      </li>
+                      <!-- end ngIf: navTitle -->
+                    </ul>
+                  </div>
+                  <div class="col-xs-4">
+                    <h6 class="navbar-right navbar-text"><a class="navbar-link text-underline text-info ng-binding" target="_blank" >Need Help?</a></h6>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="app-content" ng-class="{'footer-padding':hasFooter,'security-padding':org.securityLevel}">
+              <div id="scrollbox" ng-transclude="">
+                <div mpp-busy="service$query, service$query" class="ng-scope ng-isolate-scope"><!-- ngIf: activeTrackers() -->
+                  <div ng-transclude="">
+                    <div class="content ng-scope">
+                      <div class="container bg-content">
+                        <form class="row ng-pristine ng-valid">
+                          <div class="col-xs-12 col-lg-3">
+                            <div class="input-group">
+                              <input id="searchText" class="form-control ng-pristine ng-valid" type="text" placeholder="Search" ng-model="query.search" ng-disabled="servicesPromise.active()" ui-keypress="{13:'next(true)'}" tabindex="1">
+                              <a  ng-click="next(true)" class="input-group-addon"><i class="icon-search"></i></a></div>
+                          </div>
+                          <div class="col-xs-3 visible-lg">
+                            <div class="select select-primary">
+                              <select class="btn btn-primary form-control ng-pristine ng-valid" id="filterCategory" ng-model="query.category" ng-options="cat.name as cat.displayName for cat in categories" ng-disabled="servicesPromise.active()" ng-change="next(true)">
+                                <option value="0" selected="selected">All Categories</option>
+                                <option value="1">1.1 HP Helion Public Cloud</option>
+                                <option value="2">1.2 Amazon EC2 Cloud</option>
+                                <option value="3">1.3 HP Helion Openstack</option>
+                                <option value="4">Application Servers</option>
+                              </select>
+                            </div>
+                          </div>
+                          <div class="col-xs-2 visible-lg">
+                            <div class="select select-primary">
+                              <select class="btn btn-primary form-control ng-pristine ng-valid" id="filterServiceType" ng-model="query.approval" ng-options="translate('services.serviceTypeFilters.' + i) for i in serviceTypeFilters" ng-disabled="servicesPromise.active()" ng-change="next(true)">
+                                <option value="0" selected="selected">All Service Types</option>
+                                <option value="1">Approval Required</option>
+                                <option value="2">No Approval Required</option>
+                              </select>
+                            </div>
+                          </div>
+                          <div class="col-xs-2 visible-lg">
+                            <div class="select select-primary">
+                              <select class="btn btn-primary form-control ng-pristine ng-valid" id="filterOrderBy" ng-model="query.sort" ng-options="translate('common.sorting.' + i) for i in sortFilters" ng-disabled="servicesPromise.active()" ng-change="next(true)">
+                                <option value="0">Newest First</option>
+                                <option value="1">Oldest First</option>
+                                <option value="2">Most Expensive</option>
+                                <option value="3">Least Expensive</option>
+                                <option value="4" selected="selected">Alphabetical</option>
+                                <option value="5">Reverse Alphabetical</option>
+                              </select>
+                            </div>
+                          </div>
+                          <div class="col-xs-2 visible-lg text-right">
+                            <div class="btn-group">
+                              <button type="button" class="btn btn-primary ng-pristine ng-valid active" ng-model="query.layout" btn-radio="'list'" ng-click="updatePath()"><i class="glyph icon-list"></i></button>
+                              <button type="button" class="btn btn-primary ng-pristine ng-valid" ng-model="query.layout" btn-radio="'grid'" ng-click="updatePath()"><i class="glyph icon-grid"></i></button>
+                            </div>
+                          </div>
+                        </form>
+                        <div class="row">
+                          <hr>
+                        </div>
+                      </div>
+                      <div class="container bg-content"><!-- ngIf: !services.length --><!-- ngIf: services.length -->
+                        <div ng-if="services.length" id="serviceList" infinite-scroll="next()" infinite-scroll-disabled="query.count + query.offset + 1 > totalCount" infinite-scroll-immediate-check="false" infinite-scroll-container-element-id="scrollbox" class="ng-scope"><!-- ngInclude:  -->
+                          <div ng-include="" src="query.layout === 'grid' ? 'views/service/grid-view.html' : 'views/service/list-view.html'" class="ng-scope"><!-- ngRepeat: service in services -->
+                            <div ng-repeat="service in services" class="ng-scope">
+				<div class="row"><a  ng-href="Catalog.html" class="item" href="Catalog.html">
+                                <div class="col-lg-2 col-sm-3 col-xs-4 item-list-image"><img ng-src="images/HP%20Helion.png" alt="" src="images/HP%20Helion.png"></div>
+                                <div class="col-lg-8 col-sm-9 col-xs-8">
+                                  <div class="col-xs-12">
+                                    <p><strong class="ng-binding">Helion Openstack IaaS Simple Compute</strong></p>
+                                    <p class="ng-binding">1.3 HP Helion Openstack</p>
+                                  </div>
+                                  <p class="col-xs-12 small ng-binding">Helion Openstack Iaas offering to deploy a simple compute instance</p>
+                                  <h6><!-- ngIf: isRecentlyAdded(service.publishedDate) --> <small class="col-xs-4 visible-lg text-muted ng-binding">Global Shared Catalog</small> <small class="col-xs-5 text-muted"><span translate="common.publishedDate" translate-values="{&quot;time&quot;:&quot;Oct 30, 2014 5:34:28 AM&quot;}" class="ng-scope">Published On Oct 30, 2014 5:34:28 AM</span></small></h6>
+                                </div>
+                                <div class="col-lg-2 col-sm-2 col-xs-2 visible-lg">
+                                  <pricing-offering init-price="service.initPrice.price" recurring-price="service.recurringPrice.price" currency="service.recurringPrice.currency" period="service.recurringPrice.basedOn" class="ng-isolate-scope"><span><!-- ngIf: initPrice || initPrice === 0 -->
+                                    <div class="compact ng-scope" ng-if="initPrice || initPrice === 0">
+                                      <h5><strong><span translate="common.offeringBasePrice" translate-values="{&quot;price&quot;:&quot;$ 0.00  &quot;}" class="ng-scope">from: $ 0.00 </span></strong></h5>
+                                    </div>
+                                    <!-- end ngIf: initPrice || initPrice === 0 --><!-- ngIf: !initPrice && initPrice !== 0 --><!-- ngIf: period -->
+                                    <p ng-if="period" translate="common.offeringRecurringPrice" translate-values="{&quot;price&quot;:&quot;$ 0.00  &quot;,&quot;period&quot;:&quot;yearly&quot;}" class="ng-scope">+ $ 0.00   yearly</p>
+                                    <!-- end ngIf: period --><!-- ngIf: !period --></span></pricing-offering>
+                                  <div class="grid-secondary-title">
+                                    <h5 ng-show="service.requireApproval" class="ng-hide"><i class="icon-flag"></i>
+                                      <div class="text-info ng-scope" translate="services.approval">Requires Approval</div>
+                                    </h5>
+                                  </div>
+                                </div>
+                                </a></div>
+                              <div class="row" ng-show="$index < services.length - 1">
+                                <hr>
+                              </div>
+                            </div>
+                            <!-- end ngRepeat: service in services -->
+                            <div ng-repeat="service in services" class="ng-scope">
+				<div class="row"><a  ng-href="Catalog.html" class="item" href="Catalog.html">
+                                <div class="col-lg-2 col-sm-3 col-xs-4 item-list-image"><img ng-src="images/centos.jpg" alt="" src="images/centos.jpg"></div>
+                                <div class="col-lg-8 col-sm-9 col-xs-8">
+                                  <div class="col-xs-12">
+                                    <p><strong class="ng-binding">Linux on Amazon EC2</strong></p>
+                                    <p class="ng-binding">1.2 Amazon EC2 Cloud</p>
+                                  </div>
+                                  <p class="col-xs-12 small ng-binding">Provision Simple Compute Linux Instance on Amazon EC2 Cloud</p>
+                                  <h6><!-- ngIf: isRecentlyAdded(service.publishedDate) --><span ng-if="isRecentlyAdded(service.publishedDate)" class="ng-scope"><strong class="text-primary col-xs-3 visible-lg"><i class="icon-new"></i> <span translate="services.isRecentlyAdded" class="ng-scope">Recently Added</span></strong></span><!-- end ngIf: isRecentlyAdded(service.publishedDate) --> <small class="col-xs-4 visible-lg text-muted ng-binding">Global Shared Catalog</small> <small class="col-xs-5 text-muted"><span translate="common.publishedDate" translate-values="{&quot;time&quot;:&quot;Nov 20, 2014 4:17:54 AM&quot;}" class="ng-scope">Published On Nov 20, 2014 4:17:54 AM</span></small></h6>
+                                </div>
+                                <div class="col-lg-2 col-sm-2 col-xs-2 visible-lg">
+                                  <pricing-offering init-price="service.initPrice.price" recurring-price="service.recurringPrice.price" currency="service.recurringPrice.currency" period="service.recurringPrice.basedOn" class="ng-isolate-scope"><span><!-- ngIf: initPrice || initPrice === 0 -->
+                                    <div class="compact ng-scope" ng-if="initPrice || initPrice === 0">
+                                      <h5><strong><span translate="common.offeringBasePrice" translate-values="{&quot;price&quot;:&quot;$ 0.00  &quot;}" class="ng-scope">from: $ 0.00 </span></strong></h5>
+                                    </div>
+                                    <!-- end ngIf: initPrice || initPrice === 0 --><!-- ngIf: !initPrice && initPrice !== 0 --><!-- ngIf: period -->
+                                    <p ng-if="period" translate="common.offeringRecurringPrice" translate-values="{&quot;price&quot;:&quot;$ 0.00  &quot;,&quot;period&quot;:&quot;yearly&quot;}" class="ng-scope">+ $ 0.00   yearly</p>
+                                    <!-- end ngIf: period --><!-- ngIf: !period --></span></pricing-offering>
+                                  <div class="grid-secondary-title">
+                                    <h5 ng-show="service.requireApproval" class="ng-hide"><i class="icon-flag"></i>
+                                      <div class="text-info ng-scope" translate="services.approval">Requires Approval</div>
+                                    </h5>
+                                  </div>
+                                </div>
+                                </a></div>
+                              <div class="row" ng-show="$index < services.length - 1">
+                                <hr>
+                              </div>
+                            </div>
+                            <!-- end ngRepeat: service in services -->
+                            <div ng-repeat="service in services" class="ng-scope">
+				<div class="row"><a  ng-href="Catalog.html" class="item" href="Catalog.html">
+                                <div class="col-lg-2 col-sm-3 col-xs-4 item-list-image"><img ng-src="images/ccueVersion-redhat.png" alt="" src="images/ccueVersion-redhat.png"></div>
+                                <div class="col-lg-8 col-sm-9 col-xs-8">
+                                  <div class="col-xs-12">
+                                    <p><strong class="ng-binding">Linux on HP Helion Public Cloud</strong></p>
+                                    <p class="ng-binding">1.1 HP Helion Public Cloud</p>
+                                  </div>
+                                  <p class="col-xs-12 small ng-binding">Provision Simple Compute Linux instance on HP Helion Public Cloud</p>
+                                  <h6><!-- ngIf: isRecentlyAdded(service.publishedDate) --><span ng-if="isRecentlyAdded(service.publishedDate)" class="ng-scope"><strong class="text-primary col-xs-3 visible-lg"><i class="icon-new"></i> <span translate="services.isRecentlyAdded" class="ng-scope">Recently Added</span></strong></span><!-- end ngIf: isRecentlyAdded(service.publishedDate) --> <small class="col-xs-4 visible-lg text-muted ng-binding">Global Shared Catalog</small> <small class="col-xs-5 text-muted"><span translate="common.publishedDate" translate-values="{&quot;time&quot;:&quot;Nov 20, 2014 4:18:58 AM&quot;}" class="ng-scope">Published On Nov 20, 2014 4:18:58 AM</span></small></h6>
+                                </div>
+                                <div class="col-lg-2 col-sm-2 col-xs-2 visible-lg">
+                                  <pricing-offering init-price="service.initPrice.price" recurring-price="service.recurringPrice.price" currency="service.recurringPrice.currency" period="service.recurringPrice.basedOn" class="ng-isolate-scope"><span><!-- ngIf: initPrice || initPrice === 0 -->
+                                    <div class="compact ng-scope" ng-if="initPrice || initPrice === 0">
+                                      <h5><strong><span translate="common.offeringBasePrice" translate-values="{&quot;price&quot;:&quot;$ 0.00  &quot;}" class="ng-scope">from: $ 0.00 </span></strong></h5>
+                                    </div>
+                                    <!-- end ngIf: initPrice || initPrice === 0 --><!-- ngIf: !initPrice && initPrice !== 0 --><!-- ngIf: period -->
+                                    <p ng-if="period" translate="common.offeringRecurringPrice" translate-values="{&quot;price&quot;:&quot;$ 0.00  &quot;,&quot;period&quot;:&quot;yearly&quot;}" class="ng-scope">+ $ 0.00   yearly</p>
+                                    <!-- end ngIf: period --><!-- ngIf: !period --></span></pricing-offering>
+                                  <div class="grid-secondary-title">
+                                    <h5 ng-show="service.requireApproval" class="ng-hide"><i class="icon-flag"></i>
+                                      <div class="text-info ng-scope" translate="services.approval">Requires Approval</div>
+                                    </h5>
+                                  </div>
+                                </div>
+                                </a></div>
+                              <div class="row" ng-show="$index < services.length - 1">
+                                <hr>
+                              </div>
+                            </div>
+                            <!-- end ngRepeat: service in services -->
+                            <div ng-repeat="service in services" class="ng-scope">
+				<div class="row"><a  ng-href="Catalog.html" class="item" href="Catalog.html">
+                                <div class="col-lg-2 col-sm-3 col-xs-4 item-list-image"><img ng-src="images/ccuePlatform-windows.png" alt="" src="images/ccuePlatform-windows.png"></div>
+                                <div class="col-lg-8 col-sm-9 col-xs-8">
+                                  <div class="col-xs-12">
+                                    <p><strong class="ng-binding">Windows on Amazon EC2</strong></p>
+                                    <p class="ng-binding">1.2 Amazon EC2 Cloud</p>
+                                  </div>
+                                  <p class="col-xs-12 small ng-binding">Provision a Simple Compute Windows instance on Amazon EC2 public cloud</p>
+                                  <h6><!-- ngIf: isRecentlyAdded(service.publishedDate) --><span ng-if="isRecentlyAdded(service.publishedDate)" class="ng-scope"><strong class="text-primary col-xs-3 visible-lg"><i class="icon-new"></i> <span translate="services.isRecentlyAdded" class="ng-scope">Recently Added</span></strong></span><!-- end ngIf: isRecentlyAdded(service.publishedDate) --> <small class="col-xs-4 visible-lg text-muted ng-binding">Global Shared Catalog</small> <small class="col-xs-5 text-muted"><span translate="common.publishedDate" translate-values="{&quot;time&quot;:&quot;Nov 20, 2014 4:19:30 AM&quot;}" class="ng-scope">Published On Nov 20, 2014 4:19:30 AM</span></small></h6>
+                                </div>
+                                <div class="col-lg-2 col-sm-2 col-xs-2 visible-lg">
+                                  <pricing-offering init-price="service.initPrice.price" recurring-price="service.recurringPrice.price" currency="service.recurringPrice.currency" period="service.recurringPrice.basedOn" class="ng-isolate-scope"><span><!-- ngIf: initPrice || initPrice === 0 -->
+                                    <div class="compact ng-scope" ng-if="initPrice || initPrice === 0">
+                                      <h5><strong><span translate="common.offeringBasePrice" translate-values="{&quot;price&quot;:&quot;$ 0.00  &quot;}" class="ng-scope">from: $ 0.00 </span></strong></h5>
+                                    </div>
+                                    <!-- end ngIf: initPrice || initPrice === 0 --><!-- ngIf: !initPrice && initPrice !== 0 --><!-- ngIf: period -->
+                                    <p ng-if="period" translate="common.offeringRecurringPrice" translate-values="{&quot;price&quot;:&quot;$ 0.00  &quot;,&quot;period&quot;:&quot;yearly&quot;}" class="ng-scope">+ $ 0.00   yearly</p>
+                                    <!-- end ngIf: period --><!-- ngIf: !period --></span></pricing-offering>
+                                  <div class="grid-secondary-title">
+                                    <h5 ng-show="service.requireApproval" class="ng-hide"><i class="icon-flag"></i>
+                                      <div class="text-info ng-scope" translate="services.approval">Requires Approval</div>
+                                    </h5>
+                                  </div>
+                                </div>
+                                </a></div>
+                              <div class="row" ng-show="$index < services.length - 1">
+                                <hr>
+                              </div>
+                            </div>
+                            <!-- end ngRepeat: service in services -->
+                            <div ng-repeat="service in services" class="ng-scope">
+				<div class="row"><a  ng-href="Catalog.html" class="item" href="Catalog.html">
+                                <div class="col-lg-2 col-sm-3 col-xs-4 item-list-image"><img ng-src="images/ccuePlatform-windows.png" alt="" src="images/ccuePlatform-windows.png"></div>
+                                <div class="col-lg-8 col-sm-9 col-xs-8">
+                                  <div class="col-xs-12">
+                                    <p><strong class="ng-binding">Windows on HP Helion Public Cloud</strong></p>
+                                    <p class="ng-binding">1.1 HP Helion Public Cloud</p>
+                                  </div>
+                                  <p class="col-xs-12 small ng-binding">Provision Simple Compute Windows Instance on HP Helion Public Cloud</p>
+                                  <h6><!-- ngIf: isRecentlyAdded(service.publishedDate) --><span ng-if="isRecentlyAdded(service.publishedDate)" class="ng-scope"><strong class="text-primary col-xs-3 visible-lg"><i class="icon-new"></i> <span translate="services.isRecentlyAdded" class="ng-scope">Recently Added</span></strong></span><!-- end ngIf: isRecentlyAdded(service.publishedDate) --> <small class="col-xs-4 visible-lg text-muted ng-binding">Global Shared Catalog</small> <small class="col-xs-5 text-muted"><span translate="common.publishedDate" translate-values="{&quot;time&quot;:&quot;Nov 20, 2014 4:20:19 AM&quot;}" class="ng-scope">Published On Nov 20, 2014 4:20:19 AM</span></small></h6>
+                                </div>
+                                <div class="col-lg-2 col-sm-2 col-xs-2 visible-lg">
+                                  <pricing-offering init-price="service.initPrice.price" recurring-price="service.recurringPrice.price" currency="service.recurringPrice.currency" period="service.recurringPrice.basedOn" class="ng-isolate-scope"><span><!-- ngIf: initPrice || initPrice === 0 -->
+                                    <div class="compact ng-scope" ng-if="initPrice || initPrice === 0">
+                                      <h5><strong><span translate="common.offeringBasePrice" translate-values="{&quot;price&quot;:&quot;$ 0.00  &quot;}" class="ng-scope">from: $ 0.00 </span></strong></h5>
+                                    </div>
+                                    <!-- end ngIf: initPrice || initPrice === 0 --><!-- ngIf: !initPrice && initPrice !== 0 --><!-- ngIf: period -->
+                                    <p ng-if="period" translate="common.offeringRecurringPrice" translate-values="{&quot;price&quot;:&quot;$ 0.00  &quot;,&quot;period&quot;:&quot;yearly&quot;}" class="ng-scope">+ $ 0.00   yearly</p>
+                                    <!-- end ngIf: period --><!-- ngIf: !period --></span></pricing-offering>
+                                  <div class="grid-secondary-title">
+                                    <h5 ng-show="service.requireApproval" class="ng-hide"><i class="icon-flag"></i>
+                                      <div class="text-info ng-scope" translate="services.approval">Requires Approval</div>
+                                    </h5>
+                                  </div>
+                                </div>
+                                </a></div>
+                              <div class="row ng-hide" ng-show="$index < services.length - 1">
+                                <hr>
+                              </div>
+                            </div>
+                            <!-- end ngRepeat: service in services --></div>
+                        </div>
+                        <!-- end ngIf: services.length --></div>
+                    </div>
+                  </div>
+                </div>
+                <div class="ng-scope">
+                  <mpp-error-page has-error="showError.enabled" retry-callback="showError.action.apply(undefined, showError.params)" key="" params="showError.args" class="ng-isolate-scope">
+                    <div><!-- ngIf: hasError -->
+                      <div class="md-overlay"></div>
+                    </div>
+                  </mpp-error-page>
+                </div>
+              </div>
+            </div>
+            <!-- ngIf: org.securityLevel --></div>
+        </div>
+      </div>
+    </div>
+  </navbar>
+</div>
+<script src="js/jquery.js"></script> 
+<script src="js/angular.js"></script> 
+<script src="js/ui-utils.js"></script> 
+<script src="js/angular-translate.js"></script> 
+<script src="js/angular-translate-interpolation-messageformat.js"></script> 
+<script src="js/messageformat.js"></script> 
+<script src="js/angular-translate-loader-static-files.js"></script> 
+<script src="js/angular-cookies.js"></script> 
+<script src="js/currency-filter.js"></script> 
+<script src="js/sugar-full.development.js"></script> 
+<script src="js/bowser.js"></script> 
+<script src="js/modernizr.js"></script> 
+<!--- <script src="js/8070b853.scripts.js"></script> -->
+<script src="js/e40f19e4.plugins.js"></script> 
+<script src="js/bfa7d7ae.templates.js"></script> 
+<script src="js/e4a8151c.modules.js"></script>
+</body>
+</html>

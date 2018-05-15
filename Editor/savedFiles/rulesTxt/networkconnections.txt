@@ -1,0 +1,28 @@
+Network Connections, All Security Rules
+Overall, Network Connections
+V-38686 The systems local firewall must implement a deny-all, allow-by-exception policy for forwarded packets.
+V-38687 The system must provide VPN connectivity for communications over untrusted networks.
+V-38528 The system must log Martian packets.
+IPv4, Network Connections
+V-38511 IP forwarding for IPv4 must not be enabled, unless the system is a router.
+V-38513 The systems local IPv4 firewall must implement a deny-all, allow-by-exception policy for inbound packets.
+V-38523 The system must not accept IPv4 source-routed packets on any interface.
+V-38529 The system must not accept IPv4 source-routed packets by default.
+V-38542 The system must use a reverse-path filter for IPv4 network traffic when possible on all interfaces.
+V-38544 The system must use a reverse-path filter for IPv4 network traffic when possible by default.
+V-38555 The system must employ a local IPv4 firewall.
+ICMPv4, Network Connections
+V-38524 The system must not accept ICMPv4 redirect packets on any interface.
+V-38526 The system must not accept ICMPv4 secure redirect packets on any interface.
+V-38532 The system must not accept ICMPv4 secure redirect packets by default.
+V-38600 The system must not send ICMPv4 redirects by default.
+V-38601 The system must not send ICMPv4 redirects from any interface.
+V-38533 The system must ignore ICMPv4 redirect messages by default.
+V-38535 The system must not respond to ICMPv4 sent to a broadcast address.
+V-38537 The system must ignore ICMPv4 bogus error responses.
+IPv6, Network Connections
+V-38549 The system must employ a local IPv6 firewall.
+V-38444 The systems local IPv6 firewall must implement a deny-all, allow-by-exception policy for inbound packets.
+V-38546 The IPv6 protocol handler must not be bound to the network stack unless needed.
+ICMPv6, Network Connections
+V-38548 The system must ignore ICMPv6 redirects by default.

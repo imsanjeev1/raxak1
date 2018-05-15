@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="">
+<meta name="author" content="">
+<title>Raxak Protect</title>
+<!-- Bootstrap Core CSS -->
+<link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
+<!-- Custom CSS -->
+
+<link rel="stylesheet" href="css/sb-admin.css" type="text/css">
+<link href="css/login.css" rel="stylesheet">
+<!-- Custom Fonts -->
+<link rel="stylesheet" href="font-awesome/css/font-awesome.min.css" type="text/css">
+<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+<!--[if lt IE 9]>
+                <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+                <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+            <![endif]-->
+             <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.js"></script>
+<script type="text/javascript" src="js/jquery-1.10.2.js"></script>
+
+ 
+<script type="text/javascript" src="js/bootstrap.min.js"></script>
+<script type="text/javascript" src="js/jquery.validate.js"></script>
+<script type="text/javascript" src="js/rxk_signup.js"></script>
+<style>
+p {
+	padding-left: 35px;
+	color: #000
+}
+ol {
+	padding-left: 50px;
+	color: #000
+}
+ol li {
+	padding-left: 10px;
+}
+h3 {font-weight:bold}
+hr {background:#343434 !important}
+</style>
+<script type='text/javascript'>//<![CDATA[
+$(window).load(function(){
+if ($('#back-to-top').length) {
+    var scrollTrigger = 100, // px
+        backToTop = function () {
+            var scrollTop = $(window).scrollTop();
+            if (scrollTop > scrollTrigger) {
+                $('#back-to-top').addClass('show');
+            } else {
+                $('#back-to-top').removeClass('show');
+            }
+        };
+    backToTop();
+    $(window).on('scroll', function () {
+        backToTop();
+    });
+    $('#back-to-top').on('click', function (e) {
+        e.preventDefault();
+        $('html,body').animate({
+            scrollTop: 0
+        }, 700);
+    });
+}
+});//]]> 
+
+</script></head>
+<body class="register_bg">
+<div id="wrapper" style="padding-left:0px !important"> 
+  <!-- Navigation -->
+  <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation"> 
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="row">
+      <div class="col-lg-6">
+        <div class="navbar-header"> <a class="navbar-brand" href="index.html"><span style="color:#0096d6"> <strong>Raxak Protect</strong> &trade;</span></a> </div>
+      </div>
+      <div class="col-lg-6 text-right">
+        <ul id="navlist">
+          <li><a href="login.html">Login</a></li>
+          <li> | </li>
+          <li><a href="register.html">Register</a></li>
+        </ul>
+      </div>
+    </div>
+    <!-- Top Menu Items --> 
+    <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens --><!-- /.navbar-collapse --> 
+  </nav>
+  <div class="container">
+    <div class="row"> 
+      <!-- Page Heading -->
+      <div class="col-md-9 col-md-offset-1">
+        <div class="login-panel panel panel-default" style="background:rgba(255,255,255,0.5); margin-top:75px; border:0px none;  background:url(images/book_bg.png) repeat-y">
+          <div class="panel-body" style=" ">
+            <div class="center_div" style="background:none; margin-left:60px;">
+            <div class="col-lg-12 text-left">
+            
+           <ul class="tree">
+    <li><a href="#one">Configure and Use Raxak Protect</a>
+    
+    <ul>
+            <li><a href="#operational">Operational Flow</a></li>
+            <li><a href="#manual">Manual Preparation of Existing Compute Assets</a></li>
+            <li><a href="#vmsetup">What VMSetup.sh Does </a></li>
+          </ul>
+    
+    </li>
+    <li><a href="#enrollment">After your compute assets are prepared: Enrollment and Compliance Checking </a></li>
+    <li> <a href="#aws">Amazon AWS Preparation</a></li>
+    <li> <a href="#softlayer">Soft Layer Preparation</a></li>
+    <li> <a href="#soft">Using VPN on Soft Layer</a></li>
+    <li> <a href="#gce">Google Compute Engine (GCE) Preparation</a></li>
+  </ul>
+            </div>
+            
+              <div class="col-lg-12 text-left">
+              
+              
+                <h3 style="text-transform:uppercase"   id="one">Configure and Use Raxak Protect</h3>
+                <hr>
+                <div class="greentext"   id="operational"> <i class="fa fa-arrow-left"></i> <span>Operational Flow</span></div>
+                <p>Raxak Protect performs compliance tests on compute assets (servers) that you enroll into our system. These can be virtual machines or bare-metal. Our key architectural philosopy is that we do not place any permanent agent on your machine. Ever.
+                  So to enable us to have access your machines, there are three key steps to using Raxak Protect: </p>
+                <ol>
+                  <li>Preparing a new compute asset for monitoring</li>
+                  <li>Enrolling the prepared asset with Raxak Protect</li>
+                  <li>Applying profiles and evaluating results</li>
+                </ol>
+                <p> Preparing a new asset consists of giving Raxak Protect's servers access to your machine. The process depends on whether the asset already exists, or is being freshly provisioned. If the asset is being freshly provisioned, you can use a Cloud Raxak provided post-provisioning script to make the prep easier. For assets that have already been created, you can still use the scripts, or do the preparation manually. </p>
+                <p> Fundamentally,
+                <ol>
+                  <li> Your machine (virtual, or bare metal) must be accessible
+                    from the internet. It must have a public IP address that we can
+                    reach, or depending on the cloud infrastructure provider, it must
+                    have a VPN that can be used to reach private IP addresses (today this
+                    capability is only supported on Soft Layer). </li>
+                  <li> Ensure that the machine can be pinged by allowing the ICMP
+                    protocol through your firewall. This involves opening port
+                    -1. </li>
+                  <li> Ensure that port 22 is open to allow SSH access to your
+                    machine </li>
+                  <li> Make sure you have an account that Raxak can use to login
+                    via SSH, that has elevated privilege. We only use SSH with RSA
+                    key-pairs. We do not use passwords. </li>
+                </ol>
+                </p>
+                <p> To make it easy to create a suitable user account and to
+                  set up the proper keys and permissions, we have created a
+                  script that can be used with the post-provisioning mechanisms
+                  provided by most public cloud providers. The mechanism for
+                  deploying this script depends on the specific provider but
+                  generally consist of uploading or cutting-and-pasting the
+                  script commands into a text buffer. <br>
+                  Our script is available
+                  at <a href=
+                              "https://www.cloudraxak.net/VMSetup.sh">https://www.cloudraxak.net/VMSetup.sh</a> </p>
+                <p> For specific instructions on how to input this startup
+                  script for various service providers, see below: </p>
+                <div  class="col-md-12">
+                  <div  class="col-md-4">
+                    <div class="bubble">
+                      <div class="rectangle">
+                        <h2><img src="lib/images/softlayer.jpg" height="20px" /> </h2>
+                      </div>
+                      <div class="triangle-l"></div>
+                      <div class="triangle-r"></div>
+                      <div class="info">
+                        <h2>IBM Soft Layer</h2>
+                        <p>IBM Soft Layer VMs and bare-metal machines <br>
+                          can be prepared automatically at the time of provisioning. </p>
+                        <p> <a href="#softlayer" >Learn More</a> </p>
+                      </div>
+                    </div>
+                  </div>
+                  <div  class="col-md-4" >
+                    <div class="bubble">
+                      <div class="rectangle">
+                        <h2><img src="images/amzn_icn.png" height="20px" alt=
+                      "" /> </h2>
+                      </div>
+                      <div class="triangle-l"></div>
+                      <div class="triangle-r"></div>
+                      <div class="info">
+                        <h2>Amazon AWS</h2>
+                        <p>On Amazon AWS, you need to be careful to select the proper security group that allows ICMP ping and SSH access via port 22. </p>
+                        <p> <a  href="#aws">Learn More</a> </p>
+                      </div>
+                    </div>
+                  </div>
+                  <div  class="col-md-4">
+                    <div class="bubble">
+                      <div class="rectangle">
+                        <h2><img src="images/ggle_icn.png" height="20px" alt=
+                          "GCE icon"/> </h2>
+                      </div>
+                      <div class="triangle-l"></div>
+                      <div class="triangle-r"></div>
+                      <div class="info">
+                        <h2>Google Cloud Engine</h2>
+                        <p>GCE machines can also be automatically prepared to be enrolled into Raxak Protect via post provisioning scripts </p>
+                        <p> <a href="#gce">Learn More</a> </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="greentext"> <i class="fa fa-arrow-left"></i> <span  id="manual">Manual Preparation of Existing Compute Assets</span></div>
+              <div class="panel-body">
+                <p> If your cloud provider does not have a mechanism for
+                  specifying a post-provisioning script, or if you already
+                  have a machine that has been provisioned, you can perform
+                  the following steps manually:</p>
+                <ol>
+                  <li> Log in to the target machine with a privileged
+                    userid (e.g., root or some user capable of elevating
+                    privilege to root) </li>
+                  <li> Download the script using <kbd> wget https://www.cloudraxak.net/VMSetup.sh </kbd> </li>
+                  <li> If not logged in as root, change userid to root by doing <kbd> sudo su - </kbd> </li>
+                  <li> Change the permission of the script to allow it to
+                    be executed by doing <kbd>chmod +x VMSetup.sh</kbd> </li>
+                  <li> Execute the script by doing <kbd>./VMSetup.sh</kbd> </li>
+                </ol>
+              </div>
+              <div class="greentext" id="vmsetup"> <i class="fa fa-arrow-left"></i> <span>What <kbd>VMSetup.sh</kbd> Does</span></div>
+              <div class="panel-body">
+                <ol>
+                  <li> Create a New Account for
+                    Raxak Protect called <kbd>raxak</kbd> </li>
+                  <li> Edits the sudoers file (similar to manually using <kbd>sudo visudo</kbd>) to allow the new user
+                    password-less sudo privileges. Adds the following line to
+                    the bottom of the sudoers file <kbd> raxak ALL=NOPASSWD: ALL </kbd> </li>
+                  <li> On some CentOS systems, there is an anachronistic
+                    command that requires a TTY (for password entry) for sudo
+                    over SSH. Passwords are not used with keypairs. However,
+                    some system builds still have this flag in the sudoers
+                    file. This flag has been deemed to be obsolete and will be <a href=
+                                                        "https://bugzilla.redhat.com/show_bug.cgi?id=1020147"> removed
+                    by Red Hat in future distributions </a> . The script adds a
+                    line that says <kbd> Defaults:raxak
+                    !requiretty </kbd> </li>
+                </ol>
+              </div>
+              <div class="col-lg-12 text-left">
+                <h3 style="text-transform:uppercase" id="enrollment">After your compute assets are prepared: Enrollment and Compliance Checking </h3>
+                <hr>
+                <img src="lib/images/addtab.png"  class="wrap" alt="Add button on Target Machines tab" style="width:50%;margin-left:auto;margin-right:auto;">
+                <p> Once the target machine is prepped, it can be enrolled into
+                  the Raxak Protect service. </p>
+                <p> Soft Layer users who have subscribed to Raxak Protect via the IBM Marketplace access Raxak Protect
+                  via the tile placed in their Markeplace console. This automatically validates the user to Raxak Protect
+                  and logs the user into the Raxak Protect system. </p>
+                <p> Other users access Raxak Protect via <kbd>https://www.cloudraxak.net/</kbd> and authenticate themselves
+                  via Google and Amazon single sign on. </p>
+                <p> Users who have been given a free trial code will be asked to validate their subscription by entering the code.
+                  Codes are tied to user emails that correspond to their Marketplace, Google, or Amazon IDs, and cannot be
+                  shared by other users </p>
+                <p> Once the user is logged in, the previously prepared machines can be enrolled using the
+                  <mark>[Add]</mark>
+                  button on the
+                  <mark>[Target Machines]</mark>
+                  tab in the Raxak Protect console. If you are using VPNs on Soft Layer, see <a href="#VPN">this.</a> </p>
+                <p> If you used the automatic post-provisioning script (VMSetup.sh), use <kbd>raxak</kbd> as the user id in the 
+                  enrollment form that is presented when you click the
+                  <mark>[Add]</mark>
+                  button. </p>
+                <p> <a href="#stepbystep" class="btn btn-default">Step by Step Instructions</a></p>
+                <div class="well">
+                  <div class="row">
+                    <div class="col-md-8">
+                      <p> Please contact Cloud Raxak with any suggestions or questions about the Raxak Protect product. If you find any bugs
+                        or behavior that you cannot understand, please file a bug report. </p>
+                    </div>
+                    <div class="col-md-4"> <a class="btn btn-lg btn-default btn-block" href="http://www.cloudraxak.com/contact-us">Contact Us</a> </div>
+                  </div>
+                </div>
+                
+                <div class="col-lg-12 text-left"  id="aws" >
+                  <h3 style="text-transform:uppercase">Amazon AWS Preparation </h3>
+                  <hr>
+                  <p> First, download the VMSetup.sh script to a local
+                    folder by clicking <a href=
+                                                                      "https://www.cloudraxak.net/VMSetup.sh" download>here.</a> On Step 3 (Configure Instance Details) in
+                    the Launch Instance workflow, expand the Advanced Details
+                    tab at the bottom of the page. Select the "As File" radio
+                    button, and browse to the script you downloaded. </p>
+                  <p> <img src="lib/images/awsscript.png" style="width:75%; margin-left:auto; margin-right:auto;"/></p>
+                </div>
+              
+             
+              <div class="col-lg-12 text-left"  id="softlayer">
+                <h3 style="text-transform:uppercase">Soft Layer Preparation</h3>
+                <hr>
+                <p> On the second page of the provisioning workflow, look for the section marked Provisioning Scripts and enter a new url https://www.cloudraxak.net/VMSetup.sh as shown below. Note that it is critical to use the https protocol to ensure that the script gets auto-executed. </p>
+                <p> <img src="lib/images/slscript.png" style="width:75%; margin-left:auto; margin-right:auto;"/> </p>
+              </div>
+              <div class="col-lg-12 text-left">
+                <h3 style="text-transform:uppercase" id="soft">Using VPN on Soft Layer</h3>
+                <hr>
+                <p> If you want to enroll machines running on Soft Layer that only have
+                  private IP addresses, you need to construct a userid associated with
+                  your Soft Layer account that has VPN permissions. </p>
+                <p> On the form presented by the
+                  <mark>[Add]</mark>
+                  button, select the
+                  <mark>[Private IP]</mark>
+                  checkbox, which will open three new input fields: Username, Password, and
+                  Tunnel IP. The Username is the userid with VPN permissions. The Password
+                  is the VPN password. The Tunnel IP is the IP address of the tunnel endpoint
+                  for one of the Soft Layer data centers. This last field defaults to 
+                  the endpoint of the Soft Layer San Jose CA data center. </p>
+                <p> Note that there are certain constraints on VPN access such as the limitation of simultaneous VPN tunnels that may be
+                  opened. These can be changed by contacting Soft Layer support and opening an appropriate ticket. </p>
+              </div>
+              
+              <div class="col-lg-12 text-left" id="gce">
+                <h3 style="text-transform:uppercase">Google Compute Engine (GCE) Preparation</h3>
+                <hr>
+                <p> Download the VMSetup.sh script to a local folder by clicking here. Expand the "Management, Disk, ..." section by clicking the downward pointing double arrow to the left of the section heading. Then cut and paste the contents of the VMSetup.sh file into the Startup Script box as shown in the screen image below. </p>
+                <p> <img src="lib/images/gcescript.png" style="width:75%; margin-left:auto; margin-right:auto;"/> </p>
+              </div>
+              <div class="clear" style="height:50px;"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- /.row --> 
+  </div>
+  
+<a href="#" id="back-to-top" title="Back to top">&uarr;</a>
+
+  <!-- /.container-fluid --> 
+</div>
+<!-- /#page-wrapper -->
+<div class="footer navbar navbar-inverse navbar-fixed-bottom">&copy; 2014-15 Cloud Raxak Inc. All Rights Reserved </div>
+<!-- /#wrapper -->
+</div>
+</body>
+</html>

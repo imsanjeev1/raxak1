@@ -1,0 +1,45 @@
+<div class="footer">&copy; 2016 Cloud Raxak Inc. All Rights Reserved.</div>
+<!-- error container -->
+<div class="modal fade" id="errorModal" role="dialog" aria-labelledby="errorModel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Modal title</h4>
+            </div>
+            <div class="modal-body">
+                <div class="container-fluid"></div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Ok</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+  <div class="uparrow" id="uparrow"><i class="fa fa-arrow-up"></i> </div>
+			
+
+		<!-- Javascript -->
+		<script type="text/javascript">
+$(document).ready(function(){
+    // fade in and fade out
+    $(function () {
+        $(window).scroll(function () {
+            if ($(this).scrollTop() > 50) {
+                $('#uparrow').fadeIn();
+            } else {
+                $('#uparrow').fadeOut();
+            }
+        });
+ 
+        // scroll body to 0px on click
+        $('#uparrow').click(function () {
+            $('body,html').animate({
+                scrollTop: 0
+            }, 800);
+            return false;
+        });
+    });
+ 
+});
+</script>

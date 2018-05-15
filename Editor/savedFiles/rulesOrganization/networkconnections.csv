@@ -1,0 +1,323 @@
+"Network Connections","","","","","","","","","",""
+"Overall:","","","","","","","","","",""
+"V-38686","medium","The systems local firewall must implement a deny-all, allow-by-exception policy for forwarded packets.","In ""iptables"" the default policy is applied only after all the applicable rules in the table are examined for a match. Setting the default policy to ""DROP"" implements proper design for a firewall, i.e., any packets which are not explicitly permitted should not be accepted.","None","SV-50487r1_rule","F-43635r1_fix","To set the default policy to DROP (instead of ACCEPT) for the built-in FORWARD chain which processes packets that will be forwarded from one interface to another, add or correct the following line in ""/etc/sysconfig/iptables"": 
+
+:FORWARD DROP [0:0]","C-46248r1_chk","Run the following command to ensure the default ""FORWARD"" policy is ""DROP"": 
+
+grep "":FORWARD"" /etc/sysconfig/iptables
+
+The output must be the following: 
+
+# grep "":FORWARD"" /etc/sysconfig/iptables
+:FORWARD DROP [0:0]
+
+If it is not, this is a finding.","??"
+"V-38687","low","The system must provide VPN connectivity for communications over untrusted networks.","Providing the ability for remote users or systems to initiate a secure VPN connection protects information when it is transmitted over a wide area network.","None","SV-50488r2_rule","F-43636r1_fix","The Openswan package provides an implementation of IPsec and IKE, which permits the creation of secure tunnels over untrusted networks. The ""openswan"" package can be installed with the following command: 
+
+# yum install openswan","C-46249r2_chk","If the system does not communicate over untrusted networks, this is not applicable.
+
+Run the following command to determine if the ""openswan"" package is installed: 
+
+# rpm -q openswan
+
+
+If the package is not installed, this is a finding.",""
+"V-38528","low","The system must log Martian packets.","The presence of ""martian"" packets (which have impossible addresses) as well as spoofed packets, source-routed packets, and redirects could be a sign of nefarious network activity. Logging these packets enables this activity to be detected.","None","SV-50329r2_rule","F-43476r1_fix","To set the runtime status of the ""net.ipv4.conf.all.log_martians"" kernel parameter, run the following command: 
+
+# sysctl -w net.ipv4.conf.all.log_martians=1
+
+If this is not the system's default value, add the following line to ""/etc/sysctl.conf"": 
+
+net.ipv4.conf.all.log_martians = 1","C-46086r3_chk","The status of the ""net.ipv4.conf.all.log_martians"" kernel parameter can be queried by running the following command:
+
+$ sysctl net.ipv4.conf.all.log_martians
+
+The output of the command should indicate a value of ""1"". If this value is not the default value, investigate how it could have been adjusted at runtime, and verify it is not set improperly in ""/etc/sysctl.conf"".
+
+$ grep net.ipv4.conf.all.log_martians /etc/sysctl.conf
+
+If the correct value is not returned, this is a finding. ","??"
+"IPv4:","","","","","","","","","",""
+"V-38511","medium","IP forwarding for IPv4 must not be enabled, unless the system is a router.","IP forwarding permits the kernel to forward packets from one network interface to another. The ability to forward packets between two networks is only appropriate for systems acting as routers.","None","SV-50312r2_rule","F-43458r2_fix","To set the runtime status of the ""net.ipv4.ip_forward"" kernel parameter, run the following command: 
+
+# sysctl -w net.ipv4.ip_forward=0
+
+If this is not the system's default value, add the following line to ""/etc/sysctl.conf"": 
+
+net.ipv4.ip_forward = 0","C-46068r3_chk","The status of the ""net.ipv4.ip_forward"" kernel parameter can be queried by running the following command:
+
+$ sysctl net.ipv4.ip_forward
+
+The output of the command should indicate a value of ""0"". If this value is not the default value, investigate how it could have been adjusted at runtime, and verify it is not set improperly in ""/etc/sysctl.conf"".
+
+$ grep net.ipv4.ip_forward /etc/sysctl.conf
+
+The ability to forward packets is only appropriate for routers. If the correct value is not returned, this is a finding. ",""
+"V-38513","medium","The systems local IPv4 firewall must implement a deny-all, allow-by-exception policy for inbound packets.","In ""iptables"" the default policy is applied only after all the applicable rules in the table are examined for a match. Setting the default policy to ""DROP"" implements proper design for a firewall, i.e., any packets which are not explicitly permitted should not be accepted.","None","SV-50314r1_rule","F-43460r1_fix","To set the default policy to DROP (instead of ACCEPT) for the built-in INPUT chain which processes incoming packets, add or correct the following line in ""/etc/sysconfig/iptables"": 
+
+:INPUT DROP [0:0]","C-46070r1_chk","Inspect the file ""/etc/sysconfig/iptables"" to determine the default policy for the INPUT chain. It should be set to DROP. 
+
+# grep "":INPUT"" /etc/sysconfig/iptables
+
+If the default policy for the INPUT chain is not set to DROP, this is a finding.",""
+"V-38523","medium","The system must not accept IPv4 source-routed packets on any interface.","Accepting source-routed packets in the IPv4 protocol has few legitimate uses. It should be disabled unless it is absolutely required.","None","SV-50324r2_rule","F-43471r1_fix","To set the runtime status of the ""net.ipv4.conf.all.accept_source_route"" kernel parameter, run the following command: 
+
+# sysctl -w net.ipv4.conf.all.accept_source_route=0
+
+If this is not the system's default value, add the following line to ""/etc/sysctl.conf"": 
+
+net.ipv4.conf.all.accept_source_route = 0","C-46081r3_chk","The status of the ""net.ipv4.conf.all.accept_source_route"" kernel parameter can be queried by running the following command:
+
+$ sysctl net.ipv4.conf.all.accept_source_route
+
+The output of the command should indicate a value of ""0"". If this value is not the default value, investigate how it could have been adjusted at runtime, and verify it is not set improperly in ""/etc/sysctl.conf"".
+
+$ grep net.ipv4.conf.all.accept_source_route /etc/sysctl.conf
+
+If the correct value is not returned, this is a finding. ",""
+"V-38529","medium","The system must not accept IPv4 source-routed packets by default.","Accepting source-routed packets in the IPv4 protocol has few legitimate uses. It should be disabled unless it is absolutely required.","None","SV-50330r2_rule","F-43478r1_fix","To set the runtime status of the ""net.ipv4.conf.default.accept_source_route"" kernel parameter, run the following command: 
+
+# sysctl -w net.ipv4.conf.default.accept_source_route=0
+
+If this is not the system's default value, add the following line to ""/etc/sysctl.conf"": 
+
+net.ipv4.conf.default.accept_source_route = 0","C-46088r2_chk","The status of the ""net.ipv4.conf.default.accept_source_route"" kernel parameter can be queried by running the following command:
+
+$ sysctl net.ipv4.conf.default.accept_source_route
+
+The output of the command should indicate a value of ""0"". If this value is not the default value, investigate how it could have been adjusted at runtime, and verify it is not set improperly in ""/etc/sysctl.conf"".
+
+$ grep net.ipv4.conf.default.accept_source_route /etc/sysctl.conf
+
+If the correct value is not returned, this is a finding. ",""
+"V-38542","medium","The system must use a reverse-path filter for IPv4 network traffic when possible on all interfaces.","Enabling reverse path filtering drops packets with source addresses that should not have been able to be received on the interface they were received on. It should not be used on systems which are routers for complicated networks, but is helpful for end hosts and routers serving small networks.","None","SV-50343r2_rule","F-43490r1_fix","To set the runtime status of the ""net.ipv4.conf.all.rp_filter"" kernel parameter, run the following command: 
+
+# sysctl -w net.ipv4.conf.all.rp_filter=1
+
+If this is not the system's default value, add the following line to ""/etc/sysctl.conf"": 
+
+net.ipv4.conf.all.rp_filter = 1","C-46100r2_chk","The status of the ""net.ipv4.conf.all.rp_filter"" kernel parameter can be queried by running the following command:
+
+$ sysctl net.ipv4.conf.all.rp_filter
+
+The output of the command should indicate a value of ""1"". If this value is not the default value, investigate how it could have been adjusted at runtime, and verify it is not set improperly in ""/etc/sysctl.conf"".
+
+$ grep net.ipv4.conf.all.rp_filter /etc/sysctl.conf
+
+If the correct value is not returned, this is a finding. ",""
+"V-38544","medium","The system must use a reverse-path filter for IPv4 network traffic when possible by default.","Enabling reverse path filtering drops packets with source addresses that should not have been able to be received on the interface they were received on. It should not be used on systems which are routers for complicated networks, but is helpful for end hosts and routers serving small networks.","None","SV-50345r2_rule","F-43492r1_fix","To set the runtime status of the ""net.ipv4.conf.default.rp_filter"" kernel parameter, run the following command: 
+
+# sysctl -w net.ipv4.conf.default.rp_filter=1
+
+If this is not the system's default value, add the following line to ""/etc/sysctl.conf"": 
+
+net.ipv4.conf.default.rp_filter = 1","C-46102r2_chk","The status of the ""net.ipv4.conf.default.rp_filter"" kernel parameter can be queried by running the following command:
+
+$ sysctl net.ipv4.conf.default.rp_filter
+
+The output of the command should indicate a value of ""1"". If this value is not the default value, investigate how it could have been adjusted at runtime, and verify it is not set improperly in ""/etc/sysctl.conf"".
+
+$ grep net.ipv4.conf.default.rp_filter /etc/sysctl.conf
+
+If the correct value is not returned, this is a finding. ",""
+"V-38555","medium","The system must employ a local IPv4 firewall.","The ""iptables"" service provides the system's host-based firewalling capability for IPv4 and ICMP.","None","SV-50356r2_rule","F-43503r2_fix","The ""iptables"" service can be enabled with the following commands: 
+
+# chkconfig iptables on
+# service iptables start","C-46113r2_chk","If the system is a cross-domain system, this is not applicable.
+
+Run the following command to determine the current status of the ""iptables"" service: 
+
+# service iptables status
+
+If the service is not running, it should return the following: 
+
+iptables: Firewall is not running.
+
+
+If the service is not running, this is a finding.",""
+"ICMPv4:","","","","","","","","","",""
+"V-38524","medium","The system must not accept ICMPv4 redirect packets on any interface.","Accepting ICMP redirects has few legitimate uses. It should be disabled unless it is absolutely required.","None","SV-50325r2_rule","F-43472r1_fix","To set the runtime status of the ""net.ipv4.conf.all.accept_redirects"" kernel parameter, run the following command: 
+
+# sysctl -w net.ipv4.conf.all.accept_redirects=0
+
+If this is not the system's default value, add the following line to ""/etc/sysctl.conf"": 
+
+net.ipv4.conf.all.accept_redirects = 0","C-46082r2_chk","The status of the ""net.ipv4.conf.all.accept_redirects"" kernel parameter can be queried by running the following command:
+
+$ sysctl net.ipv4.conf.all.accept_redirects
+
+The output of the command should indicate a value of ""0"". If this value is not the default value, investigate how it could have been adjusted at runtime, and verify it is not set improperly in ""/etc/sysctl.conf"".
+
+$ grep net.ipv4.conf.all.accept_redirects /etc/sysctl.conf
+
+If the correct value is not returned, this is a finding. ",""
+"V-38526","medium","The system must not accept ICMPv4 secure redirect packets on any interface.","Accepting ""secure"" ICMP redirects (from those gateways listed as default gateways) has few legitimate uses. It should be disabled unless it is absolutely required.","None","SV-50327r2_rule","F-43474r1_fix","To set the runtime status of the ""net.ipv4.conf.all.secure_redirects"" kernel parameter, run the following command: 
+
+# sysctl -w net.ipv4.conf.all.secure_redirects=0
+
+If this is not the system's default value, add the following line to ""/etc/sysctl.conf"": 
+
+net.ipv4.conf.all.secure_redirects = 0","C-46084r2_chk","The status of the ""net.ipv4.conf.all.secure_redirects"" kernel parameter can be queried by running the following command:
+
+$ sysctl net.ipv4.conf.all.secure_redirects
+
+The output of the command should indicate a value of ""0"". If this value is not the default value, investigate how it could have been adjusted at runtime, and verify it is not set improperly in ""/etc/sysctl.conf"".
+
+$ grep net.ipv4.conf.all.secure_redirects /etc/sysctl.conf
+
+If the correct value is not returned, this is a finding.",""
+"V-38532","medium","The system must not accept ICMPv4 secure redirect packets by default.","Accepting ""secure"" ICMP redirects (from those gateways listed as default gateways) has few legitimate uses. It should be disabled unless it is absolutely required.","None","SV-50333r2_rule","F-43479r1_fix","To set the runtime status of the ""net.ipv4.conf.default.secure_redirects"" kernel parameter, run the following command: 
+
+# sysctl -w net.ipv4.conf.default.secure_redirects=0
+
+If this is not the system's default value, add the following line to ""/etc/sysctl.conf"": 
+
+net.ipv4.conf.default.secure_redirects = 0","C-46089r2_chk","The status of the ""net.ipv4.conf.default.secure_redirects"" kernel parameter can be queried by running the following command:
+
+$ sysctl net.ipv4.conf.default.secure_redirects
+
+The output of the command should indicate a value of ""0"". If this value is not the default value, investigate how it could have been adjusted at runtime, and verify it is not set improperly in ""/etc/sysctl.conf"".
+
+$ grep net.ipv4.conf.default.secure_redirects /etc/sysctl.conf
+
+If the correct value is not returned, this is a finding. ",""
+"V-38600","medium","The system must not send ICMPv4 redirects by default.","Sending ICMP redirects permits the system to instruct other systems to update their routing information. The ability to send ICMP redirects is only appropriate for systems acting as routers.","None","SV-50401r2_rule","F-43547r1_fix","To set the runtime status of the ""net.ipv4.conf.default.send_redirects"" kernel parameter, run the following command: 
+
+# sysctl -w net.ipv4.conf.default.send_redirects=0
+
+If this is not the system's default value, add the following line to ""/etc/sysctl.conf"": 
+
+net.ipv4.conf.default.send_redirects = 0","C-46157r2_chk","The status of the ""net.ipv4.conf.default.send_redirects"" kernel parameter can be queried by running the following command:
+
+$ sysctl net.ipv4.conf.default.send_redirects
+
+The output of the command should indicate a value of ""0"". If this value is not the default value, investigate how it could have been adjusted at runtime, and verify it is not set improperly in ""/etc/sysctl.conf"".
+
+$ grep net.ipv4.conf.default.send_redirects /etc/sysctl.conf
+
+If the correct value is not returned, this is a finding. ",""
+"V-38601","medium","The system must not send ICMPv4 redirects from any interface.","Sending ICMP redirects permits the system to instruct other systems to update their routing information. The ability to send ICMP redirects is only appropriate for systems acting as routers.","None","SV-50402r2_rule","F-43548r1_fix","To set the runtime status of the ""net.ipv4.conf.all.send_redirects"" kernel parameter, run the following command: 
+
+# sysctl -w net.ipv4.conf.all.send_redirects=0
+
+If this is not the system's default value, add the following line to ""/etc/sysctl.conf"": 
+
+net.ipv4.conf.all.send_redirects = 0","C-46159r2_chk","The status of the ""net.ipv4.conf.all.send_redirects"" kernel parameter can be queried by running the following command:
+
+$ sysctl net.ipv4.conf.all.send_redirects
+
+The output of the command should indicate a value of ""0"". If this value is not the default value, investigate how it could have been adjusted at runtime, and verify it is not set improperly in ""/etc/sysctl.conf"".
+
+$ grep net.ipv4.conf.all.send_redirects /etc/sysctl.conf
+
+If the correct value is not returned, this is a finding. ",""
+"V-38533","low","The system must ignore ICMPv4 redirect messages by default.","This feature of the IPv4 protocol has few legitimate uses. It should be disabled unless it is absolutely required.","None","SV-50334r3_rule","F-43481r1_fix","To set the runtime status of the ""net.ipv4.conf.default.accept_redirects"" kernel parameter, run the following command: 
+
+# sysctl -w net.ipv4.conf.default.accept_redirects=0
+
+If this is not the system's default value, add the following line to ""/etc/sysctl.conf"": 
+
+net.ipv4.conf.default.accept_redirects = 0","C-46091r2_chk","The status of the ""net.ipv4.conf.default.accept_redirects"" kernel parameter can be queried by running the following command:
+
+$ sysctl net.ipv4.conf.default.accept_redirects
+
+The output of the command should indicate a value of ""0"". If this value is not the default value, investigate how it could have been adjusted at runtime, and verify it is not set improperly in ""/etc/sysctl.conf"".
+
+$ grep net.ipv4.conf.default.accept_redirects /etc/sysctl.conf
+
+If the correct value is not returned, this is a finding. ",""
+"V-38535","low","The system must not respond to ICMPv4 sent to a broadcast address.","Ignoring ICMP echo requests (pings) sent to broadcast or multicast addresses makes the system slightly more difficult to enumerate on the network.","None","SV-50336r2_rule","F-43483r1_fix","To set the runtime status of the ""net.ipv4.icmp_echo_ignore_broadcasts"" kernel parameter, run the following command: 
+
+# sysctl -w net.ipv4.icmp_echo_ignore_broadcasts=1
+
+If this is not the system's default value, add the following line to ""/etc/sysctl.conf"": 
+
+net.ipv4.icmp_echo_ignore_broadcasts = 1","C-46093r2_chk","The status of the ""net.ipv4.icmp_echo_ignore_broadcasts"" kernel parameter can be queried by running the following command:
+
+$ sysctl net.ipv4.icmp_echo_ignore_broadcasts
+
+The output of the command should indicate a value of ""1"". If this value is not the default value, investigate how it could have been adjusted at runtime, and verify it is not set improperly in ""/etc/sysctl.conf"".
+
+$ grep net.ipv4.icmp_echo_ignore_broadcasts /etc/sysctl.conf
+
+If the correct value is not returned, this is a finding. ",""
+"V-38537","low","The system must ignore ICMPv4 bogus error responses.","Ignoring bogus ICMP error responses reduces log size, although some activity would not be logged.","None","SV-50338r2_rule","F-43485r1_fix","To set the runtime status of the ""net.ipv4.icmp_ignore_bogus_error_responses"" kernel parameter, run the following command: 
+
+# sysctl -w net.ipv4.icmp_ignore_bogus_error_responses=1
+
+If this is not the system's default value, add the following line to ""/etc/sysctl.conf"": 
+
+net.ipv4.icmp_ignore_bogus_error_responses = 1","C-46095r2_chk","The status of the ""net.ipv4.icmp_ignore_bogus_error_responses"" kernel parameter can be queried by running the following command:
+
+$ sysctl net.ipv4.icmp_ignore_bogus_error_responses
+
+The output of the command should indicate a value of ""1"". If this value is not the default value, investigate how it could have been adjusted at runtime, and verify it is not set improperly in ""/etc/sysctl.conf"".
+
+$ grep net.ipv4.icmp_ignore_bogus_error_responses /etc/sysctl.conf
+
+If the correct value is not returned, this is a finding. ",""
+"IPv6:","","","","","","","","","",""
+"V-38549","medium","The system must employ a local IPv6 firewall.","The ""ip6tables"" service provides the system's host-based firewalling capability for IPv6 and ICMPv6.","None","SV-50350r3_rule","F-43497r3_fix","The ""ip6tables"" service can be enabled with the following commands: 
+
+# chkconfig ip6tables on
+# service ip6tables start","C-46107r3_chk","If the system is a cross-domain system, this is not applicable.
+
+If IPv6 is disabled, this is not applicable.
+
+Run the following command to determine the current status of the ""ip6tables"" service: 
+
+# service ip6tables status
+
+If the service is not running, it should return the following: 
+
+ip6tables: Firewall is not running.
+
+
+If the service is not running, this is a finding.",""
+"V-38444","medium","The systems local IPv6 firewall must implement a deny-all, allow-by-exception policy for inbound packets.","In ""ip6tables"" the default policy is applied only after all the applicable rules in the table are examined for a match. Setting the default policy to ""DROP"" implements proper design for a firewall, i.e., any packets which are not explicitly permitted should not be accepted.","None","SV-50244r2_rule","F-43389r3_fix","To set the default policy to DROP (instead of ACCEPT) for the built-in INPUT chain which processes incoming packets, add or correct the following line in ""/etc/sysconfig/ip6tables"": 
+
+:INPUT DROP [0:0]
+
+Restart the IPv6 firewall:
+
+# service ip6tables restart","C-45999r2_chk","If IPv6 is disabled, this is not applicable.
+
+Inspect the file ""/etc/sysconfig/ip6tables"" to determine the default policy for the INPUT chain. It should be set to DROP:
+
+# grep "":INPUT"" /etc/sysconfig/ip6tables
+
+If the default policy for the INPUT chain is not set to DROP, this is a finding. ",""
+"V-38546","medium","The IPv6 protocol handler must not be bound to the network stack unless needed.","Any unnecessary network stacks - including IPv6 - should be disabled, to reduce the vulnerability to exploitation.","None","SV-50347r2_rule","F-43494r2_fix","To prevent the IPv6 kernel module (""ipv6"") from binding to the IPv6 networking stack, add the following line to ""/etc/modprobe.d/disabled.conf"" (or another file in ""/etc/modprobe.d""): 
+
+options ipv6 disable=1
+
+This permits the IPv6 module to be loaded (and thus satisfy other modules that depend on it), while disabling support for the IPv6 protocol.","C-46104r2_chk","If the system uses IPv6, this is not applicable.
+
+If the system is configured to disable the ""ipv6"" kernel module, it will contain a line of the form: 
+
+options ipv6 disable=1
+
+Such lines may be inside any file in ""/etc/modprobe.d"" or the deprecated ""/etc/modprobe.conf"". This permits insertion of the IPv6 kernel module (which other parts of the system expect to be present), but otherwise keeps it inactive. Run the following command to search for such lines in all files in ""/etc/modprobe.d"" and the deprecated ""/etc/modprobe.conf"": 
+
+$ grep -r ipv6 /etc/modprobe.conf /etc/modprobe.d
+
+
+If the IPv6 kernel module is not disabled, this is a finding.",""
+"ICMPv6:","","","","","","","","","",""
+"V-38548","medium","The system must ignore ICMPv6 redirects by default.","An illicit ICMP redirect message could result in a man-in-the-middle attack.","None","SV-50349r3_rule","F-43496r1_fix","To set the runtime status of the ""net.ipv6.conf.default.accept_redirects"" kernel parameter, run the following command: 
+
+# sysctl -w net.ipv6.conf.default.accept_redirects=0
+
+If this is not the system's default value, add the following line to ""/etc/sysctl.conf"": 
+
+net.ipv6.conf.default.accept_redirects = 0","C-46106r3_chk","If IPv6 is disabled, this is not applicable.
+
+The status of the ""net.ipv6.conf.default.accept_redirects"" kernel parameter can be queried by running the following command:
+
+$ sysctl net.ipv6.conf.default.accept_redirects
+
+The output of the command should indicate a value of ""0"". If this value is not the default value, investigate how it could have been adjusted at runtime, and verify it is not set improperly in ""/etc/sysctl.conf"".
+
+$ grep net.ipv6.conf.default.accept_redirects /etc/sysctl.conf
+
+If the correct value is not returned, this is a finding. ",""

@@ -1,0 +1,65 @@
+UNIX File Permissions, All Security Rules
+Ownership, UNIX File Permissions
+V-38443 The /etc/gshadow file must be owned by root.
+V-38450 The /etc/passwd file must be owned by root.
+V-38458 The /etc/group file must be owned by root.
+V-38466 Library files must be owned by root.
+V-38472 All system command files must be owned by root.
+V-38495 Audit log files must be owned by root.
+V-38502 The /etc/shadow file must be owned by root.
+V-38518 All rsyslog-generated log files must be owned by root.
+V-38579 The system boot loader configuration file(s) must be owned by root.
+Group-Ownership, UNIX File Permissions
+V-38445 Audit log files must be group-owned by root.
+V-38448 The /etc/gshadow file must be group-owned by root.
+V-38451 The /etc/passwd file must be group-owned by root.
+V-38459 The /etc/group file must be group-owned by root.
+V-38503 The /etc/shadow file must be group-owned by root.
+V-38519 All rsyslog-generated log files must be group-owned by root.
+V-38581 The system boot loader configuration file(s) must be group-owned by root.
+Permission, UNIX File Permissions
+V-38449 The /etc/gshadow file must have mode 0000.
+V-38457 The /etc/passwd file must have mode 0644 or less permissive.
+V-38461 The /etc/group file must have mode 0644 or less permissive.
+V-38465 Library files must have mode 0755 or less permissive.
+V-38469 All system command files must have mode 755 or less permissive.
+V-38493 Audit log directories must have mode 0755 or less permissive.
+V-38498 Audit log files must have mode 0640 or less permissive.
+V-38504 The /etc/shadow file must have mode 0000.
+V-38583 The system boot loader configuration file(s) must have mode 0600 or less permissive.
+V-38623 All rsyslog-generated log files must have mode 0600 or less permissive.
+Umask, UNIX File Permissions
+V-38642 The system default umask for daemons must be 027 or 022.
+V-38645 The system default umask in /etc/login.defs must be 077.
+V-38647 The system default umask in /etc/profile must be 077.
+V-38649 The system default umask for the csh shell must be 077.
+V-38651 The system default umask for the bash shell must be 077.
+File System Requirements, UNIX File Permissions
+V-38491 There must be no .rhosts or hosts.equiv files on the system.
+V-38652 Remote file systems must be mounted with the nodev option.
+V-38654 Remote file systems must be mounted with the nosuid option.
+V-57569 The noexec option must be added to the /tmp partition.
+V-38619 There must be no .netrc files on the system.
+V-38643 There must be no world-writable files on the system.
+V-38655 The noexec option must be added to removable media partitions.
+V-38681 All GIDs referenced in /etc/passwd must be defined in /etc/group
+Public Directories, File System Requirements
+V-38697 The sticky bit must be set on all public directories.
+V-38699 All public directories must be owned by a system account.
+Partition (Sep. File System), File System Requirements
+V-38455 The system must use a separate file system for /tmp.
+V-38456 The system must use a separate file system for /var.
+V-38463 The system must use a separate file system for /var/log.
+V-38467 The system must use a separate file system for the system audit data path.
+V-38473 The system must use a separate file system for user home directories.
+System Package Management Tool, File System Requirements
+V-38483 The system package management tool must cryptographically verify the authenticity of system software packages during installation.
+V-38487 The system package management tool must cryptographically verify the authenticity of all software packages during installation.
+V-38637+A216 The system package management tool must verify contents of all files associated with the audit package.
+V-38663 The system package management tool must verify permissions on all files and directories associated with the audit package.
+V-38664 The system package management tool must verify ownership on all files and directories associated with the audit package.
+V-38665 The system package management tool must verify group-ownership on all files and directories associated with the audit package.
+V-38447 The system package management tool must verify contents of all files associated with packages.
+V-38452 The system package management tool must verify permissions on all files and directories associated with packages.
+V-38453 The system package management tool must verify group-ownership on all files and directories associated with packages.
+V-38454 The system package management tool must verify ownership on all files and directories associated with packages.

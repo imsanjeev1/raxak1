@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>CloudRaxak Logout</title>
+    <!-- Bootstrap Core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href="css/login.css" rel="stylesheet">
+    <link href="css/sb-admin.css" rel="stylesheet">
+    <!-- Custom Fonts -->
+    <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+      <script type="text/javascript" src="js/jquery-1.10.2.js"></script>
+    <script type="text/javascript">
+      $(function () {
+          sessionStorage.clear(); // destroy all session.
+          setTimeout(function () {
+              $.urlParam = function (name) {
+                  var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
+                  if (results == null) {
+                      return null;
+                  }
+                  else {
+                      return results[1];
+                  }
+              }
+
+              var usertype = $.urlParam('usertype');
+              if (usertype === 'admin') {
+                  window.location.href = 'admin.html';
+              } else {
+                  window.location.href = 'login.html';
+              }
+          }, 3000);
+      });
+    </script>
+  </head>
+  <body>
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation" >
+      <div class="row">
+        <div class="col-lg-6">
+          <div class="navbar-header"> <a href="index.html" class="navbar-brand"><span style="color:#0096d6"> <strong>Raxak Protect</strong> &trade;</span></a> </div>
+        </div>
+        <div class="col-lg-6 text-right">
+          <ul id="navlist">
+            <li>
+              <a href="http://www.cloudraxak.com">Cloud Raxak</a>
+            </li>
+            <li> | </li>
+            <li>
+              <a href="http://www.cloudraxak.com/contact-us">Contact Us</a>
+            </li>
+            <li> | </li>
+            <li>
+              <a href="http://www.cloudraxak.com/product">Products</a>
+            </li>
+            <!--<li> | </li>
+              <li ><a href="login.html">Login</a></li>
+              <li> | </li>
+              <li><a href="register.html">Register</a></li>-->
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <div id="box1">
+      <center>
+        <img src="images/crlogo-white.png" class="logo">
+        <br>
+        <br>
+        <div class="page-header" style="margin-bottom:20px; border-bottom:0px; padding-top:10px;">
+          <h1 style="color:#fff; padding-top:85px;">You have logged out</h1>
+        </div>
+        <br>
+        <div class="clearfix"></div>
+        <p style="line-height:30px;">
+        <h3>
+          <a href="login.html" style="color:#0096d6 !important; text-decoration: underline;">Return to Raxak Protect</a>
+        </h3>
+        </p>
+        <p>
+          <br>
+          <a href="instructions.html" style="color:#0096d6"><img height="32" border="0" src="images/help.png" alt="Help">&nbsp;Instructions</a> 
+        </p>
+      </center>
+    </div>
+    <div class="navbar navbar-inverse navbar-fixed-bottom" id="footer_content">
+      <div class="footer" style="border-top:0px;">
+        <div  class="row">
+          <div class="col-lg-5 text-left">
+            <ul id="navlist"  style="margin-top:0px !important">
+              <li> <a href="terms-of-use.html">Terms of Use</a></li>
+              <li> | </li>
+              <li><a href="http://www.cloudraxak.com/privacy-statement/">Privacy Statement</a></li>
+            </ul>
+          </div>
+          <div class="col-lg-7 text-right">© 2016 Cloud Raxak Inc. All Rights Reserved </div>
+        </div>
+      </div>
+    </div>
+    <script type="text/javascript" src="js/jquery-1.10.2.js"></script>
+  </body>
+</html>

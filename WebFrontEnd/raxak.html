@@ -1,0 +1,834 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Cloud Raxak Console</title>
+        <meta charset="utf-8"/>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+        <script type="text/javascript" src="lib/dojo/dojo/dojo.js" data-dojo-config="'parseOnLoad':true,'async':true,'packages':[{'name':'gridx','location':'../gridx'},{'name':'clipart','location':'../../clipart'},{'name':'maqettaSamples','location':'../../../samples'},{'name':'maqetta','location':'../../maqetta'},{'name':'shapes','location':'../../shapes'},{'name':'zazl','location':'../../zazl'},{'name':'widgets','location':'../../custom'}],'themeMap':[['Android','',['themes/android/android.css']],['BlackBerry','',['themes/blackberry/blackberry.css']],['iPad','',['themes/ipad/ipad.css']],['iPhone','',['themes/iphone/iphone.css']],['.*','',['themes/iphone/iphone.css']]],'mblThemeFiles':[],'mblLoadCompatPattern':''"></script>
+        <script type="text/javascript">
+            require([
+                "dijit/dijit",
+                "dojo/parser",
+                "maqetta/space",
+                "maqetta/AppStates",
+                "dijit/layout/TabContainer",
+                "dijit/layout/ContentPane",
+                "dijit/form/Button",
+                "dijit/form/RadioButton",
+                "dijit/form/Select",
+                "dijit/form/DropDownButton",
+                "dijit/Menu",
+                "dijit/MenuItem",
+                "dijit/TitlePane",
+                "dijit/layout/AccordionContainer",
+                "dijit/form/CheckBox",
+                "dijit/form/Form",
+                "dijit/form/TextBox",
+                "dijit/form/ComboBox",
+                "dijit/form/ValidationTextBox",
+                "dijit/form/NumberTextBox",
+                "dijit/form/SimpleTextarea",
+                "dijit/form/Textarea",
+                "dojox/form/Uploader"
+            ]);
+        </script>
+        <style>
+            @import "themes/claro/document.css";
+            @import "themes/claro/claro.css";
+            @import "app.css";
+        </style>
+        <script type="text/javascript" src="app.js"></script>
+        <!-- ##################### Changes by Abhishek ###########################-->
+        <link rel="stylesheet" href="lib/css/jquery.multiselect2side.css" type="text/css" media="screen" />
+        <script src="lib/js/jquery.min.js"></script>
+        <script src="lib/js/jquery.oLoader.min.js"></script>
+        <script>
+            $j14 = jQuery.noConflict();
+        </script>
+        <script type="text/javascript" src="lib/js/jquery.multiselect2side.js" ></script>
+        <script type="text/javascript" src="app_jq.js"></script>
+        <!-- ##################### Done by Abhishek ###########################-->
+    </head>
+    <body data-maq-flow-layout="false" data-maq-comptype="desktop" class="claro" data-maq-ws="collapse" data-maq-appstates="{}" id="myapp">
+        <div class="image-holder-page" id="image-holder-page"></div>
+        <div class="image-loader-page" id="image-loader-page" style="display: none;">
+            <img src="loader4.gif" height="75" width="80" class="csv-loader-imgtxt">
+            <br />Adding Machine(s), please wait...
+        </div>
+        <div id="div_topcontainer" class="div_topcontainer">
+            <div style="height: 50px; position: absolute; width: 843px; top: 71px;">
+                <div style="height: 30px; top: 10px; float: right; margin-right:216px; margin-top: 13px; width: 293px;">
+                    <div data-dojo-type="dijit/ProgressBar" indeterminate="true" id="indeterminateBar1" style="display: none; top: 10px; width: 280px;"></div>
+                    <div style="position: absolute; height: 30px; right: 5px; bottom:21px; color: white; width:430px; text-align: left;">
+                        <p style="font-weight: bold; text-align: right;display:block;color:green;font-size:15.2px;" id="try">Compliance checking finished.</p>
+                    </div>
+                </div>
+            </div>
+            <!-- Start: Header -->
+            <div class="div_header" id="div_header">
+                <div class="div_userlogin">
+                    <div class="lgin_msg_holder"><label class="loginmessage" id="loginmessage">Logged in as: </label></div>
+                    <div align="right" id="userlogininfo" class="userlogininfo">
+                        <span id="userdomain">Logged in with domain</span> 
+                        <span id="logout_span">Click to <a href="/raxakapi/v1/logout">log off</a></span>
+
+                    </div>
+                    <div align="right" style="margin:5px;"><span id="help"><a href="http://www.cloudraxak.com/stepbystephelp/" target="_blank"><img src="help.png" height="20"></a></span></div>
+                </div>
+                <div class="logo_container">
+                    <div class="Cloud-Raxak">
+                        <span class="Raxak-Logo">
+                            <img src="raxakprotect.png" alt="Raxak Protect Beta" width="352px">
+                            <br>
+                            <label class="codeversion" id="codeversion">Version: </label>
+                        </span>
+                    </div>
+                    <span id="ajaxloader" style="display: none;"><img src="loader4.gif" height="75" width="80"></span>
+
+                </div>
+            </div>
+            <!-- End: Header -->
+
+            <!-- Start: Content -->
+
+            <div id="main_tabContainer" data-dojo-type="dijit/layout/TabContainer" style=" height: 485px; top:10px; background-color:none;" controllerWidget="dijit.layout.TabController" >
+
+                <div data-dojo-type="dijit/layout/ContentPane" title="Select Profile" selected="true" extractContent="false" preventCache="false" preload="false" refreshOnShow="false" doLayout="true" closable="false" onShow="setMenuTabSelect('select_profile');onclicktab_hide_div(this.id);"> 
+
+                    <fieldset style=" margin: 2px; padding:15px 0 15px 15px; position: absolute; z-index: 900; height: 300px; width:35%; left: 9.453125px; top: 22.953125px;">
+                        <legend> Profiles </legend>
+                        <!-- previous overflow:auto in below p tag -->
+                        <p id="demo" style="height:298px;margin-top: 1px;border-left-color:#fff;margin-left:12px;overflow-y:scroll;"> </p>
+                    </fieldset>
+                    <fieldset id="profile-rules" class="profile-rules">
+                        <legend id="sel_rulename"> Rules </legend>
+                        <div id="profile-rules-list" style="height:298px; overflow:auto; margin-top: 1px;"></div>
+                    </fieldset>
+                </div>
+                <div data-dojo-type="dijit/layout/ContentPane" id="applySelectedProfileButtonClick" title="Apply Profile" extractContent="false" preventCache="false" preload="false" refreshOnShow="false" doLayout="true" closable="false"  onShow="updateSelectedProfilePage();setMenuTabSelect('apply_profile');onclicktab_hide_div(this.id);"  > 
+                    <div id="adtab2-overlay" class="adtab2-overlay"></div>
+                    <fieldset style=" margin: 2px; padding:15px; position: absolute; z-index: 900; height: 375px; width: 434px; left: 9.453125px; top: 22.953125px;">
+                        <legend> Target Machine(s) </legend>
+                        <select id= "ipadd" class="ipadd" name="ipadd[]" multiple="mulitple" style="width: 434px; height: 316px; position: absolute; z-index: 900;">
+                        </select>
+                        <div class="div_savebtn"><button data-dojo-type="dijit/form/Button" id="saveip" title="Save Selected Target Machine(s)" type="submit" name="saveipButton" value="Save">Save</button></div>
+                        <div style="clear:both; height: 10px;"></div>
+                        <div class="selectedIPs"><b>Show targets with status :</b> <div style="clear:both; height:12px;"></div>
+                            <input type="checkbox" class="searchableCriteria" value="1" id="allOk" />
+                            <span class="checkboxtext-seta">All OK</span></br>
+
+                            <input type="checkbox" class="searchableCriteria" value="-1" id="unsupportedOS"  />
+                            <span class="checkboxtext-seta">Un-supported OS</span></br>
+
+                            <input type="checkbox" class="searchableCriteria" value="-2" id="unabletoreach"  />
+                            <span class="checkboxtext-seta">Unable to reach target machine (ping fails)</span></br>
+
+                            <input type="checkbox" class="searchableCriteria" value="-3" id="unabletologinwithspecifieduser"   />
+                            <span class="checkboxtext-seta">Unable to log in with specified userid (ssh login fails)</span></br>
+
+                            <input type="checkbox" class="searchableCriteria" value="-4" id="insufficientexecutionprivilege"   />
+                            <span class="checkboxtext-seta">Insufficient execution privilege (cannot run privileged instructions)</span></br>
+
+                            <input type="checkbox" class="searchableCriteria" value="1,-1,-2,-3,-4" id="alltargetmachines"  />
+                            <span class="checkboxtext-seta">All Target Machines</span></br>
+
+                            <!--                            <input type="checkbox" class="searchableCriteria" value="1" id="allOk"  />&nbsp;&nbsp;All OK </br>
+                                                        <input type="checkbox" class="searchableCriteria" value="-1" id="unsupportedOS"  />&nbsp;&nbsp;Un-supported OS </br>
+                                                        <input type="checkbox" class="searchableCriteria" value="-2" id="unabletoreach"  />&nbsp;&nbsp;Unable to reach target machine (ping fails) </br>
+                                                        <input type="checkbox" class="searchableCriteria" value="-3" id="unabletologinwithspecifieduser"   />&nbsp;&nbsp;Unable to log in with specified userid (ssh login fails)</br>
+                                                        <input type="checkbox" class="searchableCriteria" value="-4" id="insufficientexecutionprivilege"   />&nbsp;&nbsp;Insufficient execution privilege (cannot sudo)</br>
+                                                        <input type="checkbox" class="searchableCriteria" value="1,-1,-2,-3,-4" id="alltargetmachines"  />&nbsp;&nbsp;All Target Machines-->
+
+                            <div style="clear:both; height: 12px;"></div>
+
+                        </div>
+                    </fieldset>
+                    <div style="margin-left:141px;position: absolute; width: 100%; ">
+                        <input id="auto_radio" value="1" showlabel="true" type="radio" data-dojo-type="dijit/form/RadioButton" style="position: absolute; z-index: 900; left: 369.43902492523193px; top: 157.109375px;" data-dojo-props='value:"1",onChange:function(checked){ if(checked)document.getElementById("scheduler").disabled = false;}'>
+
+                        <input id="manual_radio" value="0" showlabel="true" type="radio" checked="true" data-dojo-type="dijit/form/RadioButton" style="position: absolute; z-index: 900; left: 369.43902492523193px; top: 187.109375px;" data-dojo-props='value:"0",onChange:function(checked){ if(checked){dojo.byId( "scheduler" ).value = "One time";document.getElementById("scheduler").disabled = true;}}'>
+
+                        <!--
+                          <input id="auto_radio" value="1" showlabel="true" type="radio" data-dojo-type="dijit/form/RadioButton" style="position: absolute; z-index: 900; left: 369.43902492523193px; top: 157.109375px;" checked="true" >
+                          
+                          <input id="manual_radio" value="0" showlabel="true" type="radio" data-dojo-type="dijit/form/RadioButton" style="position: absolute; z-index: 900; left: 369.43902492523193px; top: 187.109375px;">
+                          
+                        -->
+                        <label style="position: absolute; z-index: 900; left: 396.453125px; top: 158.609375px;"> Automatic Remediation</label>
+                        <label style="position: absolute; z-index: 900; left: 396.453125px; top: 188.609375px;"> Manual Remediation</label>
+                        <label style="position: absolute; z-index: 900; left: 373.43902492523193px; top: 51.109375px;"> Selected Profile: <span><label id="selected_profile" for="selected_profile" style="font-weight:bold;z-index: 900;"></label></span></label>
+                        <input id = "applyprofile_id" type="button" data-dojo-type="dijit/form/Button" intermediateChanges="false" label="Apply Profile" iconClass="dijitNoIcon" style="position: absolute; z-index: 900; left: 369.453125px; top: 100.109375px;" title="Perform compliance execution on Target machine(s)">
+                        <input id="abort_execution_btn" disabled="disabled" type="button" data-dojo-type="dijit/form/Button" intermediateChanges="false" label="Abort Execution" iconClass="dijitNoIcon" style="position: absolute; z-index: 99999;; left: 499.453125px; top: 100.109375px;" title="Abort compliance execution on Target machine(s)">
+                    </div>
+                    <span class="scheduler-label">Compliance Frequency</span>
+                    <div class="styled-select" style="float: right; margin: 250px 154px; width: 162px;">	
+                        <select id="scheduler" style="max-width:100%;display: flex;" disabled="true">
+                            <option value="One time">&nbsp;One time</option>
+                            <option value="Hourly">&nbsp;Hourly</option>
+                            <option value="Daily">&nbsp;Daily</option>
+                            <option value="Weekly">&nbsp;Weekly</option>
+                            <option value="Monthly">&nbsp;Monthly</option>
+                        </select>
+                    </div>	
+                </div>
+                <div id="successTab" data-dojo-type="dijit/layout/ContentPane" title="Success" executeScripts="true" extractContent="false" preventCache="false" preload="false" refreshOnShow="true" doLayout="true" closable="false" onShow="updateStatusPans();setMenuTabSelect('success');onclicktab_hide_div(this.id);">
+                    <div class="styled-select" style="width:197px;margin-left:4px;">	
+                        <select id="myselect1" style="display: flex;">
+                        </select>
+                    </div>
+                    <div class="styled-select" style="width:201px;margin: -27px 0px -27px 265px;">		
+                        <select id="myselect1varlog" style="max-width: 100%;display:flex;">
+                        </select>
+                    </div>
+
+                    <fieldset style=" margin: 2px; padding:10px 15px 20px 15px; position: absolute; z-index: 900; left:  9.453125px; top: 43.24999389648437px;">
+                        <legend> Rules that passed</legend>
+
+                        <div class="ms2side__header search_success_div" id="search_success_div_id" style="width:0px;background-color: #fff;">
+                            <div style="width: 100px;font-weight:bold;margin-top:-1px;">Search :</div><div style="position: absolute; margin-left:58px; margin-top: -23px;"><input type="text" class="input-control" id="search_success_rule" name="search_success_input" style="height:12px;" placeholder="Search"></div>
+                            <a onclick="clearSearchInput_Customized('search_success_div_id', 'search_success_rule')" style="display: none;border: 0px none; margin-top: -20px; margin-right: -445px; float: right;"> </a>
+                        </div>
+
+                        <input type="button" data-dojo-type="dijit/form/Button" id="success_des_rule_id" intermediateChanges="false" label="Describe Rule" iconClass="dijitNoIcon" style="position: absolute; z-index: 900; left:520px; top:21.1499938964844px;" title="Detailed description of the security rule">
+
+                        <!--<input type="button" data-dojo-type="dijit/form/Button" id="success_consolelog" intermediateChanges="false" label="Console log" iconClass="dijitNoIcon" onClick="showConsolelog();"  style="position: absolute; z-index: 900; left: 520px; top:100.149994px;" title="Console log for selected rule">
+                        -->
+
+                        <!--<table class="profile_tabel" cellspacing="0" id="profile_success">
+                        <tr>
+                                <td width="90">Selected Profile : </td>
+                                <td id="profile_val_Id" class="sel_prof_name"> </td>
+                        </tr>
+                        </table>-->
+                        <select id="success" name="successStatus" multiple style="width: 434px; height: 316px;" ondblClick="showConsolelog(id);">
+                        </select>
+                    </fieldset>
+
+                    <div>
+                        <div style=" margin: 2px; padding:15px; position: absolute; z-index: 900; left:  10.453125px; top: 44.24999389648437px;">
+                            <table class="profile_tabel" cellspacing="0" id="profile_success">
+                                <tr>
+                                    <td width="50">Profile: </td>
+                                    <td id="profile_val_Id" class="sel_prof_name" style="font-weight:bold;"> </td>
+                                </tr>
+                            </table>
+                        </div>
+                        <span id="refresh_success_page" style="position: absolute; z-index: 900; left:815px; top:8px;display: block;cursor:pointer;" title="Refresh this page" onClick="updateStatusPans();"><img src="Refresh.svg" height="20" width="30"></span>
+
+                    </div>
+                    <p id="note"><b>Note</b> : <span>Hover the mouse over a line for an additional information</span></p>
+
+                </div>
+                <div id="failureTab" data-dojo-type="dijit/layout/ContentPane" title="Failure" extractContent="false" preventCache="false" preload="false" refreshOnShow="false" doLayout="true" closable="false" onShow="updateStatusPans();setMenuTabSelect('failure');onclicktab_hide_div(this.id);">
+                    <div class="styled-select" style="width:197px;margin-left:4px;">	
+                        <select id="myselect2" style="display: flex;">
+                        </select>
+                    </div>
+                    <div class="styled-select" style="width:201px;margin: -27px 0px -27px 265px;">
+                        <select id="myselect2varlog" style="max-width: 100%;display:flex;">
+                        </select>
+                    </div>
+
+                    <fieldset style=" margin: 2px; padding:10px 15px 20px 15px; position: absolute; z-index: 900; left:  9.453125px; top: 43.24999389648437px;">
+                        <legend> Rules that failed</legend>
+
+                        <div class="ms2side__header search_failure_div" id="search_failure_div_id" style="background-color:#fff;">
+                            <div style="width: 100px;font-weight:bold;margin-top:-1px;">Search :</div><div style="position: absolute; margin-left:58px; margin-top: -23px;"><input type="text" class="input-control" id="search_failure_rule" name="search_success_input" style="height:12px;" placeholder="Search"></div>
+                            <a onclick="clearSearchInput_Customized('search_failure_div_id', 'search_failure_rule')" style="display:none;float: right; margin-top: -21px; margin-right: -15px;border:0px;"> </a>
+                        </div>
+
+                        <!--<table class="profile_tabel" cellspacing="0" id="profile_failure">
+                        <tr>
+                                <td id="select_pro" width="90">Selected Profile : </td>
+                                <td id="profile_failure_Id" class="sel_prof_name"> </td>
+                        </tr>
+                        </table>-->
+                        <input type="button" data-dojo-type="dijit/form/Button" id="fail_des_rule_id" intermediateChanges="false" label="Describe Rule" iconClass="dijitNoIcon"  style="position: absolute; z-index: 900; left:520px; top: 21.14999389648438px;" title="Detailed description of the security rule">
+
+
+                        <!--<div>
+                        <span id="refresh_fail_page" style="position: absolute; z-index: 192; left:800px; top:-39px;display: block;cursor:pointer;" title="Refresh this page" onClick="updateStatusPans();"><img src="Refresh.svg" height="20" width="30"></span>
+                        </div>-->
+
+                        <input type="button" data-dojo-type="dijit/form/Button" id="remediate_id" intermediateChanges="false" label="Remediate" iconClass="dijitNoIcon" onClick="remediateFailedRules();" style="position: absolute; z-index: 900; left: 520px; top:100.149994px;" title="Remediate the failed security rule">
+
+                        <input type="button" data-dojo-type="dijit/form/Button" id="testagain_id" intermediateChanges="false" label="Test Again" iconClass="dijitNoIcon" onClick="testAgain();" style="position: absolute; z-index: 900; left: 520px	; top:178.149994px	;" title="Re-Test the failed security rule">
+
+                        <!--<input type="button" data-dojo-type="dijit/form/Button" id="failure_consolelog" intermediateChanges="false" label="Console log" iconClass="dijitNoIcon" onClick="showConsolelog();" style="position: absolute; z-index: 900; left: 520px; top:258px;" title="Console log for selected rule">
+                        -->
+                        <select id="failed"  name="failedStatus" multiple style="width: 434px; height: 316px;" ondblClick="showConsolelog(id);">
+                        </select>
+                    </fieldset>
+                    <div>
+                        <div style=" margin: 2px; padding:15px; position: absolute; z-index: 900; left:  10.453125px; top: 44.24999389648437px;">
+                            <table class="profile_tabel" cellspacing="0" id="profile_failure">
+                                <tr>
+                                    <td width="50"> Profile:</td>
+                                    <td id="profile_failure_Id" class="sel_prof_name" style="font-weight:bold;"> </td>
+                                </tr>
+                            </table>
+                        </div>
+
+                        <span id="refresh_success_page" style="position: absolute; z-index: 900; left:815px; top:8px;display: block;cursor:pointer;" title="Refresh this page" onClick="updateStatusPans();"><img src="Refresh.svg" height="20" width="30"></span>
+
+                    </div>
+                    <p id="note"><b>Note</b> : Hover the mouse over a line for an additional information</p>
+                </div>
+                <div id="manualTab" data-dojo-type="dijit/layout/ContentPane" title="Manual" extractContent="false" preventCache="false" preload="false" refreshOnShow="false" doLayout="true" onShow="updateStatusPans();setMenuTabSelect('manual');onclicktab_hide_div(this.id);">
+                    <fieldset style=" margin: 2px; padding:10px 15px 20px 15px;  position: absolute; z-index: 900; left:   9.453125px; top: 43.2500030517578px;">
+                        <legend> Rules needed manual intervention</legend>
+                        <div class="ms2side__header search_manual_div" id="search_manual_div_id" style="background-color:#fff;margin-top:5px;">
+                            <div style="width: 100px;font-weight:bold;margin-top:-1px;">Search :</div><div style="position: absolute; margin-left:58px; margin-top: -23px;"><input type="text" class="input-control" id="search_manual_rule" name="search_manual_input" style="height:12px;" placeholder="Search"></div>
+                            <a onclick="clearSearchInput_Customized('search_manual_div_id', 'search_manual_rule')"style="display: none;border:0px;float: right; margin-top: -21px; margin-right: -15px;"> </a>
+                        </div>
+                        <!-- <table class="profile_tabel" cellspacing="0" id="profile_manual">
+                             <tr>
+                                     <td id="select_pro" width="90">Selected Profile : </td>
+                                     <td id="profile_manual_Id" class="sel_prof_name"> </td>
+                             </tr>
+                             </table>-->
+                        <input type="button" data-dojo-type="dijit/form/Button" id="manual_des_rule_id" intermediateChanges="false" label="Describe Rule" iconClass="dijitNoIcon"  style="position: absolute; z-index: 900; left:519.850006px; top: 21.1499938964844px;" title="Detailed description of the security rule">
+
+                        <!--<div>
+                        <span id="refresh_manual_page" style="position: absolute; z-index: 192; left:800px; top:-39px;display: block; cursor:pointer;" title="Refresh this page" onClick="updateStatusPans();"><img src="Refresh.svg" height="20" width="30"></span>
+                        </div>-->
+                        <input type="button" data-dojo-type="dijit/form/Button" id="dismis_id" intermediateChanges="false" label="Dismiss" iconClass="dijitNoIcon" onClick="dismissRules();" style="position: absolute; z-index: 900; left:519.850006px; top:100.149994px;" title="Dismiss and marked manaully as successful">
+                        <input type="button" data-dojo-type="dijit/form/Button" id="force_remediate" intermediateChanges="false" label="Force Remediate" iconClass="dijitNoIcon" onClick="forceRemediateRules();" style="position: absolute; z-index: 900; left:519.850006px; top:180.149994px;" title="Force Remediate the selected rule(s)">
+
+                        <!--<input type="button" data-dojo-type="dijit/form/Button" id="manual_consolelog" intermediateChanges="false" label="Console log" iconClass="dijitNoIcon" onClick="showConsolelog();"  style="position: absolute; z-index: 900; left: 520px; top:178.149994px;" title="Console log for selected rule">
+                        -->
+                        <select id="manual"  name="manualStatusips" multiple style="width: 434px; height: 316px;" ondblClick="showConsolelog(id);">
+                        </select>
+                    </fieldset>
+
+                    <div class="styled-select" style="width:197px;margin-left:4px;">	
+                        <select id="myselect3" style="display:flex;">
+                        </select>
+                    </div>	
+                    <div class="styled-select" style="width:201px;margin: -27px 0px -27px 265px;">
+                        <select id="myselect3varlog" style="max-width:100%;display:flex;">
+                        </select>
+                    </div>
+                    <div>
+                        <div style=" margin: 2px; padding:15px; position: absolute; z-index: 900; left:  10.453125px; top: 44.24999389648437px;">
+                            <table class="profile_tabel" cellspacing="0" id="profile_result">
+                                <tr>
+                                    <td width="50">Profile:</td>
+                                    <td id="profile_manual_Id" class="sel_prof_name" style="font-weight:bold;"> </td>
+                                </tr>
+                            </table>
+                        </div>
+
+                        <span id="refresh_success_page" style="position: absolute; z-index: 900; left:815px; top:8px;display: block;cursor:pointer;" title="Refresh this page" onClick="updateStatusPans();"><img src="Refresh.svg" height="20" width="30"></span>
+
+                    </div>
+                    <p id="note" style="margin-top: 3px;"><b>Note</b>:Hover the mouse over a line for an additional information</p>
+                </div>
+                <div id="consoleTab"  data-dojo-type="dijit/layout/ContentPane" title="Console Log" extractContent="false" preventCache="false" preload="false" refreshOnShow="false" doLayout="true" onShow="updateStatusPans();setMenuTabSelect('console_log');onclicktab_hide_div(this.id);">
+
+                    <div class="styled-select" style="width:197px;margin-left:4px;">	
+                        <select id="myselect4" style="display:flex;">
+                        </select>
+                    </div>
+                    <div class="styled-select" style="width:201px;margin: -27px 0px -27px 265px;">
+                        <select id="myselect4varlog" style="max-width: 100%;display:flex;">
+                        </select>
+                    </div>
+                    <!--<div>
+                    <span id="refresh_console_page" style="position: absolute; z-index: 900; left:815px; display: block;cursor:pointer;" title="Refresh this page" onClick="updateStatusPans();"><img src="Refresh.svg" height="20" width="30"></span>
+                    </div>-->
+
+                    <fieldset style=" margin: 2px; padding:10px 15px 20px 15px; position: absolute; z-index: 900; left:  9.453125px; top: 43.24999389648437px;">
+                        <legend> Console</legend>
+                        <div class="ms2side__header search_console_div" id="search_console_div_id" style="background-color:#fff;">
+                            <div style="width: 100px;font-weight:bold;margin-top:-1px;">Search :</div><div style="position: absolute; margin-left:58px; margin-top: -23px;"><input type="text" class="input-control" id="search_console_rule" name="search_console_input" style="height:12px;" placeholder="Search"></div>
+                            <a onclick="clearConsoleSearchInput();" style="display: none;float: right; border: 0px none; margin: -20px -14px;"> </a>
+                        </div>
+                        <textarea type="text" data-dojo-type="dijit/form/SimpleTextarea" id="textarea_id" readOnly="true" intermediateChanges="false" rows="10" cols="10" trim="false" uppercase="false" lowercase="false" propercase="false" style="width: 428px; height: 316px; left: 81.5000030517578px; top: 27.68333435058594px; "></textarea>
+                    </fieldset>
+                    <div>
+                        <div style=" margin: 2px; padding:15px; position: absolute; z-index: 900; left:  10.453125px; top: 44.24999389648437px;">
+                            <table class="profile_tabel" cellspacing="0" id="profile_result">
+                                <tr>
+                                    <td width="50">Profile:</td>
+                                    <td id="profile_console_Id" class="sel_prof_name" style="font-weight:bold;"> </td>
+                                </tr>
+                            </table>
+                        </div>
+                        <span id="refresh_console_page" style="position: absolute; z-index: 900; left:815px; display: block;cursor:pointer;" title="Refresh this page" onClick="updateStatusPans();
+                                cleanConsoleSearchContent('btnclck');"><img src="Refresh.svg" height="20" width="30"></span>
+
+                    </div>
+                </div>
+
+
+
+                <div data-dojo-type="dijit/layout/ContentPane" id= "report_log" title="Report Log" extractContent="false" preventCache="false" preload="false" refreshOnShow="false" doLayout="true" onShow="updateStatusPans();setMenuTabSelect('report_log');onclicktab_hide_div(this.id);">
+                    <!-- IP DROP DOWN -->
+
+                    <div class="styled-select" style="width:197px;margin-left:4px;">		
+                        <select id="myselect5" style="display:flex;">
+                        </select>
+                    </div>
+                    <!-- LOG DROP DOWN -->	
+                    <div class="styled-select" style="width:201px;margin: -27px 0px -27px 265px;">	
+                        <select id="myselect5varlog" style="max-width: 100%;display:flex;" onchange="setComaprisionDiffernceReportUrl();">
+                        </select>
+                    </div>
+                    <div>
+                        <div style=" margin: 2px; padding:15px; position: absolute; z-index: 900; left:  10.453125px; top: 44.24999389648437px;">
+                            <table class="profile_tabel" cellspacing="0" id="profile_result">
+                                <tr>
+                                    <td width="50">Profile:</td>
+                                    <td id="profileId" class="sel_prof_name" style="font-weight:bold;"> </td>
+                                </tr>
+                            </table>
+                        </div>
+                        <span id="refresh_report_page" style="position: absolute; z-index: 900; left:815px; display: block;cursor:pointer;" title="Refresh this page" onClick="updateStatusPans();
+                                updateReportPans();"><img src="Refresh.svg" height="20" width="30"></span>
+
+
+                    </div>
+                    <table class="tbl_main" border="1" cellspacing="0" id="report_table">
+                        <tr style="height:40px; width:100px "  bgcolor="#ccc">
+                            <th width="140" id="th1" align="center"><b>Summary</th>
+                            <th  id="th2" colspan=4 align="right"><b>Completed on : </b></th>
+                            <!--<th  id="th2" colspan=4 align="right"><b>Executed on:-</th>-->
+                        </tr>
+                        <tr style="height:30px" >
+                            <td id="td1"><b>Host Name</td>
+                            <td id="hostId" colspan=4></td>
+                        </tr>
+                        <tr style="height:30px">
+                            <td id="td2" ><b>Operating System</td>
+                            <td id="osId" colspan=4></td>
+                        </tr>
+                        <tr style="height:30px">
+                            <td id="td3"><b>IP Address</td>
+                            <td id="ipAddress" colspan=4 ></td>
+                        </tr>
+                        <tr style="height:30px">
+                            <td id="td4"><b>Execution Mode</td>
+                            <td id="executionId" colspan=4></td>
+                        </tr>
+                        <tr class="smtrx">
+                            <td colspan="2"><label id="warningLabel" style="color:red"></label>
+                                <table width="100%" class="severity_matrix" id="resultTable">
+                                    <tbody>
+                                        <tr>
+                                            <td width="140" class="severity_level">&nbsp;</td>
+                                            <td><b>Success</b></td>
+                                            <td><b>Failed</b></td>
+                                            <td><b>Manual</b></td>
+                                            <td id="tthead"><b>Total</b></td>
+                                        </tr>
+                                        <tr>
+                                            <td width="140" class="severity_level"><b>High&nbsp;</b></td>
+                                            <td id="hssc">0</td>
+                                            <td id="hfsc">0</td>
+                                            <td id="hmsc">0</td>
+                                            <td id="htsc">0</td>
+                                        </tr>
+                                        <tr>
+                                            <td width="140" class="severity_level"><b>Medium&nbsp;</b></td>
+                                            <td id="mssc">0</td>
+                                            <td id="mfsc">0</td>
+                                            <td id="mmsc">0</td>
+                                            <td id="mtsc">0</td>
+                                        </tr>
+                                        <tr>
+                                            <td width="140" class="severity_level"><b>Low&nbsp;</b></td>
+                                            <td id="lssc">0</td>
+                                            <td id="lfsc">0</td>
+                                            <td id="lmsc">0</td>
+                                            <td id="ltsc">0</td>
+                                        </tr>
+                                        <tr>
+                                            <td width="140" class="severity_level"><b>Total&nbsp;</b></td>
+                                            <td id="passedId">0</td>
+                                            <td id="failedId">0</td>
+                                            <td id="manualId">0</td>
+                                            <td id="totalId">0 (0 %)</td>
+                                        </tr>
+                                    </tbody></table>
+                            </td>
+                        </tr>
+                    </table>
+
+ <script type="text/javascript">
+    $j14(function () {
+        $j14("#pass_opt_value").change(function () {
+            var selectedValue = $j14(this).val();
+        });
+    });
+</script>
+		<div class="styled-select" style="float: right; margin-top:105px;width:120px;margin-right: 39px;">
+		<select id="pass_opt_value" name="pass_opt_value" style="padding-right:120px;"> 
+		<option value="">Please select</option>
+		<option value="summary">Summary</option>
+		<option value="executive_summary">Executive summary</option>
+		<option value="full_report">Full report</option>
+		</select>
+
+		</div>
+                    <input type="button" data-dojo-type="dijit/form/Button" id="diff_id" intermediateChanges="false" label="Difference" iconClass="dijitNoIcon" onClick="openComaprisionDiffernceReportPage();" style="position: absolute; z-index: 900; left:532px; top: 65.1499938964844px;" title="Comparision with the latest execution."/>
+
+                    <input type="button" data-dojo-type="dijit/form/Button" id="report_detailed_log" intermediateChanges="false" label="Detailed report" iconClass="dijitNoIcon" onClick="openDetailedReportPage();" style="position: absolute; z-index: 900; left:532px; top: 110px;width:100px" title="Detailed report" />
+                </div>
+                <div id="cronjobtab" data-dojo-type="dijit/layout/ContentPane" title="Schedule" executeScripts="true" extractContent="false" preventCache="false" preload="false" refreshOnShow="true" doLayout="true" closable="false" onshow="getCronjobIps();onclicktab_hide_div(this.id);" > <!-- onshow="getCronjobIps();"-->
+                    <input type="button" data-dojo-type="dijit/form/Button" id="update_cron" onclick="updateCron();" intermediateChanges="false" label="Update" iconClass="dijitNoIcon" style="display:none;position: absolute; z-index: 900; left:550px; top:45px;" title="update_cron">
+                    <input type="button" data-dojo-type="dijit/form/Button" id="delete_cron" intermediateChanges="false" label="Delete" iconClass="dijitNoIcon" style="position: absolute; z-index: 900; left:550px; top:45px;" title="delete_cron"><!-- top:85px; -->
+
+                    <input type="hidden" name="cronjobtab_id" id="cronjobtab_id"/>
+                    <input type="hidden" name="cronjobtab_nickname" id="cronjobtab_nickname"/>
+                    <input type="hidden" name="cronjobtab_profile" id="cronjobtab_profile"/>
+                    <input type="hidden" name="cronjobtab_freq" id="cronjobtab_freq"/>
+                    <fieldset id="cron-fieldset" class="cron-fieldset">
+                        <legend> Scheduled Compliance Checks </legend>
+                        <ul class="cron_sel_holder" id="cron_sel_holder">
+
+                        </ul>
+                        <span style="display:none;">Note: Click on any task and press Update to modify schedule</span>
+                    </fieldset>
+                </div>
+                <div data-dojo-type="dijit.Dialog" id="updateCronDialog" title="Update Cronjob" style="display: none">
+                    <script type="dojo/on" data-dojo-event="reset">
+                        return confirm('Press OK to reset widget values');
+                    </script>
+                    <script type="dojo/on" data-dojo-event="submit">
+                        if(this.validate()){
+                        return confirm('Form is valid, press OK to submit');
+                        }else{
+                        alert('Form contains invalid data.  Please correct first');
+                        return false;
+                        }
+                        return true;
+                    </script>
+                    <table style="border: 1px solid #9f9f9f; margin-bottom: 10px;" cellspacing="10">
+                        <tr>
+                            <td>
+                                <label for="name">Machine:</label>
+                            </td>
+                            <td>
+                                <input type="text" id="cron_tm" name="cron_tm" readonly="readonly" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label for="name">Nickname:</label>
+                            </td>
+                            <td>
+                                <input type="text" id="cron_tm_nickname" name="cron_tm_nickname" readonly="readonly" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label for="dob">Profile:</label>
+                            </td>
+                            <td>
+                                <input type="text" id="cron_profile" name="cron_profile" readonly="readonly">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label for="dob">Frequency:</label>
+                            </td>
+                            <td>
+                                <select id="cron_freq" name="cron_freq">
+                                    <option value="One time">One time</option>
+                                    <option value="Hourly">Hourly</option>
+                                    <option value="Daily">Daily</option>
+                                    <option value="Weekly">Weekly</option>
+                                    <option value="Monthly">Monthly</option>
+                                </select>
+                            </td>
+                        </tr>
+                    </table>
+                    <button data-dojo-type="dijit/form/Button" id="submit_update_cron" type="submit" name="submitButton" value="Submit">Submit</button>
+                    <button data-dojo-type="dijit/form/Button" type="button" >Cancel
+                        <script type="dojo/method" data-dojo-event="onClick" data-dojo-args="evt">
+                            dijit.byId("updateCronDialog").hide();
+                        </script>
+                    </button> 
+                </div>
+
+
+                <!-- <div data-dojo-type="dijit/layout/ContentPane" title="Target Machines" extractContent="false" preventCache="false" preload="false" refreshOnShow="false" closable="false" onShow="updateSelectedProfilePage();">-->
+                <div data-dojo-type="dijit/layout/ContentPane" id="target_machine" title="Target Machines" extractContent="false" preventCache="false" preload="false" refreshOnShow="false" closable="false" onShow="updateTargetPane();onclicktab_hide_div(this.id);"> 
+                    <div data-dojo-type="dijit/layout/ContentPane" id="Notice" title="Pane" extractContent="false" preventCache="false" preload="false" refreshOnShow="false" style="" doLayout="false" class="bgcontent"> <b>Please note:</b>
+                        <p>The IP addresses you select must be accessible from the internet (i.e., public IP addresses of the VMs).
+                        </p>
+                    </div>
+
+                    <button  id="buttonThree" data-dojo-type="dijit.form.Button" type="button" style="position: absolute; z-index: 900; left: 540px; top: 61.1499938964844px;" title="Add an entry e.g. username@IP">Add
+                        <script type="dojo/method" data-dojo-event="onClick" data-dojo-args="evt">
+                            dijit.byId("formDialog").show();
+                        </script>
+                    </button> 
+
+
+
+                    <input type="button" id="deleteip_id"  data-dojo-type="dijit/form/Button" intermediateChanges="false" label="Delete" iconClass="dijitNoIcon" style="position: absolute; z-index: 900; left: 540px; top:110.149994px" title="Delete an entry">
+
+                    <button id="modifyip" data-dojo-type="dijit.form.Button" type="button" style="position: absolute; z-index: 900; left: 540px; top: 160.1499938964844px;" title="Modify an entry">Modify
+                    </button> 
+                    <button id="access_target_id" data-dojo-type="dijit.form.Button" type="button" style="position: absolute; z-index: 900; left: 540px; top: 210.149994px;" title="Retesting of access to the machine(s)">Recheck Access
+                    </button>
+                    <fieldset style=" margin: 2px; padding:15px; position: absolute; z-index: 900; height: 375px; width: 434px; left: 9.453125px; top: 22.953125px;">
+                        <legend> Target Machine(s) </legend>
+                        <div class="ipadd_del_sel_holder" id="ipadd_del_sel_holder">
+                            <div class="ms2side__header" style="margin-top: -4px;">Search : <input type="text" id="search_machine" name="search_machine_input"><a onclick="clearSearchInput()" style="display: none;"> </a></div>
+                            <div class="del_holder_select">
+                                <select id="ipadd_del" class="ipadd_del" name="ipadd_del[]" style="position: absolute; z-index: 900; left: 14.453125px; top: 37px; height: 179px; width: 190px;" multiple="true">
+                                </select>
+                            </div>
+                        </div>
+
+                        <div style="clear:both; height: 12px;"></div>
+                        <div class="selectedIPs_del"><b>Show targets with status :</b> <div style="clear:both; height:12px;"></div>
+                            <input type="checkbox" class="searchableCriteria_del" value="1" id="allOk_del"  />&nbsp;&nbsp;All OK </br>
+                            <input type="checkbox" class="searchableCriteria_del" value="-1" id="unsupportedOS_del"  />&nbsp;&nbsp;Un-supported OS </br>
+                            <input type="checkbox" class="searchableCriteria_del" value="-2" id="unabletoreach_del"  />&nbsp;&nbsp;Unable to reach target machine (ping fails) </br>
+                            <input type="checkbox" class="searchableCriteria_del" value="-3" id="unabletologinwithspecifieduser_del"   />&nbsp;&nbsp;Unable to log in with specified userid (ssh login fails)</br>
+                            <input type="checkbox" class="searchableCriteria_del" value="-4" id="insufficientexecutionprivilege_del"   />&nbsp;&nbsp;Insufficient execution privilege (cannot sudo)</br>
+                            <input type="checkbox" class="searchableCriteria_del" value="1,-1,-2,-3,-4" id="alltargetmachines_del"  />&nbsp;&nbsp;All Target Machines
+                            <div style="clear:both; height: 12px;"></div>
+
+                        </div>
+                    </fieldset>
+                    <script>
+                        function hide_div(clicked_id) {
+                            var but_id = clicked_id;
+                            if (but_id == 'submit1')
+                            {
+                                document.getElementById('formDialogmod').style.display = 'none';
+                                dijit.byId("formDialogmod").hide();
+                            }
+                        }
+                    </script>
+                    <script>
+                        function hide_div1(clicked_idd) {
+                            var but_idd = clicked_idd;
+                            if (but_idd == 'modify_ip')
+                            {
+                                document.getElementById('formDialogmod').style.display = 'none';
+                                dijit.byId("formDialogmod").hide();
+                            }
+                        }
+                    </script>
+                    <div data-dojo-type="dijit.Dialog" id="formDialogmod" title="Modify IP Address" style="display: none" >
+                        <script type="dojo/on" data-dojo-event="reset">
+                            return confirm('Press OK to reset widget values');
+                        </script>
+                        <script type="dojo/on" data-dojo-event="submit">
+                            if(this.validate()){
+                            return confirm('Form is valid, press OK to submit');
+                            }else{
+                            alert('Form contains invalid data.  Please correct first');
+                            return false;
+                            }
+                            return true;
+                        </script>
+                        <script>
+                            function test() {
+                                document.getElementById("modify_ip").submit(this);
+                            }
+                        </script>
+                        <form name="modify_ipp" id="modify_ip" method="post" action="javascript:onClickOfModify()" onsubmit="hide_div1(this.id);">
+                            <table style="border: 1px solid #9f9f9f; margin-bottom: 10px; margin-left:19px;" cellspacing="10">
+                                <tr>
+                                    <td>
+                                        <label for="name">Username:*</label>
+                                    </td>
+                                    <td>
+                                        <input type="text" id="usernamemod" name="usernamemod" required="true" data-dojo-type="dijit/form/ValidationTextBox"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label for="dob">IP Address:*</label>
+                                    </td>
+                                    <td>
+                                        <!--<input type="text" id="ipaddressmod" name="ipaddressmod" required="true" regExp="^(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$" data-dojo-type="dijit/form/ValidationTextBox"/ onKeyPress="if ( (event.keyCode) == 13 ) {onClickOfModify();dijit.byId('formDialogmod').hide();dijit.byId('formDialogmod').reset();}">-->
+					<input type="text" id="ipaddressmod" name="ipaddressmod" required="true" regExp="^(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)(\s-p\s\d+)*$" data-dojo-type="dijit/form/ValidationTextBox"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label for="nickname">Nickname:</label>
+                                    </td>
+                                    <td>
+                                        <!--<input type="text" id="nicknamemod" name="nicknamemod" value="" data-dojo-type="dijit/form/ValidationTextBox"/  onKeyPress="if ( (event.keyCode) == 13 ) {onClickOfModify();dijit.byId('formDialogmod').hide();dijit.byId('formDialogmod').reset();}">-->
+                                        <input type="text" id="nicknamemod" name="nicknamemod" value="" data-dojo-type="dijit/form/ValidationTextBox"/>
+                                    </td>
+                                </tr>
+                            </table>
+                            <button data-dojo-type="dijit/form/Button" id="submit1" type="submit" name="submitButton" value="Submit" onclick="hide_div(this.id);">Submit</button>
+                            <button data-dojo-type="dijit/form/Button" type="button" >Cancel
+                                <script type="dojo/method" data-dojo-event="onClick" data-dojo-args="evt">
+                                    dijit.byId("formDialogmod").hide();
+                                    dijit.byId('formDialogmod').reset();
+                                </script>
+                            </button> 
+                            <button data-dojo-type="dijit/form/Button" type="button" >Instructions
+                                <script type="dojo/method" data-dojo-event="onClick" data-dojo-args="evt">
+                                    window.open("instructions.html");
+                                </script>
+                            </button>
+                        </form>
+                    </div>
+
+                    <div data-dojo-type="dijit.Dialog" id="formDialog" title="Add IP Address" onshow="clearUploadFileSelector();" style="display: none">
+                        <form enctype="multipart/form-data" method="post" name="f_addip" id="f_addip" onsubmit="AddTargetedIpDetails();
+                                return false;" >
+                            <script type="dojo/on" data-dojo-event="reset">
+                                return confirm('Press OK to reset widget values');
+                            </script>
+                            <script type="dojo/on" data-dojo-event="submit">
+                                if(this.validate()){
+                                return confirm('Form is valid, press OK to submit');
+                                }else{
+                                alert('Form contains invalid data.  Please correct first');
+                                return false;
+                                }
+                                return true;
+                            </script>
+                            <table class="addtmip" cellspacing="10">
+                                <tr>
+                                    <td rowspan="3">
+                                        <input type="hidden" name="add_ip_details_user_selection" id="add_ip_details_user_selection" value="add_by_ip_details" /><label for="radioTwo">Select your operation</label>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <input type="radio" name="add_ip_details" id="add_ip_details_ip" value="add_by_ip_details" checked="checked" onclick="changeUserIpDetailAction(this.value)" />
+                                        <label for="radioTwo">By IP Address details</label> 
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <!--<a class="demo" href ="#"><img height="20" src="help.png" style="cursor:pointer;margin-left: -20px;"><span class="tooltip" style="width: 110px; height: 130px; margin-left: 26px;"><span style="margin-left:12px;">hello world </span></span></a>-->
+                                        <input type="radio" name="add_ip_details" id="add_ip_details_csv" value="add_by_csv_file"  onclick="changeUserIpDetailAction(this.value);" />
+
+                                        <label for="radioTwo">By CSV File Upload</label>&nbsp;
+                                    </td>
+                                </tr>
+                            </table>
+                            <table class="addtmip2"  id="addtmip" cellspacing="10" >
+                                <tr>
+                                    <td width="30%">
+                                        <label for="name">Username:*</label>
+                                    </td>
+                                    <td>
+                                        <input type="text" id="username" name="username" required="true" value="raxak" data-dojo-type="dijit/form/ValidationTextBox"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label for="dob">IP Address:*</label>
+                                    </td>
+                                    <td>
+                                        <input type="text" id="ipaddress" name="ipaddress" required="true"
+                                               regExp="^(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)(\s-p\s\d+)*$" data-dojo-type="dijit/form/ValidationTextBox">
+                                    </td>
+                                </tr>
+
+
+                                <tr>
+                                    <td>
+                                        <label for="dob">SSH Port:*</label>
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" name="chk_sshport" id="chk_sshport" onclick="return displayTogglePrivateInputs();"/> 
+                                        <input type="text" id="sshport" name="sshport" required="true"  data-dojo-type="dijit/form/ValidationTextBox">
+                                    </td>
+                                </tr>
+
+
+
+
+                                <tr>
+                                    <td>
+                                        <label for="nickname">Nickname:</label>
+                                    </td>
+                                    <td>
+                                        <input type="text" id="nickname2" name="nickname2" value="" pattern="^\S+$" data-dojo-type="dijit/form/ValidationTextBox">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label for="pip_chkbx">&nbsp;</label>
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" name="private_ip" id="private_ip" onclick="return displayTogglePrivateInputs();"/> 
+                                        &nbsp;Private IP address
+                                    </td>
+                                </tr>
+                                <tr class="private_ip_fields">
+                                    <td>
+                                        <label for="username_pip">VPN Username:*</label>
+                                    </td>
+                                    <td>
+                                        <input type="text" id="username_pip" name="username_pip" required="true" value="" data-dojo-type="dijit/form/ValidationTextBox"/>
+                                    </td>
+                                </tr>
+                                <tr class="private_ip_fields">
+                                    <td>
+                                        <label for="paswd_pip">VPN Password:*</label>
+                                    </td>
+                                    <td>
+                                        <input type="password" id="paswd_pip" name="paswd_pip" value="" required="true" data-dojo-type="dijit/form/ValidationTextBox">
+                                    </td>
+                                </tr>
+                                <tr class="private_ip_fields">
+                                    <td>
+                                        <label for="adres_pip">VPN IP:*</label>
+                                    </td>
+                                    <td>
+                                        <input type="text" id="ipaddress_pip" name="ipaddress_pip" required="true" regExp="^(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$" data-dojo-type="dijit/form/ValidationTextBox">
+                                    </td>
+                                </tr>
+                            </table>
+                            <table class="addtmip_csv" id="addtmip_csv"  cellspacing="5" style="display:none;">
+                                <tr>
+                                    <td width="30%">
+                                        <label for="uploadcsv">Upload CSV:</label>
+                                    </td>
+                                    <td>
+                                        <input type="file" id="uploadcsvfile" name="uploadcsvfile">
+                                        <!--<input name="uploadcsvfile1" multiple="false" type="file" data-dojo-type="dojox/form/Uploader" label="Select File" id="uploadcsvfile1" />-->
+                                    </td>
+                                </tr>
+                            </table>
+                            <button data-dojo-type="dijit/form/Button" type="submit" id="submitcsv" name="submitButton" value="Submit" onclick='return validate_private_ip_section()'>Submit</button> <!-- onclick="checkData(username.value, ipaddress.value, nickname2.value);" -->
+                            <button data-dojo-type="dijit/form/Button" type="button" >Cancel
+                                <script type="dojo/method" data-dojo-event="onClick" data-dojo-args="evt">
+                                    dijit.byId("formDialog").hide();
+                                    dijit.byId("formDialog").reset();
+                                </script>
+                            </button>
+                            <button data-dojo-type="dijit/form/Button" type="button" >Instructions
+                                <script type="dojo/method" data-dojo-event="onClick" data-dojo-args="evt">
+                                    window.open("instructions.html");
+                                </script>
+                            </button>
+                        </form>
+                    </div>
+
+
+                </div>
+
+            </div>
+            <!-- End: Content -->
+            <div style="clear:both;"></div>
+            <div style="border:0px solid green; margin-top:30px;">
+                <a href="http://www.cloudraxak.com"> <img style=" z-index: 900; width: 164px; height: 55px; " src="crlogo.png" alt="Cloud Raxak Inc."></a>
+                <div style="clear:both;"></div>
+                <label style="z-index: 900; font-size:13px;margin-left: 60px;margin-top:-8px;position: absolute;"> (c) 2014-15 Cloud Raxak Inc. All Rights Reserved</label>
+                <br>
+                <br>
+            </div>
+        </div>
+    </body>
+</html>
+

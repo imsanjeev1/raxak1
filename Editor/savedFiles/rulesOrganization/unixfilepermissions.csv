@@ -1,0 +1,567 @@
+"UNIX File Permissions","","","","","","","","","","",""
+"Ownership:","","","","","","","","","","",""
+"V-38443","medium","The /etc/gshadow file must be owned by root.","The ""/etc/gshadow"" file contains group password hashes. Protection of this file is critical for system security.","None","SV-50243r1_rule","F-43388r1_fix","To properly set the owner of ""/etc/gshadow"", run the command:
+
+# chown root /etc/gshadow","C-45998r1_chk","To check the ownership of ""/etc/gshadow"", run the command:
+
+$ ls -l /etc/gshadow
+
+If properly configured, the output should indicate the following owner: ""root""
+If it does not, this is a finding.","",""
+"V-38450","medium","The /etc/passwd file must be owned by root.","The ""/etc/passwd"" file contains information about the users that are configured on the system. Protection of this file is critical for system security.","None","SV-50250r1_rule","F-43395r1_fix","To properly set the owner of ""/etc/passwd"", run the command:
+
+# chown root /etc/passwd","C-46005r1_chk","To check the ownership of ""/etc/passwd"", run the command:
+
+$ ls -l /etc/passwd
+
+If properly configured, the output should indicate the following owner: ""root""
+If it does not, this is a finding.","",""
+"V-38458","medium","The /etc/group file must be owned by root.","The ""/etc/group"" file contains information regarding groups that are configured on the system. Protection of this file is important for system security.","None","SV-50258r1_rule","F-43403r1_fix","To properly set the owner of ""/etc/group"", run the command:
+
+# chown root /etc/group","C-46013r1_chk","To check the ownership of ""/etc/group"", run the command:
+
+$ ls -l /etc/group
+
+If properly configured, the output should indicate the following owner: ""root""
+If it does not, this is a finding.","",""
+"V-38466","medium","Library files must be owned by root.","Files from shared library directories are loaded into the address space of processes (including privileged ones) or of the kernel itself at runtime. Proper ownership is necessary to protect the integrity of the system.","None","SV-50266r1_rule","F-43411r1_fix","System-wide shared library files, which are linked to executables during process load time or run time, are stored in the following directories by default:
+
+/lib
+/lib64
+/usr/lib
+/usr/lib64
+
+If any file in these directories is found to be owned by a user other than root, correct its ownership with the following command:
+
+# chown root [FILE]","C-46021r1_chk","System-wide shared library files, which are linked to executables during process load time or run time, are stored in the following directories by default:
+
+/lib
+/lib64
+/usr/lib
+/usr/lib64
+
+
+Kernel modules, which can be added to the kernel during runtime, are stored in ""/lib/modules"". All files in these directories should not be group-writable or world-writable.  To find shared libraries that are not owned by ""root"", run the following command for each directory [DIR] which contains shared libraries:
+
+$ find -L [DIR] \! -user root
+
+
+If any of these files are not owned by root, this is a finding.","",""
+"V-38472","medium","All system command files must be owned by root.","System binaries are executed by privileged users as well as system services, and restrictive permissions are necessary to ensure that their execution of these programs cannot be co-opted.","None","SV-50272r1_rule","F-43417r1_fix","System executables are stored in the following directories by default:
+
+/bin
+/usr/bin
+/usr/local/bin
+/sbin
+/usr/sbin
+/usr/local/sbin
+
+If any file [FILE] in these directories is found to be owned by a user other than root, correct its ownership with the following command:
+
+# chown root [FILE]","C-46027r1_chk","System executables are stored in the following directories by default:
+
+/bin
+/usr/bin
+/usr/local/bin
+/sbin
+/usr/sbin
+/usr/local/sbin
+
+All files in these directories should not be group-writable or world-writable. To find system executables that are not owned by ""root"", run the following command for each directory [DIR] which contains system executables:
+
+$ find -L [DIR] \! -user root
+
+
+If any system executables are found to not be owned by root, this is a finding.","",""
+"V-38495","medium","Audit log files must be owned by root.","If non-privileged users can write to audit logs, audit trails can be modified or destroyed.","None","SV-50296r1_rule","F-43443r1_fix","Change the owner of the audit log files with the following command:
+
+# chown root [audit_file]","C-46053r1_chk","Run the following command to check the owner of the system audit logs:
+
+grep ""^log_file"" /etc/audit/auditd.conf|sed s/^[^\/]*//|xargs stat -c %U:%n
+
+Audit logs must be owned by root.
+If they are not, this is a finding.","",""
+"V-38502","medium","The /etc/shadow file must be owned by root.","The ""/etc/shadow"" file contains the list of local system accounts and stores password hashes. Protection of this file is critical for system security. Failure to give ownership of this file to root provides the designated owner with access to sensitive information which could weaken the system security posture.","None","SV-50303r1_rule","F-43449r1_fix","To properly set the owner of ""/etc/shadow"", run the command:
+
+# chown root /etc/shadow","C-46059r1_chk","To check the ownership of ""/etc/shadow"", run the command:
+
+$ ls -l /etc/shadow
+
+If properly configured, the output should indicate the following owner: ""root""
+If it does not, this is a finding.","",""
+"V-38518","medium","All rsyslog-generated log files must be owned by root.","The log files generated by rsyslog contain valuable information regarding system configuration, user authentication, and other such information. Log files should be protected from unauthorized access.","None","SV-50319r2_rule","F-43465r1_fix","The owner of all log files written by ""rsyslog"" should be root. These log files are determined by the second part of each Rule line in ""/etc/rsyslog.conf"" typically all appear in ""/var/log"". For each log file [LOGFILE] referenced in ""/etc/rsyslog.conf"", run the following command to inspect the file's owner:
+
+$ ls -l [LOGFILE]
+
+If the owner is not ""root"", run the following command to correct this:
+
+# chown root [LOGFILE]","C-46075r2_chk","The owner of all log files written by ""rsyslog"" should be root. These log files are determined by the second part of each Rule line in ""/etc/rsyslog.conf"" and typically all appear in ""/var/log"". To see the owner of a given log file, run the following command:
+
+$ ls -l [LOGFILE]
+
+Some log files referenced in /etc/rsyslog.conf may be created by other programs and may require exclusion from consideration.
+
+If the owner is not root, this is a finding. ","",""
+"V-38579","medium","The system boot loader configuration file(s) must be owned by root.","Only root should be able to modify important boot parameters.","None","SV-50380r1_rule","F-43527r1_fix","The file ""/etc/grub.conf"" should be owned by the ""root"" user to prevent destruction or modification of the file. To properly set the owner of ""/etc/grub.conf"", run the command:
+
+# chown root /etc/grub.conf","C-46137r1_chk","To check the ownership of ""/etc/grub.conf"", run the command:
+
+$ ls -lL /etc/grub.conf
+
+If properly configured, the output should indicate the following owner: ""root""
+If it does not, this is a finding.","",""
+"Group-Ownership:","","","","","","","","","","",""
+"V-38445","medium","Audit log files must be group-owned by root.","If non-privileged users can write to audit logs, audit trails can be modified or destroyed.","None","SV-50245r1_rule","F-43390r1_fix","Change the group owner of the audit log files with the following command:
+
+# chgrp root [audit_file]","C-46000r1_chk","Run the following command to check the group owner of the system audit logs:
+
+grep ""^log_file"" /etc/audit/auditd.conf|sed s/^[^\/]*//|xargs stat -c %G:%n
+
+Audit logs must be group-owned by root.
+If they are not, this is a finding.","",""
+"V-38448","medium","The /etc/gshadow file must be group-owned by root.","The ""/etc/gshadow"" file contains group password hashes. Protection of this file is critical for system security.","None","SV-50248r1_rule","F-43393r1_fix","To properly set the group owner of ""/etc/gshadow"", run the command:
+
+# chgrp root /etc/gshadow","C-46003r1_chk","To check the group ownership of ""/etc/gshadow"", run the command:
+
+$ ls -l /etc/gshadow
+
+If properly configured, the output should indicate the following group-owner. ""root""
+If it does not, this is a finding.","",""
+"V-38451","medium","The /etc/passwd file must be group-owned by root.","The ""/etc/passwd"" file contains information about the users that are configured on the system. Protection of this file is critical for system security.","None","SV-50251r1_rule","F-43396r1_fix","To properly set the group owner of ""/etc/passwd"", run the command:
+
+# chgrp root /etc/passwd","C-46006r1_chk","To check the group ownership of ""/etc/passwd"", run the command:
+
+$ ls -l /etc/passwd
+
+If properly configured, the output should indicate the following group-owner. ""root""
+If it does not, this is a finding.","",""
+"V-38459","medium","The /etc/group file must be group-owned by root.","The ""/etc/group"" file contains information regarding groups that are configured on the system. Protection of this file is important for system security.","None","SV-50259r1_rule","F-43404r1_fix","To properly set the group owner of ""/etc/group"", run the command:
+
+# chgrp root /etc/group","C-46014r1_chk","To check the group ownership of ""/etc/group"", run the command:
+
+$ ls -l /etc/group
+
+If properly configured, the output should indicate the following group-owner. ""root""
+If it does not, this is a finding.","",""
+"V-38503","medium","The /etc/shadow file must be group-owned by root.","The ""/etc/shadow"" file stores password hashes. Protection of this file is critical for system security.","None","SV-50304r1_rule","F-43450r1_fix","To properly set the group owner of ""/etc/shadow"", run the command:
+
+# chgrp root /etc/shadow","C-46060r1_chk","To check the group ownership of ""/etc/shadow"", run the command:
+
+$ ls -l /etc/shadow
+
+If properly configured, the output should indicate the following group-owner. ""root""
+If it does not, this is a finding.","",""
+"V-38519","medium","All rsyslog-generated log files must be group-owned by root.","The log files generated by rsyslog contain valuable information regarding system configuration, user authentication, and other such information. Log files should be protected from unauthorized access.","None","SV-50320r2_rule","F-43466r1_fix","The group-owner of all log files written by ""rsyslog"" should be root. These log files are determined by the second part of each Rule line in ""/etc/rsyslog.conf"" and typically all appear in ""/var/log"". For each log file [LOGFILE] referenced in ""/etc/rsyslog.conf"", run the following command to inspect the file's group owner:
+
+$ ls -l [LOGFILE]
+
+If the owner is not ""root"", run the following command to correct this:
+
+# chgrp root [LOGFILE]","C-46076r2_chk","The group-owner of all log files written by ""rsyslog"" should be root. These log files are determined by the second part of each Rule line in ""/etc/rsyslog.conf"" and typically all appear in ""/var/log"". To see the group-owner of a given log file, run the following command:
+
+$ ls -l [LOGFILE]
+
+Some log files referenced in /etc/rsyslog.conf may be created by other programs and may require exclusion from consideration.
+
+If the group-owner is not root, this is a finding.","",""
+"V-38581","medium","The system boot loader configuration file(s) must be group-owned by root.","The ""root"" group is a highly-privileged group. Furthermore, the group-owner of this file should not have any access privileges anyway.","None","SV-50382r1_rule","F-43529r1_fix","The file ""/etc/grub.conf"" should be group-owned by the ""root"" group to prevent destruction or modification of the file. To properly set the group owner of ""/etc/grub.conf"", run the command:
+
+# chgrp root /etc/grub.conf","C-46139r1_chk","To check the group ownership of ""/etc/grub.conf"", run the command:
+
+$ ls -lL /etc/grub.conf
+
+If properly configured, the output should indicate the following group-owner. ""root""
+If it does not, this is a finding.","",""
+"Permission:","","","","","","","","","","",""
+"V-38449","medium","The /etc/gshadow file must have mode 0000.","The /etc/gshadow file contains group password hashes. Protection of this file is critical for system security.","None","SV-50249r1_rule","F-43394r1_fix","To properly set the permissions of ""/etc/gshadow"", run the command:
+
+# chmod 0000 /etc/gshadow","C-46004r1_chk","To check the permissions of ""/etc/gshadow"", run the command:
+
+$ ls -l /etc/gshadow
+
+If properly configured, the output should indicate the following permissions: ""----------""
+If it does not, this is a finding.","",""
+"V-38457","medium","The /etc/passwd file must have mode 0644 or less permissive.","If the ""/etc/passwd"" file is writable by a group-owner or the world the risk of its compromise is increased. The file contains the list of accounts on the system and associated information, and protection of this file is critical for system security.","None","SV-50257r1_rule","F-43397r1_fix","To properly set the permissions of ""/etc/passwd"", run the command:
+
+# chmod 0644 /etc/passwd","C-46007r1_chk","To check the permissions of ""/etc/passwd"", run the command:
+
+$ ls -l /etc/passwd
+
+If properly configured, the output should indicate the following permissions: ""-rw-r--r--""
+If it does not, this is a finding.","",""
+"V-38461","medium","The /etc/group file must have mode 0644 or less permissive.","The ""/etc/group"" file contains information regarding groups that are configured on the system. Protection of this file is important for system security.","None","SV-50261r1_rule","F-43406r1_fix","To properly set the permissions of ""/etc/group"", run the command:
+
+# chmod 644 /etc/group","C-46015r1_chk","To check the permissions of ""/etc/group"", run the command:
+
+$ ls -l /etc/group
+
+If properly configured, the output should indicate the following permissions: ""-rw-r--r--""
+If it does not, this is a finding.","",""
+"V-38465","medium","Library files must have mode 0755 or less permissive.","Files from shared library directories are loaded into the address space of processes (including privileged ones) or of the kernel itself at runtime. Restrictive permissions are necessary to protect the integrity of the system.","None","SV-50265r3_rule","F-43409r2_fix","System-wide shared library files, which are linked to executables during process load time or run time, are stored in the following directories by default:
+
+/lib
+/lib64
+/usr/lib
+/usr/lib64
+
+If any file in these directories is found to be group-writable or world-writable, correct its permission with the following command:
+
+# chmod go-w [FILE]","C-46019r4_chk","System-wide shared library files, which are linked to executables during process load time or run time, are stored in the following directories by default:
+
+/lib
+/lib64
+/usr/lib
+/usr/lib64
+
+
+Kernel modules, which can be added to the kernel during runtime, are stored in ""/lib/modules"". All files in these directories should not be group-writable or world-writable. To find shared libraries that are group-writable or world-writable, run the following command for each directory [DIR] which contains shared libraries:
+
+$ find -L [DIR] -perm /022 -type f
+
+
+If any of these files (excluding broken symlinks) are group-writable or world-writable, this is a finding.","",""
+"V-38469","medium","All system command files must have mode 755 or less permissive.","System binaries are executed by privileged users, as well as system services, and restrictive permissions are necessary to ensure execution of these programs cannot be co-opted.","None","SV-50269r3_rule","F-43414r1_fix","System executables are stored in the following directories by default:
+
+/bin
+/usr/bin
+/usr/local/bin
+/sbin
+/usr/sbin
+/usr/local/sbin
+
+If any file in these directories is found to be group-writable or world-writable, correct its permission with the following command:
+
+# chmod go-w [FILE]","C-46024r3_chk","System executables are stored in the following directories by default:
+
+/bin
+/usr/bin
+/usr/local/bin
+/sbin
+/usr/sbin
+/usr/local/sbin
+
+All files in these directories should not be group-writable or world-writable. To find system executables that are group-writable or world-writable, run the following command for each directory [DIR] which contains system executables:
+
+$ find -L [DIR] -perm /022 -type f
+
+If any system executables are found to be group-writable or world-writable, this is a finding.","",""
+"V-38493","medium","Audit log directories must have mode 0755 or less permissive.","If users can delete audit logs, audit trails can be modified or destroyed.","None","SV-50294r1_rule","F-43440r1_fix","Change the mode of the audit log directories with the following command:
+
+# chmod go-w [audit_directory]","C-46050r1_chk","Run the following command to check the mode of the system audit directories:
+
+grep ""^log_file"" /etc/audit/auditd.conf|sed 's/^[^/]*//; s/[^/]*$//'|xargs stat -c %a:%n
+
+Audit directories must be mode 0755 or less permissive.
+If any are more permissive, this is a finding.","",""
+"V-38498","medium","Audit log files must have mode 0640 or less permissive.","If users can write to audit logs, audit trails can be modified or destroyed.","None","SV-50299r1_rule","F-43445r1_fix","Change the mode of the audit log files with the following command:
+
+# chmod 0640 [audit_file]","C-46055r1_chk","Run the following command to check the mode of the system audit logs:
+
+grep ""^log_file"" /etc/audit/auditd.conf|sed s/^[^\/]*//|xargs stat -c %a:%n
+
+Audit logs must be mode 0640 or less permissive.
+If any are more permissive, this is a finding.","",""
+"V-38504","medium","The /etc/shadow file must have mode 0000.","The ""/etc/shadow"" file contains the list of local system accounts and stores password hashes. Protection of this file is critical for system security. Failure to give ownership of this file to root provides the designated owner with access to sensitive information which could weaken the system security posture.","None","SV-50305r1_rule","F-43451r1_fix","To properly set the permissions of ""/etc/shadow"", run the command:
+
+# chmod 0000 /etc/shadow","C-46061r2_chk","To check the permissions of ""/etc/shadow"", run the command:
+
+$ ls -l /etc/shadow
+
+If properly configured, the output should indicate the following permissions: ""----------""
+If it does not, this is a finding.","",""
+"V-38583","medium","The system boot loader configuration file(s) must have mode 0600 or less permissive.","Proper permissions ensure that only the root user can modify important boot parameters.","None","SV-50384r2_rule","F-43531r2_fix","File permissions for ""/boot/grub/grub.conf"" should be set to 600, which is the default. To properly set the permissions of ""/boot/grub/grub.conf"", run the command:
+
+# chmod 600 /boot/grub/grub.conf
+
+Boot partitions based on VFAT, NTFS, or other non-standard configurations may require alternative measures.","C-46141r2_chk","To check the permissions of /etc/grub.conf, run the command:
+
+$ sudo ls -lL /etc/grub.conf
+
+If properly configured, the output should indicate the following permissions: ""-rw-------""
+If it does not, this is a finding. ","",""
+"V-38623","medium","All rsyslog-generated log files must have mode 0600 or less permissive.","Log files can contain valuable information regarding system configuration. If the system log files are not protected, unauthorized users could change the logged data, eliminating their forensic value.","None","SV-50424r2_rule","F-43571r1_fix","The file permissions for all log files written by rsyslog should be set to 600, or more restrictive. These log files are determined by the second part of each Rule line in ""/etc/rsyslog.conf"" and typically all appear in ""/var/log"". For each log file [LOGFILE] referenced in ""/etc/rsyslog.conf"", run the following command to inspect the file's permissions:
+
+$ ls -l [LOGFILE]
+
+If the permissions are not 600 or more restrictive, run the following command to correct this:
+
+# chmod 0600 [LOGFILE]","C-46181r2_chk","The file permissions for all log files written by rsyslog should be set to 600, or more restrictive. These log files are determined by the second part of each Rule line in ""/etc/rsyslog.conf"" and typically all appear in ""/var/log"". For each log file [LOGFILE] referenced in ""/etc/rsyslog.conf"", run the following command to inspect the file's permissions:
+
+$ ls -l [LOGFILE]
+
+The permissions should be 600, or more restrictive. Some log files referenced in /etc/rsyslog.conf may be created by other programs and may require exclusion from consideration.
+
+If the permissions are not correct, this is a finding.","",""
+"Umask:","","","","","","","","","","",""
+"V-38642","low","The system default umask for daemons must be 027 or 022.","The umask influences the permissions assigned to files created by a process at run time. An unnecessarily permissive umask could result in files being created with insecure permissions.","None","SV-50443r1_rule","F-43592r1_fix","The file ""/etc/init.d/functions"" includes initialization parameters for most or all daemons started at boot time. The default umask of 022 prevents creation of group- or world-writable files. To set the default umask for daemons, edit the following line, inserting 022 or 027 for [UMASK] appropriately:
+
+umask [UMASK]
+
+Setting the umask to too restrictive a setting can cause serious errors at runtime. Many daemons on the system already individually restrict themselves to a umask of 077 in their own init scripts.","C-46203r1_chk","To check the value of the ""umask"", run the following command:
+
+$ grep umask /etc/init.d/functions
+
+The output should show either ""022"" or ""027"".
+If it does not, this is a finding.","",""
+"V-38645","low","The system default umask in /etc/login.defs must be 077.","The umask value influences the permissions assigned to files when they are created. A misconfigured umask value could result in files with excessive permissions that can be read and/or written to by unauthorized users.","None","SV-50446r1_rule","F-43594r1_fix","To ensure the default umask controlled by ""/etc/login.defs"" is set properly, add or correct the ""umask"" setting in ""/etc/login.defs"" to read as follows:
+
+UMASK 077","C-46205r1_chk","Verify the ""umask"" setting is configured correctly in the ""/etc/login.defs"" file by running the following command:
+
+# grep -i ""umask"" /etc/login.defs
+
+All output must show the value of ""umask"" set to 077, as shown in the below:
+
+# grep -i ""umask"" /etc/login.defs
+UMASK 077
+
+
+If the above command returns no output, or if the umask is configured incorrectly, this is a finding.","",""
+"V-38647","low","The system default umask in /etc/profile must be 077.","The umask value influences the permissions assigned to files when they are created. A misconfigured umask value could result in files with excessive permissions that can be read and/or written to by unauthorized users.","None","SV-50448r1_rule","F-43596r1_fix","To ensure the default umask controlled by ""/etc/profile"" is set properly, add or correct the ""umask"" setting in ""/etc/profile"" to read as follows:
+
+umask 077","C-46207r1_chk","Verify the ""umask"" setting is configured correctly in the ""/etc/profile"" file by running the following command:
+
+# grep ""umask"" /etc/profile
+
+All output must show the value of ""umask"" set to 077, as shown in the below:
+
+# grep ""umask"" /etc/profile
+umask 077
+
+
+If the above command returns no output, or if the umask is configured incorrectly, this is a finding.","",""
+"V-38649","low","The system default umask for the csh shell must be 077.","The umask value influences the permissions assigned to files when they are created. A misconfigured umask value could result in files with excessive permissions that can be read and/or written to by unauthorized users.","None","SV-50450r1_rule","F-43598r1_fix","To ensure the default umask for users of the C shell is set properly, add or correct the ""umask"" setting in ""/etc/csh.cshrc"" to read as follows:
+
+umask 077","C-46209r1_chk","Verify the ""umask"" setting is configured correctly in the ""/etc/csh.cshrc"" file by running the following command:
+
+# grep ""umask"" /etc/csh.cshrc
+
+All output must show the value of ""umask"" set to 077, as shown in the below:
+
+# grep ""umask"" /etc/csh.cshrc
+umask 077
+
+
+If the above command returns no output, or if the umask is configured incorrectly, this is a finding.","",""
+"V-38651","low","The system default umask for the bash shell must be 077.","The umask value influences the permissions assigned to files when they are created. A misconfigured umask value could result in files with excessive permissions that can be read and/or written to by unauthorized users.","None","SV-50452r1_rule","F-43600r1_fix","To ensure the default umask for users of the Bash shell is set properly, add or correct the ""umask"" setting in ""/etc/bashrc"" to read as follows:
+
+umask 077","C-46211r1_chk","Verify the ""umask"" setting is configured correctly in the ""/etc/bashrc"" file by running the following command:
+
+# grep ""umask"" /etc/bashrc
+
+All output must show the value of ""umask"" set to 077, as shown below:
+
+# grep ""umask"" /etc/bashrc
+umask 077
+umask 077
+
+
+If the above command returns no output, or if the umask is configured incorrectly, this is a finding.","",""
+"File System Requirements:","","","","","","","","","","",""
+"V-38491","high","There must be no .rhosts or hosts.equiv files on the system.","Trust files are convenient, but when used in conjunction with the R-services, they can allow unauthenticated access to a system.","None","SV-50292r1_rule","F-43438r1_fix","The files ""/etc/hosts.equiv"" and ""~/.rhosts"" (in each user's home directory) list remote hosts and users that are trusted by the local system when using the rshd daemon. To remove these files, run the following command to delete them from any location.
+
+# rm /etc/hosts.equiv
+
+
+
+$ rm ~/.rhosts","C-46048r1_chk","The existence of the file ""/etc/hosts.equiv"" or a file named "".rhosts"" inside a user home directory indicates the presence of an Rsh trust relationship.
+If these files exist, this is a finding.","",""
+"V-38652","medium","Remote file systems must be mounted with the nodev option.","Legitimate device files should only exist in the /dev directory. NFS mounts should not present device files to users.","None","SV-50453r2_rule","F-43601r1_fix","Add the ""nodev"" option to the fourth column of ""/etc/fstab"" for the line which controls mounting of any NFS mounts.","C-46212r2_chk","To verify the ""nodev"" option is configured for all NFS mounts, run the following command:
+
+$ mount | grep ""nfs ""
+
+All NFS mounts should show the ""nodev"" setting in parentheses, along with other mount options.
+If the setting does not show, this is a finding.","",""
+"V-38654","medium","Remote file systems must be mounted with the nosuid option.","NFS mounts should not present suid binaries to users. Only vendor-supplied suid executables should be installed to their default location on the local filesystem.","None","SV-50455r2_rule","F-43603r1_fix","Add the ""nosuid"" option to the fourth column of ""/etc/fstab"" for the line which controls mounting of any NFS mounts.","C-46214r3_chk","To verify the ""nosuid"" option is configured for all NFS mounts, run the following command:
+
+$ mount | grep nfs
+
+All NFS mounts should show the ""nosuid"" setting in parentheses, along with other mount options.
+If the setting does not show, this is a finding.","",""
+"V-57569","medium","The noexec option must be added to the /tmp partition.","Allowing users to execute binaries from world-writable directories such as ""/tmp"" should never be necessary in normal operation and can expose the system to potential compromise.","None","SV-71919r1_rule","F-62639r1_fix","The ""noexec"" mount option can be used to prevent binaries from being executed out of ""/tmp"". Add the ""noexec"" option to the fourth column of ""/etc/fstab"" for the line which controls mounting of ""/tmp"".","C-58279r1_chk","To verify that binaries cannot be directly executed from the /tmp directory, run the following command:
+
+$ grep '\s/tmp' /etc/fstab
+
+The resulting output will show whether the /tmp partition has the ""noexec"" flag set. If the /tmp partition does not have the noexec flag set, this is a finding.","",""
+"V-38619","medium","There must be no .netrc files on the system.","Unencrypted passwords for remote FTP servers may be stored in "".netrc"" files. DoD policy requires passwords be encrypted in storage and not used in access scripts.","None","SV-50420r2_rule","F-43569r2_fix","The "".netrc"" files contain logon information used to auto-logon into FTP servers and reside in the user's home directory. These files may contain unencrypted passwords to remote FTP servers making them susceptible to access by unauthorized users and should not be used. Any "".netrc"" files should be removed.","C-46179r3_chk","To check the system for the existence of any "".netrc"" files, run the following command:
+
+$ sudo find /root /home -xdev -name .netrc
+
+If any .netrc files exist, this is a finding.","",""
+"V-38643","medium","There must be no world-writable files on the system.","Data in world-writable files can be modified by any user on the system. In almost all circumstances, files can be configured using a combination of user and group permissions to support whatever legitimate access is needed without the risk caused by world-writable files.","None","SV-50444r3_rule","F-43591r1_fix","It is generally a good idea to remove global (other) write access to a file when it is discovered. However, check with documentation for specific applications before making changes. Also, monitor for recurring world-writable files, as these may be symptoms of a misconfigured application or user account.","C-46202r3_chk","To find world-writable files, run the following command for each local partition [PART], excluding special filesystems such as /selinux, /proc, or /sys:
+
+# find [PART] -xdev -type f -perm -002
+
+If there is output, this is a finding.","??",""
+"V-38655","low","The noexec option must be added to removable media partitions.","Allowing users to execute binaries from removable media such as USB keys exposes the system to potential compromise.","None","SV-50456r1_rule","F-43605r1_fix","The ""noexec"" mount option prevents the direct execution of binaries on the mounted filesystem. Users should not be allowed to execute binaries that exist on partitions mounted from removable media (such as a USB key). The ""noexec"" option prevents code from being executed directly from the media itself, and may therefore provide a line of defense against certain types of worms or malicious code. Add the ""noexec"" option to the fourth column of ""/etc/fstab"" for the line which controls mounting of any removable media partitions.","C-46216r1_chk","To verify that binaries cannot be directly executed from removable media, run the following command:
+
+# grep noexec /etc/fstab
+
+The output should show ""noexec"" in use.
+If it does not, this is a finding.","",""
+"V-38681","low","All GIDs referenced in /etc/passwd must be defined in /etc/group","Inconsistency in GIDs between /etc/passwd and /etc/group could lead to a user having unintended rights.","None","SV-50482r2_rule","F-43630r1_fix","Add a group to the system for each GID referenced without a corresponding group.","C-46243r2_chk","To ensure all GIDs referenced in /etc/passwd are defined in /etc/group, run the following command:
+
+# pwck -r | grep 'no group'
+
+There should be no output.
+If there is output, this is a finding.","??",""
+"Public Directories","","","","","","","","","","",""
+"V-38697","low","The sticky bit must be set on all public directories.","Failing to set the sticky bit on public directories allows unauthorized users to delete files in the directory structure.
+
+The only authorized public directories are those temporary directories supplied with the system, or those designed to be temporary file repositories. The setting is normally reserved for directories used by the system, and by users for temporary file storage - such as /tmp - and for directories requiring global read/write access.","None","SV-50498r2_rule","F-43646r1_fix","When the so-called 'sticky bit' is set on a directory, only the owner of a given file may remove that file from the directory. Without the sticky bit, any user with write access to a directory may remove any file in the directory. Setting the sticky bit prevents users from removing each other's files. In cases where there is no reason for a directory to be world-writable, a better solution is to remove that permission rather than to set the sticky bit. However, if a directory is used by a particular application, consult that application's documentation instead of blindly changing modes.
+To set the sticky bit on a world-writable directory [DIR], run the following command:
+
+# chmod +t [DIR]","C-46259r4_chk","To find world-writable directories that lack the sticky bit, run the following command for each local partition [PART]:
+
+# find [PART] -xdev -type d -perm -002 \! -perm -1000
+
+
+If any world-writable directories are missing the sticky bit, this is a finding.","",""
+"V-38699","low","All public directories must be owned by a system account.","Allowing a user account to own a world-writable directory is undesirable because it allows the owner of that directory to remove or replace any files that may be placed in the directory by other users.","None","SV-50500r2_rule","F-43648r1_fix","All directories in local partitions which are world-writable should be owned by root or another system account. If any world-writable directories are not owned by a system account, this should be investigated. Following this, the files should be deleted or assigned to an appropriate group.","C-46260r3_chk","The following command will discover and print world-writable directories that are not owned by a system account, given the assumption that only system accounts have a uid lower than 500. Run it once for each local partition [PART]:
+
+# find [PART] -xdev -type d -perm -0002 -uid +499 -print
+
+
+If there is output, this is a finding.","",""
+"Partition (aka Sep. File System): ","","","","","","","","","","",""
+"V-38455","low","The system must use a separate file system for /tmp.","The ""/tmp"" partition is used as temporary storage by many programs. Placing ""/tmp"" in its own partition enables the setting of more restrictive mount options, which can help protect programs which use it.","None","SV-50255r1_rule","F-43387r1_fix","The ""/tmp"" directory is a world-writable directory used for temporary file storage. Ensure it has its own partition or logical volume at installation time, or migrate it using LVM.","C-45997r1_chk","Run the following command to determine if ""/tmp"" is on its own partition or logical volume:
+
+$ mount | grep ""on /tmp ""
+
+If ""/tmp"" has its own partition or volume group, a line will be returned.
+If no line is returned, this is a finding.","",""
+"V-38456","low","The system must use a separate file system for /var.","Ensuring that ""/var"" is mounted on its own partition enables the setting of more restrictive mount options. This helps protect system services such as daemons or other programs which use it. It is not uncommon for the ""/var"" directory to contain world-writable directories, installed by other software packages.","None","SV-50256r1_rule","F-43401r2_fix","The ""/var"" directory is used by daemons and other system services to store frequently-changing data. Ensure that ""/var"" has its own partition or logical volume at installation time, or migrate it using LVM.","C-46011r2_chk","Run the following command to determine if ""/var"" is on its own partition or logical volume:
+
+$ mount | grep ""on /var ""
+
+If ""/var"" has its own partition or volume group, a line will be returned.
+If no line is returned, this is a finding.","",""
+"V-38463","low","The system must use a separate file system for /var/log.","Placing ""/var/log"" in its own partition enables better separation between log files and other files in ""/var/"".","None","SV-50263r1_rule","F-43408r1_fix","System logs are stored in the ""/var/log"" directory. Ensure that it has its own partition or logical volume at installation time, or migrate it using LVM.","C-46018r1_chk","Run the following command to determine if ""/var/log"" is on its own partition or logical volume:
+
+$ mount | grep ""on /var/log ""
+
+If ""/var/log"" has its own partition or volume group, a line will be returned.
+If no line is returned, this is a finding.","",""
+"V-38467","low","The system must use a separate file system for the system audit data path.","Placing ""/var/log/audit"" in its own partition enables better separation between audit files and other files, and helps ensure that auditing cannot be halted due to the partition running out of space.","None","SV-50267r1_rule","F-43412r1_fix","Audit logs are stored in the ""/var/log/audit"" directory. Ensure that it has its own partition or logical volume at installation time, or migrate it later using LVM. Make absolutely certain that it is large enough to store all audit logs that will be created by the auditing daemon.","C-46022r1_chk","Run the following command to determine if ""/var/log/audit"" is on its own partition or logical volume:
+
+$ mount | grep ""on /var/log/audit ""
+
+If ""/var/log/audit"" has its own partition or volume group, a line will be returned.
+If no line is returned, this is a finding.","/var/log/audit",""
+"V-38473","low","The system must use a separate file system for user home directories.","Ensuring that ""/home"" is mounted on its own partition enables the setting of more restrictive mount options, and also helps ensure that users cannot trivially fill partitions used for log or audit data storage.","None","SV-50273r1_rule","F-43418r1_fix","If user home directories will be stored locally, create a separate partition for ""/home"" at installation time (or migrate it later using LVM). If ""/home"" will be mounted from another system such as an NFS server, then creating a separate partition is not necessary at installation time, and the mountpoint can instead be configured later.","C-46028r1_chk","Run the following command to determine if ""/home"" is on its own partition or logical volume:
+
+$ mount | grep ""on /home ""
+
+If ""/home"" has its own partition or volume group, a line will be returned.
+If no line is returned, this is a finding.","",""
+"System Package Management Tool:","","","","","","","","","","",""
+"V-38483","medium","The system package management tool must cryptographically verify the authenticity of system software packages during installation.","Ensuring the validity of packages' cryptographic signatures prior to installation ensures the provenance of the software and protects against malicious tampering.","None","SV-50283r1_rule","F-43429r1_fix","The ""gpgcheck"" option should be used to ensure checking of an RPM package's signature always occurs prior to its installation. To configure yum to check package signatures before installing them, ensure the following line appears in ""/etc/yum.conf"" in the ""[main]"" section:
+
+gpgcheck=1","C-46039r1_chk","To determine whether ""yum"" is configured to use ""gpgcheck"", inspect ""/etc/yum.conf"" and ensure the following appears in the ""[main]"" section:
+
+gpgcheck=1
+
+A value of ""1"" indicates that ""gpgcheck"" is enabled. Absence of a ""gpgcheck"" line or a setting of ""0"" indicates that it is disabled.
+If GPG checking is not enabled, this is a finding.
+
+If the ""yum"" system package management tool is not used to update the system, verify with the SA that installed packages are cryptographically signed.","authenticity",""
+"V-38487","low","The system package management tool must cryptographically verify the authenticity of all software packages during installation.","Ensuring all packages' cryptographic signatures are valid prior to installation ensures the provenance of the software and protects against malicious tampering.","None","SV-50288r1_rule","F-43433r1_fix","To ensure signature checking is not disabled for any repos, remove any lines from files in ""/etc/yum.repos.d"" of the form:
+
+gpgcheck=0","C-46043r1_chk","To determine whether ""yum"" has been configured to disable ""gpgcheck"" for any repos, inspect all files in ""/etc/yum.repos.d"" and ensure the following does not appear in any sections:
+
+gpgcheck=0
+
+A value of ""0"" indicates that ""gpgcheck"" has been disabled for that repo.
+If GPG checking is disabled, this is a finding.
+
+If the ""yum"" system package management tool is not used to update the system, verify with the SA that installed packages are cryptographically signed.","",""
+"V-38637+A216","medium","The system package management tool must verify contents of all files associated with the audit package.","The hash on important files like audit system executables should match the information given by the RPM database. Audit executables  with erroneous hashes could be a sign of nefarious activity on the system.","None","SV-50438r2_rule","F-43586r1_fix","The RPM package management system can check the hashes of audit system package files. Run the following command to list which audit files on the system have hashes that differ from what is expected by the RPM database:
+
+# rpm -V audit | grep '^..5'
+
+A ""c"" in the second column indicates that a file is a configuration file, which may appropriately be expected to change. If the file that has changed was not expected to then refresh from distribution media or online repositories.
+
+rpm -Uvh [affected_package]
+
+OR
+
+yum reinstall [affected_package]","C-46196r3_chk","The following command will list which audit files on the system have file hashes different from what is expected by the RPM database.
+
+# rpm -V audit | awk '$1 ~ /..5/ && $2 != ""c""'
+
+
+If there is output, this is a finding.","audit",""
+"V-38663","medium","The system package management tool must verify permissions on all files and directories associated with the audit package.","Permissions on audit binaries and configuration files that are too generous could allow an unauthorized user to gain privileges that they should not have. The permissions set by the vendor should be maintained. Any deviations from this baseline should be investigated.","None","SV-50464r1_rule","F-43612r1_fix","The RPM package management system can restore file access permissions of the audit package files and directories. The following command will update audit files with permissions different from what is expected by the RPM database:
+
+# rpm --setperms audit","C-46223r1_chk","The following command will list which audit files on the system have permissions different from what is expected by the RPM database:
+
+# rpm -V audit | grep '^.M'
+
+If there is any output, for each file or directory found, compare the RPM-expected permissions with the permissions on the file or directory:
+
+# rpm -q --queryformat ""[%{FILENAMES} %{FILEMODES:perms}\n]"" audit | grep  [filename]
+# ls -lL [filename]
+
+If the existing permissions are more permissive than those expected by RPM, this is a finding.","",""
+"V-38664","medium","The system package management tool must verify ownership on all files and directories associated with the audit package.","Ownership of audit binaries and configuration files that is incorrect could allow an unauthorized user to gain privileges that they should not have. The ownership set by the vendor should be maintained. Any deviations from this baseline should be investigated.","None","SV-50465r1_rule","F-43613r1_fix","The RPM package management system can restore file ownership of the audit package files and directories. The following command will update audit files with ownership different from what is expected by the RPM database:
+
+# rpm --setugids audit","C-46224r1_chk","The following command will list which audit files on the system have ownership different from what is expected by the RPM database:
+
+# rpm -V audit | grep '^.....U'
+
+
+If there is output, this is a finding.","",""
+"V-38665","medium","The system package management tool must verify group-ownership on all files and directories associated with the audit package.","Group-ownership of audit binaries and configuration files that is incorrect could allow an unauthorized user to gain privileges that they should not have. The group-ownership set by the vendor should be maintained. Any deviations from this baseline should be investigated.","None","SV-50466r1_rule","F-43614r1_fix","The RPM package management system can restore file group-ownership of the audit package files and directories. The following command will update audit files with group-ownership different from what is expected by the RPM database:
+
+# rpm --setugids audit","C-46225r1_chk","The following command will list which audit files on the system have group-ownership different from what is expected by the RPM database:
+
+# rpm -V audit | grep '^......G'
+
+
+If there is output, this is a finding.","",""
+"V-38447","low","The system package management tool must verify contents of all files associated with packages.","The hash on important files like system executables should match the information given by the RPM database. Executables with erroneous hashes could be a sign of nefarious activity on the system.","None","SV-50247r2_rule","F-43392r1_fix","The RPM package management system can check the hashes of installed software packages, including many that are important to system security. Run the following command to list which files on the system have hashes that differ from what is expected by the RPM database:
+
+# rpm -Va | grep '^..5'
+
+A ""c"" in the second column indicates that a file is a configuration file, which may appropriately be expected to change. If the file that has changed was not expected to then refresh from distribution media or online repositories.
+
+rpm -Uvh [affected_package]
+
+OR
+
+yum reinstall [affected_package]","C-46002r3_chk","The following command will list which files on the system have file hashes different from what is expected by the RPM database.
+
+# rpm -Va | awk '$1 ~ /..5/ && $2 != ""c""'
+
+
+If there is output, this is a finding.","packages",""
+"V-38452","low","The system package management tool must verify permissions on all files and directories associated with packages.","Permissions on system binaries and configuration files that are too generous could allow an unauthorized user to gain privileges that they should not have. The permissions set by the vendor should be maintained. Any deviations from this baseline should be investigated.","None","SV-50252r1_rule","F-43398r1_fix","The RPM package management system can restore file access permissions of package files and directories. The following command will update permissions on files and directories with permissions different from what is expected by the RPM database:
+
+# rpm --setperms [package]","C-46008r1_chk","The following command will list which files and directories on the system have permissions different from what is expected by the RPM database:
+
+# rpm -Va  | grep '^.M'
+
+If there is any output, for each file or directory found, find the associated RPM package and compare the RPM-expected permissions with the actual permissions on the file or directory:
+
+# rpm -qf [file or directory name]
+# rpm -q --queryformat ""[%{FILENAMES} %{FILEMODES:perms}\n]"" [package] | grep  [filename]
+# ls -lL [filename]
+
+If the existing permissions are more permissive than those expected by RPM, this is a finding.","",""
+"V-38453","low","The system package management tool must verify group-ownership on all files and directories associated with packages.","Group-ownership of system binaries and configuration files that is incorrect could allow an unauthorized user to gain privileges that they should not have. The group-ownership set by the vendor should be maintained. Any deviations from this baseline should be investigated.","None","SV-50253r1_rule","F-43399r1_fix","The RPM package management system can restore group-ownership of the package files and directories. The following command will update files and directories with group-ownership different from what is expected by the RPM database:
+
+# rpm -qf [file or directory name]
+# rpm --setugids [package]","C-46009r1_chk","The following command will list which files on the system have group-ownership different from what is expected by the RPM database:
+
+# rpm -Va | grep '^......G'
+
+
+If there is output, this is a finding.","",""
+"V-38454","low","The system package management tool must verify ownership on all files and directories associated with packages.","Ownership of system binaries and configuration files that is incorrect could allow an unauthorized user to gain privileges that they should not have. The ownership set by the vendor should be maintained. Any deviations from this baseline should be investigated.","None","SV-50254r1_rule","F-43400r1_fix","The RPM package management system can restore ownership of package files and directories. The following command will update files and directories with ownership different from what is expected by the RPM database:
+
+# rpm -qf [file or directory name]
+# rpm --setugids [package]","C-46010r1_chk","The following command will list which files on the system have ownership different from what is expected by the RPM database:
+
+# rpm -Va | grep '^.....U'
+
+
+If there is output, this is a finding.","",""

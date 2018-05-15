@@ -1,0 +1,85 @@
+/* old css */
+
+
+
+/*.table thead tr th{
+
+    cursor: pointer;
+
+  background-image: url('../../images/up-down_new.png');
+
+  background-repeat: no-repeat;
+
+  background-position:99%;
+
+  cursor:pointer;
+
+  text-align:left;min-width: 75px;
+
+
+
+}
+
+
+
+.table thead tr th.headerSortUp {
+
+  background-image: url('../../images/up_new1.png');
+
+  background-color:#8dbdd8;
+
+  background-repeat: no-repeat;
+
+  cursor:pointer;
+}
+.table thead tr th.headerSortDown {
+
+  background-image: url('../../images/down_new1.png');
+
+  background-color:#8dbdd8;
+
+  background-repeat: no-repeat;
+
+  cursor:pointer;
+}
+
+*/
+.table thead tr th{
+
+    cursor: pointer;
+
+  background-image: url('../../images/sort_both.png');
+
+  background-repeat: no-repeat;
+
+  background-position:99%;
+
+  cursor:pointer;
+
+  text-align:left;min-width: 75px; padding-left: 5px;
+}
+.table thead tr th.headerSortUp {
+
+  background-image: url('../../images/sort_asc.png');
+
+  background-color:#8dbdd8;
+
+  background-repeat: no-repeat;
+
+  cursor:pointer;
+}
+.table thead tr th.headerSortDown {
+
+  background-image: url('../../images/sort_desc.png');
+
+  background-color:#8dbdd8;
+
+  background-repeat: no-repeat;
+
+  cursor:pointer;
+
+
+
+}
+
+

@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>Raxak Protect Login</title>
+
+  <!-- Bootstrap Core CSS -->
+  <link href="bs/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Custom CSS -->
+  <link href="bs/css/modern-business.css" rel="stylesheet">
+
+  <!-- Custom Fonts -->
+  <link href="bs/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--<mark>[if lt IE 9]</mark>
+>
+<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+<!<mark>[endif]</mark>
+-->
+</head>
+<body>
+<div id="amazon-root"></div>
+<script type="text/javascript">
+
+  window.onAmazonLoginReady = function() {
+    amazon.Login.setClientId('amzn1.application-oa2-client.6f555779154d4493b8185aa87a3b75bf');
+  };
+  (function(d) {
+    var a = d.createElement('script'); a.type = 'text/javascript';
+    a.async = true; a.id = 'amazon-login-sdk';
+    a.src = 'https://api-cdn.amazon.com/sdk/login1.js';
+    d.getElementById('amazon-root').appendChild(a);
+  })(document);
+
+</script>
+
+<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+<div class="container">
+  <!-- Brand and toggle get grouped for better mobile display -->
+  <div class="navbar-header">
+    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+      <span class="sr-only">Toggle navigation</span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </button>
+    <a class="navbar-brand" href="#">Login</a>
+
+  </div>
+  <!-- Collect the nav links, forms, and other content for toggling -->
+  <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+    <ul class="nav navbar-nav navbar-right">
+      <li>
+        <a href="http://www.cloudraxak.com">Cloud Raxak</a>
+      </li>
+      <li>
+        <a href="http://www.cloudraxak.com/contact-us">Contact Us</a>
+      </li>
+      <li>
+        <a href="http://www.cloudraxak.com/product">Products</a>
+      </li>
+
+    </ul>
+  </div>
+  <!-- /.navbar-collapse -->
+</div>
+<!-- /.container -->
+</nav>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <center>
+        <div class="page-header">
+          <h3>Please login to Raxak Protect</h3>
+        </div>
+
+        <img src="crlogo-white.png">
+        <br>
+        <br>
+
+        <p>
+          <a href="http://www.cloudraxak.net/raxakapi/v1/googlelogin">
+            <input name="GoogleLogin"  type="image" src="googlebutton.png" width="156" height="32"></a>
+        </p>
+        <p>
+        <a href="#" id="LoginWithAmazon">
+          <img border="0" alt="Login with Amazon"
+    src="https://images-na.ssl-images-amazon.com/images/G/01/lwa/btnLWA_gold_156x32.png"
+    width="156" height="32" />
+        </a>
+      </p>
+        <script type="text/javascript">
+
+        document.getElementById('LoginWithAmazon').onclick = function() {
+          amazon.Login.logout();    // first log out in case a previous user is still logged in--this behavior mirrors google login
+          options = { scope : 'profile' };
+          amazon.Login.authorize(options, 'https://www.cloudraxak.net/raxakapi/v1/amazonlogin');
+          return false;
+        };
+      </script>
+      <p>
+      <br>
+        <a href="instructions.html">
+          <img border="0" height="32" alt="Help" src="help.png"><br>Instructions</a> 
+        </p>
+      </center>
+    </div>
+  </div>
+  <footer>
+    <div class="row">
+      <div class="col-md-6">
+        <p>Copyright &copy; Cloud Raxak, Inc. 2014-2015.</p>
+      </div>
+      <div class="col-md-3">
+        <a href="terms-of-use.html">Terms of Use</a>
+      </div>
+      <div class="col-md-3">
+        <a href="http://www.cloudraxak.com/privacy-statement/">Privacy Statement</a>
+      </div>
+    </div>
+  </footer>
+
+</div>
+<!-- /.container -->
+
+<!-- jQuery -->
+<script src="bs/js/jquery.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="bs/js/bootstrap.min.js"></script>
+
+</body>
+</html>

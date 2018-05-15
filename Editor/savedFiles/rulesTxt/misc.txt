@@ -1,0 +1,23 @@
+Miscellaneous, All Security Rules
+Graphical Desktop Environment, Miscellaneous
+V-38688 A login banner must be displayed immediately prior to, or as part of, graphical desktop environment login prompts.
+V-38689 The Department of Defense (DoD) login banner must be displayed immediately prior to, or as part of, graphical desktop environment login prompts.
+V-38638 The graphical desktop environment must have automatic lock enabled.
+V-38630 The graphical desktop environment must automatically lock after 15 minutes of inactivity and the system must require user reauthentication to unlock the environment.
+V-38629 The graphical desktop environment must set the idle timeout to no more than 15 minutes.
+V-38639 The system must display a publicly-viewable pattern during a graphical desktop environment session lock.
+V-38474 The system must allow locking of graphical desktop sessions.
+Clock, Miscellaneous
+V-38620 The system clock must be synchronized continuously, or at least daily.
+V-38621 The system clock must be synchronized to an authoritative DoD time source.
+V-38624 System logs must be rotated daily.
+System Requirements, Miscellaneous
+V-38588 The system must not permit interactive boot.
+V-38596 The system must implement virtual address space randomization.
+V-38597 The system must limit the ability of processes to have simultaneous write and execute access to memory.
+V-38590 The system must allow locking of the console screen in text mode.
+V-38437 Automated file system mounting tools must not be enabled unless needed.
+V-38438 Auditing must be enabled at boot by setting a kernel parameter.
+Mail, Miscellaneous
+V-38622 Mail relaying must be restricted.
+V-38446 The mail system must forward all mail for root to one or more system administrators.

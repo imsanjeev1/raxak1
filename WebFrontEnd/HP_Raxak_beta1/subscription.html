@@ -1,0 +1,79 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Cloud Service</title>
+        <link href="css/style.css" rel="stylesheet" type="text/css">
+        <link href="css/font-awesome.css" rel="stylesheet" type="text/css">
+        <link href="css/font-awesome.min.css" rel="stylesheet" type="text/css">
+        <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic' rel='stylesheet' type='text/css'>
+        <script src="js/jquery.js"></script> 
+        <script src="js/jquery.cookie.js"></script>
+        <script src="js/applogin.js"></script>
+        <script src="js/apphp.js"></script>
+    </head>
+
+    <body onload="subscriptionPage();">
+        <div class="header">
+            <div class="h_first_row">
+                <div class="logo">
+                    <a href="#">
+                        <h1><img src="images/logo.png" alt="" />logo text</h1>
+                    </a></div>
+                <div class="top_right">
+                    <div class="cart_box"><a href="#"><span class="ico_bg"><img src="images/cart_ico.png" alt=""></span>0 Items</a></div>
+                    <div class="consumer_box"><a href="#"><span class="consumer_ico_bg"><img src="images/consumer_ico.png" alt=""></span>Consumer</a>
+                    <span id="logout" onclick="logout()">logout</span></div>
+                </div>
+            </div>
+            <div class="menu">Menu</div>
+        </div>
+        <div class="cl"></div>
+        <div class="middle_section">
+            <div class="sr_row">
+                <div class="sr_box">
+                    <input id="search_input" type="text" onfocus="if (this.value == 'Search') {
+            this.value = '';
+        }" onblur="if (this.value == 'Search') {
+                    this.value = 'Search';
+                }" value="Search " name="Search">
+                    <input id="search_submit" type="submit" value="" name="Submit">
+                </div>
+                <div class="select_box">
+                    <select>
+                        <option>All Categories</option>
+                        <option>Application Servers</option>
+                        <option>Application Services</option>
+                        <option>Platform Services</option>
+                    </select>
+                </div>
+                <div class="select_box">
+                    <select>
+                        <option>All Subscription Statuses</option>
+                        <option>Active</option>
+                        <option>Pending</option>
+                        <option>Expired</option>
+                        <option>Canceled</option>
+                        <option>Terminated</option>
+                        <option>Paused</option>
+                    </select>
+                </div>
+                <div class="select_box">
+                    <select>
+                        <option>Newest First</option>
+                        <option>Oldest First</option>
+                        <option>Most Expensive</option>
+                        <option>Least Expensive</option>
+                        <option>Alphabetical</option>
+                        <option>Reverse Alphabetical</option>
+
+                    </select>
+                </div>
+                <div class="list_action"><a href="#">List Actions</a></div>
+                <div class="cl"></div>
+            </div>
+            <div class="list_all_subscription"></div>
+            
+        </div>
+    </body>
+</html>

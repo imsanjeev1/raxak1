@@ -1,0 +1,32 @@
+/* Raxak App Custom css */
+
+.dropdown-menu #authenticator > img{
+    height: 20px;
+}
+
+/* Start: Dashboard page */
+.image-holder-page {
+  background: #fff url("../images/loader4.gif") no-repeat scroll center center;
+  height: 100%;
+  left: 0;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 9999;
+}
+/* End: Dashboard page */
+
+/* Start: Enrolled Machine page */
+.private_ip_fields, #addtmip_csv{
+    display: none;
+}
+/* End: Enrolled Machine page */
+
+/*.head i.fa-info-circle
+{
+	float: right;
+}*/
+.head i.fa-question-circle
+{
+	float: right;
+}

@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <!-- Meta -->
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>Raxak Protect</title>
+        <!-- css -->
+        <link href="css/bootstrap.min.css" rel="stylesheet">
+        <link href="css/sb-admin.css" rel="stylesheet">
+        <link href="css/plugins/morris.css" rel="stylesheet">
+        <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+        <link href="css/rxk_app.css" rel="stylesheet" type="text/css"/>
+        <!-- js -->
+        <script type="text/javascript" src="js/jquery-1.10.2.js"></script>
+        <script type="text/javascript" src="js/jquery-ui-1.9.2.custom.min.js"></script>
+        <script type="text/javascript">
+            $(function () {
+                $("#left_nav").load("left_nav.html");
+                $("#footer_content").load("footer.html");
+            });
+        </script>
+        <script type="text/javascript" src="js/jquery-migrate-1.2.1.min.js"></script>
+        <script type="text/javascript" src="js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="js/rxk_report1.js"></script>
+    </head>
+    <body>
+        <div class="image-holder-page" id="image-holder-page"></div>
+        <div id="wrapper">
+            <div id="left_nav"></div>
+            <div id="page-wrapper">
+                <div class="container-fluid"> 
+                    <!-- Page Heading -->
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <h1 class="page-header">Reports</h1>
+                            <ol class="breadcrumb">
+                            <li>
+                                <i class="fa fa-dashboard"></i>  <a href="index.html">Dashboard</a>
+                            </li>
+                            <li class="active">
+                            <a href="listing.html">
+                                <i class="fa fa-align-justify"></i> Listing
+                                </a>
+                            </li>
+                            <li class="active">
+                            <a href="details.html">
+                                <i class="fa fa-list"></i> CR-56a21a5f
+                                </a>
+                            </li>
+                             <li class="active"> <i class="fa fa-file"></i> Reports</li>
+                        </ol>
+                           
+                        </div>
+                    </div>
+                    <!-- /.row -->
+                   <!-- <div class="row">
+                        <div class="col-md-12">
+                            <div class="panel panel-success" id="reportlogcontents">
+                                <div class="panel-body text-left">
+                                    <div class="clear"></div>
+                                    <div class="col-md-12">
+                                        <div class="panel panel-default" id = "report_log_id">
+                                            <div class="panel-body">
+                                                <div class="col-lg-5 text-left">
+                                                    <h4>Report</h4>
+                                                </div>
+                                                                                            </div>
+                                        </div>
+                                    </div>-->
+				<div class="modal fade in" id="ajaxloader"><img src="images/loader4.gif"></div>	
+                                    <div class="row">
+                                        <div class="col-md-12	">
+                                            <div class="panel panel-default">
+                                                <div class="panel-body" id = "select_prof_id" style="padding-top:17px; margin-bottom:-3px;">
+                                                    <div class="col-md-3">
+                                                        <div class="styled-select">
+                                                            <select style="display: flex;" id="myselect5"  class="form-control">
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <div  class="styled-select">
+                                                            <select style="max-width: 100%;display:flex; " class="form-control" id="myselect5varlog" onchange="setComaprisionDiffernceReportUrl();">
+                                                            </select>
+                                                        </div>
+		
+														
+                                                        <!--<button type="submit" id="report_detailed_log" untermediateChanges="false" label="Detailed report" class="btn btn-default" onClick="openComaprisionDiffernceReportPage();" title="Detailed report" />test</button>-->
+                                                    </div>
+														<div  class="col-lg-2  text-right">
+									<div style="" class="styled-select">
+                                    <select style="display: flex;" id="pass_opt_value" class="form-control" onChange="setDetailedReport();">
+											   <option value="">Please select</option>
+											   <option value="summary">Summary</option>
+											   <option value="executive_summary">Executive summary</option>
+											   <option value="full_report">Detailed report</option>
+                                                            </select>
+                                                    </div>
+											</div>
+
+														<div class="col-lg-4  text-left" style="padding-right: 0px ! important;">
+                                                    <button type="submit" class="btn btn-default" id="diff_id" untermediateChanges="false" label="Difference" onClick="openComaprisionDiffernceReportPage();" title="Difference report" disabled="true">Difference</button>
+                                                    <button type="submit" class="btn btn-default" id="report_detailed_log" intermediateChanges="false" label="Detailed report" onClick="openDetailedReportPage();" alt="Detailed report" title="Generate report">Generate Report</button>
+							
+															<span style="cursor:pointer;float: right;margin-right: 14px !important;"><img src="images/Refresh.svg" onclick="call_showrun('', '', '','refresh');"> </span>	
+                                                </div>
+		
+
+															
+                                                        <table cellspacing="0" id="profile_success" class="profile_tabel" border="0" width="100%" cellpadding="8" style="line-height:32px;">
+                                                            <tbody>
+                                                                <tr style="display:none;">
+                                                                    <td width="60">Profile:</td>
+                                                                    <td style="font-weight:bold; text-align:left" class="sel_prof_name" id="profileId"></td>
+                                                                </tr>
+                                                                    <!--<td><span onclick="updateReportPans();" title="Refresh this page" style=" text-align:right; display: block;cursor:pointer;" id="refresh_success_page"><i class="fa fa-fw fa-refresh"></i></span></td>-->
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                           
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12" style="margin-bottom:25px;">
+                                        <div class="table-responsive">
+                                            <table class="table table-bordered" width="100%" cellpadding="0" cellspacing="0" id="report_table">
+                                                <table class="table table-bordered" width="100%" cellpadding="0" cellspacing="0" id="report_table1">
+                                                    <thead>
+                                                        <tr>
+                                                            <td width="24%" id="td1"><b>Summary</b></td>
+                                                            <th width="76%" id="th1" ></th>
+                                                            <th width="76%" id="th2" ></th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+													<tr>
+                                                            <td id="td1"><b>Hostname</b></td>
+                                                            <td id="hostId"></td>
+                                                        </tr>
+														<tr>
+                                                            <td id="td1"><b>Ip Address</b></td>
+                                                            <td id="ipId"></td>
+                                                        </tr>
+                                                       <tr>
+                                                            <td id="td2"><b>Operating System</b></td>
+                                                            <td  id="osId"></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td ><b>Profile</b></td>
+                                                            <td id="profileId1"></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td><b>Executed on</b></td>
+                                                            <td id = "last_exec"></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td id="td4"><b>Execution Mode</b></td>
+                                                            <td id="executionId"></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td><b>Code Version</b></td>
+                                                            <td id ="version_id"></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td><b>Execution Results</b></td>
+                                                            <td style="padding:0px !important; margin:0px !important"><table width="100%" cellspacing="0" cellpadding="0"   class="table table-bordered " >
+                                                                    <tbody>
+                                                                    <table class="table table-bordered" width="100%" cellpadding="0" cellspacing="0"  id="resultTable">
+                                                                        <tr >
+                                                                            <th width="25%" style="text-align: center">Severity</th>
+                                                                            <th width="17%" style="text-align: center">Passed</th>
+                                                                            <th width="16%" style="text-align: center">Failed</th>
+                                                                            <th width="28%" style="text-align: center">Manual Intervention</th>
+                                                                            <th width="14%" style="text-align: center">Total</th>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td class="danger" style="text-align: center">High</td> <td id="hssc" style="text-align: center">0</td><td id="hfsc" style="text-align: center">0</td><td id="hmsc" style="text-align: center">0</td>  <td id="htsc" style="text-align: center">0</td>
+                                                                        </tr>	
+                                                                        <tr>
+                                                                            <td class=" bg-warning" style="text-align: center">Medium</td> <td id="mssc" style="text-align: center">0</td> <td id="mfsc" style="text-align: center">0</td>  <td id="mmsc" style="text-align: center">0</td>  <td id="mtsc" style="text-align: center">0</td>  
+                                                                        </tr>	
+                                                                        <tr>
+                                                                            <td class="success" style="text-align: center">Low</td><td id="lssc" style="text-align: center">0</td>  <td id="lfsc" style="text-align: center">0</td>  <td id="lmsc" style="text-align: center">0</td>  <td  id="ltsc" style="text-align: center">0</td>
+                                                                        </tr>	
+                                                                        <tr>
+                                                                            <td style="text-align: center">Total</td><td id="passedId" style="text-align: center">0</td>  <td id="failedId" style="text-align: center">0</td>  <td id="manualId" style="text-align: center">0</td>  <td id="totalId" style="text-align: center">0</td>
+                                                                        </tr>	
+                                                                    </table> </tbody></table></td>
+                                                </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+<div class="col-md-12" style="height:70px !important;">&nbsp;</div>
+                <!-- /.container-fluid --> 
+            </div>
+            <!-- /#page-wrapper --> 
+        </div>
+		<div id="footer_content" class="navbar navbar-inverse navbar-fixed-bottom"></div>
+        <!-- /#wrapper -->
+    </body>
+</html>

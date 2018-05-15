@@ -1,0 +1,208 @@
+@charset "utf-8";
+/* CSS Document */
+
+/*
+	File Overview:	Flexi-background styles.
+	Author:			Michael Bester <http://kimili.com>
+	Description:	Sets up styling for full-screen flexible backgrounds.
+					See <http://kimili.com/journal/flexible-scalable-background-image> for more info.
+	
+	Licence:		Copyright 2010, Michael Bester.
+					Released under the MIT license <http://opensource.org/licenses/mit-license.php>
+	
+*/
+
+body { 
+	background-attachment:		fixed; 
+	background-position:		top center; 
+	background-repeat:			no-repeat; 
+	
+	margin:						0;
+	padding:					0;
+
+	background-size:			cover;
+	-moz-background-size:		cover;
+	-webkit-background-size:	cover;
+}
+
+/*
+	This next definition doesn't allow the background to get any smaller
+	than a predefined size (640x426px in this case). Change the values
+	here to match your background image size. The configuration in the
+	flexi-background javascript file should also match these values.
+*/
+
+@media only all and (max-width: 640px) and (max-height: 426px) {
+	body {		
+		background-size:			640px 426px;
+		-moz-background-size:		640px 426px;
+		-webkit-background-size:	640px 426px;
+	}
+}
+
+/*
+	The next 2 definitions are for support in iOS devices.
+ 	Since they don't recoginze the 'cover' keyword for background-size
+ 	we need to simulate it with percentages and orientation
+*/
+
+@media only screen and (orientation: portrait) and (device-width: 320px), (device-width: 768px) {
+	body {
+		-webkit-background-size: auto 100%;
+	}
+}
+
+@media only screen and (orientation: landscape) and (device-width: 320px), (device-width: 768px) {
+	body {
+		-webkit-background-size: 100% auto;
+	}
+}
+/* All of the following styles only get used when background-size isn't supported */
+
+img#expando { 
+	display:	none;
+	position:	absolute; 
+	z-index:	1;
+	 
+	-ms-interpolation-mode: bicubic; 
+} 
+
+.wide img#expando, 
+.tall img#expando { 
+	display: 	block; 
+} 
+
+.wide img#expando { 
+	height: 	auto;
+	width: 		100%; 
+} 
+
+.tall img#expando { 
+	height:		100%;
+	width:		auto; 
+	
+}
+
+
+body {
+	font-family: "Open Sans",sans-serif;
+	background-image: url(../images/bg.jpg);
+	background-color: #5b6e38;
+}
+
+.logo {
+	top: -80px;
+	position: absolute;
+	left: 25%;
+}
+
+#box {
+	background: url(../images/box.png);
+	width: 504px;
+	height: 383px;
+	margin: 15% auto 0;
+	position: relative;
+}
+
+a.forgot {
+	display: block;
+	margin: 0 auto;
+	text-decoration: none;
+	width: 504px;
+	font-size:14px;
+	color: #ffffff;
+	text-align:center;
+	text-shadow:0px 1px 3px rgba(0,0,0,0.75);
+}
+
+a.forgot:hover {
+	color: rgba(255, 255, 255, .75);
+}
+
+h1 {
+	font-size: 26px;
+    font-weight: bold;
+    opacity: 0.84;
+    position: absolute;
+    text-align: center;
+    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.39);
+    top: 75px;
+    width: 504px;
+}
+
+#box form input[type=text], #box form input[type=password] {
+	position: absolute;
+	border: none;
+	background: url(../images/input.png);
+	display: block;
+	height: 54px;
+	width: 319px;
+	padding: 0 10px;
+	font-size:16px;
+	color:rgba(0,0,0,0.7);
+	text-align:left;
+	text-shadow:0px 1px 0px rgba(255,255,255,0.28);
+	}
+
+#box form input[type=text]:focus, #box form input[type=password]:focus {
+	outline: none;
+	opacity: 1;
+	background-position: 0 -54px;
+}
+
+#box form input[type=text]{
+	left: 82px;
+	top: 120px;
+}
+
+#box form input[type=password]{
+	left: 82px;
+	top: 180px;
+}
+
+#box form input[type=checkbox] {
+	position: absolute;
+	left: 300px;
+	top: 268px;
+	opacity: 0.8;
+}
+
+#box form label {
+	position: absolute;
+	left: 320px;
+	top: 269px;
+	font-size:14px;
+	color:rgba(255,255,255,0.8);
+	text-align:left;
+	text-shadow:0px 1px 0px rgba(0,0,0,0.17);
+}
+
+#box form label:hover {
+	color:rgba(255,255,255,1);
+}
+
+#box form input[type=button], #box form input[type=submit] {
+	background: url(../images/button.png) no-repeat;
+	border: none;
+	display: block;
+	position: absolute;
+	top: 255px;
+	left: 84px;
+	width: 203px;
+	height: 44px;
+	cursor: pointer;
+	font-size:16px;
+	font-weight:bold;
+	text-align:center;
+	color: #333;
+	text-shadow:0px 1px 0px rgba(255,255,255,0.35);
+}
+
+#box form input[type=button]:hover, #box form input[type=submit]:hover{
+	background-position: 0 -44px;
+}
+
+#box form input[type=button]:active, #box form input[type=submit]:active{
+	background-position: 0 -88px;
+}
+

@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Meta -->
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>Raxak-Motd</title>
+    <!-- css -->
+    <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="css/sweetalert2.css">
+    <link rel="stylesheet" href="css/DT_bootstrap.css" />
+    <link rel="stylesheet" href="css/sb-admin.css" type="text/css">
+    <link rel="stylesheet" href="css/datatables.css" type="text/css">
+    <link rel="stylesheet" href="css/rxk_app.css" type="text/css"/>
+    <link rel="stylesheet" type="text/css" href="css/datepicker.css">
+    <link rel="stylesheet" href="font-awesome/css/font-awesome.min.css" type="text/css">
+  </head>
+  <body>
+    <div class="image-holder-page" id="image-holder-page"></div>
+    <div id="wrapper">
+      <div id="admin_nav"></div>
+      <!-- Navigation -->
+      <div id="page-wrapper">
+        <div class="container-fluid"> 
+          <!-- Page Heading -->
+          <div class="row">
+            <div class="col-lg-12">
+              <h1 class="page-header">MOTD</h1>
+              <ol id="enrolled_server_breadcrumb" class="breadcrumb">
+                <li> <i class="fa fa-dashboard"></i> <a href="index.html">Dashboard</a> </li>
+                <li class="active"><i class="fa fa-fw fa-file-text"></i> Motd</li>
+                <span id="motdcount" style="font-weight:bold;padding-left:0px;" class="text-primary">(0)</span>
+              </ol>
+            </div>
+          </div>
+          <div class="row">
+            <div class="text-right" style="margin-right:10px;"> <a href="#" data-toggle="modal" data-target="#addtargetmotd">
+                <button type="submit" class="btn btn-default" title="Add motd"  >Add MOTD</button>
+              </a> </div>
+            <div class="bs-example">
+              <section class="panel">
+                <div class="panel-body">
+                  <div class="adv-table editable-table table-responsive">
+                    <table class="table table-striped table-hover table-bordered" id="editable-sample">
+                      <thead>
+                        <tr>
+                          <th width="20%">Title</th>
+                          <th width="12%">Start Date</th>
+                          <th width="12%">End Date</th>
+                          <th>Description</th>
+                          <th width="5%">Edit</th>
+                          <th width="5%">Delete</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </section>
+            </div>
+          </div>
+          <!-- /.row --> 
+          <!-- /#wrapper --> 
+        </div>
+        <!-- jQuery -->
+        <div class="modal fade" id="addtargetmotd" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="fa fa-times fa-fw"></i></button>
+                <h4 class="modal-title" id="myModalLabel">Add MOTD</h4>
+              </div>
+              <form id="motd-form" method="post" class="form-horizontal">
+                <div class="modal-body">
+                  <div>
+                    <label for="name"> Title :<span class="redText">*</span></label>
+                    <input type="text" maxlength="250" required name="e_username" id="e_username" class="form-control">
+                    <div class="row" style="padding-top:20px;">
+                      <div class="col-lg-2 text-left"  style="padding-left: 0px;"> Select Date</div>
+                      <div class="col-lg-5 text-left">
+                        <div class="input-append date" id="dp3" data-date="1-01-2016" data-date-format="dd-mm-yyyy">
+                          <input class="span2  form-control" name ="dp3id" id="dp3id" size="16" type="text" value="1-01-2016" readonly style="float: left;">
+                          <span class="add-on"><i class="fa fa-fw fa-calendar"></i></span> </div>
+                      </div>
+                      <div class="col-lg-4 text-left">
+                        <div class="input-append date" id="dp4" data-date="1-01-2016" data-date-format="dd-mm-yyyy">
+                          <input class="span2 form-control" name="dp4id" id="dp4id" size="16" type="text" value="1-01-2016" readonly style="float: left;">
+                          <span class="add-on"><i class="fa fa-fw fa-calendar"></i></span> </div>
+                      </div>
+                    </div>
+                    <label for="nickname">Description :</label>
+                    <textarea name="textfield" id="textfield"  class="form-control" cols="10" row="5" ></textarea>
+                  </div>
+                </div>
+                <div class="modal-footer">
+                  <button id="motdid" type="submit" class="btn btn-default" title="Add target">Submit</button>
+                  <button id="cancelbtn" type="button" class="btn btn-default" onClick="resetForm();" title="Cancel">Clear</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+        <div class="modal fade" id="editmotd" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="fa fa-times fa-fw"></i></button>
+                <h4 class="modal-title" id="myModalLabel">Edit MOTD</h4>
+              </div>
+              <form id="edit-motd-form" method="post" class="form-horizontal">
+                <div class="modal-body">
+                  <div>
+                    <label for="name"> Title :<span class="redText">*</span> </label>
+                    <input type="text" maxlength="250" required name="e_title" id="e_title" class="form-control">
+                    <div class="row" style="padding-top:20px;">
+                      <div class="col-lg-2 text-left"  style="padding-left: 0px;">Select Date</div>
+                      <div class="col-lg-5 text-left">
+                        <div class="input-append date" id="dp3edit" data-date="01-01-2016" data-date-format="dd-mm-yyyy">
+                          <input class="span2  form-control" id="dp3editid" size="16" type="text" value="01-01-2016" style="float: left;" >
+                          <span class="add-on"><i class="fa fa-fw fa-calendar"></i></span> </div>
+                      </div>
+                      <div class="col-lg-4 text-left">
+                        <div class="input-append date" id="dp4edit" data-date="01-01-2016" data-date-format="dd-mm-yyyy" style="float: left;">
+                          <input class="span2 form-control" id="dp4editid" size="16" type="text" value="01-01-2016">
+                          <span class="add-on"><i class="fa fa-fw fa-calendar"></i></span></div>
+                      </div>
+                    </div>
+                    <label for="nickname">Description :</label>
+                    <textarea name="e_description" class="form-control" cols="10" id="e_description" row="5" ></textarea>
+                  </div>
+                </div>
+                <div class="modal-footer">
+                  <button id="editmotd_submitbtn_id" type="submit" class="btn btn-default" title="Add target">Submit</button>
+                  <button id="editmotd_cancel_btnid" type="button" class="btn btn-default" onClick="resetEditForm();" title="Cancel">Clear</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="footer_content" class="navbar navbar-inverse navbar-fixed-bottom"></div>
+  </body>
+  <!--js-->
+  <script type="text/javascript" src="js/jquery-1.10.2.js"></script>
+  <!--<script type="text/javascript" src="js/jquery-migrate-1.2.1.min.js"></script>-->
+  <script type="text/javascript" src="js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="js/jquery.dataTables.js"></script>
+  <!--<script type="text/javascript" src="js/select2.min.js"></script>-->
+  <script type="text/javascript" src="js/sweetalert2.min.js"></script>
+  <script type="text/javascript" src="js/DT_bootstrap.js"></script>
+  <script type="text/javascript" src="js/bootstrap-datepicker.js"></script>
+  <!--<script type="text/javascript" src="js/motd-table.js"></script>-->
+  <script type="text/javascript" src="js/jquery.validate.js"></script>
+  <!--<script type="text/javascript" src="js/jquery.responsiveTabs.js"></script>-->
+  <script type="text/javascript">
+                    $(function () {
+                        $("#admin_nav").load("admin_nav.html");
+                        $("#footer_content").load("footer.html");
+                    });
+  </script>
+  <script type="text/javascript" src="js/rxk_admincommon.js"></script>
+  <script type="text/javascript" src="js/rxk_motd.js"></script>
+</html>

@@ -1,0 +1,36 @@
+<table>
+    <thead>
+        <td> Browser </td>
+        <td> Platform </td>
+        <td> Time </td>
+        <td> Timezone </td>
+    </thead>
+    <tbody id="tableBody">
+        {% for result in results %}
+            {% if result["browser"] != "None" and result["platform"] != "None" %}
+            <tr class="history-row">
+                <td class="browser">{{ result["browser"] }}</td>
+                <td class="platform">{{ result["platform"] }}</td>
+                <td class="datetime">{{ result["datetime"] }}</td>
+                <td class="timezone">{{ result["timezone"] }}</td>
+            </tr>
+            {% endif %}
+        {% endfor %}
+    </tbody>
+</table>
+
+<style type="text/css">
+    
+    table{
+        width: 100%;
+    }
+
+    thead{
+        text-align: center;
+        font-weight: bolder;
+    }
+
+    #tableBody{
+        text-align: center;
+    }
+</style>

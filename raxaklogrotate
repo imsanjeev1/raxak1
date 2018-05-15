@@ -1,0 +1,19 @@
+#!/bin/bash
+#       (c) 2015-2016, CloudRaxak, Inc
+# TO DO : Need to work on eliminating hard coded path.
+# Change the path below to your location of git repository.
+/home/raxak/release-2.01/raxak1/nohup.out {
+      size 50M
+      rotate 4
+      missingok
+      notifempty
+      nocompress
+      create 644 raxak raxak
+      #sharedscripts
+      prerotate
+          echo [`date`] "Rotating logs now" >> /home/raxak/release-2.01/raxak1/nohuplogrotate.log
+      endscript
+      postrotate
+          echo [`date`] "Rotated logs successfully" >> /home/raxak/release-2.01/raxak1/nohuplogrotate.log
+      endscript
+} 

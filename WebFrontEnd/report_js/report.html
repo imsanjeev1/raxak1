@@ -1,0 +1,78 @@
+<!DOCTYPE html> 
+<html>
+    <head>
+	<meta charset="utf-8"/>
+        <!--<script type="text/javascript" charset="utf-8" src="lib/js/jquery.min.js" ></script>-->
+        <script src="report_js/jquery-1.11.3.min.js"></script>
+        <script type="text/javascript" charset="utf-8" src="lib/js/featherlight.min.js"></script>
+        <link rel="stylesheet" type="text/css" media="screen" href="lib/css/featherlight.min.css" />
+        <link rel="stylesheet" type="text/css" media="screen" href="lib/css/report.css" />
+        <link rel="stylesheet" type="text/css" media="print"  href="lib/css/print.css" />
+	<!-- Add with New -->
+	<link href="report_css/bootstrap.min.css" rel="stylesheet">
+        <link href="report_css/dataTables.bootstrap.min.css" rel="stylesheet">
+        <script src="report_js/jquery.dataTables.min.js"></script>
+        <script src="report_js/dataTables.bootstrap.min.js"></script>
+	<!--End-->
+	<!--<script type="text/javascript" class="init">
+$(document).ready(function() {
+	alert($('#example').DataTable());
+} );
+	</script>-->
+	<style>
+        .rule_font{
+        color:#009ea1;
+	width:82px;
+        }
+	.tr_heading{
+	background-color:#EAEAEA;
+	}
+	.low_severity{
+	background-color:#Dff0d8;
+	}
+        </style
+        
+   </head>
+    <body>
+        <div id="report_container"></div>
+
+        <script type="text/javascript" class="init">
+            $(document).ready(function () {
+		$('#example').DataTable();
+		//alert($('#example').DataTable());
+                $.urlParam = function (name) {
+                    var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
+                    if (results == null) {
+                        return null;
+                    }
+                    else {
+                        return results[1] || 0;
+                    }
+                }
+
+                var reportData = $.urlParam('reportData');
+                if (reportData) {
+                    $.ajax({
+                        method: "POST",
+                        data: {reportData: reportData},
+                        url: '/raxakapi/v1/getReportHtml',
+                        success: function (response) {
+                            $('#report_container').html(response.detailed_report);
+                            $(document).prop('title', response.page_title);
+                            document.getElementById('image-loader-page1').style.display='none';
+                        },
+                        //timeout: 1000,
+                        error: function (xhr, status, err) {
+                            console.log(status, err);
+                        },
+                    });
+                }
+		
+            });
+        </script>
+		<div class="image-loader-page" id="image-loader-page1" style="display:block;text-align: center; margin-top: 231px;;">
+            <img src="images/loader4.gif" height="175" width="300" class="csv-loader-imgtxt">
+            <br />Detailed Report is loading, please wait...
+        </div>
+    </body>
+</html>

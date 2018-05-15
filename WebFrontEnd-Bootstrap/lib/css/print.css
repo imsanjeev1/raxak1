@@ -1,0 +1,72 @@
+.no-print { display: none !important; }
+*{font-size: 14px; font-family:arial;}
+
+a{
+    color: #000;
+    text-decoration: none;
+}
+
+table {
+    border-collapse: collapse;
+}
+
+table.report_container{margin: auto;width: 700px;border-collapse:collapse;}
+thead.thead{}
+
+table table{margin-bottom: 20px;}
+
+table table table{margin-bottom: 0px;}
+
+table td{
+    border-color: #ccc;
+    border-image: none;
+    border-collapse: collapse;
+}
+.report_container table td{
+    border-style: none solid solid;
+    border-width: medium 1px 1px;
+    padding: 6px;
+}
+
+tr.table_head1{background-color:#6b6a6a;font-size:18px;height:25px;text-align: center; color:#fff; text-transform:uppercase;font-weight: bolder;letter-spacing:0.8px;word-spacing:5px;}
+tr.table_head2 {
+     background-color: #eaeaea;
+     text-transform:uppercase;
+     font-weight: bolder;
+     letter-spacing:0.8px;word-spacing:5px;
+}
+
+.rule_id{font-weight: bolder;}
+.rule_title{
+    border-color: #ccc;
+    border-style: none none dotted;
+    border-width: 0 0 2px;
+    padding-bottom: 14px;
+    font-weight: bolder;
+}
+.rule_console{}
+.report_container table td.last_execution_result_container{
+    border: medium none;
+    padding: 0;
+}
+.last_execution_result{
+    text-align: center;
+}
+.thead th{
+    padding-bottom: 20px;
+}
+
+.rule_desc{display:none;}
+.rule_desc_title{
+    background: red none repeat scroll 0 0;
+    margin: -5% -25px 28px;
+    padding: 10px;
+    background-color: #6b6a6a;
+    color: #fff;
+    font-size: 18px;
+    height: 25px;
+    /*text-align: center;*/
+    text-transform: uppercase;
+}
+
+.print_button{cursor: pointer;width: 40px;}

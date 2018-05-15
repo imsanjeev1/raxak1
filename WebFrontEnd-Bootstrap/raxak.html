@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <!-- Meta -->
+        <meta http-equiv="Pragma" content="no-cache">
+        <META HTTP-EQUIV="CACHE-CONTROL" CONTENT="NO-CACHE">
+        <META HTTP-EQUIV="Expires" CONTENT="-1">
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>Raxak-Dashboard</title>
+        <!-- css -->
+        <link href="css/bootstrap.min.css" rel="stylesheet">
+        <link href="css/sb-admin.css" rel="stylesheet">
+        <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+        <link href="css/rxk_app.css" rel="stylesheet" type="text/css"/>
+        <link rel="stylesheet" href="css/sweetalert2.css" >
+ <noscript>
+<div class=" col-md-6 col-md-offset-3">
+        <div class="noscriptdiv" style="margin-top:-80px;"><div class="col-md-1 text-center " style="border:0px solid #ccc; margin-top:0px;"><i class="fa fa-exclamation-triangle fa-4x" aria-hidden="true"></i></div><strong>JavaScript seems to be disabled in your browser.</strong><br>You must have JavaScript enabled in your browser to utilize the functionality of this GUI
+</div>
+        </div>
+</noscript>
+    </head>
+    <!--<body class="blank_bg">-->
+    <body>
+        <div class="image-hoder-page" id="image-holder-page"></div>
+        <div id="wrapper">
+            <!-- <div id="header"></div>-->
+            <div id="left_nav"></div>
+            <div id="page-wrapper1"></div>	
+            <div id="page-wrapper">
+                <div class="container-fluid" style="min-height:600px;display:none;">
+                    <!-- Page Heading -->
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <h1 class="page-header">Dashboard: <span  id="login_time"></span></h1>
+                        </div>
+                    </div>
+                    <div class="row" id="motd_info">
+                        <div class="col-lg-12">
+                            <div class="alert alert-info alert-dismissable">
+                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true" id="motd_msg" >&times;</button>
+                                <!--<i class="fa fa-info-circle"></i>--> 
+                                <!--<span id="motd">Raxak Protect Simplify and Automate Security Compliance</span>-->
+                                <span id="motd_get"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-4">
+                            <div class="panel panel-primary"  id ="tm_machine">
+                                <div class="panel-heading">
+                                    <div class="row">
+                                        <div class="col-xs-3">
+                                            <i class="fa fa-server fa-5x"></i>
+                                        </div>
+                                        <div class="col-xs-9 text-right">
+                                            <div class="huge"><span id="enrolledIPs"></span></div>
+                                            <div>Enrolled Servers</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <a href="#" data-toggle="modal" data-target="#enrolledInfo">
+                                    <div class="panel-footer">
+                                        <span class="pull-left">View Details</span>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="clear"></div>
+                            <div class="panel panel-green" id="runing_machine">
+                                <div class="panel-heading">
+                                    <div class="row">
+                                        <div id="spinner" class="col-xs-3">
+                                            <i class="fa fa-refresh fa-spin fa-5x" id="spin_id"></i>
+                                            <i class="fa fa-check-square-o fa-5x" id="spin_idd" style="display:none;"></i>
+                                        </div>
+                                        <div class="col-xs-9 text-right">
+                                            <!--<div class="huge">Active</div>
+                                            <div><span id="spinnerText">Run in Progress!</span></div>-->
+                                            <div class="huge"><span id="spinnerText"></span></div>
+                                            <div id = "change_value">Running Machine</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <a href="#" data-toggle="modal" data-target="#active">
+                                    <div class="panel-footer">
+                                        <span class="pull-left">View Details</span>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="clear"></div>
+                            <div class="panel panel-yellow" id ="cron_box">
+                                <div class="panel-heading">
+                                    <div class="row">
+                                        <div class="col-xs-3">
+                                            <i class="fa fa-clock-o fa-5x"></i>
+                                        </div>
+                                        <div class="col-xs-9 text-right">
+                                            <div style="line-height:25px;"><span id="nextRun"></span> </div>
+                                            <div></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <a href="#" data-toggle="modal" data-target="#cron_job">
+                                    <div class="panel-footer">
+                                        <span class="pull-left">View Details</span>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-lg-8">
+                            <div class="panel panel-primary" id = "chart_div">
+                                <div class="panel-heading">
+                                    <h3 class="panel-title"><i class="fa fa-bar-chart-o fa-fw"></i> Summary of Last Run</h3>
+                                </div>
+                                <div class="panel-body">
+                                    <div class="row">
+                                        <div class="panel panel-green fixed-panel">
+                                            <div class="panel-heading">
+                                                <h3 class="panel-title">
+                                                    Server Name: <span id="numberMachines"></span>
+                                                </h3>
+                                            </div>
+                                            <div class="panel-body">
+                                                <div id="runSummary">
+                                                    <div class='table-responsive'>
+                                                        <table id="lastrunIPs" class="table" style='font-size:11px;padding:7px !important;'></table>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <div class ="clear"></div>
+
+                                        <div class="panel panel-green fixed-panel" id="accessiblecontent">
+                                            <div class="panel-heading">
+                                                <div class="row" id="profileName">
+                                                    <h3 class="panel-title">
+                                                        <span id="db_enrolledserver" class="col-md-12" style="padding: 0px;"></span>
+                                                        <div class="clear" style="height:1px;"></div>
+                                                        <span id="dp_profilename" class="col-md-12" style="padding: 0px;"></span>
+                                                        <div class="clear" style="height:1px;"></div>
+                                                        <span id="dp_datetime" class="col-md-12" style="display: none;padding:0px;"></span>
+                                                        <div class="clear" style="height:1px;"></div>
+                                                        <span id="dp_totalrules" class="col-md-12" style="padding: 0px;"></span>
+                                                    </h3>
+                                                </div>
+                                            </div>
+                                            <div class="panel-body" id="graphcontainer">
+                                                <div id="accesschartContainers"></div>
+                                                <div class="text-right">
+                                                    <a href="#" data-toggle="modal" data-target="#showipinfo">View Details</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="panel panel-red fixed-panel" id="inaccessiblecontent" style="display: none;">
+                                            <div class="panel-heading" style="height:128px;">
+                                                <div class="row">
+                                                    <h3 class="panel-title">
+                                                        <span id="in_enrolledserver" class="col-md-12"></span>
+                                                        <span id="in_profilename" class="col-md-12"></span>
+                                                        <span id="in_status" class="col-md-12"></span>
+                                                    </h3>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!--<a href="#">
+                                        <div class="panel-footer">
+                                            <span class="pull-left">View Details</span>
+                                            <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                                            <div class="clearfix"></div>
+                                        </div>
+                                    </a>-->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /#wrapper -->
+        <!--- modal dialog boxes -->
+        <div class="modal fade" id="enrolledInfo" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                            <i class="fa fa-times fa-fw"></i>
+                        </button>
+                        <h4 class="modal-title" id="myModalLabel">Enrolled Servers</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div id="enrolledInfoBody"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="showipinfo" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                            <i class="fa fa-times fa-fw"></i>
+                        </button>
+                        <h4 class="modal-title" id="myModalLabel">Rule Status</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div id="show_rule"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="active" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                            <i class="fa fa-times fa-fw"></i>
+                        </button>
+                        <h4 class="modal-title" id="myModalLabel">Server Details</h4>
+                    </div>
+                    <div class="modal-body">
+                        <table id="active_machine" class="table"></table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="cron_job" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                            <i class="fa fa-times fa-fw"></i>
+                        </button>
+                        <h4 class="modal-title" id="myModalLabel">Cron Details</h4>
+                    </div>
+                    <div class="modal-body">
+                        <table id="cron_job_count" class="table"></table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="footer_content" class="navbar navbar-inverse navbar-fixed-bottom"></div>
+    </body>
+</html>
+<!-- js -->
+<script type="text/javascript" src="js/jquery-1.10.2.js"></script>
+<script type="text/javascript" src="js/bootstrap.min.js"></script>
+<script type="text/javascript" src="js/highcharts1.js"></script>
+<script type="text/javascript" src="js/highcharts-3d.js"></script>
+<script type="text/javascript" src="js/sweetalert2.min.js"></script>
+<script type="text/javascript">
+$(function () {
+    $("#left_nav").load("left_nav.html");
+    $("#footer_content").load("footer.html");
+});
+</script>
+<!-- include the custom and each page js file after left nav and footer -->
+<script type="text/javascript" src="js/rxk_common.js"></script>
+<script type="text/javascript" src="js/rxk_dashboard.js"></script>

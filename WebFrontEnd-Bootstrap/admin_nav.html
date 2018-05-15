@@ -1,0 +1,120 @@
+<link href="css/sweetalert2.css" rel="stylesheet">
+<!-- Navigation -->
+<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation"> 
+  <!-- Brand and toggle get grouped for better mobile display -->
+  <div class="navbar-header">
+    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
+    <a class="navbar-brand" href="dashboard.html"><span style="color:#0096d6"> <strong>Raxak Protect</strong> &trade;</span><br>
+    </a> </div>
+  <!-- Top Menu Items -->
+  <ul class="nav navbar-right top-nav"  style="margin-top: 4px;">
+    <!--<li class="dropdown"> <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-envelope"></i><b class="caret"></b></a>
+    <li class="dropdown"> <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bell"></i><b class="caret"></b></a>-->
+    <ul class="dropdown-menu alert-dropdown">
+      <li> <a href="#">Alert Name <span class="label label-default">Alert Badge</span></a> </li>
+      <li> <a href="#">Alert Name <span class="label label-primary">Alert Badge</span></a> </li>
+      <li> <a href="#">Alert Name <span class="label label-success">Alert Badge</span></a> </li>
+      <li> <a href="#">Alert Name <span class="label label-info">Alert Badge</span></a> </li>
+      <li> <a href="#">Alert Name <span class="label label-warning">Alert Badge</span></a> </li>
+      <li> <a href="#">Alert Name <span class="label label-danger">Alert Badge</span></a> </li>
+      <li class="divider"></li>
+      <li> <a href="#">View All</a> </li>
+    </ul>
+    </li>
+    <li class="dropdown"> <a href="#" class="dropdown-toggle" data-toggle="dropdown" ><i class="fa fa-user"></i> <span id="username"></span> <b class="caret"></b> </a>
+      <ul class="dropdown-menu">
+        <!--<li> <i class="fa fa-fw fa-key"></i><span id="authenticator">Local</span> </li>
+        <li> <a href="#"><i class="fa fa-fw fa-user"></i> Profile</a> </li>
+        <li> <a href="#"><i class="fa fa-fw fa-gear"></i> Settings</a> </li>
+        <li class="divider"></li>-->
+        <li> <a href="../raxakapi/v1/logout?usertype=admin"><i class="fa fa-fw fa-power-off"></i> Log Out</a> </li>
+      </ul>
+    </li>
+  </ul>
+  <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
+  <div class="collapse navbar-collapse navbar-ex1-collapse">
+    <ul class="nav navbar-nav side-nav" id="nav">
+      <li id="dashboard-button" class="button"> <a href="dashboard.html" class="button"><i class="fa fa-fw fa-dashboard"></i><div>Dashboard</div></a> </li>
+      <li  id="user-button" class="button"> <a href="user.html" class="button"><i class="fa fa-fw fa-user"></i><div>User</div></a> </li>
+      <li  id="motd-button" class="button "> <a href="motd.html" class="button"><i class="fa fa-fw fa-file-text"></i><div>MOTD</div></a> </li>
+      <li  id="server-button" class="button "> <a href="servers.html" class="button"><img src="images/admin server.png" width="40" height="40" />
+          <div>Server</div></a>
+      </li>
+      <li  id="admin-button" class="button "> <a href="admin_user.html" class="button"><i class="fa fa-fw fa-server"></i><div>Admin</div></a> </li>
+
+      <li id="rules-button" class="button"> <a href="admin_rules.html"   class="button"><i class="fa fa-fw fa-clone"></i><div> Server Status</div></a> </li>
+      <li id="report-button" class="button"> <a href="admin_report.html"   class="button"><img src="images/report.png" width="40" height="40" />
+          <div>Reports</div></a> </li>
+      <!--<li id="account-button" class="button"> <a href="account.html"   class="button"><i class="fa fa-fw fa-users"></i><div>Account</div></a> </li>-->
+      <li id="feedback-button" class="button"> <a href="feedback.html"   class="button"><i class="fa fa-fw fa-comment"></i><div>Feedback</div></a> </li>
+     <!-- <li id="tickets-button" class="button"> <a href="tickets.html"   class="button"><i class="fa fa-fw fa-ticket"></i><div>Tickets</div></a> </li>-->
+
+
+      <!--li  id="server-button" class="button"> <a href="enrolled_servers.html"  class="button"><i class="fa fa-fw fa-server"></i> Manage Servers</a> </li>
+      <li id="apply-button" class="button"> <a href="apply_profile.html"   class="button" ><i class="fa fa-fw fa-refresh fa-pin"></i> Apply Profile</a> </li>
+      <li id="schedule-button" class="button"> <a href="Schedule.html"   class="button"><i class="fa fa-fw fa-clock-o"></i>Manage Schedule</a> </li>
+      <li id="rules-button" class="button"> <a href="rules.html"   class="button"><i class="fa fa-fw fa-clone"></i>Server Status</a> </li>
+     
+      <li id="report-button" class="button"> <a href="report_log.html"   class="button"><i class="fa fa-file"></i> Reports</a> </li-->
+      <li style="padding:14px 17px;"><i class="fa fa-fw fa-history"></i> <span style="margin-left: -15px ! important;">Version: <span id="version">Release/build</span> </span></li>
+      <li class="divider" style="width:100%;">
+        <hr>
+      </li>
+      <li style="margin-top: -20px;"> <a href="http://www.cloudraxak.com" target="_blank"><img class="img-responsive" style="max-width:75%" src="images/crlogo-white.png"/></a> </li>
+    </ul>
+  </div><!-- /.navbar-collapse --> 
+</nav>
+<script type="text/javascript">
+  $(function () {
+      var strHref = window.location.href;
+      var strQueryString = strHref.split(".html");
+      var aQueryString = strQueryString[0].split("/");
+      var curpage = unescape(aQueryString[aQueryString.length - 1]).toLowerCase();
+      $("#nav").children(function () {
+          if ($(this).hasClass("active")) {
+              $(this).removeClass("active");
+          }
+      })
+      if (curpage == "admin" || curpage == "") {
+          $("#dashboard-button").addClass("active");
+      }
+
+      if (curpage == "dashboard") {
+          $("#dashboard-button").addClass("active");
+      }
+
+      if (curpage == "user") {
+          $("#user-button").addClass("active");
+      }
+
+      if (curpage == "motd") {
+          $("#motd-button").addClass("active");
+      }
+
+      if (curpage == "servers") {
+          $("#server-button").addClass("active");
+      }
+
+      if (curpage == "admin_user") {
+          $("#admin-button").addClass("active");
+      }
+      if (curpage == "admin_rules") {
+          $("#rules-button").addClass("active");
+      }
+      if (curpage == "admin_report") {
+          $("#report-button").addClass("active");
+      }
+      if (curpage == "account") {
+          $("#account-button").addClass("active");
+      }
+      if (curpage == "feedback") {
+          $("#feedback-button").addClass("active");
+      }
+      if (curpage == "tickets") {
+          $("#tickets-button").addClass("active");
+      }
+      getUserDetail();
+  });
+</script>
+<script type="text/javascript" src="js/sweetalert2.min.js"></script>
+<!--<script type="text/javascript" src="js/rxk_admincommon.js"></script>-->

@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>SB Admin - Bootstrap Admin Template</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="css/sb-admin.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="css/app.css">
+    <!-- Custom Fonts -->
+    <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+  <script>
+	$(document).ready(function() {
+	
+	$('.hide').hide(); //hides all the hide links on page load
+	
+    $('a.show').each(function() { //running iterator function
+        var thisLink = $(this);
+        $(this).click(function() { // Checks if any show link is clicked
+            show(thisLink) // Calling the show function & passing the selector value
+        });
+    });
+
+    $('a.hide').each(function() { //running iterator function
+        var thisLink = $(this);
+        $(this).click(function() { // Checks if any hide link is clicked
+            hide(thisLink) // Calling the hide function & passing the selector value
+        });
+    });
+	
+	});
+
+	function show(callingLink) {
+    callingLink.hide(); //hides the element where click was received  
+	callingLink.next().show(); //displays the next element that in our case is hide link
+    callingLink.next().next().slideToggle('slow'); //toggles the next of next element that is details div
+	}
+
+	function hide(callingLink) {
+	callingLink.hide(); //hides the element where click was received  
+	callingLink.prev().show(); //displays the previous element that in our case is show link
+    callingLink.next().slideToggle('slow'); //again toggles the next element that is details div to hide it
+	}
+
+  </script>
+  <style>
+  .container {
+	width:550px;
+	margin: 0 auto;
+  }
+  .details {
+	border: 1px solid #ccc;
+	padding: 3px; position:absolute; background:#fff
+  }
+  </style>
+    <script type="text/javascript" src="js/jquery-1.10.2.js"></script>
+<script type="text/javascript">
+            $(function () {
+                $("#left_nav").load("left_nav.html");
+                $("#footer_content").load("footer.html");
+                getgraph();
+            });
+        </script>
+</head>
+
+<body>
+
+    <div id="wrapper">
+
+        <!-- Navigation -->
+        <div id="left_nav"></div>
+
+        <div id="page-wrapper">
+
+            <div class="container-fluid">
+
+                <!-- Page Heading -->
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h1 class="page-header">
+                            Blank Page
+                            <small>Subheading</small>
+                        </h1>
+                        <ol class="breadcrumb">
+                            <li>
+                                <i class="fa fa-dashboard"></i>  <a href="index.html">Dashboard</a>
+                            </li>
+                            <li class="active">
+                                <i class="fa fa-align-justify"></i> Listing
+                            </li>
+                        </ol>
+                    </div>
+                </div>
+                <!-- /.row -->
+<div class="row">
+<div class="col-lg-12">
+<div class="table-responsive">
+                            <table class="table table-hover table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>Execution ID</th>
+                                        <th>Target Machine / Group</th>
+                                        <th>Profile</th>
+                                        <th>Started On</th>
+                                        <th>Completed On</th>
+                                        <th>Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><a href="details.html">CR-56a21a5f</a></td>
+                                        <td>ubuntu@52.91.159.46</td>
+                                        <td>Demonstration Profile</td>
+                                        <td>Fri Jan 22 2016 12:02:39 </td>
+                                      <td>- -</td>
+                                        <td><div data-label="25%" class="radial-bar radial-bar-25 radial-bar-xs"></div></td>
+                                    </tr>
+                                   <tr>
+                                        <td><a href="details.html">CR-12551a5f</a></td>
+                                        <td>Group 1 <div>
+ <a class="show" href="#"> More </a>
+ <a class="hide" href="#"> Hide </a>
+ <div class="details" style="display: none; width:200px;">
+ <div class="table-responsive">
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>Target Machine</th>
+                                        <th>Recheck</th>
+                                        </tr>
+                                        </thead>
+                                        <tr><td>192.168.0.59</td><Td><a title="Recheck Machine" class="singleaccess" href="javascript:void(0);"><img width="25" src="images/checkmark.png"></a></Td>
+                                        
+                                        </tr>
+                                        <tr><td>192.168.0.59</td><Td><a title="Recheck Machine" class="singleaccess" href="javascript:void(0);"><img width="25" src="images/checkmark.png"></a></Td>
+                                        
+                                        </tr>
+                                        <tr><td>192.168.0.59</td><Td><a title="Recheck Machine" class="singleaccess" href="javascript:void(0);"><img width="25" src="images/checkmark.png"></a></Td>
+                                        
+                                        </tr>
+                                        <tr><td>192.168.0.59</td><Td><a title="Recheck Machine" class="singleaccess" href="javascript:void(0);"><img width="25" src="images/checkmark.png"></a></Td>
+                                        
+                                        </tr>
+                                        <tr><td>192.168.0.59</td><Td><a title="Recheck Machine" class="singleaccess" href="javascript:void(0);"><img width="25" src="images/checkmark.png"></a></Td>
+                                        
+                                        </tr>
+                                        </table></div>
+                                        
+ </div>
+ </div>
+ </td>
+                                        <td>Demonstration Profile</td>
+                                        <td>Fri Jan 22 2016 12:02:39 </td>
+                                      <td>- -</td>
+                                        <td><div data-label="65%" class="radial-bar radial-bar-65 radial-bar-xs"></div></td>
+                                  </tr>
+                                    <tr>
+                                        <td><a href="details.html">CR-3838385f</a></td>
+                                        <td>ubuntu@52.91.159.46</td>
+                                        <td>Demonstration Profile</td>
+                                        <td>Fri Jan 22 2016 12:02:39 </td>
+                                      <td>Fri Jan 22 2016 12:03:29</td>
+                                        <td><i class="fa fa-check-circle-o" style="font-size:40px; color:#82c100; font-weight:normal"></i></td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href="details.html">CR-56a21a5f</a></td>
+                                        <td>ubuntu@52.91.159.46</td>
+                                        <td>Demonstration Profile</td>
+                                        <td>Fri Jan 22 2016 12:02:39 </td>
+                                      <td>- -</td>
+                                        <td><div data-label="80%" class="radial-bar radial-bar-80 radial-bar-xs"></div></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        </div>
+</div>
+            </div>
+            <!-- /.container-fluid -->
+
+        </div>
+        <!-- /#page-wrapper -->
+
+    </div>
+    <!-- /#wrapper -->
+
+    <!-- jQuery -->
+    <script src="js/jquery.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="js/bootstrap.min.js"></script>
+
+</body>
+
+</html>

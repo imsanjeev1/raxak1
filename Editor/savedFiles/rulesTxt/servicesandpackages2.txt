@@ -1,0 +1,69 @@
+Services and Packages, All Security Rules
+V-38481 System security patches and updates must be installed and up-to-date.
+Should Not Be Enabled, Services and Packages
+V-38587 The telnet-server package must not be installed.
+V-38589 The telnet daemon must not be running.
+V-38591 The rsh-server package must not be installed.C16
+V-38594 The rshd service must not be running.
+V-38598 The rexecd service must not be running.
+V-38602 The rlogind service must not be running.
+V-38679 The DHCP client must be disabled if not needed.
+V-38603 The ypserv package must not be installed.
+V-38604 The ypbind service must not be running.
+V-38606 The tftp-server package must not be installed unless required.
+V-38609 The TFTP service must not be running.
+V-38701 The TFTP daemon must operate in secure mode which provides access only to a single directory on the host file system.
+V-38582 The xinetd service must be disabled if no network services utilizing it are enabled.
+V-38584 The xinetd service must be uninstalled if no network services utilizing it are enabled.
+V-38514 The Datagram Congestion Control Protocol (DCCP) must be disabled unless required.
+V-38515 The Stream Control Transmission Protocol (SCTP) must be disabled unless required.
+V-38517 The Transparent Inter-Process Communication (TIPC) protocol must be disabled unless required.
+V-38516 The Reliable Datagram Sockets (RDS) protocol must be disabled unless required.
+V-38618 The avahi service must be disabled.
+V-38674 X Windows must not be enabled unless required.
+V-38676 The xorg-x11-server-common (X Windows) package must not be installed, unless required.
+V-38605 The cron service must be running.
+V-38641 The atd service must be disabled.
+V-38627 The openldap-servers package must not be installed unless required.
+V-38640 The Automatic Bug Reporting Tool (abrtd) service must not be running.
+V-38644 The ntpdate service must not be running.
+V-38646 The oddjobd service must not be running.
+V-38648 The qpidd service must not be running.
+V-38650 The rdisc service must not be running.
+V-38668+A197 The x86 Ctrl-Alt-Delete key sequence must be disabled.
+V-38671 The sendmail package must be removed.
+V-38672 The netconsole service must be disabled unless required.
+V-38675 Process core dumps must be disabled unless needed.
+V-38682 The Bluetooth kernel module must be disabled.
+V-38691 The Bluetooth service must be disabled.
+V-38478 The Red Hat Network Service (rhnsd) service must not be running, unless using RHN or an RHN Satellite.
+V-43150 The login user list must be disabled.
+Should Be Used, Services and Packages
+V-38539 The system must be configured to use TCP syncookies when experiencing a TCP SYN flood.
+V-51337 The system must use a Linux Security Module at boot time.
+V-51363 The system must use a Linux Security Module configured to enforce limits on system services.
+V-51369 The system must use a Linux Security Module configured to limit the privileges of system services.
+V-51379 All device files must be monitored by the system Linux Security Module.
+V-38669 The postfix service must be enabled for mail delivery.
+V-38660 The snmpd service must use only SNMP protocol version 3 or newer.
+V-38653 The snmpd service must not use a default password.
+V-38667 The system must have a host-based intrusion detection tool installed.
+Storage, Services and Packages
+NFS Server, Storage
+V-38677 The NFS server must not have the insecure file locking option enabled.
+V-38460 The NFS server must not have the all_squash option enabled.
+Sambda Server, Storage
+V-38656 The system must use SMB client signing for connecting to samba servers using smbclient.
+V-38657 The system must use SMB client signing for connecting to samba servers using mount.cifs.
+Daemon Requirements, Services and Packages
+V-38607 The SSH daemon must be configured to use only the SSHv2 protocol.
+V-38614 The SSH daemon must not allow authentication using an empty password.
+V-38611 The SSH daemon must ignore .rhosts files.
+V-38612 The SSH daemon must not allow host-based authentication.
+V-38617 The SSH daemon must be configured to use only FIPS 140-2 approved ciphers.
+V-38608 The SSH daemon must set a timeout interval on idle sessions.
+V-38610 The SSH daemon must set a timeout count on idle sessions.
+V-38616 The SSH daemon must not permit user environment settings.
+V-38615 The SSH daemon must be configured with the Department of Defense (DoD) login banner.
+V-38599 The FTPS/FTP service on the system must be configured with the Department of Defense (DoD) login banner.
+V-38702 The FTP daemon must be configured for logging or verbose mode.

@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <!-- Meta -->
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>Raxak-Apply-Profile</title>
+        <!-- css -->
+        <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
+        <link rel="stylesheet" href="css/sweetalert2.css">
+        <link rel="stylesheet" href="css/sb-admin.css" type="text/css">
+        <link rel="stylesheet" href="css/rxk_app.css" type="text/css">
+        <link rel="stylesheet" href="font-awesome/css/font-awesome.min.css" type="text/css">
+    </head>
+    <body>
+        <div class="image-holder-page" id="image-holder-page"></div>
+        <div id="wrapper">
+            <div id="left_nav"></div>
+            <!-- Navigation -->
+            <div id="page-wrapper">
+                <div class="container-fluid"> 
+                    <!-- Page Heading -->
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <h1 class="page-header">Apply Profile</h1>
+                            <ol class="breadcrumb">
+                                <li> <i class="fa fa-dashboard"></i> <a href="index.html">Dashboard</a> </li>
+                                <li class="active"> <i class="fa fa-fw fa-refresh fa-pin"></i> Apply profile </li>
+                            </ol>
+                            <span style="float:right;color:blue;font-size: 22;margin-top:-51px;margin-right: 15px;" id="spanCronMessage"></span>
+                        </div>
+                    </div>
+                    <div id="maincontent">
+                        <div class="col-lg-12 text-left" id="apply_profile_id" style="margin-top: 10px;">
+                            <div class="col-md-2">Selected Profile :</div>
+                            <div class="col-md-3">
+                                <div class="styled-select">
+                                    <select style="display: flex;" id="selectedprofile" class="form-control">
+                                        <option value="">--Select--</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-2" id="rulecounts"></div>
+                        </div>
+                        <div class="clear"></div>
+                        <div class="col-lg-12 text-left" id="remediation_mode">
+                            <div class="col-md-2">Remediation Mode :</div>
+                            <div class="form-group">
+                                <label  style="padding-left: 10px;"> 
+                                    <input type="radio" name="optionsRadiosInline" id="optionsRadiosautmetic" value="option1">
+                                    <span class="label_span">Automatic</span>
+                                </label>
+                                <label style="padding-left:10px;">
+                                    <input type="radio" name="optionsRadiosInline" id="optionsRadiosmanual" value="option2" checked="checked">
+                                    <span class="label_span">Manual</span>
+                                </label>
+                            </div>
+                            <div class="clear"></div>
+                            <div class="col-md-2" style="padding-right:0px">Compliance Frequency :</div>
+                            <div class="col-md-3">
+                                <div class="styled-select">
+                                    <select style="display: flex;" id="select_croninterval" class="form-control">
+                                        <option value="One time">&nbsp;One time</option>
+                                        <option value="Hourly">&nbsp;Hourly</option>
+                                        <option value="Daily">&nbsp;Daily</option>
+                                        <option value="Weekly">&nbsp;Weekly</option>
+                                        <option value="Monthly">&nbsp;Monthly</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-lg-5 text-left">
+                                <button type="button" class="btn btn-default" disabled="disabled" id="apply_profile_action" title="Perform Compliance execution on selected target machine(s)">Apply Profile</button>
+                                <button type="button" class="btn btn-default" disabled="disabled" id="abort_action" title="Abort Compliance execution on selected target machine(s)">Abort Execution</button>
+                            </div>
+                        </div>
+                        <div style="clear:both; height: 2px; border-top:0px solid #ddd"></div>
+                        <div class="col-lg-12 text-left" id="multiple_box">
+                            <div class="clear"></div>
+                            <div id="dual-list-box" class="form-group">
+                                <select multiple="multiple" data-title="Servers" id="undo_redo"></select>
+                            </div>
+                        </div>
+							<!--<div id="button_div" class="col-lg-12 text-right" style="margin-bottom: 24px;">
+                            <button type="button" class="btn btn-default" title="Save selected target machines" id="saveIp" disabled="disabled">Save</button>
+                        </div>-->
+                        <div class="clear" style="height:50px"></div>
+                        <div class="col-lg-7 text-left" id="status_info" style="padding-left:33px; display:none">
+                            <div class="selectedIPs" ><b>Show targets with status :</b>
+                                <div style="clear:both; height:12px;"></div>
+                                <input type="checkbox" id="allOk" value="1" class="searchableCriteria">
+                                <span class="checkboxtext-seta">All OK</span><br>
+                                <input type="checkbox" id="unsupportedOS" value="-1" class="searchableCriteria">
+                                <span class="checkboxtext-seta">Un-supported OS</span><br>
+                                <input type="checkbox" id="unabletoreach" value="-2" class="searchableCriteria">
+                                <span class="checkboxtext-seta">Unable to reach target machine (ping fails)</span><br>
+                                <input type="checkbox" id="unabletologinwithspecifieduser" value="-3" class="searchableCriteria">
+                                <span class="checkboxtext-seta">Unable to log in with specified userid (ssh login fails)</span><br>
+                                <input type="checkbox" id="insufficientexecutionprivilege" value="-4" class="searchableCriteria">
+                                <span class="checkboxtext-seta">Insufficient execution privilege (cannot run privileged instructions)</span><br>
+                                <input type="checkbox" id="alltargetmachines" value="1,-1,-2,-3,-4" class="searchableCriteria" checked="checked">
+                                <span class="checkboxtext-seta">All Target Machines</span><br>
+                                <div style="clear:both; height: 12px;"></div>
+                            </div>
+                        </div><!-- /.row -->
+                    </div>
+                    <div class="row" id="no_info" style="display: none;">
+                        <div class="col-lg-12">
+                            <div class="panel panel-default" style="font-size:larger;text-align:center;margin-top: 30px; opacity:0.7">
+                                <div class="panel-body">
+                                    <div style="font-size: x-large;">You have no servers enrolled. <a style="cursor:pointer;text-decoration:none;" href="../enrolled_servers.html">Click here</a> to enroll.</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div><!-- /.container-fluid -->
+            </div>
+          </div>
+          <div class="row" id="no_info" style="display: none;">
+            <div class="col-lg-12">
+              <div class="panel panel-default" style="font-size:larger;text-align:center;margin-top: 30px; opacity:0.7">
+                <div class="panel-body">
+                  <div style="font-size: x-large;">You have no servers enrolled. <a style="cursor:pointer;text-decoration:none;" href="../enrolled_servers.html">Click here</a> to enroll.</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div><!-- /.container-fluid -->
+      </div>
+      <!-- /#page-wrapper --> 
+      <input type="hidden" id="executionCount" value="0">
+    </div>
+    <div id="footer_content" class="navbar navbar-inverse navbar-fixed-bottom"></div>
+    <input type="hidden" id="executionCount" value="0">
+
+    <!-- js -->
+    <script type="text/javascript" src="js/jquery-1.10.2.js"></script>
+    <script type="text/javascript" src="js/jquery-migrate-1.2.1.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/sweetalert2.min.js"></script>
+    <script type="text/javascript">
+      $(function () {
+          $("#left_nav").load("left_nav.html");
+          $("#footer_content").load("footer.html");
+          // can't leave page without save.
+          canExit = false; //set as global variable.
+          /*$(window).on('beforeunload', function () {
+              if (canExit) {
+                  var message = "Are you sure you want to leave without save target machine(s)?";
+                  return message;
+              }
+          });*/
+      });
+    </script>
+    <!-- include the custom and each page js file after left nav and footer -->
+    <script type="text/javascript" src="js/rxk_common.js"></script>
+    <script type="text/javascript" src="js/rxk_apply_profile.js"></script>
+    <script type="text/javascript" src="js/dual-list-box.js"></script>
+    <!--<div id="footer_content"></div>-->
+    <script type="text/javascript">
+      var GlobalFlag = false;
+      someFunc();
+      function someFunc() {
+          callAjaxfunc(); //may have multiple ajax calls in this function
+          window.setTimeout(waitFunc, 100); // some  which waits until async calls complete
+      }
+
+      function callAjaxfunc() {
+          //All ajax calls called here
+          getIps();
+          //getSelectedTMs();
+          $(document).ajaxStop(function () {
+              //Your code
+              GlobalFlag = true;
+          });
+      }
+
+      function waitFunc() {
+          if (!GlobalFlag) {
+              window.setTimeout(waitFunc, 100);
+          } else {
+              callDuleBox();
+              callSelectedBox();
+              getLastrunIPs();
+          }
+      }
+
+      function callDuleBox() {
+          var tms = JSON.parse(sessionStorage.getItem('gEnrolledTMs'));
+          // inserting ips into select list
+          var selected = sessionStorage.getItem('selectedTMS');
+          $.each(tms, function (i, data) {
+              var item = JSON.parse(data);
+              var optionValue = item.nickname;
+              var optionTitle = item.ip + ' : ' + TM_ACCESS_NORMS[item.access].title;
+              var optionClass = TM_ACCESS_NORMS[item.access].cssclass;
+              var optionDisabled = true;
+              if (item.access == 1) {
+                  var optionTitle = item.ip + ' (' + item.osname + ' ' + item.osversion + ')';
+                  optionDisabled = false;
+              }
+
+              if (item.nickname == "") {
+                  var optionValue = item.ip;
+              }
+              if (selected.toString().indexOf(item.ip) == -1) {
+                  $('#undo_redo').append($('<option>', {
+                      value: item.ip,
+                      text: optionValue,
+                      title: optionTitle,
+                      class: optionClass,
+                      disabled: optionDisabled
+                  }));
+              } else if (selected.toString().indexOf(item.ip) == 1 && item.access != 1) {
+                  $('#undo_redo').append($('<option>', {
+                      value: item.ip,
+                      text: optionValue,
+                      title: optionTitle,
+                      class: optionClass,
+                      disabled: optionDisabled
+                  }));
+              }
+          });
+          $('#undo_redo').DualListBox();
+          $('#image-holder-page').hide();
+      }
+
+      $(document).ready(function () {
+          var selectedremedmode = sessionStorage.getItem('selectedremedmode');
+          var selectedfrequency = sessionStorage.getItem('selectedfrequency');
+          if (selectedremedmode && selectedfrequency) {
+              if (selectedremedmode == "Automatic") {
+                  $('#optionsRadiosautmetic').prop("checked", true);
+              } else {
+                  $('#optionsRadiosmanual').prop("checked", true);
+              }
+              $("#select_croninterval").val(selectedfrequency);
+          } else {
+
+              if ($('#optionsRadiosautmetic').is(':checked')) {
+                  sessionStorage.setItem('selectedremedmode', 'Automatic');
+              }
+
+              if ($('#optionsRadiosmanual').is(':checked')) {
+                  sessionStorage.setItem('selectedremedmode', 'Manual');
+              }
+              var frequency = $("#select_croninterval option:selected").val();
+              sessionStorage.setItem('selectedfrequency', frequency);
+          }
+      });
+
+      $(document).on('change', '#allOk', function () {
+          if ($(this).prop("checked")) {
+              $('.selected').empty();
+          }
+          filterIps();
+          callSelectedBox()
+      });
+
+      $(document).on('change', '#unsupportedOS', function () {
+          if ($(this).prop("checked")) {
+              $('.selected').empty();
+          }
+          filterIps();
+          callSelectedBox()
+      });
+
+      $(document).on('change', '#unabletoreach', function () {
+          if ($(this).prop("checked")) {
+              $('.selected').empty();
+          }
+          filterIps();
+          callSelectedBox();
+      });
+
+      $(document).on('change', '#unabletologinwithspecifieduser', function () {
+          if ($(this).prop("checked")) {
+              $('.selected').empty();
+          }
+          filterIps();
+          callSelectedBox()
+      });
+
+      $(document).on('change', '#insufficientexecutionprivilege', function () {
+          if ($(this).prop("checked")) {
+              $('.selected').empty();
+          }
+          filterIps();
+          callSelectedBox()
+      });
+
+      $(document).on('change', '#alltargetmachines', function () {
+          var allok = $('#allOk');
+          var unsupportedOS = $('#unsupportedOS'); // unsupported Orange color
+          var unabletoreach = $('#unabletoreach'); //ping-fail red
+          var unabletologinwithspecifieduser = $('#unabletologinwithspecifieduser'); // sshlogin falil Yellow color
+          var insufficientexecutionprivilege = $('#insufficientexecutionprivilege'); // ccnnot sudo Blue color
+          if ($(this).prop("checked")) {
+              $('.selected').empty();
+              allok.prop("checked", "");
+              unsupportedOS.prop("checked", "");
+              unabletoreach.prop("checked", "");
+              unabletologinwithspecifieduser.prop("checked", "");
+              insufficientexecutionprivilege.prop("checked", "");
+              filterIps();
+          } else {
+              $(this).prop("checked", true);
+          }
+          callSelectedBox();
+          //return filterIps();
+      });
+
+      function setRunRadioBoxEnabled(flg) {
+          if (flg == 1) {
+              $("#apply_profile_action").prop("disabled", false);
+              $("#saveIp").prop("disabled", false);
+          } else {
+              $("#apply_profile_action").prop("disabled", true);
+              $("#abort_action").prop("disabled", true);
+              $("#saveIp").prop("disabled", true);
+              $('optionsRadiosautmetic').prop('checked', false);
+              //$('optionsRadiosmanual').prop('checked', false);
+          }
+      }
+
+      function setRunProfileEnabled(flg) {
+          if (flg == 1) {
+              setRunRadioBoxEnabled(0);
+              $('#apply_profile_action').prop("disabled", false);
+          } else {
+              setRunRadioBoxEnabled(1);
+              $("#abort_action").prop("disabled", true);
+          }
+      }
+
+      $('#optionsRadiosautmetic').click(function () {
+          if ($(this).is(':checked')) {
+              sessionStorage.setItem('selectedremedmode', 'Automatic');
+          }
+      });
+
+      $('#optionsRadiosmanual').click(function () {
+          if ($(this).is(':checked')) {
+              //$("#apply_profile_action").prop("disabled", false);
+              sessionStorage.setItem('selectedremedmode', 'Manual');
+          }
+      });
+
+            $('#apply_profile_action').click(function () {
+            var checked_site_radio = $('input:radio[name=optionsRadiosInline]:checked').val();
+             sessionStorage.setItem("setfrequency", checked_site_radio);
+             
+              if ($('.selected')[0].options.length > 0) {
+                    boxOff(1);
+                    runProfile();
+                    setRunProfileEnabled(1);
+                    saveIPs(flag = 0);
+                }
+            });
+
+      $('#abort_action').click(function () {
+          abortAction();
+          setRunProfileEnabled(0);
+          if ($('#optionsRadiosautmetic').is(':checked')) {
+              $('#apply_profile_action').prop("disabled", false);
+          }
+          boxOff(0);
+      });
+
+      $('#saveIp').click(function () {
+          saveIPs(flag = 1);
+      });
+
+      function saveIPs(flag) {
+          var ipList = "";
+          if ($('.selected')[0].options.length > 0) {
+              $(".selected > option").each(function () {
+                  ipList = ipList + this.value + ',';
+              });
+              ipList = ipList.replace(/,(\s+)?$/, '');
+          }
+          saveSelectedTMs('raxak', ipList, flag);
+      }
+
+      function saveSelectedTMs(username, ips, flag) {
+          var url = API_CALL_PREFIX + "setSelectedTMs/?username=" + username + "&ips=" + ips + "";
+          $.ajax({
+              url: url,
+              timeout: DEFAULT_TIMEOUT,
+              async: true,
+              success: function (result) {
+                  //canExit = false;
+                  if (ips !== '' && flag === 1) {
+                      swal({
+                          // title : 'Save Status',
+                          text: "Selected Target Machine(s) have been saved.",
+                          type: 'success'
+                      });
+                  }
+              }
+          });
+      }
+
+      function callSelectedBox() {
+          var tms = JSON.parse(sessionStorage.getItem('gEnrolledTMs'));
+          // inserting ips into select list
+          var selected = sessionStorage.getItem('selectedTMS');
+          if (tms.length > 0) {
+              $.each(tms, function (i, data) {
+                  var item = JSON.parse(data);
+                  var optionValue = item.nickname;
+                  var optionTitle = item.ip + ' : ' + TM_ACCESS_NORMS[item.access].title;
+                  var optionClass = TM_ACCESS_NORMS[item.access].cssclass;
+                  var optionDisabled = true;
+                  if (item.access == 1) {
+                      optionTitle = item.ip + ' (' + item.osname + ' ' + item.osversion + ')';
+                      optionDisabled = false;
+                  }
+                  if (item.nickname == "") {
+                      var optionValue = item.ip;
+                  }
+                  //if (selected.toString().indexOf(item.ip) != -1 && $(".selected option[value='" + item.ip + "']").length == 0) {
+                  if (selected.toString().indexOf(item.ip) != -1 && item.access == 1 && $(".selected option[value='" + item.ip + "']").length == 0) {
+                      setRunRadioBoxEnabled(1); //enabled the Remediation options when selected target machine available.
+                      $('.selected').append($('<option>', {
+                          value: item.ip,
+                          text: optionValue,
+                          title: optionTitle,
+                          class: optionClass,
+                          disabled: optionDisabled
+                      }));
+                      var count = parseInt($('.selected-count').html());
+                      $('.selected-count').html(count + 1);
+                  }
+              });
+          }
+          toggleButtonsOnLoad();// sunil: Disabled the buttons on load.
+      }
+
+      /** Toggles the buttons based on the length of the selects. */
+      function toggleButtonsOnLoad() {
+          var is_unselected = $('.unselected option').hasClass('success');
+          var is_selected = $('.selected option').hasClass('success');
+          if ($('.unselected option').length == 0 || !is_unselected) {
+              $('.atr').prop('disabled', true);
+              $('.str').prop('disabled', true);
+          } else {
+              $('.atr').prop('disabled', false);
+          }
+
+          if ($('.selected option').length == 0 || !is_selected) {
+              $('.atl').prop('disabled', true);
+              $('.stl').prop('disabled', true);
+              $('#apply_profile_action').prop('disabled', true);
+          } else {
+              $('.atl').prop('disabled', false);
+          }
+      }
+    </script>
+  </body>

@@ -1,0 +1,56 @@
+.dataTables_wrapper .dataTables_paginate {
+    float: right;
+    padding-top: 0.25em;
+    text-align: right;
+}
+
+.dataTables_wrapper .dataTables_paginate .paginate_button {
+    border: 1px solid transparent;
+    border-radius: 2px;
+    box-sizing: border-box;
+    color: #333 !important;
+    cursor: pointer;
+    display: inline-block;
+    margin-left: 2px;
+    min-width: 1.5em;
+    padding: 0.5em 1em;
+    text-align: center;
+    text-decoration: none !important;
+}
+
+.dataTables_wrapper .dataTables_info {
+    clear: both;
+    float: left;
+    padding-top: 0.755em;
+}
+
+.dataTables_wrapper .dataTables_paginate .paginate_button:hover {
+    background: rgba(0, 0, 0, 0) linear-gradient(to bottom, #585858 0%, #111 100%) repeat scroll 0 0;
+    border: 1px solid #111;
+    color: white !important;
+}
+.dataTables_wrapper .dataTables_paginate .paginate_button:active {
+    background: rgba(0, 0, 0, 0) linear-gradient(to bottom, #2b2b2b 0%, #0c0c0c 100%) repeat scroll 0 0;
+    box-shadow: 0 0 3px #111 inset;
+    outline: medium none;
+}
+.dataTables_wrapper .dataTables_paginate .paginate_active {
+    background: rgba(0, 0, 0, 0) linear-gradient(to bottom, white 0%, #dcdcdc 100%) repeat scroll 0 0;
+    padding: 0.5em 1em;
+    border: 1px solid #979797;
+    color: #333 !important;
+}
+.paginate_button_disabled {
+    pointer-events: none;
+    cursor: default;
+}
+
+.dataTables_wrapper .form-group input[type=text] {
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 5px;
+}
+
+#editable-sample_filter{
+    float: right;
+}

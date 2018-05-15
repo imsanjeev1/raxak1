@@ -1,0 +1,758 @@
+{
+    "id": "8a7040664c0a81f8014c151691734a8a",
+    "name": "Raxak-CSA_Integration_467d0016-f660-4fab-87ee-ab65d6b23da6",
+    "displayName": "Raxak-CSA Integration",
+    "catalogId": "90d9650a36988e5d0136988f03ab000f",
+    "offeringVersion": "1.0.0",
+    "category": {
+        "displayName": "Application Services",
+        "name": "APPLICATION_SERVICES"
+    },
+    "image": "csa/images/library/Access_RGB_blue_NT.png",
+    "approvalRequired": false,
+    "publishedDate": "2015-03-13T21:42:44.738Z",
+    "initPrice": {
+        "currency": "USD",
+        "price": 0
+    },
+    "recurringPrice": {
+        "currency": "USD",
+        "price": 0,
+        "basedOn": "Yearly"
+    },
+    "fields": [{
+            "id": "field_8a7040664c0a81f8014c1516922e4a91",
+            "displayName": "Server Specification",
+            "name": "55F06375_5603_608C_B828_7224C5D426DE",
+            "description": "Server Specification",
+            "visible": true,
+            "disabled": false,
+            "hidden": false,
+            "value": true,
+            "initPrice": {
+                "currency": "USD",
+                "price": 0
+            },
+            "recurringPrice": {
+                "currency": "USD",
+                "price": 0,
+                "basedOn": "MONTH"
+            },
+            "required": false,
+            "encrypted": false,
+            "confidential": false
+        }, {
+            "id": "field_8a7040664c0a81f8014c1516923e4a94",
+            "displayName": "1. Region",
+            "name": "account",
+            "description": "Regions",
+            "visible": true,
+            "disabled": false,
+            "hidden": false,
+            "value": "---Select a Value From List---",
+            "availableValues": [{
+                    "displayName": "---Select a Value From List---",
+                    "value": "---Select a Value From List---"
+                }, {
+                    "displayName": "us-west-2",
+                    "value": "us-west-2"
+                }],
+            "initPrice": {
+                "currency": null,
+                "price": null
+            },
+            "recurringPrice": {
+                "currency": null,
+                "price": null,
+                "basedOn": null
+            },
+            "required": true,
+            "encrypted": false,
+            "confidential": false
+        }, {
+            "id": "field_8a7040664c0a81f8014c1516923e4a95",
+            "displayName": "2. Availability Zone",
+            "name": "AvailabilityZone",
+            "description": "Availability Zone based on region",
+            "visible": true,
+            "disabled": false,
+            "hidden": false,
+            "value": "---Select a Value From List---",
+            "availableValues": [{
+                    "displayName": "---Select a Value From List---",
+                    "value": "---Select a Value From List---"
+                }],
+            "initPrice": {
+                "currency": null,
+                "price": null
+            },
+            "recurringPrice": {
+                "currency": null,
+                "price": null,
+                "basedOn": null
+            },
+            "required": true,
+            "encrypted": false,
+            "confidential": false
+        }, {
+            "id": "field_8a7040664c0a81f8014c1516924d4a96",
+            "displayName": "3. Key Pair",
+            "name": "keypair",
+            "description": "Key Pair",
+            "visible": true,
+            "disabled": false,
+            "hidden": false,
+            "value": "---Select a Value From List---",
+            "availableValues": [{
+                    "displayName": "---Select a Value From List---",
+                    "value": "---Select a Value From List---"
+                }],
+            "initPrice": {
+                "currency": null,
+                "price": null
+            },
+            "recurringPrice": {
+                "currency": null,
+                "price": null,
+                "basedOn": null
+            },
+            "required": true,
+            "encrypted": false,
+            "confidential": false
+        }, {
+            "id": "field_8a7040664c0a81f8014c1516924d4a97",
+            "displayName": "4. Platform Type",
+            "name": "PlatformType",
+            "description": "Platform Type based on region",
+            "visible": true,
+            "disabled": false,
+            "hidden": false,
+            "value": "---Select a Value From List---",
+            "availableValues": [{
+                    "displayName": "---Select a Value From List---",
+                    "value": "---Select a Value From List---"
+                }],
+            "initPrice": {
+                "currency": null,
+                "price": null
+            },
+            "recurringPrice": {
+                "currency": null,
+                "price": null,
+                "basedOn": null
+            },
+            "required": true,
+            "encrypted": false,
+            "confidential": false
+        }, {
+            "id": "field_8a7040664c0a81f8014c1516924d4a98",
+            "displayName": "5. Image",
+            "name": "image",
+            "description": "Image for region",
+            "visible": true,
+            "disabled": false,
+            "hidden": false,
+            "value": "---Select a Value From List---",
+            "availableValues": [{
+                    "displayName": "---Select a Value From List---",
+                    "value": "---Select a Value From List---"
+                }],
+            "initPrice": {
+                "currency": null,
+                "price": null
+            },
+            "recurringPrice": {
+                "currency": null,
+                "price": null,
+                "basedOn": null
+            },
+            "required": true,
+            "encrypted": false,
+            "confidential": false
+        }, {
+            "id": "field_8a7040664c0a81f8014c1516925d4a9a",
+            "displayName": "6. Server Size",
+            "name": "ServerSize",
+            "visible": true,
+            "disabled": false,
+            "hidden": false,
+            "value": "m1.small",
+            "availableValues": [{
+                    "displayName": "Large",
+                    "value": "m1.large",
+                    "initPrice": {
+                        "price": 0,
+                        "currency": "USD"
+                    },
+                    "recurringPrice": {
+                        "basedOn": "YEAR",
+                        "price": 0,
+                        "currency": "USD"
+                    }
+                }, {
+                    "displayName": "Medium",
+                    "value": "m1.medium",
+                    "initPrice": {
+                        "price": 0,
+                        "currency": "USD"
+                    },
+                    "recurringPrice": {
+                        "basedOn": "YEAR",
+                        "price": 0,
+                        "currency": "USD"
+                    }
+                }, {
+                    "displayName": "Micro",
+                    "value": "t1.micro",
+                    "initPrice": {
+                        "price": 0,
+                        "currency": "USD"
+                    },
+                    "recurringPrice": {
+                        "basedOn": "YEAR",
+                        "price": 0,
+                        "currency": "USD"
+                    }
+                }, {
+                    "displayName": "Small",
+                    "value": "m1.small",
+                    "initPrice": {
+                        "price": 0,
+                        "currency": "USD"
+                    },
+                    "recurringPrice": {
+                        "basedOn": "YEAR",
+                        "price": 0,
+                        "currency": "USD"
+                    }
+                }],
+            "initPrice": {
+                "currency": null,
+                "price": null
+            },
+            "recurringPrice": {
+                "currency": null,
+                "price": null,
+                "basedOn": null
+            },
+            "required": true,
+            "encrypted": false,
+            "confidential": false
+        }, {
+            "id": "field_8a7040664c0a81f8014c1516926c4aaa",
+            "displayName": "7. Number Of Servers",
+            "name": "noofservers",
+            "description": "Number Of Servers",
+            "visible": true,
+            "disabled": false,
+            "hidden": false,
+            "value": 1,
+            "initPrice": {
+                "currency": null,
+                "price": null
+            },
+            "recurringPrice": {
+                "currency": null,
+                "price": null,
+                "basedOn": null
+            },
+            "maxValue": 100,
+            "minValue": 0,
+            "required": true,
+            "encrypted": false,
+            "confidential": false
+        }, {
+            "id": "field_8a7040664c0a81f8014c1516924d4a99",
+            "displayName": "8.Add Load Balancing",
+            "name": "elb",
+            "description": "Choose from No load balancing, Create a new load balancer or Use an existing load balancer",
+            "visible": true,
+            "disabled": false,
+            "hidden": false,
+            "value": "None",
+            "availableValues": [{
+                    "displayName": "No, I dont want to add Load Balancing!",
+                    "value": "None"
+                }, {
+                    "displayName": "Yes, Create a New Elastic Load Balancer",
+                    "value": "New"
+                }],
+            "initPrice": {
+                "currency": null,
+                "price": null
+            },
+            "recurringPrice": {
+                "currency": null,
+                "price": null,
+                "basedOn": null
+            },
+            "required": true,
+            "encrypted": false,
+            "confidential": false
+        }, {
+            "id": "field_8a7040664c0a81f8014c1516926c4aad",
+            "displayName": "8a. Load Balancer Protocol",
+            "name": "elbProtocol",
+            "description": "If you have chosen to create a new load balancer, then choose a protocol.",
+            "visible": true,
+            "disabled": false,
+            "hidden": false,
+            "value": "http",
+            "availableValues": [{
+                    "displayName": "HTTP",
+                    "value": "http"
+                }, {
+                    "displayName": "TCP",
+                    "value": "tcp"
+                }],
+            "initPrice": {
+                "currency": null,
+                "price": null
+            },
+            "recurringPrice": {
+                "currency": null,
+                "price": null,
+                "basedOn": null
+            },
+            "required": true,
+            "encrypted": false,
+            "confidential": false
+        }, {
+            "id": "field_8a7040664c0a81f8014c1516927c4aaf",
+            "displayName": "8b. Load Balancer Port",
+            "name": "elbPort",
+            "visible": true,
+            "disabled": false,
+            "hidden": false,
+            "initPrice": {
+                "currency": null,
+                "price": null
+            },
+            "recurringPrice": {
+                "currency": null,
+                "price": null,
+                "basedOn": null
+            },
+            "maxValue": 255,
+            "minValue": 0,
+            "required": false,
+            "encrypted": false,
+            "confidential": false
+        }, {
+            "id": "field_8a7040664c0a81f8014c1516926c4aae",
+            "displayName": "8c. Instance Protocol",
+            "name": "ec2Protocol",
+            "description": "Based on option selected for 8a",
+            "visible": true,
+            "disabled": false,
+            "hidden": false,
+            "value": "http",
+            "availableValues": [{
+                    "displayName": "HTTP",
+                    "value": "http"
+                }, {
+                    "displayName": "HTTPS (Secure HTTP)",
+                    "value": "https"
+                }],
+            "initPrice": {
+                "currency": null,
+                "price": null
+            },
+            "recurringPrice": {
+                "currency": null,
+                "price": null,
+                "basedOn": null
+            },
+            "required": true,
+            "encrypted": false,
+            "confidential": false
+        }, {
+            "id": "field_8a7040664c0a81f8014c1516928c4ab2",
+            "displayName": "8d. Instance Port",
+            "name": "ec2Port",
+            "visible": true,
+            "disabled": false,
+            "hidden": false,
+            "initPrice": {
+                "currency": null,
+                "price": null
+            },
+            "recurringPrice": {
+                "currency": null,
+                "price": null,
+                "basedOn": null
+            },
+            "maxValue": 255,
+            "minValue": 0,
+            "required": false,
+            "encrypted": false,
+            "confidential": false
+        }, {
+            "id": "field_8a7040664c0a81f8014c1516928c4ab6",
+            "displayName": "Make Instance Compliant",
+            "name": "7D2F9C4B_32EB_89DE_1865_06541A04CF96",
+            "description": "Option Description",
+            "visible": true,
+            "disabled": false,
+            "hidden": false,
+            "value": true,
+            "initPrice": {
+                "currency": "USD",
+                "price": 0
+            },
+            "recurringPrice": {
+                "currency": "USD",
+                "price": 0,
+                "basedOn": "MONTH"
+            },
+            "required": false,
+            "encrypted": false,
+            "confidential": false
+        }, {
+            "id": "field_8a7040664c0a81f8014c151692ba4ab9",
+            "displayName": "Compliance Frequency",
+            "name": "complianceFreq",
+            "visible": true,
+            "disabled": false,
+            "hidden": false,
+            "value": "daily",
+            "availableValues": [{
+                    "displayName": "Daily",
+                    "value": "daily",
+                    "initPrice": {
+                        "price": 0,
+                        "currency": "USD"
+                    },
+                    "recurringPrice": {
+                        "basedOn": "YEAR",
+                        "price": 0,
+                        "currency": "USD"
+                    }
+                }, {
+                    "displayName": "Hourly",
+                    "value": "hourly",
+                    "initPrice": {
+                        "price": 0,
+                        "currency": "USD"
+                    },
+                    "recurringPrice": {
+                        "basedOn": "YEAR",
+                        "price": 0,
+                        "currency": "USD"
+                    }
+                }, {
+                    "displayName": "Monthly",
+                    "value": "monthly",
+                    "initPrice": {
+                        "price": 0,
+                        "currency": "USD"
+                    },
+                    "recurringPrice": {
+                        "basedOn": "YEAR",
+                        "price": 0,
+                        "currency": "USD"
+                    }
+                }, {
+                    "displayName": "Weekly",
+                    "value": "weekly",
+                    "initPrice": {
+                        "price": 0,
+                        "currency": "USD"
+                    },
+                    "recurringPrice": {
+                        "basedOn": "YEAR",
+                        "price": 0,
+                        "currency": "USD"
+                    }
+                }],
+            "initPrice": {
+                "currency": null,
+                "price": null
+            },
+            "recurringPrice": {
+                "currency": null,
+                "price": null,
+                "basedOn": null
+            },
+            "required": true,
+            "encrypted": false,
+            "confidential": false
+        }, {
+            "id": "field_8a7040664c0a81f8014c151692e94ac9",
+            "displayName": "Compliance Type",
+            "name": "complianceType",
+            "visible": true,
+            "disabled": false,
+            "hidden": false,
+            "value": "gold",
+            "availableValues": [{
+                    "displayName": "Gold",
+                    "value": "gold",
+                    "initPrice": {
+                        "price": 0,
+                        "currency": "USD"
+                    },
+                    "recurringPrice": {
+                        "basedOn": "YEAR",
+                        "price": 0,
+                        "currency": "USD"
+                    }
+                }, {
+                    "displayName": "Platinum",
+                    "value": "platinum",
+                    "initPrice": {
+                        "price": 0,
+                        "currency": "USD"
+                    },
+                    "recurringPrice": {
+                        "basedOn": "YEAR",
+                        "price": 0,
+                        "currency": "USD"
+                    }
+                }, {
+                    "displayName": "Silver",
+                    "value": "silver",
+                    "initPrice": {
+                        "price": 0,
+                        "currency": "USD"
+                    },
+                    "recurringPrice": {
+                        "basedOn": "YEAR",
+                        "price": 0,
+                        "currency": "USD"
+                    }
+                }],
+            "initPrice": {
+                "currency": null,
+                "price": null
+            },
+            "recurringPrice": {
+                "currency": null,
+                "price": null,
+                "basedOn": null
+            },
+            "required": true,
+            "encrypted": false,
+            "confidential": false
+        }],
+    "layout": [{
+            "name": "field_5FCCC562_4DDD_BA17_DA39_7224C5D4ED0B",
+            "displayName": "Amazon EC2",
+            "description": "Amazon EC2",
+            "type": "FieldSetLayout",
+            "displayClass": "option-container",
+            "image": "/csa/images/library/default.png",
+            "displayType": "option-container",
+            "layout": [{
+                    "fieldId": "field_8a7040664c0a81f8014c1516922e4a91",
+                    "type": "FieldLayout",
+                    "displayType": "RADIO",
+                    "group": "field_5FCCC562_4DDD_BA17_DA39_7224C5D4ED0B_group",
+                    "selected": true,
+                    "imageUrl": null,
+                    "name": null
+                }, {
+                    "name": "field_b76d02e2_73c4_4703_9cf7_1811f6642fe4",
+                    "displayName": null,
+                    "description": null,
+                    "type": "FieldSetLayout",
+                    "displayClass": "property-container",
+                    "image": null,
+                    "displayType": "property-container",
+                    "layout": [{
+                            "fieldId": "field_8a7040664c0a81f8014c1516923e4a94",
+                            "type": "FieldLayout",
+                            "displayType": "LIST",
+                            "group": null,
+                            "selected": false,
+                            "imageUrl": null,
+                            "name": "account"
+                        }, {
+                            "fieldId": "field_8a7040664c0a81f8014c1516923e4a95",
+                            "type": "FieldLayout",
+                            "displayType": "LIST",
+                            "group": null,
+                            "selected": false,
+                            "imageUrl": null,
+                            "name": "AvailabilityZone"
+                        }, {
+                            "fieldId": "field_8a7040664c0a81f8014c1516924d4a96",
+                            "type": "FieldLayout",
+                            "displayType": "LIST",
+                            "group": null,
+                            "selected": false,
+                            "imageUrl": null,
+                            "name": "keypair"
+                        }, {
+                            "fieldId": "field_8a7040664c0a81f8014c1516924d4a97",
+                            "type": "FieldLayout",
+                            "displayType": "LIST",
+                            "group": null,
+                            "selected": false,
+                            "imageUrl": null,
+                            "name": "PlatformType"
+                        }, {
+                            "fieldId": "field_8a7040664c0a81f8014c1516924d4a98",
+                            "type": "FieldLayout",
+                            "displayType": "LIST",
+                            "group": null,
+                            "selected": false,
+                            "imageUrl": null,
+                            "name": "image"
+                        }, {
+                            "fieldId": "field_8a7040664c0a81f8014c1516924d4a99",
+                            "type": "FieldLayout",
+                            "displayType": "LIST",
+                            "group": null,
+                            "selected": false,
+                            "imageUrl": null,
+                            "name": "elb"
+                        }, {
+                            "fieldId": "field_8a7040664c0a81f8014c1516925d4a9a",
+                            "type": "FieldLayout",
+                            "displayType": "LIST",
+                            "group": null,
+                            "selected": false,
+                            "imageUrl": null,
+                            "name": "ServerSize"
+                        }, {
+                            "fieldId": "field_8a7040664c0a81f8014c1516926c4aaa",
+                            "type": "FieldLayout",
+                            "displayType": "INTEGER",
+                            "group": null,
+                            "selected": false,
+                            "imageUrl": null,
+                            "name": "noofservers"
+                        }, {
+                            "fieldId": "field_8a7040664c0a81f8014c1516926c4aad",
+                            "type": "FieldLayout",
+                            "displayType": "LIST",
+                            "group": null,
+                            "selected": false,
+                            "imageUrl": null,
+                            "name": "elbProtocol"
+                        }, {
+                            "fieldId": "field_8a7040664c0a81f8014c1516926c4aae",
+                            "type": "FieldLayout",
+                            "displayType": "LIST",
+                            "group": null,
+                            "selected": false,
+                            "imageUrl": null,
+                            "name": "ec2Protocol"
+                        }, {
+                            "fieldId": "field_8a7040664c0a81f8014c1516927c4aaf",
+                            "type": "FieldLayout",
+                            "displayType": "TEXT",
+                            "group": null,
+                            "selected": false,
+                            "imageUrl": null,
+                            "name": "elbPort"
+                        }, {
+                            "fieldId": "field_8a7040664c0a81f8014c1516928c4ab2",
+                            "type": "FieldLayout",
+                            "displayType": "TEXT",
+                            "group": null,
+                            "selected": false,
+                            "imageUrl": null,
+                            "name": "ec2Port"
+                        }]
+                }, {
+                    "name": "field_3F8E6C50_0598_8141_EA41_06541A04BDD0",
+                    "displayName": "Raxak Integration",
+                    "description": "Option Set Description",
+                    "type": "FieldSetLayout",
+                    "displayClass": "option-container",
+                    "image": "/csa/images/library/default.png",
+                    "displayType": "option-container",
+                    "layout": [{
+                            "fieldId": "field_8a7040664c0a81f8014c1516928c4ab6",
+                            "type": "FieldLayout",
+                            "displayType": "RADIO",
+                            "group": "field_3F8E6C50_0598_8141_EA41_06541A04BDD0_group",
+                            "selected": true,
+                            "imageUrl": null,
+                            "name": null
+                        }, {
+                            "name": "field_e6501e72_2b21_483d_b99b_bcfcef76d506",
+                            "displayName": null,
+                            "description": null,
+                            "type": "FieldSetLayout",
+                            "displayClass": "property-container",
+                            "image": null,
+                            "displayType": "property-container",
+                            "layout": [{
+                                    "fieldId": "field_8a7040664c0a81f8014c151692ba4ab9",
+                                    "type": "FieldLayout",
+                                    "displayType": "LIST",
+                                    "group": null,
+                                    "selected": false,
+                                    "imageUrl": null,
+                                    "name": "complianceFreq"
+                                }, {
+                                    "fieldId": "field_8a7040664c0a81f8014c151692e94ac9",
+                                    "type": "FieldLayout",
+                                    "displayType": "LIST",
+                                    "group": null,
+                                    "selected": false,
+                                    "imageUrl": null,
+                                    "name": "complianceType"
+                                }]
+                        }]
+                }]
+        }],
+    "dependencies": [{
+            "triggers": ["field_8a7040664c0a81f8014c1516923e4a94.value"],
+            "actions": ["field_8a7040664c0a81f8014c1516923e4a95.visible=field_8a7040664c0a81f8014c1516923e4a94.value&&field_8a7040664c0a81f8014c1516923e4a94.visible", {
+                    "field": "field_8a7040664c0a81f8014c1516923e4a95.availableValues",
+                    "dynamicScriptParams": {
+                        "regionName": "field_8a7040664c0a81f8014c1516923e4a94.value"
+                    }
+                }]
+        }, {
+            "triggers": ["field_8a7040664c0a81f8014c1516923e4a94.value"],
+            "actions": ["field_8a7040664c0a81f8014c1516924d4a96.visible=field_8a7040664c0a81f8014c1516923e4a94.value&&field_8a7040664c0a81f8014c1516923e4a94.visible", {
+                    "field": "field_8a7040664c0a81f8014c1516924d4a96.availableValues",
+                    "dynamicScriptParams": {
+                        "regionName": "field_8a7040664c0a81f8014c1516923e4a94.value"
+                    }
+                }]
+        }, {
+            "triggers": ["field_8a7040664c0a81f8014c1516923e4a94.value"],
+            "actions": ["field_8a7040664c0a81f8014c1516924d4a97.visible=field_8a7040664c0a81f8014c1516923e4a94.value&&field_8a7040664c0a81f8014c1516923e4a94.visible", {
+                    "field": "field_8a7040664c0a81f8014c1516924d4a97.availableValues",
+                    "dynamicScriptParams": {
+                        "regionName": "field_8a7040664c0a81f8014c1516923e4a94.value"
+                    }
+                }]
+        }, {
+            "triggers": ["field_8a7040664c0a81f8014c1516924d4a97.value"],
+            "actions": ["field_8a7040664c0a81f8014c1516924d4a98.visible=field_8a7040664c0a81f8014c1516924d4a97.value&&field_8a7040664c0a81f8014c1516924d4a97.visible", {
+                    "field": "field_8a7040664c0a81f8014c1516924d4a98.availableValues",
+                    "dynamicScriptParams": {
+                        "platform": "field_8a7040664c0a81f8014c1516924d4a97.value"
+                    }
+                }]
+        }, {
+            "triggers": ["field_8a7040664c0a81f8014c1516923e4a94.value"],
+            "actions": ["field_8a7040664c0a81f8014c1516924d4a99.visible=field_8a7040664c0a81f8014c1516923e4a94.value&&field_8a7040664c0a81f8014c1516923e4a94.visible", {
+                    "field": "field_8a7040664c0a81f8014c1516924d4a99.availableValues",
+                    "dynamicScriptParams": {
+                        "regionName": "field_8a7040664c0a81f8014c1516923e4a94.value"
+                    }
+                }]
+        }, {
+            "triggers": ["field_8a7040664c0a81f8014c1516926c4aad.value"],
+            "actions": ["field_8a7040664c0a81f8014c1516926c4aae.visible=field_8a7040664c0a81f8014c1516926c4aad.value&&field_8a7040664c0a81f8014c1516926c4aad.visible", {
+                    "field": "field_8a7040664c0a81f8014c1516926c4aae.availableValues",
+                    "dynamicScriptParams": {
+                        "elbProtocol": "field_8a7040664c0a81f8014c1516926c4aad.value"
+                    }
+                }]
+        }, {
+            "triggers": ["field_8a7040664c0a81f8014c1516928c4ab6.value", "field_8a7040664c0a81f8014c1516928c4ab6.visible"],
+            "actions": ["field_8a7040664c0a81f8014c151692ba4ab9.visible=field_8a7040664c0a81f8014c1516928c4ab6.value&&field_8a7040664c0a81f8014c1516928c4ab6.visible", "field_8a7040664c0a81f8014c151692e94ac9.visible=field_8a7040664c0a81f8014c1516928c4ab6.value&&field_8a7040664c0a81f8014c1516928c4ab6.visible"]
+        }, {
+            "triggers": ["field_8a7040664c0a81f8014c1516922e4a91.value", "field_8a7040664c0a81f8014c1516922e4a91.visible"],
+            "actions": ["field_8a7040664c0a81f8014c1516923e4a94.visible=field_8a7040664c0a81f8014c1516922e4a91.value&&field_8a7040664c0a81f8014c1516922e4a91.visible", "field_8a7040664c0a81f8014c1516923e4a95.visible=field_8a7040664c0a81f8014c1516922e4a91.value&&field_8a7040664c0a81f8014c1516922e4a91.visible", "field_8a7040664c0a81f8014c1516924d4a96.visible=field_8a7040664c0a81f8014c1516922e4a91.value&&field_8a7040664c0a81f8014c1516922e4a91.visible", "field_8a7040664c0a81f8014c1516924d4a97.visible=field_8a7040664c0a81f8014c1516922e4a91.value&&field_8a7040664c0a81f8014c1516922e4a91.visible", "field_8a7040664c0a81f8014c1516924d4a98.visible=field_8a7040664c0a81f8014c1516922e4a91.value&&field_8a7040664c0a81f8014c1516922e4a91.visible", "field_8a7040664c0a81f8014c1516925d4a9a.visible=field_8a7040664c0a81f8014c1516922e4a91.value&&field_8a7040664c0a81f8014c1516922e4a91.visible", "field_8a7040664c0a81f8014c1516926c4aaa.visible=field_8a7040664c0a81f8014c1516922e4a91.value&&field_8a7040664c0a81f8014c1516922e4a91.visible", "field_8a7040664c0a81f8014c1516924d4a99.visible=field_8a7040664c0a81f8014c1516922e4a91.value&&field_8a7040664c0a81f8014c1516922e4a91.visible", "field_8a7040664c0a81f8014c1516926c4aad.visible=field_8a7040664c0a81f8014c1516922e4a91.value&&field_8a7040664c0a81f8014c1516922e4a91.visible", "field_8a7040664c0a81f8014c1516927c4aaf.visible=field_8a7040664c0a81f8014c1516922e4a91.value&&field_8a7040664c0a81f8014c1516922e4a91.visible", "field_8a7040664c0a81f8014c1516926c4aae.visible=field_8a7040664c0a81f8014c1516922e4a91.value&&field_8a7040664c0a81f8014c1516922e4a91.visible", "field_8a7040664c0a81f8014c1516928c4ab2.visible=field_8a7040664c0a81f8014c1516922e4a91.value&&field_8a7040664c0a81f8014c1516922e4a91.visible", "field_8a7040664c0a81f8014c1516928c4ab6.visible=field_8a7040664c0a81f8014c1516922e4a91.value&&field_8a7040664c0a81f8014c1516922e4a91.visible"]
+        }]
+}

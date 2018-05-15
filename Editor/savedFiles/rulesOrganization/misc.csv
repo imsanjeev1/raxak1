@@ -1,0 +1,276 @@
+"Miscellaneous:","","","","","","","","",""
+"Graphical Desktop Environment: ","","","","","","","","",""
+"V-38688","medium","A login banner must be displayed immediately prior to, or as part of, graphical desktop environment login prompts.","An appropriate warning message reinforces policy awareness during the logon process and facilitates possible legal action against attackers.","None","SV-50489r3_rule","F-43637r2_fix","To enable displaying a login warning banner in the GNOME Display Manager's login screen, run the following command: 
+
+# gconftool-2 --direct \
+--config-source xml:readwrite:/etc/gconf/gconf.xml.mandatory \
+--type bool \
+--set /apps/gdm/simple-greeter/banner_message_enable true
+
+To display a banner, this setting must be enabled and then banner text must also be set.","C-46250r3_chk","If the GConf2 package is not installed, this is not applicable.
+
+To ensure a login warning banner is enabled, run the following: 
+
+$ gconftool-2 --direct --config-source xml:readwrite:/etc/gconf/gconf.xml.mandatory --get /apps/gdm/simple-greeter/banner_message_enable
+
+Search for the ""banner_message_enable"" schema. If properly configured, the ""default"" value should be ""true"". 
+If it is not, this is a finding."
+"V-38689","medium","The Department of Defense (DoD) login banner must be displayed immediately prior to, or as part of, graphical desktop environment login prompts.","An appropriate warning message reinforces policy awareness during the logon process and facilitates possible legal action against attackers.","None","SV-50490r3_rule","F-43638r2_fix","To set the text shown by the GNOME Display Manager in the login screen, run the following command: 
+
+# gconftool-2
+--direct \
+--config-source xml:readwrite:/etc/gconf/gconf.xml.mandatory \
+--type string \
+--set /apps/gdm/simple-greeter/banner_message_text \
+""[DoD required text]""
+
+Where the DoD required text is either: 
+
+""You are accessing a U.S. Government (USG) Information System (IS) that is provided for USG-authorized use only. By using this IS (which includes any device attached to this IS), you consent to the following conditions: 
+-The USG routinely intercepts and monitors communications on this IS for purposes including, but not limited to, penetration testing, COMSEC monitoring, network operations and defense, personnel misconduct (PM), law enforcement (LE), and counterintelligence (CI) investigations. 
+-At any time, the USG may inspect and seize data stored on this IS. 
+-Communications using, or data stored on, this IS are not private, are subject to routine monitoring, interception, and search, and may be disclosed or used for any USG-authorized purpose. 
+-This IS includes security measures (e.g., authentication and access controls) to protect USG interests -- not for your personal benefit or privacy. 
+-Notwithstanding the above, using this IS does not constitute consent to PM, LE or CI investigative searching or monitoring of the content of privileged communications, or work product, related to personal representation or services by attorneys, psychotherapists, or clergy, and their assistants. Such communications and work product are private and confidential. See User Agreement for details."" 
+
+OR: 
+
+""I've read & consent to terms in IS user agreem't.""
+
+When entering a warning banner that spans several lines, remember to begin and end the string with """""". This command writes directly to the file ""/var/lib/gdm/.gconf/apps/gdm/simple-greeter/%gconf.xml"", and this file can later be edited directly if necessary.","C-46252r3_chk","If the GConf2 package is not installed, this is not applicable.
+
+To ensure login warning banner text is properly set, run the following: 
+
+$ gconftool-2 --direct --config-source xml:readwrite:/etc/gconf/gconf.xml.mandatory --get /apps/gdm/simple-greeter/banner_message_text
+
+If properly configured, the proper banner text will appear within this schema. 
+
+The DoD required text is either: 
+
+""You are accessing a U.S. Government (USG) Information System (IS) that is provided for USG-authorized use only. By using this IS (which includes any device attached to this IS), you consent to the following conditions: 
+-The USG routinely intercepts and monitors communications on this IS for purposes including, but not limited to, penetration testing, COMSEC monitoring, network operations and defense, personnel misconduct (PM), law enforcement (LE), and counterintelligence (CI) investigations. 
+-At any time, the USG may inspect and seize data stored on this IS. 
+-Communications using, or data stored on, this IS are not private, are subject to routine monitoring, interception, and search, and may be disclosed or used for any USG-authorized purpose. 
+-This IS includes security measures (e.g., authentication and access controls) to protect USG interests -- not for your personal benefit or privacy. 
+-Notwithstanding the above, using this IS does not constitute consent to PM, LE or CI investigative searching or monitoring of the content of privileged communications, or work product, related to personal representation or services by attorneys, psychotherapists, or clergy, and their assistants. Such communications and work product are private and confidential. See User Agreement for details."" 
+
+OR: 
+
+""I've read & consent to terms in IS user agreem't.""
+
+If the DoD required banner text is not appear in the schema, this is a finding."
+"V-38638","medium","The graphical desktop environment must have automatic lock enabled.","Enabling the activation of the screen lock after an idle period ensures password entry will be required in order to access the system, preventing access by passersby.","None","SV-50439r3_rule","F-43587r1_fix","Run the following command to activate locking of the screensaver in the GNOME desktop when it is activated: 
+
+# gconftool-2 --direct \
+--config-source xml:readwrite:/etc/gconf/gconf.xml.mandatory \
+--type bool \
+--set /apps/gnome-screensaver/lock_enabled true","C-46198r3_chk","If the GConf2 package is not installed, this is not applicable. 
+
+To check the status of the idle screen lock activation, run the following command: 
+
+$ gconftool-2 --direct --config-source xml:readwrite:/etc/gconf/gconf.xml.mandatory --get /apps/gnome-screensaver/lock_enabled
+
+If properly configured, the output should be ""true"". 
+If it is not, this is a finding."
+"V-38630","medium","The graphical desktop environment must automatically lock after 15 minutes of inactivity and the system must require user reauthentication to unlock the environment.","Enabling idle activation of the screen saver ensures the screensaver will be activated after the idle delay. Applications requiring continuous, real-time screen display (such as network management products) require the login session does not have administrator rights and the display station is located in a controlled-access area.","None","SV-50431r3_rule","F-43579r1_fix","Run the following command to activate the screensaver in the GNOME desktop after a period of inactivity: 
+
+# gconftool-2 --direct \
+--config-source xml:readwrite:/etc/gconf/gconf.xml.mandatory \
+--type bool \
+--set /apps/gnome-screensaver/idle_activation_enabled true","C-46189r3_chk","If the GConf2 package is not installed, this is not applicable.
+
+To check the screensaver mandatory use status, run the following command: 
+
+$ gconftool-2 --direct --config-source xml:readwrite:/etc/gconf/gconf.xml.mandatory --get /apps/gnome-screensaver/idle_activation_enabled
+
+If properly configured, the output should be ""true"". 
+
+If it is not, this is a finding."
+"V-38629","medium","The graphical desktop environment must set the idle timeout to no more than 15 minutes.","Setting the idle delay controls when the screensaver will start, and can be combined with screen locking to prevent access from passersby.","None","SV-50430r3_rule","F-43578r1_fix","Run the following command to set the idle time-out value for inactivity in the GNOME desktop to 15 minutes: 
+
+# gconftool-2 \
+--direct \
+--config-source xml:readwrite:/etc/gconf/gconf.xml.mandatory \
+--type int \
+--set /apps/gnome-screensaver/idle_delay 15","C-46188r3_chk","If the GConf2 package is not installed, this is not applicable.
+
+To check the current idle time-out value, run the following command: 
+
+$ gconftool-2 --direct --config-source xml:readwrite:/etc/gconf/gconf.xml.mandatory --get /apps/gnome-screensaver/idle_delay
+
+If properly configured, the output should be ""15"". 
+
+If it is not, this is a finding."
+"V-38639","low","The system must display a publicly-viewable pattern during a graphical desktop environment session lock.","Setting the screensaver mode to blank-only conceals the contents of the display from passersby.","None","SV-50440r3_rule","F-43588r2_fix","Run the following command to set the screensaver mode in the GNOME desktop to a blank screen: 
+
+# gconftool-2 \
+--direct \
+--config-source xml:readwrite:/etc/gconf/gconf.xml.mandatory \
+--type string \
+--set /apps/gnome-screensaver/mode blank-only","C-46199r4_chk","If the GConf2 package is not installed, this is not applicable. 
+
+To ensure the screensaver is configured to be blank, run the following command: 
+
+$ gconftool-2 --direct --config-source xml:readwrite:/etc/gconf/gconf.xml.mandatory --get /apps/gnome-screensaver/mode
+
+If properly configured, the output should be ""blank-only"". 
+If it is not, this is a finding."
+"V-38474","low","The system must allow locking of graphical desktop sessions.","The ability to lock graphical desktop sessions manually allows users to easily secure their accounts should they need to depart from their workstations temporarily.","None","SV-50274r2_rule","F-43420r1_fix","Run the following command to set the Gnome desktop keybinding for locking the screen:
+
+# gconftool-2
+--direct \
+--config-source xml:readwrite:/etc/gconf/gconf.xml.mandatory \
+--type string \
+--set /apps/gnome_settings_daemon/keybindings/screensaver ""<Control><Alt>l""
+
+Another keyboard sequence may be substituted for ""<Control><Alt>l"", which is the default for the Gnome desktop.","C-46030r2_chk","If the GConf2 package is not installed, this is not applicable.
+
+Verify the keybindings for the Gnome screensaver:
+
+# gconftool-2 --direct --config-source xml:readwrite:/etc/gconf/gconf.xml.mandatory --get /apps/gnome_settings_daemon/keybindings/screensaver
+
+If no output is visible, this is a finding."
+"Clock:","","","","","","","","",""
+"V-38620","medium","The system clock must be synchronized continuously, or at least daily.","Enabling the ""ntpd"" service ensures that the ""ntpd"" service will be running and that the system will synchronize its time to any servers specified. This is important whether the system is configured to be a client (and synchronize only its own clock) or it is also acting as an NTP server to other systems. Synchronizing time is essential for authentication services such as Kerberos, but it is also important for maintaining accurate logs and auditing possible security breaches.","None","SV-50421r1_rule","F-43568r1_fix","The ""ntpd"" service can be enabled with the following command: 
+
+# chkconfig ntpd on
+# service ntpd start","C-46178r1_chk","Run the following command to determine the current status of the ""ntpd"" service: 
+
+# service ntpd status
+
+If the service is enabled, it should return the following: 
+
+ntpd is running...
+
+
+If the service is not running, this is a finding."
+"V-38621","medium","The system clock must be synchronized to an authoritative DoD time source.","Synchronizing with an NTP server makes it possible to collate system logs from multiple sources or correlate computer events with real time events. Using a trusted NTP server provided by your organization is recommended.","None","SV-50422r1_rule","F-43570r1_fix","To specify a remote NTP server for time synchronization, edit the file ""/etc/ntp.conf"". Add or correct the following lines, substituting the IP or hostname of a remote NTP server for ntpserver. 
+
+server [ntpserver]
+
+This instructs the NTP software to contact that remote server to obtain time data.","C-46180r1_chk","A remote NTP server should be configured for time synchronization. To verify one is configured, open the following file. 
+
+/etc/ntp.conf
+
+In the file, there should be a section similar to the following: 
+
+# --- OUR TIMESERVERS -----
+server [ntpserver]
+
+
+If this is not the case, this is a finding."
+"V-38624","low","System logs must be rotated daily.","Log files that are not properly rotated run the risk of growing so large that they fill up the /var/log partition. Valuable logging information could be lost if the /var/log partition becomes full.","None","SV-50425r1_rule","F-43573r1_fix","The ""logrotate"" service should be installed or reinstalled if it is not installed and operating properly, by running the following command:
+
+# yum reinstall logrotate","C-46183r1_chk","Run the following commands to determine the current status of the ""logrotate"" service: 
+
+# grep logrotate /var/log/cron*
+
+If the logrotate service is not run on a daily basis by cron, this is a finding."
+"System Requirements:","","","","","","","","",""
+"V-38588","medium","The system must not permit interactive boot.","Using interactive boot, the console user could disable auditing, firewalls, or other services, weakening system security.","None","SV-50389r1_rule","F-43536r1_fix","To disable the ability for users to perform interactive startups, edit the file ""/etc/sysconfig/init"". Add or correct the line: 
+
+PROMPT=no
+
+The ""PROMPT"" option allows the console user to perform an interactive system startup, in which it is possible to select the set of services which are started on boot.","C-46146r1_chk","To check whether interactive boot is disabled, run the following command: 
+
+$ grep PROMPT /etc/sysconfig/init
+
+If interactive boot is disabled, the output will show: 
+
+PROMPT=no
+
+
+If it does not, this is a finding."
+"V-38596","medium","The system must implement virtual address space randomization.","Address space layout randomization (ASLR) makes it more difficult for an attacker to predict the location of attack code he or she has introduced into a process's address space during an attempt at exploitation. Additionally, ASLR also makes it more difficult for an attacker to know the location of existing code in order to repurpose it using return oriented programming (ROP) techniques.","None","SV-50397r2_rule","F-43543r1_fix","To set the runtime status of the ""kernel.randomize_va_space"" kernel parameter, run the following command: 
+
+# sysctl -w kernel.randomize_va_space=2
+
+If this is not the system's default value, add the following line to ""/etc/sysctl.conf"": 
+
+kernel.randomize_va_space = 2","C-46153r2_chk","The status of the ""kernel.randomize_va_space"" kernel parameter can be queried by running the following commands: 
+
+$ sysctl kernel.randomize_va_space
+$ grep kernel.randomize_va_space /etc/sysctl.conf
+
+The output of the command should indicate a value of at least ""1"" (preferably ""2""). If this value is not the default value, investigate how it could have been adjusted at runtime, and verify it is not set improperly in ""/etc/sysctl.conf"". 
+If the correct value is not returned, this is a finding."
+"V-38597","medium","The system must limit the ability of processes to have simultaneous write and execute access to memory.","ExecShield uses the segmentation feature on all x86 systems to prevent execution in memory higher than a certain address. It writes an address as a limit in the code segment descriptor, to control where code can be executed, on a per-process basis. When the kernel places a process's memory regions such as the stack and heap higher than this address, the hardware prevents execution in that address range.","None","SV-50398r2_rule","F-43545r1_fix","To set the runtime status of the ""kernel.exec-shield"" kernel parameter, run the following command: 
+
+# sysctl -w kernel.exec-shield=1
+
+If this is not the system's default value, add the following line to ""/etc/sysctl.conf"": 
+
+kernel.exec-shield = 1","C-46155r3_chk","The status of the ""kernel.exec-shield"" kernel parameter can be queried by running the following command: 
+
+$ sysctl kernel.exec-shield
+$ grep kernel.exec-shield /etc/sysctl.conf
+
+The output of the command should indicate a value of ""1"". If this value is not the default value, investigate how it could have been adjusted at runtime, and verify it is not set improperly in ""/etc/sysctl.conf"". 
+If the correct value is not returned, this is a finding."
+"V-38590","low","The system must allow locking of the console screen in text mode.","Installing ""screen"" ensures a console locking capability is available for users who may need to suspend console logins.","None","SV-50391r1_rule","F-43538r1_fix","To enable console screen locking when in text mode, install the ""screen"" package: 
+
+# yum install screen
+
+Instruct users to begin new terminal sessions with the following command: 
+
+$ screen
+
+The console can now be locked with the following key combination: 
+
+ctrl+a x","C-46148r1_chk","Run the following command to determine if the ""screen"" package is installed: 
+
+# rpm -q screen
+
+
+If the package is not installed, this is a finding."
+"V-38437","low","Automated file system mounting tools must not be enabled unless needed.","All filesystems that are required for the successful operation of the system should be explicitly listed in ""/etc/fstab"" by an administrator. New filesystems should not be arbitrarily introduced via the automounter.
+
+The ""autofs"" daemon mounts and unmounts filesystems, such as user home directories shared via NFS, on demand. In addition, autofs can be used to handle removable media, and the default configuration provides the cdrom device as ""/misc/cd"". However, this method of providing access to removable media is not common, so autofs can almost always be disabled if NFS is not in use. Even if NFS is required, it is almost always possible to configure filesystem mounts statically by editing ""/etc/fstab"" rather than relying on the automounter. ","None","SV-50237r1_rule","F-43381r1_fix","If the ""autofs"" service is not needed to dynamically mount NFS filesystems or removable media, disable the service for all runlevels: 
+
+# chkconfig --level 0123456 autofs off
+
+Stop the service if it is already running: 
+
+# service autofs stop","C-45991r1_chk","To verify the ""autofs"" service is disabled, run the following command: 
+
+chkconfig --list autofs
+
+If properly configured, the output should be the following: 
+
+autofs 0:off 1:off 2:off 3:off 4:off 5:off 6:off
+
+Verify the ""autofs"" service is not running:
+
+# service autofs status
+
+If the autofs service is enabled or running, this is a finding."
+"V-38438","low","Auditing must be enabled at boot by setting a kernel parameter.","Each process on the system carries an ""auditable"" flag which indicates whether its activities can be audited. Although ""auditd"" takes care of enabling this for all processes which launch after it does, adding the kernel argument ensures it is set for every process during boot.","None","SV-50238r2_rule","F-43382r2_fix","To ensure all processes can be audited, even those which start prior to the audit daemon, add the argument ""audit=1"" to the kernel line in ""/etc/grub.conf"", in the manner below:
+
+kernel /vmlinuz-version ro vga=ext root=/dev/VolGroup00/LogVol00 rhgb quiet audit=1
+
+UEFI systems may prepend ""/boot"" to the ""/vmlinuz-version"" argument. ","C-45992r2_chk","Inspect the kernel boot arguments (which follow the word ""kernel"") in ""/etc/grub.conf"". If they include ""audit=1"", then auditing is enabled at boot time. 
+
+If auditing is not enabled at boot time, this is a finding."
+"Mail:","","","","","","","","",""
+"V-38622","medium","Mail relaying must be restricted.","This ensures ""postfix"" accepts mail messages (such as cron job reports) from the local system only, and not from the network, which protects it from network attack.","None","SV-50423r2_rule","F-43572r1_fix","Edit the file ""/etc/postfix/main.cf"" to ensure that only the following ""inet_interfaces"" line appears: 
+
+inet_interfaces = localhost","C-46182r2_chk","If the system is an authorized mail relay host, this is not applicable. 
+
+Run the following command to ensure postfix accepts mail messages from only the local system: 
+
+$ grep inet_interfaces /etc/postfix/main.cf
+
+If properly configured, the output should show only ""localhost"". 
+If it does not, this is a finding."
+"V-38446","medium","The mail system must forward all mail for root to one or more system administrators.","A number of system services utilize email messages sent to the root user to notify system administrators of active or impending issues.  These messages must be forwarded to at least one monitored email address.","None","SV-50246r1_rule","F-43391r1_fix","Set up an alias for root that forwards to a monitored email address:
+
+# echo ""root: <system.administrator>@mail.mil"" >> /etc/aliases
+# newaliases","C-46001r1_chk","Find the list of alias maps used by the Postfix mail server:
+
+# postconf alias_maps
+
+Query the Postfix alias maps for an alias for ""root"":
+
+# postmap -q root <alias_map>
+
+If there are no aliases configured for root that forward to a monitored email address, this is a finding."

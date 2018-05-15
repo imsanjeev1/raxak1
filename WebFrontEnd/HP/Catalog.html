@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<!-- saved from url=(0042)https://15.125.87.19:8089/org/CSA_CONSUMER -->
+<html class=" js flexbox flexboxlegacy canvas canvastext webgl no-touch geolocation postmessage websqldatabase indexeddb hashchange history draganddrop websockets rgba hsla multiplebgs backgroundsize borderimage borderradius boxshadow textshadow opacity cssanimations csscolumns cssgradients cssreflections csstransforms csstransforms3d csstransitions fontface generatedcontent video audio localstorage sessionstorage webworkers applicationcache svg inlinesvg smil svgclippaths">
+<!--<![endif]-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<style type="text/css">
+@charset "UTF-8";
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak, .ng-hide {
+display:none !important;
+}
+ng\:form {
+	display: block;
+}
+.ng-animate-block-transitions {
+	transition: 0s all!important;
+	-webkit-transition: 0s all!important;
+}
+</style>
+<!--<base href="https://15.125.87.19:8089/">-->
+<base href=".">
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>Catalog</title>
+<meta name="description" content="">
+<meta name="viewport" content="width=device-width">
+<!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+
+<link id="styleLink" rel="stylesheet" href="css/main.css">
+</head>
+
+<body ng-app="mppApp" class="bg-body ng-scope" mpp-dir="" mpp-html-lang="" ng-show="$root.loaded" style="display: block;" dir="ltr">
+
+<!-- Framebusting logic. See: http://seclab.stanford.edu/websec/framebusting/framebust.pdf -->
+<style>
+  body {
+    display: none;
+  }
+  </style>
+<script>
+  if (self == top) {
+    document.getElementsByTagName("body")[0].style.display = 'block';
+  } else {
+    top.location = self.location;
+  }
+  </script> 
+<script>
+  /**
+   * Rewrite base.href to be an absolute URL. Only necessary for IE 9, but works fine in other browsers.
+   */
+  function toAbsURL(s) {
+    var l = location,
+      h, p, f, i;
+    if (/^\w+:/.test(s)) {
+      return s;
+    }
+    h = l.protocol + '//' + l.host + (l.port != '' ? (':' + l.port) : '');
+    if (s.indexOf('/') == 0) {
+      return h + s;
+    }
+    p = l.pathname.replace(/\/[^\/]*$/, '');
+    f = s.match(/\.\.\//g);
+    if (f) {
+      s = s.substring(f.length * 3);
+      for (i = f.length;;) {
+        i =
+          p = p.substring(0, p.lastIndexOf('/'));
+      }
+    }
+    return h + p + '/' + s;
+  }
+
+  var base = document.getElementsByTagName('base')[0];
+  base.href = toAbsURL(base.href);
+  </script> 
+
+<!--[if lt IE 7]>
+  <p class="chromeframe">You are using an outdated browser. <a href="http://browsehappy.com/">Upgrade your browser today</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
+<![endif]--> 
+
+<!--[if lt IE 9]>
+  <script src="bower_components/es5-shim/es5-shim.js"></script>
+  <script src="bower_components/json3/lib/json3.min.js"></script>
+<![endif]--> 
+
+<!-- Add your site or application content here --> 
+<!-- ngView:  -->
+<div ng-view="" class="full-height ng-scope">
+  <navbar nav-title="Browse Catalog Details" has-footer="true" back-click="back(checkout.state)" back-label="Browse Catalog" class="ng-scope ng-isolate-scope">
+    <div ng-controller="NavigationCtrl" class="st-container st-effect-3 ng-scope" ng-class="{'st-menu-open':visible}">
+      <div class="st-pusher">
+        <nav class="st-menu st-effect-3" id="menu-3" focus=""><a></a>
+          <h2><span class="ng-binding">Sidebar Menu</span></h2>
+          <ul>
+            <li><a  id="dashboard-btn"><i class="h3 icon-dashboard"></i><span class="ng-binding">Dashboard</span></a></li>
+            <li><a  id="catalog-btn"><i class="h3 icon-catalog"></i><span class="ng-binding">Browse Catalog</span></a></li>
+            <li><a id="notification-btn"><i class="h3 icon-notification"></i><span class="ng-binding">Notifications</span></a></li>
+            <li><a  id="review-request-btn"><i class="h3 icon-review"></i><span class="ng-binding">Review Requests</span></a></li>
+            <li><a  id="request-btn"><i class="h3 icon-services"></i><span class="ng-binding">Requests</span></a></li>
+            <li><a  id="subscription-btn"><i class="h3 icon-subscription"></i><span class="ng-binding">Subscriptions</span></a></li>
+            <li><a  id="my-service-btn"><i class="h3 icon-mystuff"></i><span class="ng-binding">My Services</span></a></li>
+          </ul>
+        </nav>
+        <!-- ngIf: visible -->
+        <div class="st-content">
+          <div class="st-content-inner app-wrapper">
+            <div class="navbar navbar-default navbar-fixed-top bs-docs-nav navbar-shadow" id="navbar" ng-class="{'security':org.securityLevel}"><!-- ngIf: org.securityLevel -->
+              <div>
+                <div class="row">
+                  <div class="col-xs-8"><!-- ngInclude:  -->
+                    <div class="full-width ng-scope" ng-include="" src="'views/common/header/navigation.html'"><a  class="navbar-brand full-width ellipses ng-scope" id="nav_home" aria-label="Dashboard" ng-hotkeys="ctrl+shift+1" ><img ng-src="images/HP_Blue_RGB_150_MN.png" height="48" alt="" src="images/HP_Blue_RGB_150_MN.png"> <span class="ng-binding">Cloud Service Automation</span></a></div>
+                  </div>
+                  <div class="col-xs-2"><a  id="cart-btn" class="navbar-brand ellipses full-width" aria-label="Shopping Cart" ng-hotkeys="ctrl+shift+2" ng-hotkeys-click="">
+                    <div class="btn-primary glyph-btn compact"><i class="icon-cart"></i></div>
+                    <span translate="cart.items" translate-values="{&quot;count&quot;:0,&quot;NUMBER&quot;:0}" translate-interpolation="messageformat" class="ng-scope">0 Items</span></a></div>
+                  <div class="col-xs-2"><!-- ngInclude:  -->
+                    <div ng-include="" src="'views/common/header/user.html'" class="ng-scope">
+                      <div class="navbar-header dropdown navbar-nav full-width ng-scope"><a  class="navbar-brand dropdown-toggle full-width ellipses" data-toggle="dropdown" role="button" id="nav_dropdown" aria-label="Log Out">
+                        <div class="btn-info glyph-btn" ng-style="avatarStyle"><!-- ngIf: !avatarStyle --><i ng-if="!avatarStyle" class="icon-user ng-scope"></i><!-- end ngIf: !avatarStyle --></div>
+                        <span class="ng-binding">consumer</span></a>
+                        <ul class="dropdown-menu pull-right" role="menu">
+                          <li role="presentation"><a  role="menuitem" target="_blank" translate="common.assistance" class="ng-scope">Help</a></li>
+                          <li role="presentation" class="divider"></li>
+                          <li role="presentation"><a  role="menuitem" translate="common.about" id="about" ng-click="showAbout()" class="ng-scope">About</a></li>
+                          <li role="presentation" class="divider"></li>
+                          <li role="presentation"><a  role="menuitem" translate="common.logout" id="logout" target="_self" ng-click="logout()" class="ng-scope">Log Out</a></li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row sub-nav">
+                  <div class="col-xs-8">
+                    <ul class="nav navbar-nav">
+                      <!-- ngIf: !hideSidebar -->
+                      <li ng-if="!hideSidebar" class="ng-scope"><a id="show-sidebar"  ng-click="showSideBar()" class="compact text-center">
+                        <h3 class="icon-list"></h3>
+                        </a></li>
+                      <!-- end ngIf: !hideSidebar --><!-- ngIf: backUrl && !hideBackBtn --><!-- ngIf: !backUrl && !hideBackBtn -->
+                      <li ng-if="!backUrl &amp;&amp; !hideBackBtn" class="ng-scope"><a id="back-btn" class="compact text-center" ng-click="backClick()" onclick="history.go(-1);"><span class="h3 icon-arrow-line-back"></span> <!-- ngIf: backLabel --><span ng-if="backLabel" class="nav-label h5 ng-scope ng-binding">Browse Catalog</span><!-- end ngIf: backLabel --></a></li>
+                      <!-- end ngIf: !backUrl && !hideBackBtn --><!-- ngIf: navTitle -->
+                      <li ng-if="navTitle" class="ng-scope">
+                        <h5 id="nav-title" class="navbar-text"><span><strong class="ng-binding">Browse Catalog Details</strong></span> <!-- ngIf: itemCount !== undefined && itemCount !== null --></h5>
+                      </li>
+                      <!-- end ngIf: navTitle -->
+                    </ul>
+                  </div>
+                  <div class="col-xs-4">
+                    <h6 class="navbar-right navbar-text"><a class="navbar-link text-underline text-info ng-binding" target="_blank" >Need Help?</a></h6>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="app-content footer-padding" ng-class="{'footer-padding':hasFooter,'security-padding':org.securityLevel}">
+              <div id="scrollbox" ng-transclude="">
+                <div mpp-busy="service$get,service$post" class="ng-scope ng-isolate-scope"><!-- ngIf: activeTrackers() -->
+                  <div ng-transclude=""><!-- ngInclude: checkout.state === 'checkout' ? 'views/service/checkout-view.html' : checkout.state === 'confirmation' ? 'views/service/confirmation-view.html' : 'views/service/detail-view.html' -->
+                    <div ng-include="checkout.state === 'checkout' ? 'views/service/checkout-view.html' : checkout.state === 'confirmation' ? 'views/service/confirmation-view.html' : 'views/service/detail-view.html'" class="ng-scope">
+                      <div class="content ng-scope">
+                        <div class="container bg-content"><div class="row"><div class="col-xs-2"><div class="item-list-image"><img ng-src="images/HP%20Helion.png" alt="" src="images/HP%20Helion.png"></div></div><div class="col-xs-7"><h5><strong class="ng-binding">Helion Openstack IaaS Simple Compute</strong></h5><h5 class="ng-binding">1.3 HP Helion Openstack</h5><small class="ng-binding">Helion Openstack Iaas offering to deploy a simple compute instance</small><h6><small class="ng-binding">Published on Oct 30, 2014 5:34:28 AM</small></h6></div><div class="col-xs-1"></div><div class="col-xs-2"><h5><pricing-offering init-price="checkout.item.initPrice.price" recurring-price="checkout.item.recurringPrice.price" currency="checkout.item.recurringPrice.currency" period="checkout.item.recurringPrice.basedOn" init-price-class="h5" class="ng-isolate-scope"><span><!-- ngIf: initPrice || initPrice === 0 --><div class="compact ng-scope" ng-if="initPrice || initPrice === 0"><h5><strong><span translate="common.offeringBasePrice" translate-values="{&quot;price&quot;:&quot;$ 0.00  &quot;}" class="ng-scope">from: $ 0.00  </span></strong></h5></div><!-- end ngIf: initPrice || initPrice === 0 --><!-- ngIf: !initPrice && initPrice !== 0 --><!-- ngIf: period --><p ng-if="period" translate="common.offeringRecurringPrice" translate-values="{&quot;price&quot;:&quot;$ 0.00  &quot;,&quot;period&quot;:&quot;yearly&quot;}" class="ng-scope">+ $ 0.00   yearly</p><!-- end ngIf: period --><!-- ngIf: !period --></span></pricing-offering></h5><div class="grid-secondary-title"><h5 ng-show="service.requireApproval" class="ng-hide"><i class="icon-flag"></i><div class="text-info ng-scope" translate="services.approval">Requires Approval</div></h5></div><!-- ngIf: checkout.item.approvalRequired --></div></div><div class="row"><hr></div><!-- ngIf: checkout.item.screenshots && checkout.item.screenshots.length --><!-- ngIf: checkout.item.screenshots && checkout.item.screenshots.length --><!-- ngRepeat: attachment in checkout.item.attachments --></div>
+                      </div>
+                      <div class="content ng-scope">
+                        <div class="container bg-content">
+                          <div class="row" ng-show="checkout.item.layout &amp;&amp; checkout.item.layout.length">
+                            <div class="col-xs-10 col-sm-6 col-md-4">
+                              <h4 class="ng-binding">Show More Details is <strong class="ng-binding">On</strong></h4>
+                            </div>
+                            <div class="col-xs-2 col-md-1">
+                              <switch ng-model="showDetails" class="ng-isolate-scope ng-pristine ng-valid">
+                                <div class="switch round" tabindex="0"><input type="radio" tabindex="-1" ng-model="ngModel" ng-value="true" class="ng-pristine ng-valid" name="00T" value="true"><input type="radio" tabindex="-1" ng-model="ngModel" ng-value="false" class="ng-pristine ng-valid" name="00U" value="false"><span></span></div>
+                              </switch>
+                            </div>
+                          </div>
+                          <!-- ngIf: checkout.item.layout && checkout.item.layout.length -->
+                          <div class="row ng-scope" ng-if="checkout.item.layout &amp;&amp; checkout.item.layout.length">
+                            <hr>
+                          </div>
+                          <!-- end ngIf: checkout.item.layout && checkout.item.layout.length -->
+                          <div class="row">
+                            <form class="custom col-xs-12 ng-valid ng-dirty" name="form" ng-model="checkout.item">
+                              <dynamic-form class="ng-scope">
+                                <form-layout layout="optionModel.layout" show-details="showDetails" class="row ng-scope ng-isolate-scope" level="0" dynamic-form-trigger=""><!-- ngRepeat: child in layout -->
+                                  <div ng-repeat="child in layout" ng-switch="" on="child.type" ng-class="displayClass" class="ng-scope"><!-- ngSwitchWhen: FieldSetLayout -->
+                                    <mpp-field-set ng-class="child.displayClass" layout="child" fields="fields" show-details="showDetails" ng-switch-when="FieldSetLayout" level="1" index="0" class="ng-scope ng-isolate-scope option-container">
+                                      <div ng-class="!layout.hidden &amp;&amp; layout.visible &amp;&amp; layout.displayClass !== 'property-container' &amp;&amp; level !== '1' ? 'well-layout well-display' : ''"><!-- ngIf: level === '1' && index !== '0' -->
+                                        <div class="row" ng-show="!layout.hidden &amp;&amp; layout.visible &amp;&amp; layout.displayClass !== 'property-container'" level="1"><div class="col-xs-12"><div class="col-md-1 hidden-sm hidden-xs"><div class="form-list-image"><!-- ngIf: layout.image --><img class="img-responsive ng-scope" ng-if="layout.image" ng-src="images/Server%20Options_48.png" alt="" src="images/Server%20Options_48.png"><!-- end ngIf: layout.image --></div></div><div class="col-xs-12 col-md-9 contents"><div class="row"><!-- ngIf: layout.displayName --><h5 ng-if="layout.displayName" class="ng-scope ng-binding">OpenStack Compute Options</h5><!-- end ngIf: layout.displayName --><!-- ngIf: layout.description --><h5 ng-if="layout.description" class="ng-scope"><small class="text-muted ng-binding">OpenStack Compute Subscriber Options</small></h5><!-- end ngIf: layout.description --></div></div></div></div>
+                                        <!-- ngIf: layout.layout && layout.layout.length -->
+                                        <div ng-if="layout.layout &amp;&amp; layout.layout.length" class="ng-scope">
+                                          <recursive>
+                                            <form-layout layout="layout.layout" show-details="showDetails" level="1" display-class="layout.displayClass" class="ng-scope ng-isolate-scope"><!-- ngRepeat: child in layout -->
+                                              <div ng-repeat="child in layout" ng-switch="" on="child.type" ng-class="displayClass" class="ng-scope option-container"><!-- ngSwitchWhen: FieldSetLayout --><!-- ngSwitchWhen: FieldLayout -->
+                                                <mpp-field layout="child" field="fields[child.fieldId]" show-details="showDetails" ng-switch-when="FieldLayout" level="1" class="ng-scope ng-isolate-scope">
+                                                  <div class="row ng-valid ng-dirty" level="1" data-element="mppField" ng-form="fieldForm"><!-- ngIf: field.visible && !field.hidden -->
+                                                    <div ng-if="field.visible &amp;&amp; !field.hidden" class="col-md-1 hidden-sm hidden-xs ng-scope"></div>
+                                                    <!-- end ngIf: field.visible && !field.hidden --><!-- ngIf: field.visible && !field.hidden -->
+                                                    <div ng-if="field.visible &amp;&amp; !field.hidden" class="contents col-md-10 ng-scope  level1" ng-class="(' level'+level) + (fieldForm.$invalid ? ' has-error' : '')"><!-- ngIf: !isBoolean() && !isRadio() --><!-- ngIf: isRadio() -->
+                                                      <input name="field_5FCCC562_4DDD_BA17_DA39_7224C5D4ED0B_group" type="radio" class="form-control ng-scope ng-valid ng-dirty" id="field_8a80800c495880210149596dda913b32" value="55F06375_5603_608C_B828_7224C5D426DE" checked mpp-name="layout.group" ng-if="isRadio()" ng-model="groupModel.value" ng-value="field.name" ng-disabled="field.disabled" mpp-grouped-field="">
+                                                      <!-- end ngIf: isRadio() --><!-- ngIf: isText() --><!-- ngIf: isTextArea() --><!-- ngIf: isConfidential() --><!-- ngIf: isBoolean() --><!-- ngIf: isInteger() --><!-- ngIf: isDateTime() --><!-- ngIf: isDate() --> <!-- ngIf: isTime() --> <!-- ngIf: isList() --><!-- ngIf: isMultiList() --><!-- ngIf: isBoolean() || isRadio() -->
+                                                      <label ng-if="isBoolean() || isRadio()" class="control-label ng-scope" for="field_8a80800c495880210149596dda913b32">
+                                                      <span></span>
+                                                      <h6>
+                                                        <div class="row">
+                                                          <div class="col-xs-6"><span class="ng-binding">Server Group Configurations</span><h6 ng-show="showDetails" class=""><small class="text-muted ng-binding">Server Group Configurations</small></h6></div>
+                                                          <div class="col-xs-6"><!-- ngIf: hasPricing() --><span ng-if="hasPricing()" class="text-link ng-scope">
+                                                            <div class="inline-block"><span class="compact">
+                                                              <h6>
+                                                                <pricing-label init-price="field.initPrice.price" recurring-price="field.recurringPrice.price" period="field.recurringPrice.basedOn" currency="field.recurringPrice.currency" price-class="bold" class="ng-isolate-scope"><span class="inline-block"><span ng-transclude=""></span> <!-- ngIf: initialLabel --> <!-- ngIf: !initialLabel --><span ng-if="!initialLabel" ng-class="labelClass" class="ng-scope ng-binding">Initial Price:</span><!-- end ngIf: !initialLabel --> <!-- ngIf: initPrice || initPrice === 0 --><span data-element="initPrice" ng-class="priceClass" ng-if="initPrice || initPrice === 0" class="ng-scope ng-binding bold">$ 0.00 </span><!-- end ngIf: initPrice || initPrice === 0 --> <!-- ngIf: !initPrice && initPrice !== 0 --><br>
+                                                                  <!-- ngIf: recurringLabel --> <!-- ngIf: !recurringLabel --><span ng-if="!recurringLabel" ng-class="labelClass" class="ng-scope ng-binding">Recurring Price:</span><!-- end ngIf: !recurringLabel --> <!-- ngIf: period --><span ng-class="priceClass" ng-if="period" translate="period.priceRecurring" translate-values="{&quot;price&quot;:&quot;$ 0.00  &quot;,&quot;period&quot;:&quot;monthly&quot;}" class="ng-scope bold">$ 0.00   monthly</span><!-- end ngIf: period --> <!-- ngIf: !period --></span></pricing-label>
+                                                              </h6>
+                                                              </span></div>
+                                                            </span><!-- end ngIf: hasPricing() --></div>
+                                                        </div>
+                                                      </h6>
+                                                      </label>
+                                                      <!-- end ngIf: isBoolean() || isRadio() --><!-- ngIf: fieldForm.$invalid --></div>
+                                                    <!-- end ngIf: field.visible && !field.hidden --></div>
+                                                </mpp-field>
+                                              </div>
+                                              <!-- end ngRepeat: child in layout -->
+                                              <div ng-repeat="child in layout" ng-switch="" on="child.type" ng-class="displayClass" class="ng-scope option-container"><!-- ngSwitchWhen: FieldSetLayout -->
+                                                <mpp-field-set ng-class="child.displayClass" layout="child" fields="fields" show-details="showDetails" ng-switch-when="FieldSetLayout" level="2" index="1" class="ng-scope ng-isolate-scope property-container">
+                                                  <div ng-class="!layout.hidden &amp;&amp; layout.visible &amp;&amp; layout.displayClass !== 'property-container' &amp;&amp; level !== '1' ? 'well-layout well-display' : ''"><!-- ngIf: level === '1' && index !== '0' -->
+                                                    <div class="row ng-hide" ng-show="!layout.hidden &amp;&amp; layout.visible &amp;&amp; layout.displayClass !== 'property-container'" level="2">
+                                                      <div class="col-xs-12">
+                                                        <div class="col-md-1 hidden-sm hidden-xs">
+                                                          <div class="form-list-image"><!-- ngIf: layout.image --></div>
+                                                        </div>
+                                                        <div class="col-xs-12 col-md-9 contents">
+                                                          <div class="row"><!-- ngIf: layout.displayName --><!-- ngIf: layout.description --></div>
+                                                        </div>
+                                                      </div>
+                                                    </div>
+                                                    <!-- ngIf: layout.layout && layout.layout.length -->
+                                                    <div ng-if="layout.layout &amp;&amp; layout.layout.length" class="ng-scope">
+                                                      <recursive>
+                                                        <form-layout layout="layout.layout" show-details="showDetails" level="1" display-class="layout.displayClass" class="ng-scope ng-isolate-scope"><!-- ngRepeat: child in layout -->
+                                                          <div ng-repeat="child in layout" ng-switch="" on="child.type" ng-class="displayClass" class="ng-scope property-container"><!-- ngSwitchWhen: FieldSetLayout --><!-- ngSwitchWhen: FieldLayout -->
+                                                            <mpp-field layout="child" field="fields[child.fieldId]" show-details="showDetails" ng-switch-when="FieldLayout" level="1" class="ng-scope ng-isolate-scope">
+                                                              <div class="row ng-pristine ng-valid" level="1" data-element="mppField" ng-form="fieldForm"><!-- ngIf: field.visible && !field.hidden -->
+                                                                <div ng-if="field.visible &amp;&amp; !field.hidden" class="col-md-1 hidden-sm hidden-xs ng-scope"></div>
+                                                                <!-- end ngIf: field.visible && !field.hidden --><!-- ngIf: field.visible && !field.hidden -->
+                                                                <div ng-if="field.visible &amp;&amp; !field.hidden" class="contents col-md-10 ng-scope  level1" ng-class="(' level'+level) + (fieldForm.$invalid ? ' has-error' : '')"><!-- ngIf: !isBoolean() && !isRadio() -->
+                                                                  <label class="control-label ng-scope" ng-if="!isBoolean() &amp;&amp; !isRadio()" for="field_8a80800c495880210149596dda9b3b35">
+                                                                  <span></span>
+                                                                  <h6><span data-element="displayName" class="ng-binding">1. Region</span> <span>&nbsp;</span> <!-- ngIf: hasPricing() --></h6>
+                                                                  <h6 ng-show="showDetails" class=""><small class="text-muted ng-binding">Regions</small></h6>
+                                                                  </label>
+                                                                  <!-- end ngIf: !isBoolean() && !isRadio() --><!-- ngIf: isRadio() --><!-- ngIf: isText() --><!-- ngIf: isTextArea() --><!-- ngIf: isConfidential() --><!-- ngIf: isBoolean() --><!-- ngIf: isInteger() --><!-- ngIf: isDateTime() --><!-- ngIf: isDate() --> <!-- ngIf: isTime() --> <!-- ngIf: isList() -->
+                                                                  <div ng-if="isList()" class="row ng-scope">
+                                                                    <div class="col-xs-12 col-md-7">
+                                                                      <div class="select select-primary">
+                                                                        <select mpp-name="layout.fieldId" class="btn btn-primary form-control ng-pristine ng-valid ng-valid-required" ng-model="field.value" ng-disabled="field.disabled" ng-required="required()" ng-options="property.value as property.pricingName for property in field.availableValues" name="field_8a80800c495880210149596dda9b3b35" required="required">
+                                                                          <option value="" translate="common.selectOne" class="">Select</option>
+                                                                          <option value="0" selected="selected">us-west-1</option>
+                                                                        </select>
+                                                                      </div>
+                                                                    </div>
+                                                                  </div>
+                                                                  <!-- end ngIf: isList() --><!-- ngIf: isMultiList() --><!-- ngIf: isBoolean() || isRadio() --><!-- ngIf: fieldForm.$invalid --></div>
+                                                                <!-- end ngIf: field.visible && !field.hidden --></div>
+                                                            </mpp-field>
+                                                          </div>
+                                                          <!-- end ngRepeat: child in layout -->
+                                                          <div ng-repeat="child in layout" ng-switch="" on="child.type" ng-class="displayClass" class="ng-scope property-container"><!-- ngSwitchWhen: FieldSetLayout --><!-- ngSwitchWhen: FieldLayout -->
+                                                            <mpp-field layout="child" field="fields[child.fieldId]" show-details="showDetails" ng-switch-when="FieldLayout" level="1" class="ng-scope ng-isolate-scope">
+                                                              <div class="row ng-pristine ng-valid" level="1" data-element="mppField" ng-form="fieldForm"><!-- ngIf: field.visible && !field.hidden -->
+                                                                <div ng-if="field.visible &amp;&amp; !field.hidden" class="col-md-1 hidden-sm hidden-xs ng-scope"></div>
+                                                                <!-- end ngIf: field.visible && !field.hidden --><!-- ngIf: field.visible && !field.hidden -->
+                                                                <div ng-if="field.visible &amp;&amp; !field.hidden" class="contents col-md-10 ng-scope  level1" ng-class="(' level'+level) + (fieldForm.$invalid ? ' has-error' : '')"><!-- ngIf: !isBoolean() && !isRadio() -->
+                                                                  <label class="control-label ng-scope" ng-if="!isBoolean() &amp;&amp; !isRadio()" for="field_8a80800c495880210149596ddaa53b3c">
+                                                                  <span></span>
+                                                                  <h6><span data-element="displayName" class="ng-binding">2. Availability Zone</span> <span>&nbsp;</span> <!-- ngIf: hasPricing() --></h6>
+                                                                  <h6 ng-show="showDetails" class=""><small class="text-muted ng-binding">Availability Zone based on region</small></h6>
+                                                                  </label>
+                                                                  <!-- end ngIf: !isBoolean() && !isRadio() --><!-- ngIf: isRadio() --><!-- ngIf: isText() --><!-- ngIf: isTextArea() --><!-- ngIf: isConfidential() --><!-- ngIf: isBoolean() --><!-- ngIf: isInteger() --><!-- ngIf: isDateTime() --><!-- ngIf: isDate() --> <!-- ngIf: isTime() --> <!-- ngIf: isList() -->
+                                                                  <div ng-if="isList()" class="row ng-scope">
+                                                                    <div class="col-xs-12 col-md-7">
+                                                                      <div class="select select-primary">
+                                                                        <select mpp-name="layout.fieldId" class="btn btn-primary form-control ng-pristine ng-valid ng-valid-required" ng-model="field.value" ng-disabled="field.disabled" ng-required="required()" ng-options="property.value as property.pricingName for property in field.availableValues" name="field_8a80800c495880210149596ddaa53b3c" required="required">
+                                                                          <option value="" translate="common.selectOne" class="">Select</option>
+                                                                          <option value="0" selected="selected">a</option>
+                                                                        </select>
+                                                                      </div>
+                                                                    </div>
+                                                                  </div>
+                                                                  <!-- end ngIf: isList() --><!-- ngIf: isMultiList() --><!-- ngIf: isBoolean() || isRadio() --><!-- ngIf: fieldForm.$invalid --></div>
+                                                                <!-- end ngIf: field.visible && !field.hidden --></div>
+                                                            </mpp-field>
+                                                          </div>
+                                                          <!-- end ngRepeat: child in layout -->
+                                                          <div ng-repeat="child in layout" ng-switch="" on="child.type" ng-class="displayClass" class="ng-scope property-container"><!-- ngSwitchWhen: FieldSetLayout --><!-- ngSwitchWhen: FieldLayout -->
+                                                            <mpp-field layout="child" field="fields[child.fieldId]" show-details="showDetails" ng-switch-when="FieldLayout" level="1" class="ng-scope ng-isolate-scope">
+                                                              <div class="row ng-pristine ng-valid" level="1" data-element="mppField" ng-form="fieldForm"><!-- ngIf: field.visible && !field.hidden -->
+                                                                <div ng-if="field.visible &amp;&amp; !field.hidden" class="col-md-1 hidden-sm hidden-xs ng-scope"></div>
+                                                                <!-- end ngIf: field.visible && !field.hidden --><!-- ngIf: field.visible && !field.hidden -->
+                                                                <div ng-if="field.visible &amp;&amp; !field.hidden" class="contents col-md-10 ng-scope  level1" ng-class="(' level'+level) + (fieldForm.$invalid ? ' has-error' : '')"><!-- ngIf: !isBoolean() && !isRadio() -->
+                                                                  <label class="control-label ng-scope" ng-if="!isBoolean() &amp;&amp; !isRadio()" for="field_8a80800c495880210149596ddab03b43">
+                                                                  <span></span>
+                                                                  <h6><span data-element="displayName" class="ng-binding">3. Key Pair</span> <span>&nbsp;</span> <!-- ngIf: hasPricing() --></h6>
+                                                                  <h6 ng-show="showDetails" class=""><small class="text-muted ng-binding">Key Pair</small></h6>
+                                                                  </label>
+                                                                  <!-- end ngIf: !isBoolean() && !isRadio() --><!-- ngIf: isRadio() --><!-- ngIf: isText() --><!-- ngIf: isTextArea() --><!-- ngIf: isConfidential() --><!-- ngIf: isBoolean() --><!-- ngIf: isInteger() --><!-- ngIf: isDateTime() --><!-- ngIf: isDate() --> <!-- ngIf: isTime() --> <!-- ngIf: isList() -->
+                                                                  <div ng-if="isList()" class="row ng-scope">
+                                                                    <div class="col-xs-12 col-md-7">
+                                                                      <div class="select select-primary">
+                                                                        <select mpp-name="layout.fieldId" class="btn btn-primary form-control ng-pristine ng-valid ng-valid-required" ng-model="field.value" ng-disabled="field.disabled" ng-required="required()" ng-options="property.value as property.pricingName for property in field.availableValues" name="field_8a80800c495880210149596ddab03b43" required="required">
+                                                                          <option value="" translate="common.selectOne" class="">Select</option>
+                                                                          <option value="0" selected="selected">csl</option>
+                                                                        </select>
+                                                                      </div>
+                                                                    </div>
+                                                                  </div>
+                                                                  <!-- end ngIf: isList() --><!-- ngIf: isMultiList() --><!-- ngIf: isBoolean() || isRadio() --><!-- ngIf: fieldForm.$invalid --></div>
+                                                                <!-- end ngIf: field.visible && !field.hidden --></div>
+                                                            </mpp-field>
+                                                          </div>
+                                                          <!-- end ngRepeat: child in layout -->
+                                                          <div ng-repeat="child in layout" ng-switch="" on="child.type" ng-class="displayClass" class="ng-scope property-container"><!-- ngSwitchWhen: FieldSetLayout --><!-- ngSwitchWhen: FieldLayout -->
+                                                            <mpp-field layout="child" field="fields[child.fieldId]" show-details="showDetails" ng-switch-when="FieldLayout" level="1" class="ng-scope ng-isolate-scope">
+                                                              <div class="row ng-pristine ng-valid" level="1" data-element="mppField" ng-form="fieldForm"><!-- ngIf: field.visible && !field.hidden -->
+                                                                <div ng-if="field.visible &amp;&amp; !field.hidden" class="col-md-1 hidden-sm hidden-xs ng-scope"></div>
+                                                                <!-- end ngIf: field.visible && !field.hidden --><!-- ngIf: field.visible && !field.hidden -->
+                                                                <div ng-if="field.visible &amp;&amp; !field.hidden" class="contents col-md-10 ng-scope  level1" ng-class="(' level'+level) + (fieldForm.$invalid ? ' has-error' : '')"><!-- ngIf: !isBoolean() && !isRadio() -->
+                                                                  <label class="control-label ng-scope" ng-if="!isBoolean() &amp;&amp; !isRadio()" for="field_8a80800c495880210149596ddabb3b4a">
+                                                                  <span></span>
+                                                                  <h6><span data-element="displayName" class="ng-binding">4. Platform Type</span> <span>&nbsp;</span> <!-- ngIf: hasPricing() --></h6>
+                                                                  <h6 ng-show="showDetails" class=""><small class="text-muted ng-binding">Platform Type based on region</small></h6>
+                                                                  </label>
+                                                                  <!-- end ngIf: !isBoolean() && !isRadio() --><!-- ngIf: isRadio() --><!-- ngIf: isText() --><!-- ngIf: isTextArea() --><!-- ngIf: isConfidential() --><!-- ngIf: isBoolean() --><!-- ngIf: isInteger() --><!-- ngIf: isDateTime() --><!-- ngIf: isDate() --> <!-- ngIf: isTime() --> <!-- ngIf: isList() -->
+                                                                  <div ng-if="isList()" class="row ng-scope">
+                                                                    <div class="col-xs-12 col-md-7">
+                                                                      <div class="select select-primary">
+                                                                        <select mpp-name="layout.fieldId" class="btn btn-primary form-control ng-pristine ng-valid ng-valid-required" ng-model="field.value" ng-disabled="field.disabled" ng-required="required()" ng-options="property.value as property.pricingName for property in field.availableValues" name="field_8a80800c495880210149596ddabb3b4a" required="required">
+                                                                          <option value="" translate="common.selectOne" class="">Select</option>
+                                                                          <option value="0" selected="selected">Linux</option>
+                                                                        </select>
+                                                                      </div>
+                                                                    </div>
+                                                                  </div>
+                                                                  <!-- end ngIf: isList() --><!-- ngIf: isMultiList() --><!-- ngIf: isBoolean() || isRadio() --><!-- ngIf: fieldForm.$invalid --></div>
+                                                                <!-- end ngIf: field.visible && !field.hidden --></div>
+                                                            </mpp-field>
+                                                          </div>
+                                                          <!-- end ngRepeat: child in layout -->
+                                                          <div ng-repeat="child in layout" ng-switch="" on="child.type" ng-class="displayClass" class="ng-scope property-container"><!-- ngSwitchWhen: FieldSetLayout --><!-- ngSwitchWhen: FieldLayout -->
+                                                            <mpp-field layout="child" field="fields[child.fieldId]" show-details="showDetails" ng-switch-when="FieldLayout" level="1" class="ng-scope ng-isolate-scope">
+                                                              <div class="row ng-pristine ng-valid" level="1" data-element="mppField" ng-form="fieldForm"><!-- ngIf: field.visible && !field.hidden -->
+                                                                <div ng-if="field.visible &amp;&amp; !field.hidden" class="col-md-1 hidden-sm hidden-xs ng-scope"></div>
+                                                                <!-- end ngIf: field.visible && !field.hidden --><!-- ngIf: field.visible && !field.hidden -->
+                                                                <div ng-if="field.visible &amp;&amp; !field.hidden" class="contents col-md-10 ng-scope  level1" ng-class="(' level'+level) + (fieldForm.$invalid ? ' has-error' : '')"><!-- ngIf: !isBoolean() && !isRadio() -->
+                                                                  <label class="control-label ng-scope" ng-if="!isBoolean() &amp;&amp; !isRadio()" for="field_8a80800c495880210149596ddac63b51">
+                                                                  <span></span>
+                                                                  <h6><span data-element="displayName" class="ng-binding">5. Image</span> <span>&nbsp;</span> <!-- ngIf: hasPricing() --></h6>
+                                                                  <h6 ng-show="showDetails" class=""><small class="text-muted ng-binding">Image for region</small></h6>
+                                                                  </label>
+                                                                  <!-- end ngIf: !isBoolean() && !isRadio() --><!-- ngIf: isRadio() --><!-- ngIf: isText() --><!-- ngIf: isTextArea() --><!-- ngIf: isConfidential() --><!-- ngIf: isBoolean() --><!-- ngIf: isInteger() --><!-- ngIf: isDateTime() --><!-- ngIf: isDate() --> <!-- ngIf: isTime() --> <!-- ngIf: isList() -->
+                                                                  <div ng-if="isList()" class="row ng-scope">
+                                                                    <div class="col-xs-12 col-md-7">
+                                                                      <div class="select select-primary">
+                                                                        <select mpp-name="layout.fieldId" class="btn btn-primary form-control ng-pristine ng-valid ng-valid-required" ng-model="field.value" ng-disabled="field.disabled" ng-required="required()" ng-options="property.value as property.pricingName for property in field.availableValues" name="field_8a80800c495880210149596ddac63b51" required="required">
+                                                                          <option value="" translate="common.selectOne" class="">Select</option>
+                                                                          <option value="0" selected="selected">ami-9b6e64de</option>
+                                                                        </select>
+                                                                      </div>
+                                                                    </div>
+                                                                  </div>
+                                                                  <!-- end ngIf: isList() --><!-- ngIf: isMultiList() --><!-- ngIf: isBoolean() || isRadio() --><!-- ngIf: fieldForm.$invalid --></div>
+                                                                <!-- end ngIf: field.visible && !field.hidden --></div>
+                                                            </mpp-field>
+                                                          </div>
+                                                          <!-- end ngRepeat: child in layout -->
+                                                          <div ng-repeat="child in layout" ng-switch="" on="child.type" ng-class="displayClass" class="ng-scope property-container"><!-- ngSwitchWhen: FieldSetLayout --><!-- ngSwitchWhen: FieldLayout -->
+                                                            <mpp-field layout="child" field="fields[child.fieldId]" show-details="showDetails" ng-switch-when="FieldLayout" level="1" class="ng-scope ng-isolate-scope">
+                                                              <div class="row ng-pristine ng-valid" level="1" data-element="mppField" ng-form="fieldForm"><!-- ngIf: field.visible && !field.hidden -->
+                                                                <div ng-if="field.visible &amp;&amp; !field.hidden" class="col-md-1 hidden-sm hidden-xs ng-scope"></div>
+                                                                <!-- end ngIf: field.visible && !field.hidden --><!-- ngIf: field.visible && !field.hidden -->
+                                                                <div ng-if="field.visible &amp;&amp; !field.hidden" class="contents col-md-10 ng-scope  level1" ng-class="(' level'+level) + (fieldForm.$invalid ? ' has-error' : '')"><!-- ngIf: !isBoolean() && !isRadio() -->
+                                                                  <label class="control-label ng-scope" ng-if="!isBoolean() &amp;&amp; !isRadio()" for="field_8a80800c495880210149596ddae03b58">
+                                                                  <span></span>
+                                                                  <h6><span data-element="displayName" class="ng-binding">6. Server Size</span> <span>&nbsp;</span> <!-- ngIf: hasPricing() --></h6>
+                                                                  <h6 ng-show="showDetails" class=""><small class="text-muted ng-binding"></small></h6>
+                                                                  </label>
+                                                                  <!-- end ngIf: !isBoolean() && !isRadio() --><!-- ngIf: isRadio() --><!-- ngIf: isText() --><!-- ngIf: isTextArea() --><!-- ngIf: isConfidential() --><!-- ngIf: isBoolean() --><!-- ngIf: isInteger() --><!-- ngIf: isDateTime() --><!-- ngIf: isDate() --> <!-- ngIf: isTime() --> <!-- ngIf: isList() -->
+                                                                  <div ng-if="isList()" class="row ng-scope">
+                                                                    <div class="col-xs-12 col-md-7">
+                                                                      <div class="select select-primary">
+                                                                        <select mpp-name="layout.fieldId" class="btn btn-primary form-control ng-pristine ng-valid ng-valid-required" ng-model="field.value" ng-disabled="field.disabled" ng-required="required()" ng-options="property.value as property.pricingName for property in field.availableValues" name="field_8a80800c495880210149596ddae03b58" required="required">
+                                                                          <option value="" translate="common.selectOne" class="">Select</option>
+                                                                          <option value="0">Large</option>
+                                                                          <option value="1">Medium</option>
+                                                                          <option value="2">Micro</option>
+                                                                          <option value="3" selected="selected">Small</option>
+                                                                        </select>
+                                                                      </div>
+                                                                    </div>
+                                                                  </div>
+                                                                  <!-- end ngIf: isList() --><!-- ngIf: isMultiList() --><!-- ngIf: isBoolean() || isRadio() --><!-- ngIf: fieldForm.$invalid --></div>
+                                                                <!-- end ngIf: field.visible && !field.hidden --></div>
+                                                            </mpp-field>
+                                                          </div>
+                                                          <!-- end ngRepeat: child in layout -->
+                                                          <div ng-repeat="child in layout" ng-switch="" on="child.type" ng-class="displayClass" class="ng-scope property-container"><!-- ngSwitchWhen: FieldSetLayout --><!-- ngSwitchWhen: FieldLayout -->
+                                                            <mpp-field layout="child" field="fields[child.fieldId]" show-details="showDetails" ng-switch-when="FieldLayout" level="1" class="ng-scope ng-isolate-scope">
+                                                              <div class="row ng-pristine ng-valid" level="1" data-element="mppField" ng-form="fieldForm"><!-- ngIf: field.visible && !field.hidden -->
+                                                                <div ng-if="field.visible &amp;&amp; !field.hidden" class="col-md-1 hidden-sm hidden-xs ng-scope"></div>
+                                                                <!-- end ngIf: field.visible && !field.hidden --><!-- ngIf: field.visible && !field.hidden -->
+                                                                <div ng-if="field.visible &amp;&amp; !field.hidden" class="contents col-md-10 ng-scope  level1" ng-class="(' level'+level) + (fieldForm.$invalid ? ' has-error' : '')"><!-- ngIf: !isBoolean() && !isRadio() -->
+                                                                  <label class="control-label ng-scope" ng-if="!isBoolean() &amp;&amp; !isRadio()" for="field_8a80800c495880210149596ddae63b68">
+                                                                  <span></span>
+                                                                  <h6><span data-element="displayName" class="ng-binding">7. Number Of Servers</span> <span>&nbsp;</span> <!-- ngIf: hasPricing() --></h6>
+                                                                  <h6 ng-show="showDetails" class=""><small class="text-muted ng-binding">Number Of Servers</small></h6>
+                                                                  </label>
+                                                                  <!-- end ngIf: !isBoolean() && !isRadio() --><!-- ngIf: isRadio() --><!-- ngIf: isText() --><!-- ngIf: isTextArea() --><!-- ngIf: isConfidential() --><!-- ngIf: isBoolean() --><!-- ngIf: isInteger() -->
+                                                                  <div class="row ng-scope" ng-if="isInteger()">
+                                                                    <div class="col-xs-13 col-md-7">
+                                                                      <input mpp-name="layout.fieldId" class="form-control ng-pristine ng-valid ng-valid-number ng-valid-max ng-valid-min ng-valid-integer" type="number" id="field_8a80800c495880210149596ddae63b68" ng-model="field.value" min="0" max="100" ng-disabled="field.disabled" integer="" name="field_8a80800c495880210149596ddae63b68">
+                                                                    </div>
+                                                                  </div>
+                                                                  <!-- end ngIf: isInteger() --><!-- ngIf: isDateTime() --><!-- ngIf: isDate() --> <!-- ngIf: isTime() --> <!-- ngIf: isList() --><!-- ngIf: isMultiList() --><!-- ngIf: isBoolean() || isRadio() --><!-- ngIf: fieldForm.$invalid --></div>
+                                                                <!-- end ngIf: field.visible && !field.hidden --></div>
+                                                            </mpp-field>
+                                                          </div>
+                                                          <!-- end ngRepeat: child in layout -->
+                                                          <div ng-repeat="child in layout" ng-switch="" on="child.type" ng-class="displayClass" class="ng-scope property-container"><!-- ngSwitchWhen: FieldSetLayout --><!-- ngSwitchWhen: FieldLayout -->
+                                                            <mpp-field layout="child" field="fields[child.fieldId]" show-details="showDetails" ng-switch-when="FieldLayout" level="1" class="ng-scope ng-isolate-scope">
+                                                              <div class="row ng-pristine ng-valid" level="1" data-element="mppField" ng-form="fieldForm"><!-- ngIf: field.visible && !field.hidden -->
+                                                                <div ng-if="field.visible &amp;&amp; !field.hidden" class="col-md-1 hidden-sm hidden-xs ng-scope"></div>
+                                                                <!-- end ngIf: field.visible && !field.hidden --><!-- ngIf: field.visible && !field.hidden -->
+                                                                <div ng-if="field.visible &amp;&amp; !field.hidden" class="contents col-md-10 ng-scope  level1" ng-class="(' level'+level) + (fieldForm.$invalid ? ' has-error' : '')"><!-- ngIf: !isBoolean() && !isRadio() -->
+                                                                  <label class="control-label ng-scope" ng-if="!isBoolean() &amp;&amp; !isRadio()" for="field_8a80800c495880210149596ddaf13b6b">
+                                                                  <span></span>
+                                                                  <h6><span data-element="displayName" class="ng-binding">8.Add Load Balancing</span> <span>&nbsp;</span> <!-- ngIf: hasPricing() --></h6>
+                                                                  <h6 ng-show="showDetails" class=""><small class="text-muted ng-binding">Choose from No load balancing, Create a new load balancer or Use an existing load balancer</small></h6>
+                                                                  </label>
+                                                                  <!-- end ngIf: !isBoolean() && !isRadio() --><!-- ngIf: isRadio() --><!-- ngIf: isText() --><!-- ngIf: isTextArea() --><!-- ngIf: isConfidential() --><!-- ngIf: isBoolean() --><!-- ngIf: isInteger() --><!-- ngIf: isDateTime() --><!-- ngIf: isDate() --> <!-- ngIf: isTime() --> <!-- ngIf: isList() -->
+                                                                  <div ng-if="isList()" class="row ng-scope">
+                                                                    <div class="col-xs-12 col-md-7">
+                                                                      <div class="select select-primary">
+                                                                        <select mpp-name="layout.fieldId" class="btn btn-primary form-control ng-pristine ng-valid ng-valid-required" ng-model="field.value" ng-disabled="field.disabled" ng-required="required()" ng-options="property.value as property.pricingName for property in field.availableValues" name="field_8a80800c495880210149596ddaf13b6b" required="required">
+                                                                          <option value="" translate="common.selectOne" class="">Select</option>
+                                                                          <option value="0" selected="selected">None</option>
+                                                                        </select>
+                                                                      </div>
+                                                                    </div>
+                                                                  </div>
+                                                                  <!-- end ngIf: isList() --><!-- ngIf: isMultiList() --><!-- ngIf: isBoolean() || isRadio() --><!-- ngIf: fieldForm.$invalid --></div>
+                                                                <!-- end ngIf: field.visible && !field.hidden --></div>
+                                                            </mpp-field>
+                                                          </div>
+                                                           <div ng-repeat="child in layout" ng-switch="" on="child.type" ng-class="displayClass" class="ng-scope property-container"><!-- ngSwitchWhen: FieldSetLayout --><!-- ngSwitchWhen: FieldLayout -->
+                                                            <mpp-field layout="child" field="fields[child.fieldId]" show-details="showDetails" ng-switch-when="FieldLayout" level="1" class="ng-scope ng-isolate-scope">
+                                                              <div class="row ng-pristine ng-valid" level="1" data-element="mppField" ng-form="fieldForm"><!-- ngIf: field.visible && !field.hidden -->
+                                                                <div ng-if="field.visible &amp;&amp; !field.hidden" class="col-md-1 hidden-sm hidden-xs ng-scope"></div>
+                                                                <!-- end ngIf: field.visible && !field.hidden --><!-- ngIf: field.visible && !field.hidden -->
+                                                                <div ng-if="field.visible &amp;&amp; !field.hidden" class="contents col-md-10 ng-scope  level1" ng-class="(' level'+level) + (fieldForm.$invalid ? ' has-error' : '')"><!-- ngIf: !isBoolean() && !isRadio() -->
+                                                                  <label class="control-label ng-scope" ng-if="!isBoolean() &amp;&amp; !isRadio()" for="field_8a80800c495880210149596ddaf13b6b">
+                                                                  <span></span>
+                                                                  <h6><span data-element="displayName" class="ng-binding">9.Cloud Raxak Security & Compliance Services</span> <span>&nbsp;</span> <!-- ngIf: hasPricing() --></h6>
+                                                                      <!--<h6 ng-show="showDetails" class=""><small class="text-muted ng-binding">Choose from No load balancing, Create a new load balancer or Use an existing load balancer</small></h6>-->
+                                                                  <h6 ng-show="showDetails" class=""><small class="text-muted ng-binding">Choose the profile you would like to execute on the Server</small></h6>
+                                                                  </label>
+                                                                  <!-- end ngIf: !isBoolean() && !isRadio() --><!-- ngIf: isRadio() --><!-- ngIf: isText() --><!-- ngIf: isTextArea() --><!-- ngIf: isConfidential() --><!-- ngIf: isBoolean() --><!-- ngIf: isInteger() --><!-- ngIf: isDateTime() --><!-- ngIf: isDate() --> <!-- ngIf: isTime() --> <!-- ngIf: isList() -->
+                                                                  <div ng-if="isList()" class="row ng-scope">
+                                                                    <div class="col-xs-12 col-md-7">
+                                                                      <div class="select select-primary">
+                                                                        <select id="profiles" mpp-name="layout.fieldId" class="btn btn-primary form-control ng-pristine ng-valid ng-valid-required" ng-model="field.value" ng-disabled="field.disabled" ng-required="required()" ng-options="property.value as property.pricingName for property in field.availableValues" name="field_8a80800c495880210149596ddaf13b6b" required="required">
+                                                                          <option value="" translate="common.selectOne" class="">Select</option>
+                                                                          <option value="ResettoFactoryDefault" >Reset Factory Default</option> 
+                                                                          <option value="III-AdministrativeClassified" >III - Administrative Classified</option>
+                                                                          <option value="II-MissionSupportClassified" >II - Mission Support Classified</option>
+                                                                          <option value="III-AdministrativePublic" >III - Administrative Public</option>
+                                                                          <option value="I-MissionCriticalClassified" >I - Mission Critical Classified</option>
+                                                                          <option value="III-AdministrativeSensitive" >III - Administrative Sensitive</option>
+                                                                          <option value="I-MissionCriticalSensitive" >I - Mission Critical Sensitive</option>
+                                                                          <option value="II-MissionSupportPublic" >II - Mission Support Public</option>
+                                                                          <option value="DemonstrationProfile" selected="selected">Demonstration Profile</option>
+                                                                          <option value="II-MissionSupportSensitive" >II - Mission Support Sensitive</option>
+                                                                          <option value="I-MissionCriticalPublic" >I - Mission Critical Public</option>
+                                                                        </select>
+                                                                      </div>
+                                                                   
+                                                                      <div>
+                                                                                                          <p style="padding-top:20px;">
+                                                                                                            
+                                                                                                              <input name="RadioGroup1"  type="radio" class="control-label" id="RadioGroup1_0" style="opacity:10; position:relative" value="1" checked>
+                                                                                                              Automatic Remediation 
+                                                                                                            
+                                                                                                           
+                                                                                                              <input  style="opacity:10; position:relative" class="control-label"  type="radio" name="RadioGroup1" value="0" id="RadioGroup1_1">
+                                                                                                              
+Manual Remediation
+                                                                                                            <br>
+                                                                                                          </p>
+                                                                      </div>
+                                                                      <div style="position: absolute;margin-top: -82px;margin-left: 511px;"><img src="images/crlogo.png" width="210" height="95"></div>
+                                                                        <div style="clear:both; height:20px;"></div>
+                                                                       <div class="select select-primary">
+                                                                        <select id="execution_cycles" mpp-name="layout.fieldId" class="btn btn-primary form-control ng-pristine ng-valid ng-valid-required" ng-model="field.value" ng-disabled="field.disabled" ng-required="required()" ng-options="property.value as property.pricingName for property in field.availableValues" name="field_8a80800c495880210149596ddaf13b6b" required="required">
+                                                                          <option value="" translate="common.selectOne" class="">Select</option>
+                                                                          <option value="hourly" >Hourly</option>
+                                                                          <option value="daily" selected="selected">Daily</option>
+                                                                          <option value="monthly" >Monthly</option>
+                                                                        </select>
+                                                                      </div>
+                                                                    </div>
+                                                                  
+                                                                  </div>
+                                                                  <!-- end ngIf: isList() --><!-- ngIf: isMultiList() --><!-- ngIf: isBoolean() || isRadio() --><!-- ngIf: fieldForm.$invalid --></div>
+                                                                <!-- end ngIf: field.visible && !field.hidden --></div>
+                                                            </mpp-field>
+                                                          </div>
+                                                          <!-- end ngRepeat: child in layout --></form-layout>
+                                                      </recursive>
+                                                    </div>
+                                                    <!-- end ngIf: layout.layout && layout.layout.length --></div>
+                                                </mpp-field-set>
+                                                <!-- ngSwitchWhen: FieldLayout --></div>
+                                              <!-- end ngRepeat: child in layout --></form-layout>
+                                          </recursive>
+                                        </div>
+                                        <!-- end ngIf: layout.layout && layout.layout.length --></div>
+                                    </mpp-field-set>
+                                    <!-- ngSwitchWhen: FieldLayout --></div>
+                                  <!-- end ngRepeat: child in layout --></form-layout>
+                              </dynamic-form>
+                            </form>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="push-footer ng-scope"></div>
+                      <div class="footer fixed ng-scope success" ng-class="{'success': form.$valid, 'danger': form.$invalid, 'showing-security': securityLevel}">
+                        <div class="container">
+                          <div class="row">
+                            <div class="col-xs-7"><span class="h4">
+                              <pricing-label init-price="initPrice" recurring-price="recurringPrice" period="checkout.item.recurringPrice.basedOn" currency="checkout.item.recurringPrice.currency" price-class="text-bold" initial-label="Total Initial Price" recurring-label="Total Recurring Price" class="ng-isolate-scope"><span class="inline-block"><span ng-transclude=""></span> <!-- ngIf: initialLabel --><span ng-if="initialLabel" ng-class="labelClass" class="ng-scope ng-binding">Total Initial Price:</span><!-- end ngIf: initialLabel --> <!-- ngIf: !initialLabel --> <!-- ngIf: initPrice || initPrice === 0 --><span data-element="initPrice" ng-class="priceClass" ng-if="initPrice || initPrice === 0" class="ng-scope ng-binding text-bold">$ 0.00 </span><!-- end ngIf: initPrice || initPrice === 0 --> <!-- ngIf: !initPrice && initPrice !== 0 --><br>
+                                <!-- ngIf: recurringLabel --><span ng-if="recurringLabel" ng-class="labelClass" class="ng-scope ng-binding">Total Recurring Price:</span><!-- end ngIf: recurringLabel --> <!-- ngIf: !recurringLabel --> <!-- ngIf: period --><span ng-class="priceClass" ng-if="period" translate="period.priceRecurring" translate-values="{&quot;price&quot;:&quot;$ 0.00  &quot;,&quot;period&quot;:&quot;yearly&quot;}" class="ng-scope text-bold">$ 0.00   yearly</span><!-- end ngIf: period --> <!-- ngIf: !period --></span></pricing-label>
+                              </span></div>
+                            <div class="col-xs-5 text-right">
+                              <div class="row">
+                                <div class="col-xs-6">
+                                  <div class="inline-block full-width" >
+                                    <button id="addToCartBtn" class="btn btn-block" disabled="true" ng-click="addToCart(extractOptions())" ng-disabled="form.$invalid"><i class="icon-cart"></i> <strong class="ng-binding">Cart</strong></button>
+                                  </div>
+                                </div>
+                                <div class="col-xs-6">
+                                  <div class="inline-block full-width">
+                                      <!--!<a href="myservice.html">-->
+                                          <!--<button id="checkoutButton" class="btn btn-block"   onClick="myservice.html" ng-click="myservice.html" ng-disabled="form.$invalid"><i class="icon-lock"></i> <strong class="ng-binding">Checkout</strong></button></a>-->
+                                    <button id="checkoutButton" class="btn btn-block"   onClick="ashish()" ng-click="myservice.html" ng-disabled="form.$invalid"><i class="icon-lock"></i> <strong class="ng-binding">Checkout</strong></button></a>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="ng-scope">
+                  <mpp-error-page has-error="showError.enabled" retry-callback="showError.action.apply(undefined, showError.params)" key="" params="showError.args" class="ng-isolate-scope">
+                    <div><!-- ngIf: hasError -->
+                      <div class="md-overlay"></div>
+                    </div>
+                  </mpp-error-page>
+                </div>
+              </div>
+            </div>
+            <!-- ngIf: org.securityLevel --></div>
+        </div>
+      </div>
+    </div>
+    </navbar>
+</div>
+<script src="js/jquery.js"></script> 
+<script src="js/angular.js"></script> 
+<script src="js/ui-utils.js"></script> 
+<script src="js/angular-translate.js"></script> 
+<script src="js/angular-translate-interpolation-messageformat.js"></script> 
+<script src="js/messageformat.js"></script> 
+<script src="js/angular-translate-loader-static-files.js"></script> 
+<script src="js/angular-cookies.js"></script> 
+<script src="js/currency-filter.js"></script> 
+<script src="js/sugar-full.development.js"></script> 
+<script src="js/bowser.js"></script> 
+<script src="js/modernizr.js"></script> 
+<!-- <script src="js/8070b853.scripts.js"></script>  -->
+<script src="js/e40f19e4.plugins.js"></script> 
+<script src="js/bfa7d7ae.templates.js"></script> 
+<script src="js/e4a8151c.modules.js"></script>
+<script src="appForHP.js"></script>
+</body>
+</html>

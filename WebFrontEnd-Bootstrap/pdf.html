@@ -1,0 +1,465 @@
+<!doctype html>
+<html lang='en'>
+  <head>
+    <meta charset='utf-8'>
+    <title>my first pdfmake example</title>
+    <script type="text/javascript" src="js/jquery-1.10.2.js"></script>
+    <script src='pdfmake/build/pdfmake.min.js'></script>
+    <script src='pdfmake/build/vfs_fonts.js'></script>
+    <script type="text/javascript">
+      function getSummaryInfo(osinfo) {
+          var summary = [];
+          var length = Object.keys(osinfo).length;
+          if (length) {
+              var data = {};
+              //data = [{text: 'Server Name', style: 'tableHeader'}, {text: 'centosVM (raxak@192.168.122.138)'}];
+              summary.push({text: 'Server Name', style: 'tableHeader'}, {text: 'centosVM (raxak@192.168.122.138)'});
+              summary.push({text: 'Server Name', style: 'tableHeader'}, {text: 'centosVM (raxak@192.168.122.138)'});
+              $.each(osinfo, function (key, val) {
+                  //console.log('index ::', key);
+                  //console.log('response key ::', val);
+                  //var obj = {text: key, style: 'tableHeader'}
+                  //objs.push(obj);
+                  //summary.push({text: 'Server Name', style: 'tableHeader'}, {text: 'centosVM (raxak@192.168.122.138)'});
+              });
+          }
+          var summary2 = [[{"text": "Server Name", "style": "tableHeader"}, {"text": "centosVM (raxak@192.168.122.138)"}], [{"text": "Server Name", "style": "tableHeader"}, {"text": "centosVM (raxak@192.168.122.138)"}]]
+          return summary2//[{text: 'Server Name', style: 'tableHeader'}, {text: 'centosVM (raxak@192.168.122.138)'}];
+      }
+      var image = "data:image/png;base64,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";
+      function generatePDF() {
+          var reportData = "eJx1jl1rwkAQRf%2FKsM8ibtoGmyehohQaEJG%2ByhDHdDG7G2YnRZH%2B92bix4MgLAzLPYd7z6bFmrbipCFTgPloYreDNR7xAHMSdA31X2ojixmB6RJxQE%2BfK4VZsZl9z8Y2n45t1t%2BXqWI1SXDVQUnlKgoS03ep0VB3C3bXhi3fG5CrH0e%2F9BXrheMkigl39JBtnKck6NulH5AFOyjxBNmkfzYH%2B1a85kVm4Zl3lUZqXES1JoUdrGW5GcZy3Pf7bnPn5GNIwiguBlhdQvP3D3TsZe0%3D";
+          var report_type = 'full_report';
+          if (reportData) {
+              var url = '/raxakapi/v1/getReportPDF';
+              $.ajax({
+                  dataType: 'json',
+                  method: "POST",
+                  data: {reportData: reportData},
+                  url: url,
+                  success: function (response) {
+                      console.log('response :: ', response);
+//                      console.log('severitys :: ', response.severity);
+                      var osinfo = response.osinfo;
+                      var severity = response.severity;
+                      console.log('severity :: ', severity.passed.high);
+                      //console.log('response summary main ', JSON.stringify(summary));
+                      //return false;
+                      var ruletxt = 'The noexec option must be added to removable media partitions.\n\ Remote: executing checkRule38655 Finding all the entries that start with /dev and UUID to find the ID_BUS of the removable media partitions mounted on system.\n\ # grep "UUID\|/dev" /etc/fstab | grep -v "^#" > /dev/mapper/VolGroup-lv_root / ext4 defaults 1 1 > UUID=d2feb240-b340-4d20-a630-cc8c49397346 /boot ext4 defaults 1 2 \n\ > /dev/mapper/VolGroup-lv_swap swap swap defaults 0 0 \n\ > tmpfs /dev/shm tmpfs defaults 0 0 > devpts /dev/pts devpts gid=5,mode=620 0 0 Finding the ID_BUS of the device /dev/mapper/VolGroup-lv_root.# udevadm info -q all -n /dev/mapper/VolGroup-lv_root| grep ID_BUS Finding the device name for UUID. # ls -l /dev/disk/by-uuid/ | grep d2feb240-b340-4d20-a630-cc8c49397346> lrwxrwxrwx. 1 root root 10 May 13 11:50 d2feb240-b340-4d20-a630-cc8c49397346 -> ../../vda1 Finding the ID_BUS of the device UUID=d2feb240-b340-4d20-a630-cc8c49397346.';
+                      var docDefinition = {
+                          content: [
+                              {
+                                  style: 'tableExample',
+                                  table: {
+                                      body: [
+                                          [
+                                              {
+                                                  colSpan: 2,
+                                                  //image: 'sampleImage.jpg',
+                                                  image: image,
+                                                  //image: 'crlogo.png',
+                                                  fit: [100, 100],
+                                                  width: 150,
+                                                  height: 150,
+                                              }, {}
+                                          ],
+                                          [{text: 'Summary Report', style: 'tableHeader', colSpan: 2, alignment: 'center'}, {}],
+                                          [{text: 'Server Name', style: 'tableHeader'}, {text: osinfo.servernames}],
+                                          [{text: 'Hostname', alignment: 'left', style: 'tableHeader'}, {text: osinfo.hostname}],
+                                          [{text: 'Operating System', alignment: 'left', style: 'tableHeader'}, {text: osinfo.os}],
+                                          [{text: 'Profile', alignment: 'left', style: 'tableHeader'}, {text: osinfo.profile}],
+                                          [{text: 'Executed On', alignment: 'left', style: 'tableHeader'}, {text: osinfo.executed}],
+                                          [{text: 'Execution Mode', alignment: 'left', style: 'tableHeader'}, {text: osinfo.mode}],
+                                          [{text: 'Code Version', alignment: 'left', style: 'tableHeader'}, {text: osinfo.version}],
+                                          [
+                                              {text: [
+                                                      {text: 'Execution Results\n', style: 'tableHeader'},
+                                                  ]
+                                              },
+                                              [
+                                                  {
+                                                      table: {
+                                                          body: [
+                                                              ['Severity', 'Passed', 'Failed', 'Manual Intervention', 'Total'],
+                                                              ['High', String(severity.passed.high), String(severity.failed.high), String(severity.manual.high), String(severity.total.high)],
+                                                              ['Medium', String(severity.passed.medium), String(severity.failed.medium), String(severity.manual.medium), String(severity.total.medium)],
+                                                              ['Low', String(severity.passed.low), String(severity.failed.low), String(severity.manual.low), String(severity.total.low)],
+                                                              ['Total', String(severity.passed.total) + '(' + String(severity.passed.percentage) + '%)', String(severity.failed.total) + '(' + String(severity.failed.percentage) + '%)', String(severity.manual.total) + '(' + String(severity.manual.percentage) + '%)', String(severity.total.totalresult) + '(100%)'],
+                                                          ]
+                                                      },
+                                                  }
+                                              ]
+                                          ],
+                                                  /*
+                                                   [{text: 'Needs manual intervention', style: 'tableHeader', colSpan: 2, alignment: 'center'}, {}],
+                                                   [
+                                                   {
+                                                   colSpan: 2,
+                                                   table: {
+                                                   body: [
+                                                   ['Rule No', 'Severity', 'Description'],
+                                                   ['V-38439', 'Medium', 'Interview the SA to determine if there is an automated system for managing user accounts, preferably integrated with an existing enterprise user management system.'],
+                                                   ['V-38440', 'High', 'Interview the SA to determine if there is an automated system for managing user accounts, preferably integrated with an existing enterprise user management system.'],
+                                                   ['V-38441', 'Low', 'Interview the SA to determine if there is an automated system for managing user accounts, preferably integrated with an existing enterprise user management system.'],
+                                                   ['V-38442', 'Medium', ruletxt],
+                                                   ]
+                                                   },
+                                                   }
+                                                   ],
+                                                   */
+                                      ]
+                                  }
+                              },
+                          ],
+                          styles: {
+                              header: {
+                                  fontSize: 18,
+                                  bold: true,
+                                  margin: [0, 0, 0, 10]
+                              },
+                              subheader: {
+                                  fontSize: 16,
+                                  bold: true,
+                                  margin: [0, 10, 0, 5]
+                              },
+                              tableExample: {
+                                  margin: [0, 5, 0, 15]
+                              },
+                              tableHeader: {
+                                  bold: true,
+                                  fontSize: 13,
+                                  color: 'black'
+                              }
+                          },
+                          defaultStyle: {
+                              // alignment: 'justify'
+                          }
+
+                      }
+
+
+
+
+
+
+
+
+
+                      pdfMake.createPdf(docDefinition).open();
+
+                      //   $('#report_container').text(data.profile);
+                  },
+                  error: function (xhr, status, err) {
+                      console.log(status, err);
+                  },
+              });
+          }
+          return false;
+
+          var ruletxt = 'The noexec option must be added to removable media partitions.\n\ Remote: executing checkRule38655 Finding all the entries that start with /dev and UUID to find the ID_BUS of the removable media partitions mounted on system.\n\ # grep "UUID\|/dev" /etc/fstab | grep -v "^#" > /dev/mapper/VolGroup-lv_root / ext4 defaults 1 1 > UUID=d2feb240-b340-4d20-a630-cc8c49397346 /boot ext4 defaults 1 2 \n\ > /dev/mapper/VolGroup-lv_swap swap swap defaults 0 0 \n\ > tmpfs /dev/shm tmpfs defaults 0 0 > devpts /dev/pts devpts gid=5,mode=620 0 0 Finding the ID_BUS of the device /dev/mapper/VolGroup-lv_root.# udevadm info -q all -n /dev/mapper/VolGroup-lv_root| grep ID_BUS Finding the device name for UUID. # ls -l /dev/disk/by-uuid/ | grep d2feb240-b340-4d20-a630-cc8c49397346> lrwxrwxrwx. 1 root root 10 May 13 11:50 d2feb240-b340-4d20-a630-cc8c49397346 -> ../../vda1 Finding the ID_BUS of the device UUID=d2feb240-b340-4d20-a630-cc8c49397346.';
+          var docDefinition = {
+              content: [
+                  'You can also fit the image inside a rectangle',
+                  {
+                      image: 'sampleImage.jpg',
+//                      image: 'crlogo.png',
+                      fit: [100, 100],
+                      width: 150,
+                      height: 150,
+                      //pageBreak: 'after'
+                  },
+                  {text: 'Tables', style: 'Cloud header'},
+                  {
+                      style: 'tableExample',
+                      table: {
+                          body: [
+                              //['Sample value 1', {colSpan: 3, rowSpan: 2, text: 'Both:\nrowSpan and colSpan\ncan be defined at the same time'}, ''],
+//                              [{text: 'http://www.cloudraxak.com', style: 'tableHeader', colSpan: 2, alignment: 'left'}, {}],
+                              [
+                                  {
+                                      colSpan: 2,
+                                      image: 'sampleImage.jpg',
+                                      //image: 'crlogo.png',
+                                      fit: [100, 100],
+                                      width: 150,
+                                      height: 150,
+                                  }, {}
+                              ],
+                              [{text: 'Detailed Report', style: 'tableHeader', colSpan: 2, alignment: 'center'}, {}],
+                              [{text: 'Server Name', style: 'tableHeader'}, {text: 'centosVM (raxak@192.168.122.138)'}],
+                              [{text: 'Hostname', alignment: 'left', style: 'tableHeader'}, {text: 'localhost.localdomain'}],
+                              [{text: 'Operating System', alignment: 'left', style: 'tableHeader'}, {text: 'Centos Release 6.5'}],
+                              [{text: 'Profile', alignment: 'left', style: 'tableHeader'}, {text: 'Demonstration Profile'}],
+                              [{text: 'Code Version', alignment: 'left', style: 'tableHeader'}, {text: 'Release-2.2_Gui_Pending/68Efe2C'}],
+                              [
+                                  {text: [
+                                          {text: 'Execution Results\n', style: 'tableHeader'},
+                                      ]
+                                  },
+                                  [
+                                      {
+                                          table: {
+                                              body: [
+                                                  ['Severity', 'Passed', 'Failed', 'Manual Intervention', 'Total'],
+                                                  ['High', '20', '30', '20', '80'],
+                                                  ['Medium', '20', '30', '20', '80'],
+                                                  ['Low', '20', '30', '20', '80'],
+                                                  ['Total', '35(76%)', '11(24%)', '11(12%)', '46(100%)'],
+                                              ]
+                                          },
+                                      }
+                                  ]
+                              ],
+                              [{text: 'Needs manual intervention', style: 'tableHeader', colSpan: 2, alignment: 'center'}, {}],
+                              [
+                                  {
+                                      colSpan: 2,
+                                      table: {
+                                          body: [
+                                              ['Rule No', 'Severity', 'Description'],
+                                              ['V-38439', 'Medium', 'Interview the SA to determine if there is an automated system for managing user accounts, preferably integrated with an existing enterprise user management system.'],
+                                              ['V-38440', 'High', 'Interview the SA to determine if there is an automated system for managing user accounts, preferably integrated with an existing enterprise user management system.'],
+                                              ['V-38441', 'Low', 'Interview the SA to determine if there is an automated system for managing user accounts, preferably integrated with an existing enterprise user management system.'],
+                                              ['V-38442', 'Medium', ruletxt],
+                                          ]
+                                      },
+                                  }
+                              ],
+                          ]
+                      }
+                  },
+                  {
+                      style: 'tableExample',
+                      table: {
+                          body: [
+                              //['Sample value 1', {colSpan: 3, rowSpan: 2, text: 'Both:\nrowSpan and colSpan\ncan be defined at the same time'}, ''],
+                              [{text: 'http://www.cloudraxak.com', style: 'tableHeader', colSpan: 3, alignment: 'left'}, {}, {text: 'Header 3', style: 'tableHeader', alignment: 'center'}],
+                              [{text: 'Detailed Report', style: 'tableHeader', colSpan: 3, alignment: 'center'}, {}, {text: 'Header 3', style: 'tableHeader', alignment: 'center'}],
+                              [{text: 'Server Name', colSpan: 2, style: 'tableHeader'}, {}, {text: 'centosVM (raxak@192.168.122.138)'}],
+                              [{text: 'Hostname', colSpan: 2, alignment: 'left', style: 'tableHeader'}, {}, {text: 'localhost.localdomain'}],
+                              [{text: 'Operating System', colSpan: 2, alignment: 'left', style: 'tableHeader'}, {}, {text: 'Centos Release 6.5'}],
+                              [{text: 'Profile', colSpan: 2, alignment: 'left', style: 'tableHeader'}, {}, {text: 'Demonstration Profile'}],
+                              [{text: 'Code Version', colSpan: 2, alignment: 'left', style: 'tableHeader'}, {}, {text: 'Release-2.2_Gui_Pending/68Efe2C'}],
+                              ['Column 1', 'Column 2', 'Column 3'],
+                              [
+                                  {
+                                      stack: [
+                                          'Let\'s try an unordered list',
+                                          {
+                                              ul: [
+                                                  'item 1',
+                                                  'item 2'
+                                              ]
+                                          }
+                                      ]
+                                  },
+                                  [
+                                      'or a nested table',
+                                      {
+                                          table: {
+                                              body: [
+                                                  ['Col1', 'Col2', 'Col3'],
+                                                  ['1', '2', '3'],
+                                                  ['1', '2', '3']
+                                              ]
+                                          },
+                                      }
+                                  ],
+                                  {text: [
+                                          'Implement an automated system for managing user accounts that minimizes the risk of errors, either intentional or deliberate. If possible, this system should integrate with an existing enterprise user management system, such as, one based Active Directory or Kerberos.',
+                                          {text: 'styled\n', italics: true},
+                                          {text: 'easily as everywhere else', fontSize: 10}]
+                                  }
+                              ]
+                          ]
+                      }
+                  },
+                  {text: 'Defining column widths', style: 'subheader'},
+                  'Tables support the same width definitions as standard columns:',
+                  {
+                      bold: true,
+                      ul: [
+                          'auto',
+                          'star',
+                          'fixed value'
+                      ]
+                  },
+                  {
+                      style: 'tableExample',
+                      table: {
+                          widths: [100, '*', 200, '*'],
+                          body: [
+                              ['width=100', 'star-sized', 'width=200', 'star-sized'],
+                              ['fixed-width cells have exactly the specified width', {text: 'nothing interesting here', italics: true, color: 'gray'}, {text: 'nothing interesting here', italics: true, color: 'gray'}, {text: 'nothing interesting here', italics: true, color: 'gray'}]
+                          ]
+                      }
+                  },
+                  {text: 'Headers', style: 'subheader'},
+                  'You can declare how many rows should be treated as a header. Headers are automatically repeated on the following pages',
+                  {text: ['It is also possible to set keepWithHeaderRows to make sure there will be no page-break between the header and these rows. Take a look at the document-definition and play with it. If you set it to one, the following table will automatically start on the next page, since there\'s not enough space for the first row to be rendered here'], color: 'gray', italics: true},
+                  {
+                      style: 'tableExample',
+                      table: {
+                          headerRows: 1,
+                          // keepWithHeaderRows: 1,
+                          // dontBreakRows: true,
+                          body: [
+                              [{text: 'Header 1', style: 'tableHeader'}, {text: 'Header 2', style: 'tableHeader'}, {text: 'Header 3', style: 'tableHeader'}],
+                              [
+                                  'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
+                              ]
+                          ]
+                      }
+                  },
+                  {text: 'Column/row spans', style: 'subheader'},
+                  'Each cell-element can set a rowSpan or colSpan',
+                  {
+                      style: 'tableExample',
+                      color: '#444',
+                      table: {
+                          widths: [200, 'auto', 'auto'],
+                          headerRows: 2,
+                          // keepWithHeaderRows: 1,
+                          body: [
+                              [{text: 'Header with Colspan = 2', style: 'tableHeader', colSpan: 2, alignment: 'center'}, {}, {text: 'Header 3', style: 'tableHeader', alignment: 'center'}],
+                              [{text: 'Header 1', style: 'tableHeader', alignment: 'center'}, {text: 'Header 2', style: 'tableHeader', alignment: 'center'}, {text: 'Header 3', style: 'tableHeader', alignment: 'center'}],
+                              ['Sample value 1', 'Sample value 2', 'Sample value 3'],
+                              [{rowSpan: 3, text: 'rowSpan set to 3\nLorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor'}, 'Sample value 2', 'Sample value 3'],
+                              ['', 'Sample value 2', 'Sample value 3'],
+                              ['Sample value 1', 'Sample value 2', 'Sample value 3'],
+                              ['Sample value 1', {colSpan: 2, rowSpan: 2, text: 'Both:\nrowSpan and colSpan\ncan be defined at the same time'}, ''],
+                              ['Sample value 1', '', ''],
+                          ]
+                      }
+                  },
+                  {text: 'Styling tables', style: 'subheader'},
+                  'You can provide a custom styler for the table. Currently it supports:',
+                  {
+                      ul: [
+                          'line widths',
+                          'line colors',
+                          'cell paddings',
+                      ]
+                  },
+                  'with more options coming soon...\n\npdfmake currently has a few predefined styles (see them on the next page)',
+                  {text: 'noBorders:', fontSize: 14, bold: true, pageBreak: 'before', margin: [0, 0, 0, 8]},
+                  {
+                      style: 'tableExample',
+                      table: {
+                          headerRows: 1,
+                          body: [
+                              [{text: 'Header 1', style: 'tableHeader'}, {text: 'Header 2', style: 'tableHeader'}, {text: 'Header 3', style: 'tableHeader'}],
+                              ['Sample value 1', 'Sample value 2', 'Sample value 3'],
+                              ['Sample value 1', 'Sample value 2', 'Sample value 3'],
+                              ['Sample value 1', 'Sample value 2', 'Sample value 3'],
+                              ['Sample value 1', 'Sample value 2', 'Sample value 3'],
+                              ['Sample value 1', 'Sample value 2', 'Sample value 3'],
+                          ]
+                      },
+                      layout: 'noBorders'
+                  },
+                  {text: 'headerLineOnly:', fontSize: 14, bold: true, margin: [0, 20, 0, 8]},
+                  {
+                      style: 'tableExample',
+                      table: {
+                          headerRows: 1,
+                          body: [
+                              [{text: 'Header 1', style: 'tableHeader'}, {text: 'Header 2', style: 'tableHeader'}, {text: 'Header 3', style: 'tableHeader'}],
+                              ['Sample value 1', 'Sample value 2', 'Sample value 3'],
+                              ['Sample value 1', 'Sample value 2', 'Sample value 3'],
+                              ['Sample value 1', 'Sample value 2', 'Sample value 3'],
+                              ['Sample value 1', 'Sample value 2', 'Sample value 3'],
+                              ['Sample value 1', 'Sample value 2', 'Sample value 3'],
+                          ]
+                      },
+                      layout: 'headerLineOnly'
+                  },
+                  {text: 'lightHorizontalLines:', fontSize: 14, bold: true, margin: [0, 20, 0, 8]},
+                  {
+                      style: 'tableExample',
+                      table: {
+                          headerRows: 1,
+                          body: [
+                              [{text: 'Header 1', style: 'tableHeader'}, {text: 'Header 2', style: 'tableHeader'}, {text: 'Header 3', style: 'tableHeader'}],
+                              ['Sample value 1', 'Sample value 2', 'Sample value 3'],
+                              ['Sample value 1', 'Sample value 2', 'Sample value 3'],
+                              ['Sample value 1', 'Sample value 2', 'Sample value 3'],
+                              ['Sample value 1', 'Sample value 2', 'Sample value 3'],
+                              ['Sample value 1', 'Sample value 2', 'Sample value 3'],
+                          ]
+                      },
+                      layout: 'lightHorizontalLines'
+                  },
+                  {text: 'but you can provide a custom styler as well', margin: [0, 20, 0, 8]},
+                  {
+                      style: 'tableExample',
+                      table: {
+                          headerRows: 1,
+                          body: [
+                              [{text: 'Header 1', style: 'tableHeader'}, {text: 'Header 2', style: 'tableHeader'}, {text: 'Header 3', style: 'tableHeader'}],
+                              ['Sample value 1', 'Sample value 2', 'Sample value 3'],
+                              ['Sample value 1', 'Sample value 2', 'Sample value 3'],
+                              ['Sample value 1', 'Sample value 2', 'Sample value 3'],
+                              ['Sample value 1', 'Sample value 2', 'Sample value 3'],
+                              ['Sample value 1', 'Sample value 2', 'Sample value 3'],
+                          ]
+                      },
+                      layout: {
+                          hLineWidth: function (i, node) {
+                              return (i === 0 || i === node.table.body.length) ? 2 : 1;
+                          },
+                          vLineWidth: function (i, node) {
+                              return (i === 0 || i === node.table.widths.length) ? 2 : 1;
+                          },
+                          hLineColor: function (i, node) {
+                              return (i === 0 || i === node.table.body.length) ? 'black' : 'gray';
+                          },
+                          vLineColor: function (i, node) {
+                              return (i === 0 || i === node.table.widths.length) ? 'black' : 'gray';
+                          },
+                          // paddingLeft: function(i, node) { return 4; },
+                          // paddingRight: function(i, node) { return 4; },
+                          // paddingTop: function(i, node) { return 2; },
+                          // paddingBottom: function(i, node) { return 2; }
+                      }
+                  }
+              ],
+              styles: {
+                  header: {
+                      fontSize: 18,
+                      bold: true,
+                      margin: [0, 0, 0, 10]
+                  },
+                  subheader: {
+                      fontSize: 16,
+                      bold: true,
+                      margin: [0, 10, 0, 5]
+                  },
+                  tableExample: {
+                      margin: [0, 5, 0, 15]
+                  },
+                  tableHeader: {
+                      bold: true,
+                      fontSize: 13,
+                      color: 'black'
+                  }
+              },
+              defaultStyle: {
+                  // alignment: 'justify'
+              }
+
+          }
+          // playground requires you to assign document definition to a variable called dd
+          pdfMake.createPdf(docDefinition).download();
+          //pdfMake.createPdf(docDefinition).open();
+      }
+      $(function () {
+          //generatePDF();
+      });
+    </script>
+  </head>
+  <body>
+    <div><a href="#"onclick="generatePDF();">Generate PDF</a></div>
+    <div id="report_container"></div>
+  </body>
+</html>

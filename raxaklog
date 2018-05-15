@@ -1,0 +1,9 @@
+
+/home/raxak/release-2.01/raxak1/nohup.out {
+                        size 50M
+                        rotate 4
+                        missingok
+                        notifempty
+                        nocompress
+                        create 644 raxak raxak
+} 

@@ -1,0 +1,1293 @@
+"Services and Packages ","","","","","","","","","","","","","",""
+"V-38481","medium","System security patches and updates must be installed and up-to-date.","Installing software updates is a fundamental mitigation against the exploitation of publicly-known vulnerabilities.","None","SV-50281r1_rule","F-43426r1_fix","If the system is joined to the Red Hat Network, a Red Hat Satellite Server, or a yum server, run the following command to install updates:
+
+# yum update
+
+If the system is not configured to use one of these sources, updates (in the form of RPM packages) can be manually downloaded from the Red Hat Network and installed using ""rpm"".","C-46036r1_chk","If the system is joined to the Red Hat Network, a Red Hat Satellite Server, or a yum server which provides updates, invoking the following command will indicate if updates are available:
+
+# yum check-update
+
+If the system is not configured to update from one of these sources, run the following command to list when each package was last updated:
+
+$ rpm -qa -last
+
+Compare this to Red Hat Security Advisories (RHSA) listed at https://access.redhat.com/security/updates/active/ to determine whether the system is missing applicable security and bugfix  updates.
+If updates are not installed, this is a finding.","","","","",""
+"Should not be enabled:","","","","","","","","","","","","","",""
+"V-38587","high","The telnet-server package must not be installed.","Removing the ""telnet-server"" package decreases the risk of the unencrypted telnet service's accidental (or intentional) activation.
+
+Mitigation:  If the telnet-server package is configured to only allow encrypted sessions, such as with Kerberos or the use of encrypted network tunnels, the risk of exposing sensitive information is mitigated.","None","SV-50388r1_rule","F-43535r1_fix","The ""telnet-server"" package can be uninstalled with the following command:
+
+# yum erase telnet-server","C-46144r1_chk","Run the following command to determine if the ""telnet-server"" package is installed:
+
+# rpm -q telnet-server
+
+
+If the package is installed, this is a finding.","Telnet","","","",""
+"V-38589","high","The telnet daemon must not be running.","The telnet protocol uses unencrypted network communication, which means that data from the login session, including passwords and all other information transmitted during the session, can be stolen by eavesdroppers on the network. The telnet protocol is also subject to man-in-the-middle attacks.
+
+Mitigation:  If an enabled telnet daemon is configured to only allow encrypted sessions, such as with Kerberos or the use of encrypted network tunnels, the risk of exposing sensitive information is mitigated.","None","SV-50390r2_rule","F-43537r1_fix","The ""telnet"" service can be disabled with the following command:
+
+# chkconfig telnet off","C-46147r3_chk","To check that the ""telnet"" service is disabled in system boot configuration, run the following command:
+
+# chkconfig ""telnet"" --list
+
+Output should indicate the ""telnet"" service has either not been installed, or has been disabled, as shown in the example below:
+
+# chkconfig ""telnet"" --list
+telnet         off
+OR
+error reading information on service telnet: No such file or directory
+
+
+If the service is running, this is a finding.","","","","",""
+"V-38591","high","The rsh-server package must not be installed.C16","The ""rsh-server"" package provides several obsolete and insecure network services. Removing it decreases the risk of those services' accidental (or intentional) activation.","None","SV-50392r1_rule","F-43539r1_fix","The ""rsh-server"" package can be uninstalled with the following command:
+
+# yum erase rsh-server","C-46149r1_chk","Run the following command to determine if the ""rsh-server"" package is installed:
+
+# rpm -q rsh-server
+
+
+If the package is installed, this is a finding.","rlogin packet","related to telnet, ","part of rlogin package","app layer protocol","remote shell"
+"V-38594","high","The rshd service must not be running.","The rsh service uses unencrypted network communications, which means that data from the login session, including passwords and all other information transmitted during the session, can be stolen by eavesdroppers on the network.","None","SV-50395r2_rule","F-43542r3_fix","The ""rsh"" service, which is available with the ""rsh-server"" package and runs as a service through xinetd, should be disabled. The ""rsh"" service can be disabled with the following command:
+
+# chkconfig rsh off","C-46152r2_chk","To check that the ""rsh"" service is disabled in system boot configuration, run the following command:
+
+# chkconfig ""rsh"" --list
+
+Output should indicate the ""rsh"" service has either not been installed, or has been disabled, as shown in the example below:
+
+# chkconfig ""rsh"" --list
+rsh off
+OR
+error reading information on service rsh: No such file or directory
+
+
+If the service is running, this is a finding.","","rshd uses TCP","part of rlogin package","app layer protocol","rsh daemon"
+"V-38598","high","The rexecd service must not be running.","The rexec service uses unencrypted network communications, which means that data from the login session, including passwords and all other information transmitted during the session, can be stolen by eavesdroppers on the network.","None","SV-50399r2_rule","F-43546r3_fix","The ""rexec"" service, which is available with the ""rsh-server"" package and runs as a service through xinetd, should be disabled. The ""rexec"" service can be disabled with the following command:
+
+# chkconfig rexec off","C-46156r3_chk","To check that the ""rexec"" service is disabled in system boot configuration, run the following command:
+
+# chkconfig ""rexec"" --list
+
+Output should indicate the ""rexec"" service has either not been installed, or has been disabled, as shown in the example below:
+
+# chkconfig ""rexec"" --list
+rexec off
+OR
+error reading information on service rexec: No such file or directory
+
+
+If the service is running, this is a finding.","","","","","remote execution server"
+"V-38602","high","The rlogind service must not be running.","The rlogin service uses unencrypted network communications, which means that data from the login session, including passwords and all other information transmitted during the session, can be stolen by eavesdroppers on the network.","None","SV-50403r2_rule","F-43549r3_fix","The ""rlogin"" service, which is available with the ""rsh-server"" package and runs as a service through xinetd, should be disabled. The ""rlogin"" service can be disabled with the following command:
+
+# chkconfig rlogin off","C-46158r3_chk","
+To check that the ""rlogin"" service is disabled in system boot configuration, run the following command:
+
+# chkconfig ""rlogin"" --list
+
+Output should indicate the ""rlogin"" service has either not been installed, or has been disabled, as shown in the example below:
+
+# chkconfig ""rlogin"" --list
+rlogin off
+OR
+error reading information on service rlogin: No such file or directory
+
+
+If the service is running, this is a finding.","","TCP","","application layer protocol","related to telnet, .rhosts"
+"V-38679","medium","The DHCP client must be disabled if not needed.","DHCP relies on trusting the local network. If the local network is not trusted, then it should not be used. However, the automatic configuration provided by DHCP is commonly used and the alternative, manual configuration, presents an unacceptable burden in many circumstances.","None","SV-50480r2_rule","F-43628r2_fix","For each interface [IFACE] on the system (e.g. eth0), edit ""/etc/sysconfig/network-scripts/ifcfg-[IFACE]"" and make the following changes.
+
+Correct the BOOTPROTO line to read:
+
+BOOTPROTO=none
+
+
+Add or correct the following lines, substituting the appropriate values based on your site's addressing scheme:
+
+NETMASK=[local LAN netmask]
+IPADDR=[assigned IP address]
+GATEWAY=[local LAN default gateway]","C-46242r2_chk","To verify that DHCP is not being used, examine the following file for each interface.
+
+# /etc/sysconfig/network-scripts/ifcfg-[IFACE]
+
+If there is any network interface without a associated ""ifcfg"" file, this is a finding.
+
+Look for the following:
+
+BOOTPROTO=none
+
+Also verify the following, substituting the appropriate values based on your site's addressing scheme:
+
+NETMASK=[local LAN netmask]
+IPADDR=[assigned IP address]
+GATEWAY=[local LAN default gateway]
+
+
+If it does not, this is a finding.","","","","",""
+"V-38603","medium","The ypserv package must not be installed.","Removing the ""ypserv"" package decreases the risk of the accidental (or intentional) activation of NIS or NIS+ services.","None","SV-50404r1_rule","F-43551r1_fix","The ""ypserv"" package can be uninstalled with the following command:
+
+# yum erase ypserv","C-46161r1_chk","Run the following command to determine if the ""ypserv"" package is installed:
+
+# rpm -q ypserv
+
+
+If the package is installed, this is a finding.","","nis; yellow pages","","",""
+"V-38604","medium","The ypbind service must not be running.","Disabling the ""ypbind"" service ensures the system is not acting as a client in a NIS or NIS+ domain.","None","SV-50405r2_rule","F-43552r2_fix","The ""ypbind"" service, which allows the system to act as a client in a NIS or NIS+ domain, should be disabled. The ""ypbind"" service can be disabled with the following commands:
+
+# chkconfig ypbind off
+# service ypbind stop","C-46162r2_chk","To check that the ""ypbind"" service is disabled in system boot configuration, run the following command:
+
+# chkconfig ""ypbind"" --list
+
+Output should indicate the ""ypbind"" service has either not been installed, or has been disabled at all runlevels, as shown in the example below:
+
+# chkconfig ""ypbind"" --list
+""ypbind"" 0:off 1:off 2:off 3:off 4:off 5:off 6:off
+
+Run the following command to verify ""ypbind"" is disabled through current runtime configuration:
+
+# service ypbind status
+
+If the service is disabled the command will return the following output:
+
+ypbind is stopped
+
+
+If the service is running, this is a finding.","","nis; yellow pages","","",""
+"V-38606","medium","The tftp-server package must not be installed unless required.","Removing the ""tftp-server"" package decreases the risk of the accidental (or intentional) activation of tftp services.","None","SV-50407r2_rule","F-43554r1_fix","The ""tftp-server"" package can be removed with the following command:
+
+# yum erase tftp-server","C-46164r1_chk","Run the following command to determine if the ""tftp-server"" package is installed:
+
+# rpm -q tftp-server
+
+
+If the package is installed, this is a finding.","TFTP","","","",""
+"V-38609","medium","The TFTP service must not be running.","Disabling the ""tftp"" service ensures the system is not acting as a tftp server, which does not provide encryption or authentication.","None","SV-50410r2_rule","F-43557r4_fix","The ""tftp"" service should be disabled. The ""tftp"" service can be disabled with the following command:
+
+# chkconfig tftp off","C-46166r2_chk","To check that the ""tftp"" service is disabled in system boot configuration, run the following command:
+
+# chkconfig ""tftp"" --list
+
+Output should indicate the ""tftp"" service has either not been installed, or has been disabled, as shown in the example below:
+
+# chkconfig ""tftp"" --list
+tftp off
+OR
+error reading information on service tftp: No such file or directory
+
+
+If the service is running, this is a finding.","","","","",""
+"V-38701","high","The TFTP daemon must operate in secure mode which provides access only to a single directory on the host file system.","Using the ""-s"" option causes the TFTP service to only serve files from the given directory. Serving files from an intentionally specified directory reduces the risk of sharing files which should remain private.","None","SV-50502r1_rule","F-43650r1_fix","If running the ""tftp"" service is necessary, it should be configured to change its root directory at startup. To do so, ensure ""/etc/xinetd.d/tftp"" includes ""-s"" as a command line argument, as shown in the following example (which is also the default):
+
+server_args = -s /var/lib/tftpboot","C-46263r1_chk","Verify ""tftp"" is configured by with the ""-s"" option by running the following command:
+
+grep ""server_args"" /etc/xinetd.d/tftp
+
+The output should indicate the ""server_args"" variable is configured with the ""-s"" flag, matching the example below:
+
+# grep ""server_args"" /etc/xinetd.d/tftp
+server_args = -s /var/lib/tftpboot
+
+If it does not, this is a finding.","","","","",""
+"V-38582","medium","The xinetd service must be disabled if no network services utilizing it are enabled.","The xinetd service provides a dedicated listener service for some programs, which is no longer necessary for commonly-used network services. Disabling it ensures that these uncommon services are not running, and also prevents attacks against xinetd itself.","None","SV-50383r2_rule","F-43530r2_fix","The ""xinetd"" service can be disabled with the following commands:
+
+# chkconfig xinetd off
+# service xinetd stop","C-46140r2_chk","If network services are using the xinetd service, this is not applicable.
+
+To check that the ""xinetd"" service is disabled in system boot configuration, run the following command:
+
+# chkconfig ""xinetd"" --list
+
+Output should indicate the ""xinetd"" service has either not been installed, or has been disabled at all runlevels, as shown in the example below:
+
+# chkconfig ""xinetd"" --list
+""xinetd"" 0:off 1:off 2:off 3:off 4:off 5:off 6:off
+
+Run the following command to verify ""xinetd"" is disabled through current runtime configuration:
+
+# service xinetd status
+
+If the service is disabled the command will return the following output:
+
+xinetd is stopped
+
+
+If the service is running, this is a finding.","xinetd","","","",""
+"V-38584","low","The xinetd service must be uninstalled if no network services utilizing it are enabled.","Removing the ""xinetd"" package decreases the risk of the xinetd service's accidental (or intentional) activation.","None","SV-50385r1_rule","F-43532r1_fix","The ""xinetd"" package can be uninstalled with the following command:
+
+# yum erase xinetd","C-46142r1_chk","If network services are using the xinetd service, this is not applicable.
+
+Run the following command to determine if the ""xinetd"" package is installed:
+
+# rpm -q xinetd
+
+
+If the package is installed, this is a finding.","","responds to requests","","",""
+"V-38514","medium","The Datagram Congestion Control Protocol (DCCP) must be disabled unless required.","Disabling DCCP protects the system against exploitation of any flaws in its implementation.","None","SV-50315r3_rule","F-43461r3_fix","The Datagram Congestion Control Protocol (DCCP) is a relatively new transport layer protocol, designed to support streaming media and telephony. To configure the system to prevent the ""dccp"" kernel module from being loaded, add the following line to a file in the directory ""/etc/modprobe.d"":
+
+install dccp /bin/true","C-46071r3_chk","If the system is configured to prevent the loading of the ""dccp"" kernel module, it will contain lines inside any file in ""/etc/modprobe.d"" or the deprecated""/etc/modprobe.conf"". These lines instruct the module loading system to run another program (such as ""/bin/true"") upon a module ""install"" event. Run the following command to search for such lines in all files in ""/etc/modprobe.d"" and the deprecated ""/etc/modprobe.conf"":
+
+$ grep -r dccp /etc/modprobe.conf /etc/modprobe.d
+
+If no line is returned, this is a finding.","congestion control?","","","",""
+"V-38515","medium","The Stream Control Transmission Protocol (SCTP) must be disabled unless required.","Disabling SCTP protects the system against exploitation of any flaws in its implementation.","None","SV-50316r3_rule","F-43462r3_fix","The Stream Control Transmission Protocol (SCTP) is a transport layer protocol, designed to support the idea of message-oriented communication, with several streams of messages within one connection. To configure the system to prevent the ""sctp"" kernel module from being loaded, add the following line to a file in the directory ""/etc/modprobe.d"":
+
+install sctp /bin/true","C-46072r3_chk","If the system is configured to prevent the loading of the ""sctp"" kernel module, it will contain lines inside any file in ""/etc/modprobe.d"" or the deprecated""/etc/modprobe.conf"". These lines instruct the module loading system to run another program (such as ""/bin/true"") upon a module ""install"" event. Run the following command to search for such lines in all files in ""/etc/modprobe.d"" and the deprecated ""/etc/modprobe.conf"":
+
+$ grep -r sctp /etc/modprobe.conf /etc/modprobe.d
+
+If no line is returned, this is a finding.","","","","",""
+"V-38517","medium","The Transparent Inter-Process Communication (TIPC) protocol must be disabled unless required.","Disabling TIPC protects the system against exploitation of any flaws in its implementation.","None","SV-50318r3_rule","F-43464r3_fix","The Transparent Inter-Process Communication (TIPC) protocol is designed to provide communications between nodes in a cluster. To configure the system to prevent the ""tipc"" kernel module from being loaded, add the following line to a file in the directory ""/etc/modprobe.d"":
+
+install tipc /bin/true","C-46074r3_chk","If the system is configured to prevent the loading of the ""tipc"" kernel module, it will contain lines inside any file in ""/etc/modprobe.d"" or the deprecated""/etc/modprobe.conf"". These lines instruct the module loading system to run another program (such as ""/bin/true"") upon a module ""install"" event. Run the following command to search for such lines in all files in ""/etc/modprobe.d"" and the deprecated ""/etc/modprobe.conf"":
+
+$ grep -r tipc /etc/modprobe.conf /etc/modprobe.d
+
+If no line is returned, this is a finding.","","","","",""
+"V-38516","low","The Reliable Datagram Sockets (RDS) protocol must be disabled unless required.","Disabling RDS protects the system against exploitation of any flaws in its implementation.","None","SV-50317r3_rule","F-43463r4_fix","The Reliable Datagram Sockets (RDS) protocol is a transport layer protocol designed to provide reliable high-bandwidth, low-latency communications between nodes in a cluster. To configure the system to prevent the ""rds"" kernel module from being loaded, add the following line to a file in the directory ""/etc/modprobe.d"":
+
+install rds /bin/true","C-46073r3_chk","If the system is configured to prevent the loading of the ""rds"" kernel module, it will contain lines inside any file in ""/etc/modprobe.d"" or the deprecated ""/etc/modprobe.conf"". These lines instruct the module loading system to run another program (such as ""/bin/true"") upon a module ""install"" event. Run the following command to search for such lines in all files in ""/etc/modprobe.d"" and the deprecated ""/etc/modprobe.conf"":
+
+$ grep -r rds /etc/modprobe.conf /etc/modprobe.d
+
+If no line is returned, this is a finding.","","","","",""
+"V-38618","low","The avahi service must be disabled.","Because the Avahi daemon service keeps an open network port, it is subject to network attacks. Its functionality is convenient but is only appropriate if the local network can be trusted.","None","SV-50419r2_rule","F-43567r2_fix","The ""avahi-daemon"" service can be disabled with the following commands:
+
+# chkconfig avahi-daemon off
+# service avahi-daemon stop","C-46177r1_chk","To check that the ""avahi-daemon"" service is disabled in system boot configuration, run the following command:
+
+# chkconfig ""avahi-daemon"" --list
+
+Output should indicate the ""avahi-daemon"" service has either not been installed, or has been disabled at all runlevels, as shown in the example below:
+
+# chkconfig ""avahi-daemon"" --list
+""avahi-daemon"" 0:off 1:off 2:off 3:off 4:off 5:off 6:off
+
+Run the following command to verify ""avahi-daemon"" is disabled through current runtime configuration:
+
+# service avahi-daemon status
+
+If the service is disabled the command will return the following output:
+
+avahi-daemon is stopped
+
+
+If the service is running, this is a finding.","keeps an open network so susceptible to network attacks","","","",""
+"V-38674","medium","X Windows must not be enabled unless required.","Unnecessary services should be disabled to decrease the attack surface of the system.","None","SV-50475r1_rule","F-43623r1_fix","Setting the system's runlevel to 3 will prevent automatic startup of the X server. To do so, ensure the following line in ""/etc/inittab"" features a ""3"" as shown:
+
+id:3:initdefault:","C-46234r1_chk","To verify the default runlevel is 3, run the following command:
+
+# grep initdefault /etc/inittab
+
+The output should show the following:
+
+id:3:initdefault:
+
+
+If it does not, this is a finding.","X Windows","","","",""
+"V-38676","low","The xorg-x11-server-common (X Windows) package must not be installed, unless required.","Unnecessary packages should not be installed to decrease the attack surface of the system.","None","SV-50477r1_rule","F-43625r1_fix","Removing all packages which constitute the X Window System ensures users or malicious software cannot start X. To do so, run the following command:
+
+# yum groupremove ""X Window System""","C-46236r1_chk","To ensure the X Windows package group is removed, run the following command:
+
+$ rpm -qi xorg-x11-server-common
+
+The output should be:
+
+package xorg-x11-server-common is not installed
+
+
+If it is not, this is a finding.","","","","",""
+"V-38605","medium","The cron service must be running.","Due to its usage for maintenance and security-supporting tasks, enabling the cron daemon is essential.","None","SV-50406r2_rule","F-43553r2_fix","The ""crond"" service is used to execute commands at preconfigured times. It is required by almost all systems to perform necessary maintenance tasks, such as notifying root of system activity. The ""crond"" service can be enabled with the following commands:
+
+# chkconfig crond on
+# service crond start","C-46163r1_chk","Run the following command to determine the current status of the ""crond"" service:
+
+# service crond status
+
+If the service is enabled, it should return the following:
+
+crond is running...
+
+
+If the service is not running, this is a finding.","","","","",""
+"V-38641","low","The atd service must be disabled.","The ""atd"" service could be used by an unsophisticated insider to carry out activities outside of a normal login session, which could complicate accountability. Furthermore, the need to schedule tasks with ""at"" or ""batch"" is not common.","None","SV-50442r2_rule","F-43590r2_fix","The ""at"" and ""batch"" commands can be used to schedule tasks that are meant to be executed only once. This allows delayed execution in a manner similar to cron, except that it is not recurring. The daemon ""atd"" keeps track of tasks scheduled via ""at"" and ""batch"", and executes them at the specified time. The ""atd"" service can be disabled with the following commands:
+
+# chkconfig atd off
+# service atd stop","C-46201r2_chk","If the system uses the ""atd"" service, this is not applicable.
+
+To check that the ""atd"" service is disabled in system boot configuration, run the following command:
+
+# chkconfig ""atd"" --list
+
+Output should indicate the ""atd"" service has either not been installed, or has been disabled at all runlevels, as shown in the example below:
+
+# chkconfig ""atd"" --list
+""atd"" 0:off 1:off 2:off 3:off 4:off 5:off 6:off
+
+Run the following command to verify ""atd"" is disabled through current runtime configuration:
+
+# service atd status
+
+If the service is disabled the command will return the following output:
+
+atd is stopped
+
+
+If the service is running, this is a finding.","runs scheduled commands","","","",""
+"V-38627","low","The openldap-servers package must not be installed unless required.","Unnecessary packages should not be installed to decrease the attack surface of the system.","None","SV-50428r1_rule","F-43577r1_fix","The ""openldap-servers"" package should be removed if not in use. Is this machine the OpenLDAP server? If not, remove the package.
+
+# yum erase openldap-servers
+
+The openldap-servers RPM is not installed by default on RHEL6 machines. It is needed only by the OpenLDAP server, not by the clients which use LDAP for authentication. If the system is not intended for use as an LDAP Server it should be removed.","C-46187r1_chk","To verify the ""openldap-servers"" package is not installed, run the following command:
+
+$ rpm -q openldap-servers
+
+The output should show the following.
+
+package openldap-servers is not installed
+
+
+If it does not, this is a finding.","??","","","",""
+"V-38640","low","The Automatic Bug Reporting Tool (abrtd) service must not be running.","Mishandling crash data could expose sensitive information about vulnerabilities in software executing on the local machine, as well as sensitive information from within a process's address space or registers.","None","SV-50441r2_rule","F-43589r2_fix","The Automatic Bug Reporting Tool (""abrtd"") daemon collects and reports crash data when an application crash is detected. Using a variety of plugins, abrtd can email crash reports to system administrators, log crash reports to files, or forward crash reports to a centralized issue tracking system such as RHTSupport. The ""abrtd"" service can be disabled with the following commands:
+
+# chkconfig abrtd off
+# service abrtd stop","C-46200r1_chk","To check that the ""abrtd"" service is disabled in system boot configuration, run the following command:
+
+# chkconfig ""abrtd"" --list
+
+Output should indicate the ""abrtd"" service has either not been installed, or has been disabled at all runlevels, as shown in the example below:
+
+# chkconfig ""abrtd"" --list
+""abrtd"" 0:off 1:off 2:off 3:off 4:off 5:off 6:off
+
+Run the following command to verify ""abrtd"" is disabled through current runtime configuration:
+
+# service abrtd status
+
+If the service is disabled the command will return the following output:
+
+abrtd is stopped
+
+
+If the service is running, this is a finding.","watches and remediates when app crashes","","","",""
+"V-38644","low","The ntpdate service must not be running.","The ""ntpdate"" service may only be suitable for systems which are rebooted frequently enough that clock drift does not cause problems between reboots. In any event, the functionality of the ntpdate service is now available in the ntpd program and should be considered deprecated.","None","SV-50445r2_rule","F-43593r2_fix","The ntpdate service sets the local hardware clock by polling NTP servers when the system boots. It synchronizes to the NTP servers listed in ""/etc/ntp/step-tickers"" or ""/etc/ntp.conf"" and then sets the local hardware clock to the newly synchronized system time. The ""ntpdate"" service can be disabled with the following commands:
+
+# chkconfig ntpdate off
+# service ntpdate stop","C-46204r1_chk","To check that the ""ntpdate"" service is disabled in system boot configuration, run the following command:
+
+# chkconfig ""ntpdate"" --list
+
+Output should indicate the ""ntpdate"" service has either not been installed, or has been disabled at all runlevels, as shown in the example below:
+
+# chkconfig ""ntpdate"" --list
+""ntpdate"" 0:off 1:off 2:off 3:off 4:off 5:off 6:off
+
+Run the following command to verify ""ntpdate"" is disabled through current runtime configuration:
+
+# service ntpdate status
+
+If the service is disabled the command will return the following output:
+
+ntpdate is stopped
+
+
+If the service is running, this is a finding.","set date/time","","","",""
+"V-38646","low","The oddjobd service must not be running.","The ""oddjobd"" service may provide necessary functionality in some environments but it can be disabled if it is not needed. Execution of tasks by privileged programs, on behalf of unprivileged ones, has traditionally been a source of privilege escalation security issues.","None","SV-50447r2_rule","F-43595r2_fix","The ""oddjobd"" service exists to provide an interface and access control mechanism through which specified privileged tasks can run tasks for unprivileged client applications. Communication with ""oddjobd"" is through the system message bus. The ""oddjobd"" service can be disabled with the following commands:
+
+# chkconfig oddjobd off
+# service oddjobd stop","C-46206r2_chk","To check that the ""oddjobd"" service is disabled in system boot configuration, run the following command:
+
+# chkconfig ""oddjobd"" --list
+
+Output should indicate the ""oddjobd"" service has either not been installed, or has been disabled at all runlevels, as shown in the example below:
+
+# chkconfig ""oddjobd"" --list
+""oddjobd"" 0:off 1:off 2:off 3:off 4:off 5:off 6:off
+
+Run the following command to verify ""oddjobd"" is disabled through current runtime configuration:
+
+# service oddjobd status
+
+If the service is disabled the command will return the following output:
+
+oddjobd is stopped
+
+
+If the service is running, this is a finding.","","","","",""
+"V-38648","low","The qpidd service must not be running.","The qpidd service is automatically installed when the ""base"" package selection is selected during installation. The qpidd service listens for network connections which increases the attack surface of the system. If the system is not intended to receive AMQP traffic then the ""qpidd"" service is not needed and should be disabled or removed.","None","SV-50449r2_rule","F-43597r2_fix","The ""qpidd"" service provides high speed, secure, guaranteed delivery services. It is an implementation of the Advanced Message Queuing Protocol. By default the qpidd service will bind to port 5672 and listen for connection attempts. The ""qpidd"" service can be disabled with the following commands:
+
+# chkconfig qpidd off
+# service qpidd stop","C-46208r2_chk","To check that the ""qpidd"" service is disabled in system boot configuration, run the following command:
+
+# chkconfig ""qpidd"" --list
+
+Output should indicate the ""qpidd"" service has either not been installed, or has been disabled at all runlevels, as shown in the example below:
+
+# chkconfig ""qpidd"" --list
+""qpidd"" 0:off 1:off 2:off 3:off 4:off 5:off 6:off
+
+Run the following command to verify ""qpidd"" is disabled through current runtime configuration:
+
+# service qpidd status
+
+If the service is disabled the command will return the following output:
+
+qpidd is stopped
+
+
+If the service is running, this is a finding.","message queueing using amqp","","","",""
+"V-38650","low","The rdisc service must not be running.","General-purpose systems typically have their network and routing information configured statically by a system administrator. Workstations or some special-purpose systems often use DHCP (instead of IRDP) to retrieve dynamic network configuration information.","None","SV-50451r2_rule","F-43599r2_fix","The ""rdisc"" service implements the client side of the ICMP Internet Router Discovery Protocol (IRDP), which allows discovery of routers on the local subnet. If a router is discovered then the local routing table is updated with a corresponding default route. By default this daemon is disabled. The ""rdisc"" service can be disabled with the following commands:
+
+# chkconfig rdisc off
+# service rdisc stop","C-46210r1_chk","To check that the ""rdisc"" service is disabled in system boot configuration, run the following command:
+
+# chkconfig ""rdisc"" --list
+
+Output should indicate the ""rdisc"" service has either not been installed, or has been disabled at all runlevels, as shown in the example below:
+
+# chkconfig ""rdisc"" --list
+""rdisc"" 0:off 1:off 2:off 3:off 4:off 5:off 6:off
+
+Run the following command to verify ""rdisc"" is disabled through current runtime configuration:
+
+# service rdisc status
+
+If the service is disabled the command will return the following output:
+
+rdisc is stopped
+
+
+If the service is running, this is a finding.","router discovery","","","",""
+"V-38668+A197","high","The x86 Ctrl-Alt-Delete key sequence must be disabled.","A locally logged-in user who presses Ctrl-Alt-Delete, when at the console, can reboot the system. If accidentally pressed, as could happen in the case of mixed OS environment, this can create the risk of short-term loss of availability of systems due to unintentional reboot. In the GNOME graphical environment, risk of unintentional reboot from the Ctrl-Alt-Delete sequence is reduced because the user will be prompted before any action is taken.","None","SV-50469r2_rule","F-43617r2_fix","By default, the system includes the following line in ""/etc/init/control-alt-delete.conf"" to reboot the system when the Ctrl-Alt-Delete key sequence is pressed:
+
+exec /sbin/shutdown -r now ""Ctrl-Alt-Delete pressed""
+
+
+To configure the system to log a message instead of rebooting the system, add the following line to ""/etc/init/control-alt-delete.override"" to read as follows:
+
+exec /usr/bin/logger -p security.info ""Ctrl-Alt-Delete pressed""By default, the system includes the following line in ""/etc/init/control-alt-delete.conf"" to reboot the system when the Ctrl-Alt-Delete key sequence is pressed:
+
+exec /sbin/shutdown -r now ""Ctrl-Alt-Delete pressed""
+
+
+To configure the system to log a message instead of rebooting the system, add the following line to ""/etc/init/control-alt-delete.override"" to read as follows:
+
+exec /usr/bin/logger -p security.info ""Ctrl-Alt-Delete pressed""By default, the system includes the following line in ""/etc/init/control-alt-delete.conf"" to reboot the system when the Ctrl-Alt-Delete key sequence is pressed:
+
+exec /sbin/shutdown -r now ""Ctrl-Alt-Delete pressed""
+
+
+To configure the system to log a message instead of rebooting the system, add the following line to ""/etc/init/control-alt-delete.override"" to read as follows:
+
+exec /usr/bin/logger -p security.info ""Ctrl-Alt-Delete pressed""","C-46228r2_chk","To ensure the system is configured to log a message instead of rebooting the system when Ctrl-Alt-Delete is pressed, ensure the following line is in ""/etc/init/control-alt-delete.override"":
+
+exec /usr/bin/logger -p security.info ""Control-Alt-Delete pressed""
+
+If the system is not configured to block the shutdown command when Ctrl-Alt-Delete is pressed, this is a finding. To ensure the system is configured to log a message instead of rebooting the system when Ctrl-Alt-Delete is pressed, ensure the following line is in ""/etc/init/control-alt-delete.override"":
+
+exec /usr/bin/logger -p security.info ""Control-Alt-Delete pressed""
+
+If the system is not configured to block the shutdown command when Ctrl-Alt-Delete is pressed, this is a finding. To ensure the system is configured to log a message instead of rebooting the system when Ctrl-Alt-Delete is pressed, ensure the following line is in ""/etc/init/control-alt-delete.override"":
+
+exec /usr/bin/logger -p security.info ""Control-Alt-Delete pressed""
+
+If the system is not configured to block the shutdown command when Ctrl-Alt-Delete is pressed, this is a finding. ","accidental reboot","","","",""
+"V-38671","medium","The sendmail package must be removed.","The sendmail software was not developed with security in mind and its design prevents it from being effectively contained by SELinux. Postfix should be used instead.","None","SV-50472r1_rule","F-43620r1_fix","Sendmail is not the default mail transfer agent and is not installed by default. The ""sendmail"" package can be removed with the following command:
+
+# yum erase sendmailSendmail is not the default mail transfer agent and is not installed by default. The ""sendmail"" package can be removed with the following command:
+
+# yum erase sendmailSendmail is not the default mail transfer agent and is not installed by default. The ""sendmail"" package can be removed with the following command:
+
+# yum erase sendmail","C-46231r1_chk","Run the following command to determine if the ""sendmail"" package is installed:
+
+# rpm -q sendmail
+
+
+If the package is installed, this is a finding.Run the following command to determine if the ""sendmail"" package is installed:
+
+# rpm -q sendmail
+
+
+If the package is installed, this is a finding.Run the following command to determine if the ""sendmail"" package is installed:
+
+# rpm -q sendmail
+
+
+If the package is installed, this is a finding.","use postfix instead; mail transfer","","","",""
+"V-38672","low","The netconsole service must be disabled unless required.","The ""netconsole"" service is not necessary unless there is a need to debug kernel panics, which is not common.","None","SV-50473r2_rule","F-43622r2_fix","The ""netconsole"" service is responsible for loading the netconsole kernel module, which logs kernel printk messages over UDP to a syslog server. This allows debugging of problems where disk logging fails and serial consoles are impractical. The ""netconsole"" service can be disabled with the following commands:
+
+# chkconfig netconsole off
+# service netconsole stopThe ""netconsole"" service is responsible for loading the netconsole kernel module, which logs kernel printk messages over UDP to a syslog server. This allows debugging of problems where disk logging fails and serial consoles are impractical. The ""netconsole"" service can be disabled with the following commands:
+
+# chkconfig netconsole off
+# service netconsole stopThe ""netconsole"" service is responsible for loading the netconsole kernel module, which logs kernel printk messages over UDP to a syslog server. This allows debugging of problems where disk logging fails and serial consoles are impractical. The ""netconsole"" service can be disabled with the following commands:
+
+# chkconfig netconsole off
+# service netconsole stop","C-46233r1_chk","To check that the ""netconsole"" service is disabled in system boot configuration, run the following command:
+
+# chkconfig ""netconsole"" --list
+
+Output should indicate the ""netconsole"" service has either not been installed, or has been disabled at all runlevels, as shown in the example below:
+
+# chkconfig ""netconsole"" --list
+""netconsole"" 0:off 1:off 2:off 3:off 4:off 5:off 6:off
+
+Run the following command to verify ""netconsole"" is disabled through current runtime configuration:
+
+# service netconsole status
+
+If the service is disabled the command will return the following output:
+
+netconsole is stopped
+
+
+If the service is running, this is a finding.To check that the ""netconsole"" service is disabled in system boot configuration, run the following command:
+
+# chkconfig ""netconsole"" --list
+
+Output should indicate the ""netconsole"" service has either not been installed, or has been disabled at all runlevels, as shown in the example below:
+
+# chkconfig ""netconsole"" --list
+""netconsole"" 0:off 1:off 2:off 3:off 4:off 5:off 6:off
+
+Run the following command to verify ""netconsole"" is disabled through current runtime configuration:
+
+# service netconsole status
+
+If the service is disabled the command will return the following output:
+
+netconsole is stopped
+
+
+If the service is running, this is a finding.To check that the ""netconsole"" service is disabled in system boot configuration, run the following command:
+
+# chkconfig ""netconsole"" --list
+
+Output should indicate the ""netconsole"" service has either not been installed, or has been disabled at all runlevels, as shown in the example below:
+
+# chkconfig ""netconsole"" --list
+""netconsole"" 0:off 1:off 2:off 3:off 4:off 5:off 6:off
+
+Run the following command to verify ""netconsole"" is disabled through current runtime configuration:
+
+# service netconsole status
+
+If the service is disabled the command will return the following output:
+
+netconsole is stopped
+
+
+If the service is running, this is a finding.","logs kernel messages","","","",""
+"V-38675","low","Process core dumps must be disabled unless needed.","A core dump includes a memory image taken at the time the operating system terminates an application. The memory image could contain sensitive data and is generally useful only for developers trying to debug problems.","None","SV-50476r2_rule","F-43624r1_fix","To disable core dumps for all users, add the following line to ""/etc/security/limits.conf"":
+
+* hard core 0To disable core dumps for all users, add the following line to ""/etc/security/limits.conf"":
+
+* hard core 0To disable core dumps for all users, add the following line to ""/etc/security/limits.conf"":
+
+* hard core 0","C-46235r2_chk","To verify that core dumps are disabled for all users, run the following command:
+
+$ grep core /etc/security/limits.conf /etc/security/limits.d/*.conf
+
+The output should be:
+
+* hard core 0
+
+If it is not, this is a finding. To verify that core dumps are disabled for all users, run the following command:
+
+$ grep core /etc/security/limits.conf /etc/security/limits.d/*.conf
+
+The output should be:
+
+* hard core 0
+
+If it is not, this is a finding. To verify that core dumps are disabled for all users, run the following command:
+
+$ grep core /etc/security/limits.conf /etc/security/limits.d/*.conf
+
+The output should be:
+
+* hard core 0
+
+If it is not, this is a finding. ","","","","",""
+"V-38682","medium","The Bluetooth kernel module must be disabled.","If Bluetooth functionality must be disabled, preventing the kernel from loading the kernel module provides an additional safeguard against its activation.","None","SV-50483r3_rule","F-43631r3_fix","The kernel's module loading system can be configured to prevent loading of the Bluetooth module. Add the following to the appropriate ""/etc/modprobe.d"" configuration file to prevent the loading of the Bluetooth module:
+
+install net-pf-31 /bin/true
+install bluetooth /bin/trueThe kernel's module loading system can be configured to prevent loading of the Bluetooth module. Add the following to the appropriate ""/etc/modprobe.d"" configuration file to prevent the loading of the Bluetooth module:
+
+install net-pf-31 /bin/true
+install bluetooth /bin/trueThe kernel's module loading system can be configured to prevent loading of the Bluetooth module. Add the following to the appropriate ""/etc/modprobe.d"" configuration file to prevent the loading of the Bluetooth module:
+
+install net-pf-31 /bin/true
+install bluetooth /bin/true","C-46244r3_chk","If the system is configured to prevent the loading of the ""bluetooth"" kernel module, it will contain lines inside any file in ""/etc/modprobe.d"" or the deprecated""/etc/modprobe.conf"". These lines instruct the module loading system to run another program (such as ""/bin/true"") upon a module ""install"" event. Run the following command to search for such lines in all files in ""/etc/modprobe.d"" and the deprecated ""/etc/modprobe.conf"":
+
+$ grep -r bluetooth /etc/modprobe.conf /etc/modprobe.d
+
+If the system is configured to prevent the loading of the ""net-pf-31"" kernel module, it will contain lines inside any file in ""/etc/modprobe.d"" or the deprecated""/etc/modprobe.conf"". These lines instruct the module loading system to run another program (such as ""/bin/true"") upon a module ""install"" event. Run the following command to search for such lines in all files in ""/etc/modprobe.d"" and the deprecated ""/etc/modprobe.conf"":
+
+$ grep -r net-pf-31 /etc/modprobe.conf /etc/modprobe.d
+
+If no line is returned, this is a finding.If the system is configured to prevent the loading of the ""bluetooth"" kernel module, it will contain lines inside any file in ""/etc/modprobe.d"" or the deprecated""/etc/modprobe.conf"". These lines instruct the module loading system to run another program (such as ""/bin/true"") upon a module ""install"" event. Run the following command to search for such lines in all files in ""/etc/modprobe.d"" and the deprecated ""/etc/modprobe.conf"":
+
+$ grep -r bluetooth /etc/modprobe.conf /etc/modprobe.d
+
+If the system is configured to prevent the loading of the ""net-pf-31"" kernel module, it will contain lines inside any file in ""/etc/modprobe.d"" or the deprecated""/etc/modprobe.conf"". These lines instruct the module loading system to run another program (such as ""/bin/true"") upon a module ""install"" event. Run the following command to search for such lines in all files in ""/etc/modprobe.d"" and the deprecated ""/etc/modprobe.conf"":
+
+$ grep -r net-pf-31 /etc/modprobe.conf /etc/modprobe.d
+
+If no line is returned, this is a finding.If the system is configured to prevent the loading of the ""bluetooth"" kernel module, it will contain lines inside any file in ""/etc/modprobe.d"" or the deprecated""/etc/modprobe.conf"". These lines instruct the module loading system to run another program (such as ""/bin/true"") upon a module ""install"" event. Run the following command to search for such lines in all files in ""/etc/modprobe.d"" and the deprecated ""/etc/modprobe.conf"":
+
+$ grep -r bluetooth /etc/modprobe.conf /etc/modprobe.d
+
+If the system is configured to prevent the loading of the ""net-pf-31"" kernel module, it will contain lines inside any file in ""/etc/modprobe.d"" or the deprecated""/etc/modprobe.conf"". These lines instruct the module loading system to run another program (such as ""/bin/true"") upon a module ""install"" event. Run the following command to search for such lines in all files in ""/etc/modprobe.d"" and the deprecated ""/etc/modprobe.conf"":
+
+$ grep -r net-pf-31 /etc/modprobe.conf /etc/modprobe.d
+
+If no line is returned, this is a finding.","Bluetooth","","","",""
+"V-38691","medium","The Bluetooth service must be disabled.","Disabling the ""bluetooth"" service prevents the system from attempting connections to Bluetooth devices, which entails some security risk. Nevertheless, variation in this risk decision may be expected due to the utility of Bluetooth connectivity and its limited range.","None","SV-50492r2_rule","F-43640r1_fix","The ""bluetooth"" service can be disabled with the following command:
+
+# chkconfig bluetooth off
+
+
+
+# service bluetooth stopThe ""bluetooth"" service can be disabled with the following command:
+
+# chkconfig bluetooth off
+
+
+
+# service bluetooth stopThe ""bluetooth"" service can be disabled with the following command:
+
+# chkconfig bluetooth off
+
+
+
+# service bluetooth stop","C-46253r3_chk","To check that the ""bluetooth"" service is disabled in system boot configuration, run the following command:
+
+# chkconfig ""bluetooth"" --list
+
+Output should indicate the ""bluetooth"" service has either not been installed or has been disabled at all runlevels, as shown in the example below:
+
+# chkconfig ""bluetooth"" --list
+""bluetooth"" 0:off 1:off 2:off 3:off 4:off 5:off 6:off
+
+
+If the service is configured to run, this is a finding.To check that the ""bluetooth"" service is disabled in system boot configuration, run the following command:
+
+# chkconfig ""bluetooth"" --list
+
+Output should indicate the ""bluetooth"" service has either not been installed or has been disabled at all runlevels, as shown in the example below:
+
+# chkconfig ""bluetooth"" --list
+""bluetooth"" 0:off 1:off 2:off 3:off 4:off 5:off 6:off
+
+
+If the service is configured to run, this is a finding.To check that the ""bluetooth"" service is disabled in system boot configuration, run the following command:
+
+# chkconfig ""bluetooth"" --list
+
+Output should indicate the ""bluetooth"" service has either not been installed or has been disabled at all runlevels, as shown in the example below:
+
+# chkconfig ""bluetooth"" --list
+""bluetooth"" 0:off 1:off 2:off 3:off 4:off 5:off 6:off
+
+
+If the service is configured to run, this is a finding.","","","","",""
+"V-38478","low","The Red Hat Network Service (rhnsd) service must not be running, unless using RHN or an RHN Satellite.","Although systems management and patching is extremely important to system security, management by a system outside the enterprise enclave is not desirable for some environments. However, if the system is being managed by RHN or RHN Satellite Server the ""rhnsd"" daemon can remain on.","None","SV-50278r2_rule","F-43423r2_fix","The Red Hat Network service automatically queries Red Hat Network servers to determine whether there are any actions that should be executed, such as package updates. This only occurs if the system was registered to an RHN server or satellite and managed as such. The ""rhnsd"" service can be disabled with the following commands:
+
+# chkconfig rhnsd off
+# service rhnsd stopThe Red Hat Network service automatically queries Red Hat Network servers to determine whether there are any actions that should be executed, such as package updates. This only occurs if the system was registered to an RHN server or satellite and managed as such. The ""rhnsd"" service can be disabled with the following commands:
+
+# chkconfig rhnsd off
+# service rhnsd stopThe Red Hat Network service automatically queries Red Hat Network servers to determine whether there are any actions that should be executed, such as package updates. This only occurs if the system was registered to an RHN server or satellite and managed as such. The ""rhnsd"" service can be disabled with the following commands:
+
+# chkconfig rhnsd off
+# service rhnsd stop","C-46033r2_chk","If the system uses RHN or an RHN Satellite, this is not applicable.
+
+To check that the ""rhnsd"" service is disabled in system boot configuration, run the following command:
+
+# chkconfig ""rhnsd"" --list
+
+Output should indicate the ""rhnsd"" service has either not been installed, or has been disabled at all runlevels, as shown in the example below:
+
+# chkconfig ""rhnsd"" --list
+""rhnsd"" 0:off 1:off 2:off 3:off 4:off 5:off 6:off
+
+Run the following command to verify ""rhnsd"" is disabled through current runtime configuration:
+
+# service rhnsd status
+
+If the service is disabled the command will return the following output:
+
+rhnsd is stopped
+
+
+If the service is running, this is a finding.If the system uses RHN or an RHN Satellite, this is not applicable.
+
+To check that the ""rhnsd"" service is disabled in system boot configuration, run the following command:
+
+# chkconfig ""rhnsd"" --list
+
+Output should indicate the ""rhnsd"" service has either not been installed, or has been disabled at all runlevels, as shown in the example below:
+
+# chkconfig ""rhnsd"" --list
+""rhnsd"" 0:off 1:off 2:off 3:off 4:off 5:off 6:off
+
+Run the following command to verify ""rhnsd"" is disabled through current runtime configuration:
+
+# service rhnsd status
+
+If the service is disabled the command will return the following output:
+
+rhnsd is stopped
+
+
+If the service is running, this is a finding.If the system uses RHN or an RHN Satellite, this is not applicable.
+
+To check that the ""rhnsd"" service is disabled in system boot configuration, run the following command:
+
+# chkconfig ""rhnsd"" --list
+
+Output should indicate the ""rhnsd"" service has either not been installed, or has been disabled at all runlevels, as shown in the example below:
+
+# chkconfig ""rhnsd"" --list
+""rhnsd"" 0:off 1:off 2:off 3:off 4:off 5:off 6:off
+
+Run the following command to verify ""rhnsd"" is disabled through current runtime configuration:
+
+# service rhnsd status
+
+If the service is disabled the command will return the following output:
+
+rhnsd is stopped
+
+
+If the service is running, this is a finding.","any queud actions?","","","",""
+"V-43150","medium","The login user list must be disabled.","Leaving the user list enabled is a security risk since it allows anyone with physical access to the system to quickly enumerate known user accounts without logging in.","None","SV-55880r2_rule","F-48722r2_fix","In the default graphical environment, users logging directly into the system are greeted with a login screen that displays all known users. This functionality should be disabled.
+
+Run the following command to disable the user list:
+
+$ sudo gconftool-2 --direct \
+--config-source xml:readwrite:/etc/gconf/gconf.xml.mandatory \
+--type bool --set /apps/gdm/simple-greeter/disable_user_list trueIn the default graphical environment, users logging directly into the system are greeted with a login screen that displays all known users. This functionality should be disabled.
+
+Run the following command to disable the user list:
+
+$ sudo gconftool-2 --direct \
+--config-source xml:readwrite:/etc/gconf/gconf.xml.mandatory \
+--type bool --set /apps/gdm/simple-greeter/disable_user_list trueIn the default graphical environment, users logging directly into the system are greeted with a login screen that displays all known users. This functionality should be disabled.
+
+Run the following command to disable the user list:
+
+$ sudo gconftool-2 --direct \
+--config-source xml:readwrite:/etc/gconf/gconf.xml.mandatory \
+--type bool --set /apps/gdm/simple-greeter/disable_user_list true","C-49197r4_chk","If the GConf2 package is not installed, this is not applicable.
+
+To ensure the user list is disabled, run the following command:
+
+$ gconftool-2 --direct \
+--config-source xml:readwrite:/etc/gconf/gconf.xml.mandatory \
+--get /apps/gdm/simple-greeter/disable_user_list
+
+The output should be ""true"". If it is not, this is a finding. If the GConf2 package is not installed, this is not applicable.
+
+To ensure the user list is disabled, run the following command:
+
+$ gconftool-2 --direct \
+--config-source xml:readwrite:/etc/gconf/gconf.xml.mandatory \
+--get /apps/gdm/simple-greeter/disable_user_list
+
+The output should be ""true"". If it is not, this is a finding. If the GConf2 package is not installed, this is not applicable.
+
+To ensure the user list is disabled, run the following command:
+
+$ gconftool-2 --direct \
+--config-source xml:readwrite:/etc/gconf/gconf.xml.mandatory \
+--get /apps/gdm/simple-greeter/disable_user_list
+
+The output should be ""true"". If it is not, this is a finding. ","","","","",""
+"Should Be Used:","","","","","","","","","","","","","",""
+"V-38539","medium","The system must be configured to use TCP syncookies when experiencing a TCP SYN flood.","A TCP SYN flood attack can cause a denial of service by filling a system's TCP connection table with connections in the SYN_RCVD state. Syncookies can be used to track a connection when a subsequent ACK is received, verifying the initiator is attempting a valid connection and is not a flood source. This feature is activated when a flood condition is detected, and enables the system to continue servicing valid connection requests.","None","SV-50340r2_rule","F-43487r1_fix","To set the runtime status of the ""net.ipv4.tcp_syncookies"" kernel parameter, run the following command:
+
+# sysctl -w net.ipv4.tcp_syncookies=1
+
+If this is not the system's default value, add the following line to ""/etc/sysctl.conf"":
+
+net.ipv4.tcp_syncookies = 1To set the runtime status of the ""net.ipv4.tcp_syncookies"" kernel parameter, run the following command:
+
+# sysctl -w net.ipv4.tcp_syncookies=1
+
+If this is not the system's default value, add the following line to ""/etc/sysctl.conf"":
+
+net.ipv4.tcp_syncookies = 1To set the runtime status of the ""net.ipv4.tcp_syncookies"" kernel parameter, run the following command:
+
+# sysctl -w net.ipv4.tcp_syncookies=1
+
+If this is not the system's default value, add the following line to ""/etc/sysctl.conf"":
+
+net.ipv4.tcp_syncookies = 1","C-46097r2_chk","The status of the ""net.ipv4.tcp_syncookies"" kernel parameter can be queried by running the following command:
+
+$ sysctl net.ipv4.tcp_syncookies
+
+The output of the command should indicate a value of ""1"". If this value is not the default value, investigate how it could have been adjusted at runtime, and verify it is not set improperly in ""/etc/sysctl.conf"".
+
+$ grep net.ipv4.tcp_syncookies /etc/sysctl.conf
+
+If the correct value is not returned, this is a finding. The status of the ""net.ipv4.tcp_syncookies"" kernel parameter can be queried by running the following command:
+
+$ sysctl net.ipv4.tcp_syncookies
+
+The output of the command should indicate a value of ""1"". If this value is not the default value, investigate how it could have been adjusted at runtime, and verify it is not set improperly in ""/etc/sysctl.conf"".
+
+$ grep net.ipv4.tcp_syncookies /etc/sysctl.conf
+
+If the correct value is not returned, this is a finding. The status of the ""net.ipv4.tcp_syncookies"" kernel parameter can be queried by running the following command:
+
+$ sysctl net.ipv4.tcp_syncookies
+
+The output of the command should indicate a value of ""1"". If this value is not the default value, investigate how it could have been adjusted at runtime, and verify it is not set improperly in ""/etc/sysctl.conf"".
+
+$ grep net.ipv4.tcp_syncookies /etc/sysctl.conf
+
+If the correct value is not returned, this is a finding. ","","","","",""
+"V-51337","medium","The system must use a Linux Security Module at boot time.","Disabling a major host protection feature, such as SELinux, at boot time prevents it from confining system services at boot time. Further, it increases the chances that it will remain off during system operation.","None","SV-65547r1_rule","F-56147r1_fix","SELinux can be disabled at boot time by an argument in ""/etc/grub.conf"". Remove any instances of ""selinux=0"" from the kernel arguments in that file to prevent SELinux from being disabled at boot. ","C-54007r1_chk","Inspect ""/etc/grub.conf"" for any instances of ""selinux=0"" in the kernel boot arguments. Presence of ""selinux=0"" indicates that SELinux is disabled at boot time. If SELinux is disabled at boot time, this is a finding.","Linux Security Module","","","",""
+"V-51363","medium","The system must use a Linux Security Module configured to enforce limits on system services.","Setting the SELinux state to enforcing ensures SELinux is able to confine potentially compromised processes to the security policy, which is designed to prevent them from causing damage to the system or further elevating their privileges. ","None","SV-65573r1_rule","F-56165r1_fix","The SELinux state should be set to ""enforcing"" at system boot time. In the file ""/etc/selinux/config"", add or correct the following line to configure the system to boot into enforcing mode:
+
+SELINUX=enforcingThe SELinux state should be set to ""enforcing"" at system boot time. In the file ""/etc/selinux/config"", add or correct the following line to configure the system to boot into enforcing mode:
+
+SELINUX=enforcingThe SELinux state should be set to ""enforcing"" at system boot time. In the file ""/etc/selinux/config"", add or correct the following line to configure the system to boot into enforcing mode:
+
+SELINUX=enforcing","C-53703r1_chk","Check the file ""/etc/selinux/config"" and ensure the following line appears:
+
+SELINUX=enforcing
+
+If SELINUX is not set to enforcing, this is a finding. Check the file ""/etc/selinux/config"" and ensure the following line appears:
+
+SELINUX=enforcing
+
+If SELINUX is not set to enforcing, this is a finding. Check the file ""/etc/selinux/config"" and ensure the following line appears:
+
+SELINUX=enforcing
+
+If SELINUX is not set to enforcing, this is a finding. ","","","","",""
+"V-51369","low","The system must use a Linux Security Module configured to limit the privileges of system services.","Setting the SELinux policy to ""targeted"" or a more specialized policy ensures the system will confine processes that are likely to be targeted for exploitation, such as network or system services. ","None","SV-65579r1_rule","F-56171r1_fix","The SELinux ""targeted"" policy is appropriate for general-purpose desktops and servers, as well as systems in many other roles. To configure the system to use this policy, add or correct the following line in ""/etc/selinux/config"":
+
+SELINUXTYPE=targeted
+
+Other policies, such as ""mls"", provide additional security labeling and greater confinement but are not compatible with many general-purpose use cases. The SELinux ""targeted"" policy is appropriate for general-purpose desktops and servers, as well as systems in many other roles. To configure the system to use this policy, add or correct the following line in ""/etc/selinux/config"":
+
+SELINUXTYPE=targeted
+
+Other policies, such as ""mls"", provide additional security labeling and greater confinement but are not compatible with many general-purpose use cases. The SELinux ""targeted"" policy is appropriate for general-purpose desktops and servers, as well as systems in many other roles. To configure the system to use this policy, add or correct the following line in ""/etc/selinux/config"":
+
+SELINUXTYPE=targeted
+
+Other policies, such as ""mls"", provide additional security labeling and greater confinement but are not compatible with many general-purpose use cases. ","C-53711r1_chk","Check the file ""/etc/selinux/config"" and ensure the following line appears:
+
+SELINUXTYPE=targeted
+
+If it does not, this is a finding. Check the file ""/etc/selinux/config"" and ensure the following line appears:
+
+SELINUXTYPE=targeted
+
+If it does not, this is a finding. Check the file ""/etc/selinux/config"" and ensure the following line appears:
+
+SELINUXTYPE=targeted
+
+If it does not, this is a finding. ","","","","",""
+"V-51379","low","All device files must be monitored by the system Linux Security Module.","If a device file carries the SELinux type ""unlabeled_t"", then SELinux cannot properly restrict access to the device file. ","None","SV-65589r1_rule","F-56179r1_fix","Device files, which are used for communication with important system resources, should be labeled with proper SELinux types. If any device files carry the SELinux type ""unlabeled_t"", investigate the cause and correct the file's context. ","C-53719r1_chk","To check for unlabeled device files, run the following command:
+
+# ls -RZ /dev | grep unlabeled_t
+
+It should produce no output in a well-configured system.
+
+If there is output, this is a finding. To check for unlabeled device files, run the following command:
+
+# ls -RZ /dev | grep unlabeled_t
+
+It should produce no output in a well-configured system.
+
+If there is output, this is a finding. To check for unlabeled device files, run the following command:
+
+# ls -RZ /dev | grep unlabeled_t
+
+It should produce no output in a well-configured system.
+
+If there is output, this is a finding. ","","","","",""
+"V-38669","low","The postfix service must be enabled for mail delivery.","Local mail delivery is essential to some system maintenance and notification tasks.","None","SV-50470r1_rule","F-43618r1_fix","The Postfix mail transfer agent is used for local mail delivery within the system. The default configuration only listens for connections to the default SMTP port (port 25) on the loopback interface (127.0.0.1). It is recommended to leave this service enabled for local mail delivery. The ""postfix"" service can be enabled with the following command:
+
+# chkconfig postfix on
+# service postfix startThe Postfix mail transfer agent is used for local mail delivery within the system. The default configuration only listens for connections to the default SMTP port (port 25) on the loopback interface (127.0.0.1). It is recommended to leave this service enabled for local mail delivery. The ""postfix"" service can be enabled with the following command:
+
+# chkconfig postfix on
+# service postfix startThe Postfix mail transfer agent is used for local mail delivery within the system. The default configuration only listens for connections to the default SMTP port (port 25) on the loopback interface (127.0.0.1). It is recommended to leave this service enabled for local mail delivery. The ""postfix"" service can be enabled with the following command:
+
+# chkconfig postfix on
+# service postfix start","C-46230r1_chk","Run the following command to determine the current status of the ""postfix"" service:
+
+# service postfix status
+
+If the service is enabled, it should return the following:
+
+postfix is running...
+
+If the service is not enabled, this is a finding.Run the following command to determine the current status of the ""postfix"" service:
+
+# service postfix status
+
+If the service is enabled, it should return the following:
+
+postfix is running...
+
+If the service is not enabled, this is a finding.Run the following command to determine the current status of the ""postfix"" service:
+
+# service postfix status
+
+If the service is enabled, it should return the following:
+
+postfix is running...
+
+If the service is not enabled, this is a finding.","","","","",""
+"V-38660","medium","The snmpd service must use only SNMP protocol version 3 or newer.","Earlier versions of SNMP are considered insecure, as they potentially allow unauthorized access to detailed system management information.
+Earlier versions of SNMP are considered insecure, as they potentially allow unauthorized access to detailed system management information.
+Earlier versions of SNMP are considered insecure, as they potentially allow unauthorized access to detailed system management information.
+","None","SV-50461r1_rule","F-43604r1_fix","Edit ""/etc/snmp/snmpd.conf"", removing any references to ""v1"", ""v2c"", or ""com2sec"". Upon doing that, restart the SNMP service:
+
+# service snmpd restartEdit ""/etc/snmp/snmpd.conf"", removing any references to ""v1"", ""v2c"", or ""com2sec"". Upon doing that, restart the SNMP service:
+
+# service snmpd restartEdit ""/etc/snmp/snmpd.conf"", removing any references to ""v1"", ""v2c"", or ""com2sec"". Upon doing that, restart the SNMP service:
+
+# service snmpd restart","C-46215r1_chk","To ensure only SNMPv3 or newer is used, run the following command:
+
+# grep 'v1\|v2c\|com2sec' /etc/snmp/snmpd.conf | grep -v '^#'
+
+There should be no output.
+If there is output, this is a finding.To ensure only SNMPv3 or newer is used, run the following command:
+
+# grep 'v1\|v2c\|com2sec' /etc/snmp/snmpd.conf | grep -v '^#'
+
+There should be no output.
+If there is output, this is a finding.To ensure only SNMPv3 or newer is used, run the following command:
+
+# grep 'v1\|v2c\|com2sec' /etc/snmp/snmpd.conf | grep -v '^#'
+
+There should be no output.
+If there is output, this is a finding.","","","","",""
+"V-38653","high","The snmpd service must not use a default password.","Presence of the default SNMP password enables querying of different system aspects and could result in unauthorized knowledge of the system.","None","SV-50454r1_rule","F-43602r1_fix","Edit ""/etc/snmp/snmpd.conf"", remove default community string ""public"". Upon doing that, restart the SNMP service:
+
+# service snmpd restartEdit ""/etc/snmp/snmpd.conf"", remove default community string ""public"". Upon doing that, restart the SNMP service:
+
+# service snmpd restart","C-46213r1_chk","To ensure the default password is not set, run the following command:
+
+# grep -v ""^#"" /etc/snmp/snmpd.conf| grep public
+
+There should be no output.
+If there is output, this is a finding.To ensure the default password is not set, run the following command:
+
+# grep -v ""^#"" /etc/snmp/snmpd.conf| grep public
+
+There should be no output.
+If there is output, this is a finding.","put in password?","","","",""
+"V-38667","medium","The system must have a host-based intrusion detection tool installed.","Adding host-based intrusion detection tools can provide the capability to automatically take actions in response to malicious behavior, which can provide additional agility in reacting to network threats. These tools also often include a reporting capability to provide network awareness of system, which may not otherwise exist in an organization's systems management regime.","None","SV-50468r2_rule","F-43616r2_fix","The base Red Hat platform already includes a sophisticated auditing system that can detect intruder activity, as well as SELinux, which provides host-based intrusion prevention capabilities by confining privileged programs and user sessions which may become compromised.
+
+In DoD environments, supplemental intrusion detection tools, such as, the McAfee Host-based Security System, are available to integrate with existing infrastructure. When these supplemental tools interfere with the proper functioning of SELinux, SELinux takes precedence. The base Red Hat platform already includes a sophisticated auditing system that can detect intruder activity, as well as SELinux, which provides host-based intrusion prevention capabilities by confining privileged programs and user sessions which may become compromised.
+
+In DoD environments, supplemental intrusion detection tools, such as, the McAfee Host-based Security System, are available to integrate with existing infrastructure. When these supplemental tools interfere with the proper functioning of SELinux, SELinux takes precedence. ","C-46227r1_chk","Inspect the system to determine if intrusion detection software has been installed. Verify the intrusion detection software is active.
+If no host-based intrusion detection tools are installed, this is a finding.Inspect the system to determine if intrusion detection software has been installed. Verify the intrusion detection software is active.
+If no host-based intrusion detection tools are installed, this is a finding.","?? Or security","","","",""
+"Storage:","","","","","","","","","","","","","",""
+"NFS Server:","","","","","","","","","","","","","",""
+"V-38677","high","The NFS server must not have the insecure file locking option enabled.","Allowing insecure file locking could allow for sensitive data to be viewed or edited by an unauthorized user.","None","SV-50478r1_rule","F-43626r1_fix","By default the NFS server requires secure file-lock requests, which require credentials from the client in order to lock a file. Most NFS clients send credentials with file lock requests, however, there are a few clients that do not send credentials when requesting a file-lock, allowing the client to only be able to lock world-readable files. To get around this, the ""insecure_locks"" option can be used so these clients can access the desired export. This poses a security risk by potentially allowing the client access to data for which it does not have authorization. Remove any instances of the ""insecure_locks"" option from the file ""/etc/exports"".","C-46239r1_chk","To verify insecure file locking has been disabled, run the following command:
+
+# grep insecure_locks /etc/exports
+
+
+If there is output, this is a finding.To verify insecure file locking has been disabled, run the following command:
+
+# grep insecure_locks /etc/exports
+
+
+If there is output, this is a finding.","","","","",""
+"V-38460","low","The NFS server must not have the all_squash option enabled.","The ""all_squash"" option maps all client requests to a single anonymous uid/gid on the NFS server, negating the ability to track file access by user ID.","None","SV-50260r1_rule","F-43405r1_fix","Remove any instances of the ""all_squash"" option from the file ""/etc/exports"".  Restart the NFS daemon for the changes to take effect.
+
+# service nfs restartRemove any instances of the ""all_squash"" option from the file ""/etc/exports"".  Restart the NFS daemon for the changes to take effect.
+
+# service nfs restart","C-46016r1_chk","If the NFS server is read-only, in support of unrestricted access to organizational content, this is not applicable.
+
+The related ""root_squash"" option provides protection against remote administrator-level access to NFS server content.  Its use is not a finding.
+
+To verify the ""all_squash"" option has been disabled, run the following command:
+
+# grep all_squash /etc/exports
+
+
+If there is output, this is a finding.If the NFS server is read-only, in support of unrestricted access to organizational content, this is not applicable.
+
+The related ""root_squash"" option provides protection against remote administrator-level access to NFS server content.  Its use is not a finding.
+
+To verify the ""all_squash"" option has been disabled, run the following command:
+
+# grep all_squash /etc/exports
+
+
+If there is output, this is a finding.","","","","",""
+"Sambda Server:","","","","","","","","","","","","","",""
+"V-38656","low","The system must use SMB client signing for connecting to samba servers using smbclient.","Packet signing can prevent man-in-the-middle attacks which modify SMB packets in transit.","None","SV-50457r1_rule","F-43606r1_fix","To require samba clients running ""smbclient"" to use packet signing, add the following to the ""[global]"" section of the Samba configuration file in ""/etc/samba/smb.conf"":
+
+client signing = mandatory
+
+Requiring samba clients such as ""smbclient"" to use packet signing ensures they can only communicate with servers that support packet signing.To require samba clients running ""smbclient"" to use packet signing, add the following to the ""[global]"" section of the Samba configuration file in ""/etc/samba/smb.conf"":
+
+client signing = mandatory
+
+Requiring samba clients such as ""smbclient"" to use packet signing ensures they can only communicate with servers that support packet signing.","C-46217r1_chk","To verify that Samba clients running smbclient must use packet signing, run the following command:
+
+# grep signing /etc/samba/smb.conf
+
+The output should show:
+
+client signing = mandatory
+
+
+If it is not, this is a finding.To verify that Samba clients running smbclient must use packet signing, run the following command:
+
+# grep signing /etc/samba/smb.conf
+
+The output should show:
+
+client signing = mandatory
+
+
+If it is not, this is a finding.","","","","",""
+"V-38657","low","The system must use SMB client signing for connecting to samba servers using mount.cifs.","Packet signing can prevent man-in-the-middle attacks which modify SMB packets in transit.","None","SV-50458r2_rule","F-43607r1_fix","Require packet signing of clients who mount Samba shares using the ""mount.cifs"" program (e.g., those who specify shares in ""/etc/fstab""). To do so, ensure signing options (either ""sec=krb5i"" or ""sec=ntlmv2i"") are used.
+
+See the ""mount.cifs(8)"" man page for more information. A Samba client should only communicate with servers who can support SMB packet signing.Require packet signing of clients who mount Samba shares using the ""mount.cifs"" program (e.g., those who specify shares in ""/etc/fstab""). To do so, ensure signing options (either ""sec=krb5i"" or ""sec=ntlmv2i"") are used.
+
+See the ""mount.cifs(8)"" man page for more information. A Samba client should only communicate with servers who can support SMB packet signing.","C-46218r4_chk","If Samba is not in use, this is not applicable.
+
+To verify that Samba clients using mount.cifs must use packet signing, run the following command:
+
+# grep sec /etc/fstab /etc/mtab
+
+The output should show either ""krb5i"" or ""ntlmv2i"" in use.
+If it does not, this is a finding.If Samba is not in use, this is not applicable.
+
+To verify that Samba clients using mount.cifs must use packet signing, run the following command:
+
+# grep sec /etc/fstab /etc/mtab
+
+The output should show either ""krb5i"" or ""ntlmv2i"" in use.
+If it does not, this is a finding.","","","","",""
+"Daemon Requirements:","","","","","","","","","","","","","",""
+"V-38701","high","The TFTP daemon must operate in secure mode which provides access only to a single directory on the host file system.","Using the ""-s"" option causes the TFTP service to only serve files from the given directory. Serving files from an intentionally specified directory reduces the risk of sharing files which should remain private.","None","SV-50502r1_rule","F-43650r1_fix","If running the ""tftp"" service is necessary, it should be configured to change its root directory at startup. To do so, ensure ""/etc/xinetd.d/tftp"" includes ""-s"" as a command line argument, as shown in the following example (which is also the default):
+
+server_args = -s /var/lib/tftpbootIf running the ""tftp"" service is necessary, it should be configured to change its root directory at startup. To do so, ensure ""/etc/xinetd.d/tftp"" includes ""-s"" as a command line argument, as shown in the following example (which is also the default):
+
+server_args = -s /var/lib/tftpboot","C-46263r1_chk","Verify ""tftp"" is configured by with the ""-s"" option by running the following command:
+
+grep ""server_args"" /etc/xinetd.d/tftp
+
+The output should indicate the ""server_args"" variable is configured with the ""-s"" flag, matching the example below:
+
+# grep ""server_args"" /etc/xinetd.d/tftp
+server_args = -s /var/lib/tftpboot
+
+If it does not, this is a finding.Verify ""tftp"" is configured by with the ""-s"" option by running the following command:
+
+grep ""server_args"" /etc/xinetd.d/tftp
+
+The output should indicate the ""server_args"" variable is configured with the ""-s"" flag, matching the example below:
+
+# grep ""server_args"" /etc/xinetd.d/tftp
+server_args = -s /var/lib/tftpboot
+
+If it does not, this is a finding.","","","","",""
+"V-38607","high","The SSH daemon must be configured to use only the SSHv2 protocol.","SSH protocol version 1 suffers from design flaws that result in security vulnerabilities and should not be used.","None","SV-50408r1_rule","F-43555r1_fix","Only SSH protocol version 2 connections should be permitted. The default setting in ""/etc/ssh/sshd_config"" is correct, and can be verified by ensuring that the following line appears:
+
+Protocol 2Only SSH protocol version 2 connections should be permitted. The default setting in ""/etc/ssh/sshd_config"" is correct, and can be verified by ensuring that the following line appears:
+
+Protocol 2","C-46165r1_chk","To check which SSH protocol version is allowed, run the following command:
+
+# grep Protocol /etc/ssh/sshd_config
+
+If configured properly, output should be
+
+Protocol 2
+
+
+If it is not, this is a finding.To check which SSH protocol version is allowed, run the following command:
+
+# grep Protocol /etc/ssh/sshd_config
+
+If configured properly, output should be
+
+Protocol 2
+
+
+If it is not, this is a finding.","","","","",""
+"V-38614","high","The SSH daemon must not allow authentication using an empty password.","Configuring this setting for the SSH daemon provides additional assurance that remote login via SSH will require a password, even in the event of misconfiguration elsewhere.","None","SV-50415r1_rule","F-43562r1_fix","To explicitly disallow remote login from accounts with empty passwords, add or correct the following line in ""/etc/ssh/sshd_config"":
+
+PermitEmptyPasswords no
+
+Any accounts with empty passwords should be disabled immediately, and PAM configuration should prevent users from being able to assign themselves empty passwords.To explicitly disallow remote login from accounts with empty passwords, add or correct the following line in ""/etc/ssh/sshd_config"":
+
+PermitEmptyPasswords no
+
+Any accounts with empty passwords should be disabled immediately, and PAM configuration should prevent users from being able to assign themselves empty passwords.","C-46172r1_chk","To determine how the SSH daemon's ""PermitEmptyPasswords"" option is set, run the following command:
+
+# grep -i PermitEmptyPasswords /etc/ssh/sshd_config
+
+If no line, a commented line, or a line indicating the value ""no"" is returned, then the required value is set.
+If the required value is not set, this is a finding.To determine how the SSH daemon's ""PermitEmptyPasswords"" option is set, run the following command:
+
+# grep -i PermitEmptyPasswords /etc/ssh/sshd_config
+
+If no line, a commented line, or a line indicating the value ""no"" is returned, then the required value is set.
+If the required value is not set, this is a finding.","could put in password?","","","",""
+"V-38611","medium","The SSH daemon must ignore .rhosts files.","SSH trust relationships mean a compromise on one host can allow an attacker to move trivially to other hosts.","None","SV-50412r1_rule","F-43559r1_fix","SSH can emulate the behavior of the obsolete rsh command in allowing users to enable insecure access to their accounts via "".rhosts"" files.
+
+To ensure this behavior is disabled, add or correct the following line in ""/etc/ssh/sshd_config"":
+
+IgnoreRhosts yesSSH can emulate the behavior of the obsolete rsh command in allowing users to enable insecure access to their accounts via "".rhosts"" files.
+
+To ensure this behavior is disabled, add or correct the following line in ""/etc/ssh/sshd_config"":
+
+IgnoreRhosts yes","C-46169r1_chk","To determine how the SSH daemon's ""IgnoreRhosts"" option is set, run the following command:
+
+# grep -i IgnoreRhosts /etc/ssh/sshd_config
+
+If no line, a commented line, or a line indicating the value ""yes"" is returned, then the required value is set.
+If the required value is not set, this is a finding.To determine how the SSH daemon's ""IgnoreRhosts"" option is set, run the following command:
+
+# grep -i IgnoreRhosts /etc/ssh/sshd_config
+
+If no line, a commented line, or a line indicating the value ""yes"" is returned, then the required value is set.
+If the required value is not set, this is a finding.","","","","",""
+"V-38612","medium","The SSH daemon must not allow host-based authentication.","SSH trust relationships mean a compromise on one host can allow an attacker to move trivially to other hosts.","None","SV-50413r1_rule","F-43560r1_fix","SSH's cryptographic host-based authentication is more secure than "".rhosts"" authentication, since hosts are cryptographically authenticated. However, it is not recommended that hosts unilaterally trust one another, even within an organization.
+
+To disable host-based authentication, add or correct the following line in ""/etc/ssh/sshd_config"":
+
+HostbasedAuthentication noSSH's cryptographic host-based authentication is more secure than "".rhosts"" authentication, since hosts are cryptographically authenticated. However, it is not recommended that hosts unilaterally trust one another, even within an organization.
+
+To disable host-based authentication, add or correct the following line in ""/etc/ssh/sshd_config"":
+
+HostbasedAuthentication no","C-46170r1_chk","To determine how the SSH daemon's ""HostbasedAuthentication"" option is set, run the following command:
+
+# grep -i HostbasedAuthentication /etc/ssh/sshd_config
+
+If no line, a commented line, or a line indicating the value ""no"" is returned, then the required value is set.
+If the required value is not set, this is a finding.To determine how the SSH daemon's ""HostbasedAuthentication"" option is set, run the following command:
+
+# grep -i HostbasedAuthentication /etc/ssh/sshd_config
+
+If no line, a commented line, or a line indicating the value ""no"" is returned, then the required value is set.
+If the required value is not set, this is a finding.","","","","",""
+"V-38617","medium","The SSH daemon must be configured to use only FIPS 140-2 approved ciphers.","Approved algorithms should impart some level of confidence in their implementation. These are also required for compliance.","None","SV-50418r1_rule","F-43566r1_fix","Limit the ciphers to those algorithms which are FIPS-approved. Counter (CTR) mode is also preferred over cipher-block chaining (CBC) mode. The following line in ""/etc/ssh/sshd_config"" demonstrates use of FIPS-approved ciphers:
+
+Ciphers aes128-ctr,aes192-ctr,aes256-ctr,aes128-cbc,3des-cbc,aes192-cbc,aes256-cbc
+
+The man page ""sshd_config(5)"" contains a list of supported ciphers.Limit the ciphers to those algorithms which are FIPS-approved. Counter (CTR) mode is also preferred over cipher-block chaining (CBC) mode. The following line in ""/etc/ssh/sshd_config"" demonstrates use of FIPS-approved ciphers:
+
+Ciphers aes128-ctr,aes192-ctr,aes256-ctr,aes128-cbc,3des-cbc,aes192-cbc,aes256-cbc
+
+The man page ""sshd_config(5)"" contains a list of supported ciphers.","C-46176r1_chk","Only FIPS-approved ciphers should be used. To verify that only FIPS-approved ciphers are in use, run the following command:
+
+# grep Ciphers /etc/ssh/sshd_config
+
+The output should contain only those ciphers which are FIPS-approved, namely, the AES and 3DES ciphers.
+If that is not the case, this is a finding.Only FIPS-approved ciphers should be used. To verify that only FIPS-approved ciphers are in use, run the following command:
+
+# grep Ciphers /etc/ssh/sshd_config
+
+The output should contain only those ciphers which are FIPS-approved, namely, the AES and 3DES ciphers.
+If that is not the case, this is a finding.","","","","",""
+"V-38608","low","The SSH daemon must set a timeout interval on idle sessions.","Causing idle users to be automatically logged out guards against compromises one system leading trivially to compromises on another.","None","SV-50409r1_rule","F-43556r1_fix","SSH allows administrators to set an idle timeout interval. After this interval has passed, the idle user will be automatically logged out.
+
+To set an idle timeout interval, edit the following line in ""/etc/ssh/sshd_config"" as follows:
+
+ClientAliveInterval [interval]
+
+The timeout [interval] is given in seconds. To have a timeout of 15 minutes, set [interval] to 900.
+
+If a shorter timeout has already been set for the login shell, that value will preempt any SSH setting made here. Keep in mind that some processes may stop SSH from correctly detecting that the user is idle.","C-46167r1_chk","Run the following command to see what the timeout interval is:
+
+# grep ClientAliveInterval /etc/ssh/sshd_config
+
+If properly configured, the output should be:
+
+ClientAliveInterval 900
+
+
+If it is not, this is a finding.","","","","",""
+"V-38610","low","The SSH daemon must set a timeout count on idle sessions.","This ensures a user login will be terminated as soon as the ""ClientAliveCountMax"" is reached.","None","SV-50411r1_rule","F-43558r1_fix","To ensure the SSH idle timeout occurs precisely when the ""ClientAliveCountMax"" is set, edit ""/etc/ssh/sshd_config"" as follows:
+
+ClientAliveCountMax 0","C-46168r1_chk","To ensure the SSH idle timeout will occur when the ""ClientAliveCountMax"" is set, run the following command:
+
+# grep ClientAliveCountMax /etc/ssh/sshd_config
+
+If properly configured, output should be:
+
+ClientAliveCountMax 0
+
+
+If it is not, this is a finding.","","","","",""
+"V-38616","low","The SSH daemon must not permit user environment settings.","SSH environment options potentially allow users to bypass access restriction in some configurations.","None","SV-50417r1_rule","F-43565r1_fix","To ensure users are not able to present environment options to the SSH daemon, add or correct the following line in ""/etc/ssh/sshd_config"":
+
+PermitUserEnvironment no","C-46175r1_chk","To ensure users are not able to present environment daemons, run the following command:
+
+# grep PermitUserEnvironment /etc/ssh/sshd_config
+
+If properly configured, output should be:
+
+PermitUserEnvironment no
+
+
+If it is not, this is a finding.","","","","",""
+"V-38615","medium","The SSH daemon must be configured with the Department of Defense (DoD) login banner.","The warning message reinforces policy awareness during the logon process and facilitates possible legal action against attackers. Alternatively, systems whose ownership should not be obvious should ensure usage of a banner that does not provide easy attribution.","None","SV-50416r1_rule","F-43563r1_fix","To enable the warning banner and ensure it is consistent across the system, add or correct the following line in ""/etc/ssh/sshd_config"":
+
+Banner /etc/issue
+
+Another section contains information on how to create an appropriate system-wide warning banner.","C-46173r1_chk","To determine how the SSH daemon's ""Banner"" option is set, run the following command:
+
+# grep -i Banner /etc/ssh/sshd_config
+
+If a line indicating /etc/issue is returned, then the required value is set.
+If the required value is not set, this is a finding.","DoD login banner","","","",""
+"V-38599","medium","The FTPS/FTP service on the system must be configured with the Department of Defense (DoD) login banner.","This setting will cause the system greeting banner to be used for FTP connections as well.","None","SV-50400r2_rule","F-43564r3_fix","Edit the vsftpd configuration file, which resides at ""/etc/vsftpd/vsftpd.conf"" by default. Add or correct the following configuration options.
+
+banner_file=/etc/issue
+
+Restart the vsftpd daemon.
+
+# service vsftpd restart","C-46174r1_chk","To verify this configuration, run the following command:
+
+grep ""banner_file"" /etc/vsftpd/vsftpd.conf
+
+The output should show the value of ""banner_file"" is set to ""/etc/issue"", an example of which is shown below.
+
+# grep ""banner_file"" /etc/vsftpd/vsftpd.conf
+banner_file=/etc/issue
+
+
+If it does not, this is a finding.","","","","",""
+"V-38702","low","The FTP daemon must be configured for logging or verbose mode.","To trace malicious activity facilitated by the FTP service, it must be configured to ensure that all commands sent to the ftp server are logged using the verbose vsftpd log format. The default vsftpd log file is /var/log/vsftpd.log.","None","SV-50503r1_rule","F-43651r1_fix","Add or correct the following configuration options within the ""vsftpd"" configuration file, located at ""/etc/vsftpd/vsftpd.conf"".
+
+xferlog_enable=YES
+xferlog_std_format=NO
+log_ftp_protocol=YES","C-46264r1_chk","Find if logging is applied to the ftp daemon.
+
+Procedures:
+
+If vsftpd is started by xinetd the following command will indicate the xinetd.d startup file.
+
+# grep vsftpd /etc/xinetd.d/*
+
+
+
+# grep server_args [vsftpd xinetd.d startup file]
+
+This will indicate the vsftpd config file used when starting through xinetd. If the [server_args]line is missing or does not include the vsftpd configuration file, then the default config file (/etc/vsftpd/vsftpd.conf) is used.
+
+# grep xferlog_enable [vsftpd config file]
+
+
+If xferlog_enable is missing, or is not set to yes, this is a finding.","","","","",""

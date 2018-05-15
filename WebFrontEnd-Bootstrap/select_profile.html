@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Meta -->
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>Raxak-Manage-Profile</title>
+    <!-- css -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/sb-admin.css" rel="stylesheet">
+    <link href="css/plugins/morris.css" rel="stylesheet">
+    <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="css/rxk_app.css" rel="stylesheet" type="text/css"/>
+  </head>
+  <body>
+    <div class="image-holder-page" id="image-holder-page"></div>
+    <div id="wrapper">
+      <div id="left_nav"></div>
+      <div id="page-wrapper">
+        <div class="container-fluid"> 
+          <!-- Page Heading -->
+          <div class="row">
+            <div class="col-lg-12">
+              <!--<h1 class="page-header"> Select  </h1>-->
+              <h1 class="page-header">Manage Profile</h1>
+              <ol class="breadcrumb">
+                <li> <i class="fa fa-dashboard"></i> <a href="index.html">Dashboard</a> </li>
+                <li class="active"> <i class="fa fa-fw fa-cogs"></i><span id="selectedProfileMsg"> Manage Profile</span></li>
+                <!--<li  class="active"><span style="float:right;" id="selectedProfileMsg"> Selected Profile: <b>Demonstration Profile </b></span></li>-->
+              </ol>
+            </div>
+          </div>
+          <!-- Flot Charts -->
+          <div class="row">
+            <div class="col-lg-12 text-left">
+              <div class="panel panel-default">
+                <div class="panel-body">
+                  <ul id="theMenu"></ul>
+                </div>
+              </div>
+            </div>
+          </div>
+          <input type="hidden" id="selectedProfile" value="" name="selectedProfile">
+          <div class="clear" style="height:40px;"></div>
+        </div>
+        <!-- /.container-fluid --> 
+      </div>
+      <!-- /#page-wrapper --> 
+    </div>
+    <div class="modal fade" id="descriptions" tabindex="-1" aria-labelledby="basicModal" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content" id="modal_content">
+          <div class="modal-header">
+            <button aria-hidden="true" data-dismiss="modal" class="close" type="button">
+              <i class="fa fa-times fa-fw"></i>
+            </button>
+            <h4 id="my_header" class="modal-title">Running Machine Details</h4>
+          </div>
+          <div class="modal-body" id="modal_body"></div>
+        </div>
+      </div>
+    </div>
+    <div id="footer_content" class="navbar navbar-inverse navbar-fixed-bottom"></div>
+  </body>
+
+  <!-- js -->
+  <script type="text/javascript" src="js/jquery-1.10.2.js"></script>
+  <script type="text/javascript" src="js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="js/accordion.js"></script>
+  <script type="text/javascript">
+    $(function () {
+        $("#left_nav").load("left_nav.html");
+        $("#footer_content").load("footer.html");
+        //getProfileListing();
+    });
+  </script>
+  <!-- include the custom and each page js file after left nav and footer -->
+  <script type="text/javascript" src="js/rxk_common.js"></script>
+  <script type="text/javascript" src="js/rxk_profiles.js"></script>
+  <script type="text/javascript">
+        function initAccordina() {
+            // applying the settings
+            $('#theMenu').Accordion({
+                active: 'h3.selected',
+                header: 'h3.head',
+                alwaysOpen: false,
+                animated: true,
+                showSpeed: 400,
+                hideSpeed: 800
+            });
+            $('#xtraMenu').Accordion({
+                active: 'h4.selected',
+                header: 'h4.head',
+                alwaysOpen: false,
+                animated: true,
+                showSpeed: 400,
+                hideSpeed: 800
+            });
+        }
+  </script>
+</html>

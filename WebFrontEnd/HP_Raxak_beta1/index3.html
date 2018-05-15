@@ -1,0 +1,152 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Cloud Service</title>
+        <link href="css/style.css" rel="stylesheet" type="text/css">
+        <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic' rel='stylesheet' type='text/css'>
+        <script src="js/jquery.js"></script> 
+        <script src="js/jquery.cookie.js"></script>
+        <script src="js/applogin.js"></script>
+        <script src="js/apphp.js"></script>
+    </head>
+
+    <body onload="orderOptions();">
+        <div class="header">
+            <div class="h_first_row">
+                <div class="logo">
+                    <a href="#">
+                        <h1><img src="images/logo.png" alt="" />logo text</h1>
+                    </a></div>
+                <div class="top_right">
+                    <div class="cart_box"><a href="#"><span class="ico_bg"><img src="images/cart_ico.png" alt=""></span>0 Items</a></div>
+                    <div class="consumer_box"><a href="#"><span class="consumer_ico_bg"><img src="images/consumer_ico.png" alt=""></span>Consumer</a>
+                    <span id="logout" onclick="logout()">logout</span></div>
+                </div>
+            </div>
+            <div class="menu">Menu</div>
+        </div>
+        <div class="cl"></div>
+        <div class="middle_section">
+            <div class="middle_left">
+                <div class="order_info">
+                    <div class="ico_col">
+                        <img src="images/information.png" alt="" />	
+                    </div>
+                    <div class="order_info_right">
+                        <h3>Order Information</h3>
+                        <p>
+                            Provide a meaningful name for your service. This name will be used as the primary listing method of your subscribed servicess
+                        </p>
+                        <h4>Subscription Name</h4>
+
+                        <input name="Name" value="CloudRaxak (1.0.0)"
+                               onfocus="(this.value == 'CloudRaxak (1.0.0)') && (this.value = '')"
+                               onblur="(this.value == '') && (this.value = 'CloudRaxak (1.0.0)')" class="sub_tx" />
+                        <h4>Description</h4>
+                        <textarea class="sub_tx"></textarea>
+                    </div>
+                    <div class="cl"></div>
+                </div>
+
+                <div class="order_info" >
+                    <div class="ico_col">
+                        <img src="images/subscription.png" alt="" />	
+                    </div>
+                    <div class="order_info_right">
+                        <h3>Subscription Period (Valid only for 1 Day)</h3>
+                        <br />
+                        <div class="pull-left"><input type="radio" name="RadioGroup1" value="radio" id="RadioGroup1_0" disabled="disabled"></div>
+                        <div class="pull-left_con"><label>Recurring Subscription</label></div>
+                        <div class="pull-left"><input type="radio" name="RadioGroup1" value="radio" id="RadioGroup1_1" disabled="disabled" checked="checked"></div>
+                        <div class="pull-left_con"><label>Term Subscription</label></div>
+                        <div class="date_row">
+                            <div class="start_date">
+                                <h4>Start Date</h4>
+                                <input type="text" value="4/6/15" id="showstartDate" class="tx_bx dis_in">
+                                <input type="button" class="date_btn date_btn_dis" value="Pick Date">
+                            </div>
+                            <div class="end_date">
+                                <h4>End Date</h4>
+                                <input type="text" value="" id="showendDate" class="tx_bx dis_in">
+                                <input type="button" class="date_btn date_btn_dis" value="Pick Date">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="cl"></div>
+                </div>
+
+            </div>
+            <div class="mid_right">
+                <div class="summery">
+                    <h3>Summary</h3>
+                    <p>The service configuration options you've chosen. You can always make changes before checkout.</p>
+                </div>
+                <div class="side_pro">
+                    <a href="#"><img src="images/cl_logo.png" alt="" /></a>
+                    <h3>CloudRaxak (1.0.0)</h3>
+                    Published on Apr 1, 2015 5:19:52 PM
+                </div>
+                <div class="Configuration">
+                    <h3>Your Configuration</h3>
+                    <h4>Amazon EC2</h4>
+                    <span>Server Specification</span>
+                    <ul>
+                        <li>1. Region (us-west-2)</li>
+                        <li>2. Availability Zone (b)</li>
+                        <li>3. Key Pair (raxak-key)</li>
+                        <li>4. Platform Type (Amazon Linux)</li>
+                        <li>5. Image (Amazon Linux AMI x86_64 PV EBS)</li>
+                        <li>8.Add Load Balancing (No, I dont want to add Load Balancing!)</li>
+                        <li>6. Server Size (Small)</li>
+                        <li>7. Number Of Servers (1)</li>
+                        <li>8a. Load Balancer Protocol (HTTP)</li>
+                        <li>8c. Instance Protocol (HTTP)</li>
+                    </ul>
+                    <div class="raxak_in">
+                        <h4>Raxak Integration</h4>
+                        Make Instance Compliant<br />
+                        <p>Compliance Frequency (Daily)<br/>
+                            Compliance Type (Gold)</p>
+                        <form name="trickydata" id="trickydata" method="POST">
+                            <input type="hidden" name="categoryName" value="APPLICATION_SERVICES" />
+                            <input type="hidden" name="subscriptionName" value="Raxak-CSA Integration (1.0.0)" />
+                            <input type="hidden" name="startDate" value="" id="startDate">
+<!--                            <input type="hidden" name="endDate" value="" id="endDate" >-->
+                            <input type="hidden" name="fields[field_8a7040664c0a81f8014c1516922e4a91]" value="true">
+                            <input type="hidden" name="fields[field_8a7040664c0a81f8014c1516923e4a94]" value="us-west-2">
+                            <input type="hidden" name="fields[field_8a7040664c0a81f8014c1516923e4a95]" value="a">
+                            <input type="hidden" name="fields[field_8a7040664c0a81f8014c1516924d4a96]" value="raxak-key">
+                            
+                            <input type="hidden" name="fields[field_8a7040664c0a81f8014c1516924d4a97]" value="Amazon Linux#us-west-2">
+                            <input type="hidden" name="fields[field_8a7040664c0a81f8014c1516924d4a98]" value="ami-10fd7020">
+                            <input type="hidden" name="fields[field_8a7040664c0a81f8014c1516925d4a9a]" value="t1.micro">
+                            <input type="hidden" name="fields[field_8a7040664c0a81f8014c1516926c4aaa]" value="1">
+                            
+                            <input type="hidden" name="fields[field_8a7040664c0a81f8014c1516924d4a99]" value="None">
+                            <input type="hidden" name="fields[field_8a7040664c0a81f8014c1516926c4aad]" value="http">
+                            <input type="hidden" name="fields[field_8a7040664c0a81f8014c1516926c4aae]" value="http">
+                            <input type="hidden" name="fields[field_8a7040664c0a81f8014c1516928c4ab6]" value="true">
+                            
+                            <input type="hidden" name="fields[field_8a7040664c0a81f8014c151692ba4ab9]" value="daily">
+                            <input type="hidden" name="fields[field_8a7040664c0a81f8014c151692e94ac9]" value="gold">
+                            <input type="hidden" name="action" value="ORDER">
+                        </form>
+                    </div>
+                </div>
+                <div class="cl"></div>
+                <div class="edit_btn"><a href="index2.html">Edit Options</a></div>
+            </div>
+        </div>
+        <div class="footer">
+            <div class="footer_main">
+                <div class="footer_left">Total Initial Price: <b>$ 0.00</b><br />
+                    Total Recurring Price: <b>$ 0.00 yearly</b></div>
+                <div class="footer_right">
+                    <div class="btn"><a href="#" onclick="requestOrder();"><img src="images/lock.png" alt="" />Checkout</a></div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

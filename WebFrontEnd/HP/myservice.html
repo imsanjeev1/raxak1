@@ -1,0 +1,1038 @@
+<!DOCTYPE html>
+<!-- saved from url=(0042)https://15.125.87.19:8089/org/CSA_CONSUMER -->
+<html class=" js flexbox flexboxlegacy canvas canvastext webgl no-touch geolocation postmessage websqldatabase indexeddb hashchange history draganddrop websockets rgba hsla multiplebgs backgroundsize borderimage borderradius boxshadow textshadow opacity cssanimations csscolumns cssgradients cssreflections csstransforms csstransforms3d csstransitions fontface generatedcontent video audio localstorage sessionstorage webworkers applicationcache svg inlinesvg smil svgclippaths">
+<!--<![endif]-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<style type="text/css">
+@charset "UTF-8";
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak, .ng-hide {
+display:none !important;
+}
+ng\:form {
+	display: block;
+}
+.ng-animate-block-transitions {
+	transition: 0s all!important;
+	-webkit-transition: 0s all!important;
+}
+</style>
+<style type="text/css">
+ 
+#hideshow {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+}
+#fade {
+	background: #000; 
+	position: fixed; 
+	width: 100%;
+	height: 100%;
+	filter:alpha(opacity=80);
+	opacity: .80;
+	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=80)"; /*--IE 8 Transparency--*/
+	left: 0;
+	z-index: 10;
+}
+.popup_block {
+	background: #ddd;
+	padding: 10px 20px;
+	border: 10px solid #fff;
+	float: left;
+	width: 480px;
+	position: fixed;
+	top: 20%;
+	left: 50%;
+	margin: 0 0 0 -250px;
+	z-index: 100;
+
+}
+.popup_block .popup {
+	float: left;
+	width: 100%;
+	background: #fff;
+	margin: 10px 0;
+	padding: 10px 0;
+	border: 1px solid #bbb;
+}
+.popup h3 {
+	margin: 0 0 20px;
+	padding: 5px 10px;
+	border-bottom: 1px solid #bbb;
+	font-size: 1.5em;
+	font-weight: normal;
+}
+.popup p {
+	padding: 5px 10px;
+	margin: 5px 0;
+}
+.popup img.cntrl {
+	position: absolute;
+	right: -20px;
+	top: -20px;
+}
+
+/*--Making IE6 Understand Fixed Positioning--*/
+
+*html #fade {
+	position: absolute;
+	top:expression(eval(document.compatMode &&
+	document.compatMode=='CSS1Compat') ?
+	documentElement.scrollTop : document.body.scrollTop);
+}
+
+*html .popup_block {
+	position: absolute;
+	top:expression(eval(document.compatMode &&
+	document.compatMode=='CSS1Compat') ?
+	documentElement.scrollTop
+	+((documentElement.clientHeight-this.clientHeight)/2)
+	: document.body.scrollTop
+	+((document.body.clientHeight-this.clientHeight)/2));
+	
+	left:expression(eval(document.compatMode &&
+	document.compatMode=='CSS1Compat') ?
+	documentElement.scrollLeft 
+	+ (document.body.clientWidth /2 ) 
+	: document.body.scrollLeft 
+	+ (document.body.offsetWidth /2 ));
+}
+
+/*--IE 6 PNG Fix--*/
+
+img{ behavior: url(iepngfix.htc) }
+
+</style>
+<!--<base href="https://15.125.87.19:8089/">-->
+<base href=".">
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>My Service</title>
+<meta name="description" content="">
+<meta name="viewport" content="width=device-width">
+<!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+
+<link id="styleLink" rel="stylesheet" href="css/main.css">
+</head>
+
+<body ng-app="mppApp" class="bg-body ng-scope" mpp-dir="" mpp-html-lang="" ng-show="$root.loaded" style="display: block;" dir="ltr">
+
+<!-- Framebusting logic. See: http://seclab.stanford.edu/websec/framebusting/framebust.pdf -->
+<style>
+  body {
+    display: none;
+  }
+  </style>
+<script>
+  if (self == top) {
+    document.getElementsByTagName("body")[0].style.display = 'block';
+  } else {
+    top.location = self.location;
+  }
+  </script> 
+<script>
+  /**
+   * Rewrite base.href to be an absolute URL. Only necessary for IE 9, but works fine in other browsers.
+   */
+  function toAbsURL(s) {
+    var l = location,
+      h, p, f, i;
+    if (/^\w+:/.test(s)) {
+      return s;
+    }
+    h = l.protocol + '//' + l.host + (l.port != '' ? (':' + l.port) : '');
+    if (s.indexOf('/') == 0) {
+      return h + s;
+    }
+    p = l.pathname.replace(/\/[^\/]*$/, '');
+    f = s.match(/\.\.\//g);
+    if (f) {
+      s = s.substring(f.length * 3);
+      for (i = f.length;;) {
+        i =
+          p = p.substring(0, p.lastIndexOf('/'));
+      }
+    }
+    return h + p + '/' + s;
+  }
+
+  var base = document.getElementsByTagName('base')[0];
+  base.href = toAbsURL(base.href);
+  </script> 
+
+<!--[if lt IE 7]>
+  <p class="chromeframe">You are using an outdated browser. <a href="http://browsehappy.com/">Upgrade your browser today</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
+<![endif]--> 
+
+<!--[if lt IE 9]>
+  <script src="bower_components/es5-shim/es5-shim.js"></script>
+  <script src="bower_components/json3/lib/json3.min.js"></script>
+<![endif]--> 
+
+<!-- Add your site or application content here --> 
+<!-- ngView:  -->
+<div ng-view="" class="full-height ng-scope">
+  <navbar nav-title="My Service Details" back-url="#/myservice" back-label="My Services" class="ng-scope ng-isolate-scope">
+    <div ng-controller="NavigationCtrl" class="st-container st-effect-3 ng-scope" ng-class="{'st-menu-open':visible}">
+      <div class="st-pusher">
+        <nav class="st-menu st-effect-3" id="menu-3" focus=""><a ></a>
+          <h2><span class="ng-binding">Sidebar Menu</span></h2>
+          <ul>
+            <li><a  id="dashboard-btn"><i class="h3 icon-dashboard"></i><span class="ng-binding">Dashboard</span></a></li>
+            <li><a  id="catalog-btn"><i class="h3 icon-catalog"></i><span class="ng-binding">Browse Catalog</span></a></li>
+            <li><a  id="notification-btn"><i class="h3 icon-notification"></i><span class="ng-binding">Notifications</span></a></li>
+            <li><a  id="review-request-btn"><i class="h3 icon-review"></i><span class="ng-binding">Review Requests</span></a></li>
+            <li><a  id="request-btn"><i class="h3 icon-services"></i><span class="ng-binding">Requests</span></a></li>
+            <li><a  id="subscription-btn"><i class="h3 icon-subscription"></i><span class="ng-binding">Subscriptions</span></a></li>
+            <li><a  id="my-service-btn"><i class="h3 icon-mystuff"></i><span class="ng-binding">My Services</span></a></li>
+          </ul>
+        </nav>
+        <!-- ngIf: visible -->
+        <div class="st-content">
+          <div class="st-content-inner app-wrapper">
+            <div class="navbar navbar-default navbar-fixed-top bs-docs-nav navbar-shadow" id="navbar" ng-class="{'security':org.securityLevel}"><!-- ngIf: org.securityLevel -->
+              <div>
+                <div class="row">
+                  <div class="col-xs-8"><!-- ngInclude:  -->
+                    <div class="full-width ng-scope" ng-include="" src="'views/common/header/navigation.html'"><a  class="navbar-brand full-width ellipses ng-scope" id="nav_home" aria-label="Dashboard" ng-hotkeys="ctrl+shift+1" ng-hotkeys-click=""><img ng-src="images/HP_Blue_RGB_150_MN.png" height="48" alt="" src="images/HP_Blue_RGB_150_MN.png"> <span class="ng-binding">Cloud Service Automation</span></a></div>
+                  </div>
+                  <div class="col-xs-2"><a  id="cart-btn" class="navbar-brand ellipses full-width" aria-label="Shopping Cart" ng-hotkeys="ctrl+shift+2" ng-hotkeys-click="">
+                    <div class="btn-primary glyph-btn compact"><i class="icon-cart"></i></div>
+                    <span translate="cart.items" translate-values="{&quot;count&quot;:0,&quot;NUMBER&quot;:0}" translate-interpolation="messageformat" class="ng-scope">0 Items</span></a></div>
+                  <div class="col-xs-2"><!-- ngInclude:  -->
+                    <div ng-include="" src="'views/common/header/user.html'" class="ng-scope">
+                      <div class="navbar-header dropdown navbar-nav full-width ng-scope"><a  class="navbar-brand dropdown-toggle full-width ellipses" data-toggle="dropdown" role="button" id="nav_dropdown" aria-label="Log Out">
+                        <div class="btn-info glyph-btn" ng-style="avatarStyle"><!-- ngIf: !avatarStyle --><i ng-if="!avatarStyle" class="icon-user ng-scope"></i><!-- end ngIf: !avatarStyle --></div>
+                        <span class="ng-binding">consumer</span></a>
+                        <ul class="dropdown-menu pull-right" role="menu">
+                          <li role="presentation"><a  role="menuitem" target="_blank" translate="common.assistance" class="ng-scope">Help</a></li>
+                          <li role="presentation" class="divider"></li>
+                          <li role="presentation"><a  role="menuitem" translate="common.about" id="about"  class="ng-scope">About</a></li>
+                          <li role="presentation" class="divider"></li>
+                          <li role="presentation"><a  role="menuitem" translate="common.logout" id="logout" target="_self"  class="ng-scope">Log Out</a></li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row sub-nav">
+                  <div class="col-xs-8">
+                    <ul class="nav navbar-nav">
+                      <!-- ngIf: !hideSidebar -->
+                      <li ng-if="!hideSidebar" class="ng-scope"><a id="show-sidebar"  ng-click="showSideBar()" class="compact text-center">
+                        <h3 class="icon-list"></h3>
+                        </a></li>
+                      <!-- end ngIf: !hideSidebar --><!-- ngIf: backUrl && !hideBackBtn -->
+                      <li ng-if="backUrl &amp;&amp; !hideBackBtn" class="ng-scope"><a id="back-btn" class="compact text-center" onclick="history.go(-1);"><span class="h3 icon-arrow-line-back"></span> <!-- ngIf: backLabel --><span ng-if="backLabel" class="nav-label h5 ng-scope ng-binding">My Services</span><!-- end ngIf: backLabel --></a></li>
+                      <!-- end ngIf: backUrl && !hideBackBtn --><!-- ngIf: !backUrl && !hideBackBtn --><!-- ngIf: navTitle -->
+                      <li ng-if="navTitle" class="ng-scope">
+                        <h5 id="nav-title" class="navbar-text"><span><strong class="ng-binding">My Service Details</strong></span> <!-- ngIf: itemCount !== undefined && itemCount !== null --></h5>
+                      </li>
+                      <!-- end ngIf: navTitle -->
+                    </ul>
+                  </div>
+                  <div class="col-xs-4">
+                    <h6 class="navbar-right navbar-text"><a class="navbar-link text-underline text-info ng-binding" target="_blank" >Need Help?</a></h6>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="app-content" ng-class="{'footer-padding':hasFooter,'security-padding':org.securityLevel}">
+              <div id="scrollbox" ng-transclude="">
+                <div mpp-busy="myservice$get,myservice$post" class="ng-scope ng-isolate-scope"><!-- ngIf: activeTrackers() -->
+                  <div ng-transclude="">
+                    <div class="content ng-scope">
+                      <div class="container bg-content">
+                        <div class="row">
+                          <div class="col-lg-3 col-xs-12">
+                            <div class="row">
+                              <div class="col-lg-12 col-xs-6 col-sm-4">
+                                <div class="panel panel-default">
+                                  <div class="panel-body">
+                                    <div class="equilateral">
+                                      <div>
+                                        <div class="full-size vertical-center">
+                                          <div class="item-list-image"><img ng-src="images/HP%20Helion.png" alt="" src="images/HP%20Helion.png"></div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <div ng-class="'panel-footer ' + getColor(data.status)" class="panel-footer bg-critical"><strong class="ng-binding">Public Action Failed Services</strong></div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-lg-8 col-lg-offset-1 col-xs-12">
+                            <h3><strong class="ng-binding">Helion Openstack IaaS Simple Compute</strong></h3>
+                            <div class="row">
+                              <div class="col-lg-3 col-xs-12"><a  class="btn btn-default btn-block ng-scope" translate="myservice.detail.viewSubscription" >Manage Subscription</a></div>
+                            </div>
+                            <hr>
+                            <p class="ng-binding">HP Helion OpenStack Compute</p>
+                            <!-- ngIf: data.screenshots.length --></div>
+                        </div>
+                        <div class="row">
+                          <div class="col-lg-3 col-xs-12">
+                            <div class="compact"><!-- ngIf: data.serviceInstance.serviceAction --><!-- ngIf: data.serviceInstance.properties || data.serviceInstance.properties.length > 0 -->
+                              <h4 translate="myservice.detail.details" class="ng-scope">Service Details</h4>
+                              <h6><small translate="myservice.detail.detailsDesc" class="ng-scope">Details of the offering that fulfills the service.</small></h6>
+                              <br>
+                              <h6><small translate="myservice.offerName" class="ng-scope">Service Offering</small></h6>
+                              <p><strong class="ng-binding">Helion Openstack IaaS Simple Compute</strong></p>
+                              <hr>
+                              <h6><small translate="myservice.designName" class="ng-scope">Service Design</small></h6>
+                              <p><strong class="ng-binding">Copy of CSL HP Helion OpenStack v2 - Compute</strong></p>
+                              <hr>
+                              <h6><small translate="myservice.expireOn" class="ng-scope">Expires on</small></h6>
+                              <p><strong class="ng-binding">Aug 3, 2015 11:59:55 PM</strong></p>
+                              <hr>
+                              <h6><small translate="myservice.ownedBy" class="ng-scope">Owned by</small></h6>
+                              <p><strong class="ng-binding">consumer</strong></p>
+                              <hr>
+                              <!-- ngIf: data.status === 'ACTIVE' --></div>
+                          </div>
+                          <div class="col-lg-8 col-lg-offset-1 col-xs-12">
+                            <hr class="visible-lg">
+                            <h4 translate="myservice.detail.components" class="ng-scope">Service Components</h4>
+                            <div class="row compact">
+                              <div class="col-lg-10 col-xs-10">
+                                <h6><small translate="myservice.detail.componentsDesc" class="ng-scope">View service components and manage subscriber actions here.</small></h6>
+                              </div>
+                              <div class="col-lg-2 col-xs-2 text-right">
+                                <button onClick="location.reload()" type="button" class="btn btn-primary ng-scope" translate="myservice.detail.refresh">Refresh</button>
+                              </div>
+                            </div>
+                            <hr>
+                            <!-- ngIf: data.components === undefined || data.components.length === 0 --><!-- ngRepeat: component in data.components -->
+                            <div ng-repeat="component in data.components" class="ng-scope">
+                              <table class="table table-striped table-responsive" summary="Component properties table with one level of column headers">
+                                <thead>
+                                  <tr>
+                                    <th class="item-list-image text-left col-xs-2"><img ng-src="images/server_group.png" height="65" alt="" src="images/server_group.png"></th>
+                                    <th><div><b class="ng-binding">Server Group</b></div>
+                                      <h6 class="text-success ng-binding">Deployed Services</h6></th>
+                                    <th class="text-right"><!-- ngIf: component.actions && component.actions.length && data.status !== 'MODIFYING' -->
+                                      <div ng-if="component.actions &amp;&amp; component.actions.length &amp;&amp; data.status !== 'MODIFYING'" class="btn-group ng-scope"><a class="btn dropdown-toggle btn-primary" data-toggle="dropdown"><i class="icon-settings"></i></a>
+                                        <ul class="dropdown-menu pull-right text-left" role="menu">
+                                          <!-- ngRepeat: action in component.actions -->
+                                          <li ng-repeat="action in component.actions" ng-switch="" on="action.type" ng-class="action.type" class="ng-scope dropdown-header"><!-- ngSwitchWhen: dropdown-header --><span ng-switch-when="dropdown-header" class="ng-scope ng-binding">CSL HP Helion OpenStack - Flex Server Count v1.0</span> <!-- ngSwitchDefault:  --></li>
+                                          <!-- end ngRepeat: action in component.actions -->
+                                          <li ng-repeat="action in component.actions" ng-switch="" on="action.type" ng-class="action.type" class="ng-scope"><!-- ngSwitchWhen: dropdown-header --> <!-- ngSwitchDefault:  --><a  ng-switch-default="" ng-click="onComponentAction(action, component.id)" class="ng-scope ng-binding">Add Server</a></li>
+                                          <!-- end ngRepeat: action in component.actions -->
+                                        </ul>
+                                      </div>
+                                      <!-- end ngIf: component.actions && component.actions.length && data.status !== 'MODIFYING' --><!-- ngIf: component._specialProperties.launchURL --></th>
+                                  </tr>
+                                  <!-- ngIf: component._specialProperties && component._specialProperties.externalViewURL -->
+                                </thead>
+                                <tbody>
+                                  <!-- ngRepeat: field in component.properties | orderBy:['-measurable', 'displayName'] -->
+                                  <tr ng-repeat="field in component.properties | orderBy:['-measurable', 'displayName']" class="ng-scope">
+                                    <td class="compact col-xs-1 text-center"><h4 ng-switch="" on="field.unit"><!-- ngSwitchWhen: CPU --> <!-- ngSwitchWhen: SERVER --> <!-- ngSwitchWhen: MB --> <!-- ngSwitchWhen: GB --> <!-- ngSwitchWhen: KEY --> <!-- ngSwitchWhen: KW --> <!-- ngSwitchWhen: ADDRESS --> <!-- ngSwitchWhen: IP_SUBNET --> <!-- ngSwitchWhen: VLAN --> <!-- ngSwitchDefault:  --><i ng-switch-default="" class="icon-applications ng-scope"></i></h4></td>
+                                    <td class="col-xs-6"><span class="ng-binding">Number of Servers</span></td>
+                                    <td class="col-xs-5"><!-- ngIf: field.value === undefined || field.value.length === 0 --><!-- ngRepeat: value in field.value -->
+                                      <div ng-repeat="value in field.value" class="ng-scope"><!-- ngIf: field.measurable --> <!-- ngIf: !field.measurable && !field.confidential && field.valueType === 'STRING' --> <!-- ngIf: !field.measurable && field.confidential && field.valueType === 'STRING' --> <!-- ngIf: !field.measurable && field.valueType !== 'STRING' --><span ng-if="!field.measurable &amp;&amp; field.valueType !== 'STRING'" class="ng-scope ng-binding">1</span><!-- end ngIf: !field.measurable && field.valueType !== 'STRING' --></div>
+                                      <!-- end ngRepeat: value in field.value --></td>
+                                  </tr>
+                                  <!-- end ngRepeat: field in component.properties | orderBy:['-measurable', 'displayName'] -->
+                                </tbody>
+                              </table>
+                            </div>
+                            <!-- end ngRepeat: component in data.components -->
+                            <div ng-repeat="component in data.components" class="ng-scope">
+                              <table class="table table-striped table-responsive" summary="Component properties table with one level of column headers">
+                                <thead>
+                                  <tr>
+                                    <th class="item-list-image text-left col-xs-2"><img ng-src="images/server.png" height="65" alt="" src="images/server.png"></th>
+                                    <th><div><b class="ng-binding">Server</b></div>
+                                      <h6 class="text-success ng-binding">Deployed Services</h6></th>
+                                    <th class="text-right"><!-- ngIf: component.actions && component.actions.length && data.status !== 'MODIFYING' -->
+                                      <div ng-if="component.actions &amp;&amp; component.actions.length &amp;&amp; data.status !== 'MODIFYING'" class="btn-group ng-scope"><a class="btn dropdown-toggle btn-primary" data-toggle="dropdown"><i class="icon-settings"></i></a>
+                                        <ul class="dropdown-menu pull-right text-left" role="menu">
+                                          <!-- ngRepeat: action in component.actions -->
+                                          <li ng-repeat="action in component.actions" ng-switch="" on="action.type" ng-class="action.type" class="ng-scope dropdown-header"><!-- ngSwitchWhen: dropdown-header --><span ng-switch-when="dropdown-header" class="ng-scope ng-binding">CSL HP Helion OpenStack - Compute Actions v1.0</span> <!-- ngSwitchDefault:  --></li>
+                                          <!-- end ngRepeat: action in component.actions -->
+                                          <li ng-repeat="action in component.actions" ng-switch="" on="action.type" ng-class="action.type" class="ng-scope"><!-- ngSwitchWhen: dropdown-header --> <!-- ngSwitchDefault:  --><a  ng-switch-default="" ng-click="onComponentAction(action, component.id)" class="ng-scope ng-binding">Associate Floating IP</a></li>
+                                          <!-- end ngRepeat: action in component.actions -->
+                                          <li ng-repeat="action in component.actions" ng-switch="" on="action.type" ng-class="action.type" class="ng-scope"><!-- ngSwitchWhen: dropdown-header --> <!-- ngSwitchDefault:  --><a  ng-switch-default="" ng-click="onComponentAction(action, component.id)" class="ng-scope ng-binding">Disassociate Floating IP</a></li>
+                                          <!-- end ngRepeat: action in component.actions -->
+                                          <li ng-repeat="action in component.actions" ng-switch="" on="action.type" ng-class="action.type" class="ng-scope"><!-- ngSwitchWhen: dropdown-header --> <!-- ngSwitchDefault:  --><a  ng-switch-default="" ng-click="onComponentAction(action, component.id)" class="ng-scope ng-binding">Hard Reboot</a></li>
+                                          <!-- end ngRepeat: action in component.actions -->
+                                          <li ng-repeat="action in component.actions" ng-switch="" on="action.type" ng-class="action.type" class="ng-scope"><!-- ngSwitchWhen: dropdown-header --> <!-- ngSwitchDefault:  --><a  ng-switch-default="" ng-click="onComponentAction(action, component.id)" class="ng-scope ng-binding">Refresh</a></li>
+                                          <!-- end ngRepeat: action in component.actions -->
+                                          <li ng-repeat="action in component.actions" ng-switch="" on="action.type" ng-class="action.type" class="ng-scope"><!-- ngSwitchWhen: dropdown-header --> <!-- ngSwitchDefault:  --><a  ng-switch-default="" ng-click="onComponentAction(action, component.id)" class="ng-scope ng-binding">Remove Server</a></li>
+                                          <!-- end ngRepeat: action in component.actions -->
+                                          <li ng-repeat="action in component.actions" ng-switch="" on="action.type" ng-class="action.type" class="ng-scope"><!-- ngSwitchWhen: dropdown-header --> <!-- ngSwitchDefault:  --><a  ng-switch-default="" ng-click="onComponentAction(action, component.id)" class="ng-scope ng-binding">Resume</a></li>
+                                          <!-- end ngRepeat: action in component.actions -->
+                                          <li ng-repeat="action in component.actions" ng-switch="" on="action.type" ng-class="action.type" class="ng-scope"><!-- ngSwitchWhen: dropdown-header --> <!-- ngSwitchDefault:  --><a  ng-switch-default="" ng-click="onComponentAction(action, component.id)" class="ng-scope ng-binding">Soft Reboot</a></li>
+                                          <!-- end ngRepeat: action in component.actions -->
+                                          <li ng-repeat="action in component.actions" ng-switch="" on="action.type" ng-class="action.type" class="ng-scope"><!-- ngSwitchWhen: dropdown-header --> <!-- ngSwitchDefault:  --><a  ng-switch-default="" ng-click="onComponentAction(action, component.id)" class="ng-scope ng-binding">Start</a></li>
+                                          <!-- end ngRepeat: action in component.actions -->
+                                          <li ng-repeat="action in component.actions" ng-switch="" on="action.type" ng-class="action.type" class="ng-scope"><!-- ngSwitchWhen: dropdown-header --> <!-- ngSwitchDefault:  --><a  ng-switch-default="" ng-click="onComponentAction(action, component.id)" class="ng-scope ng-binding">Stop</a></li>
+                                          <!-- end ngRepeat: action in component.actions -->
+                                          <li ng-repeat="action in component.actions" ng-switch="" on="action.type" ng-class="action.type" class="ng-scope"><!-- ngSwitchWhen: dropdown-header --> <!-- ngSwitchDefault:  --><a  ng-switch-default="" ng-click="onComponentAction(action, component.id)" class="ng-scope ng-binding">Suspend</a></li>
+                                          <!-- end ngRepeat: action in component.actions -->
+                                        </ul>
+                                      </div>
+                                      <!-- end ngIf: component.actions && component.actions.length && data.status !== 'MODIFYING' --><!-- ngIf: component._specialProperties.launchURL --></th>
+                                  </tr>
+                                  <!-- ngIf: component._specialProperties && component._specialProperties.externalViewURL -->
+                                </thead>
+                                <tbody>
+                                  <!-- ngRepeat: field in component.properties | orderBy:['-measurable', 'displayName'] -->
+                                  <tr ng-repeat="field in component.properties | orderBy:['-measurable', 'displayName']" class="ng-scope">
+                                    <td class="compact col-xs-1 text-center"><h4 ng-switch="" on="field.unit"><!-- ngSwitchWhen: CPU --> <!-- ngSwitchWhen: SERVER --> <!-- ngSwitchWhen: MB --> <!-- ngSwitchWhen: GB --> <!-- ngSwitchWhen: KEY --> <!-- ngSwitchWhen: KW --> <!-- ngSwitchWhen: ADDRESS --> <!-- ngSwitchWhen: IP_SUBNET --> <!-- ngSwitchWhen: VLAN --> <!-- ngSwitchDefault:  --><i ng-switch-default="" class="icon-applications ng-scope"></i></h4></td>
+                                    <td class="col-xs-6"><span class="ng-binding">Disk (GB)</span></td>
+                                    <td class="col-xs-5"><!-- ngIf: field.value === undefined || field.value.length === 0 --><!-- ngRepeat: value in field.value -->
+                                      <div ng-repeat="value in field.value" class="ng-scope"><!-- ngIf: field.measurable --> <!-- ngIf: !field.measurable && !field.confidential && field.valueType === 'STRING' --> <!-- ngIf: !field.measurable && field.confidential && field.valueType === 'STRING' --> <!-- ngIf: !field.measurable && field.valueType !== 'STRING' --><span ng-if="!field.measurable &amp;&amp; field.valueType !== 'STRING'" class="ng-scope ng-binding">20</span><!-- end ngIf: !field.measurable && field.valueType !== 'STRING' --></div>
+                                      <!-- end ngRepeat: value in field.value --></td>
+                                  </tr>
+                                  <!-- end ngRepeat: field in component.properties | orderBy:['-measurable', 'displayName'] -->
+                                  <tr ng-repeat="field in component.properties | orderBy:['-measurable', 'displayName']" class="ng-scope">
+                                    <td class="compact col-xs-1 text-center"><h4 ng-switch="" on="field.unit"><!-- ngSwitchWhen: CPU --> <!-- ngSwitchWhen: SERVER --> <!-- ngSwitchWhen: MB --> <!-- ngSwitchWhen: GB --> <!-- ngSwitchWhen: KEY --> <!-- ngSwitchWhen: KW --> <!-- ngSwitchWhen: ADDRESS --> <!-- ngSwitchWhen: IP_SUBNET --> <!-- ngSwitchWhen: VLAN --> <!-- ngSwitchDefault:  --><i ng-switch-default="" class="icon-applications ng-scope"></i></h4></td>
+                                    <td class="col-xs-6"><span class="ng-binding">Fixed IP Addresses</span></td>
+                                    <td class="col-xs-5"><!-- ngIf: field.value === undefined || field.value.length === 0 --><!-- ngRepeat: value in field.value -->
+                                      <div ng-repeat="value in field.value" class="ng-scope"><!-- ngIf: field.measurable --> <!-- ngIf: !field.measurable && !field.confidential && field.valueType === 'STRING' --><span ng-if="!field.measurable &amp;&amp; !field.confidential &amp;&amp; field.valueType === 'STRING'" ng-bind-html="value | linkyPlus:'_blank'" class="ng-scope ng-binding">15.125.97.169</span><!-- end ngIf: !field.measurable && !field.confidential && field.valueType === 'STRING' --> <!-- ngIf: !field.measurable && field.confidential && field.valueType === 'STRING' --> <!-- ngIf: !field.measurable && field.valueType !== 'STRING' --></div>
+                                      <!-- end ngRepeat: value in field.value --></td>
+                                  </tr>
+                                  <!-- end ngRepeat: field in component.properties | orderBy:['-measurable', 'displayName'] -->
+                                  <tr ng-repeat="field in component.properties | orderBy:['-measurable', 'displayName']" class="ng-scope">
+                                    <td class="compact col-xs-1 text-center"><h4 ng-switch="" on="field.unit"><!-- ngSwitchWhen: CPU --> <!-- ngSwitchWhen: SERVER --> <!-- ngSwitchWhen: MB --> <!-- ngSwitchWhen: GB --> <!-- ngSwitchWhen: KEY --> <!-- ngSwitchWhen: KW --> <!-- ngSwitchWhen: ADDRESS --> <!-- ngSwitchWhen: IP_SUBNET --> <!-- ngSwitchWhen: VLAN --> <!-- ngSwitchDefault:  --><i ng-switch-default="" class="icon-applications ng-scope"></i></h4></td>
+                                    <td class="col-xs-6"><span class="ng-binding">Flavor Name</span></td>
+                                    <td class="col-xs-5"><!-- ngIf: field.value === undefined || field.value.length === 0 --><!-- ngRepeat: value in field.value -->
+                                      <div ng-repeat="value in field.value" class="ng-scope"><!-- ngIf: field.measurable --> <!-- ngIf: !field.measurable && !field.confidential && field.valueType === 'STRING' --> <!-- ngIf: !field.measurable && field.confidential && field.valueType === 'STRING' --> <!-- ngIf: !field.measurable && field.valueType !== 'STRING' --><span ng-if="!field.measurable &amp;&amp; field.valueType !== 'STRING'" class="ng-scope ng-binding">m1.small</span><!-- end ngIf: !field.measurable && field.valueType !== 'STRING' --></div>
+                                      <!-- end ngRepeat: value in field.value --></td>
+                                  </tr>
+                                  <!-- end ngRepeat: field in component.properties | orderBy:['-measurable', 'displayName'] -->
+                                  <tr ng-repeat="field in component.properties | orderBy:['-measurable', 'displayName']" class="ng-scope">
+                                    <td class="compact col-xs-1 text-center"><h4 ng-switch="" on="field.unit"><!-- ngSwitchWhen: CPU --> <!-- ngSwitchWhen: SERVER --> <!-- ngSwitchWhen: MB --> <!-- ngSwitchWhen: GB --> <!-- ngSwitchWhen: KEY --> <!-- ngSwitchWhen: KW --> <!-- ngSwitchWhen: ADDRESS --> <!-- ngSwitchWhen: IP_SUBNET --> <!-- ngSwitchWhen: VLAN --> <!-- ngSwitchDefault:  --><i ng-switch-default="" class="icon-applications ng-scope"></i></h4></td>
+                                    <td class="col-xs-6"><span class="ng-binding">Floating IP Address</span></td>
+                                    <td class="col-xs-5"><!-- ngIf: field.value === undefined || field.value.length === 0 --><!-- ngRepeat: value in field.value -->
+                                      <div ng-repeat="value in field.value" class="ng-scope"><!-- ngIf: field.measurable --> <!-- ngIf: !field.measurable && !field.confidential && field.valueType === 'STRING' --><span ng-if="!field.measurable &amp;&amp; !field.confidential &amp;&amp; field.valueType === 'STRING'" ng-bind-html="value | linkyPlus:'_blank'" class="ng-scope ng-binding">NONE</span><!-- end ngIf: !field.measurable && !field.confidential && field.valueType === 'STRING' --> <!-- ngIf: !field.measurable && field.confidential && field.valueType === 'STRING' --> <!-- ngIf: !field.measurable && field.valueType !== 'STRING' --></div>
+                                      <!-- end ngRepeat: value in field.value --></td>
+                                  </tr>
+                                  <!-- end ngRepeat: field in component.properties | orderBy:['-measurable', 'displayName'] -->
+                                  <tr ng-repeat="field in component.properties | orderBy:['-measurable', 'displayName']" class="ng-scope">
+                                    <td class="compact col-xs-1 text-center"><h4 ng-switch="" on="field.unit"><!-- ngSwitchWhen: CPU --> <!-- ngSwitchWhen: SERVER --> <!-- ngSwitchWhen: MB --> <!-- ngSwitchWhen: GB --> <!-- ngSwitchWhen: KEY --> <!-- ngSwitchWhen: KW --> <!-- ngSwitchWhen: ADDRESS --> <!-- ngSwitchWhen: IP_SUBNET --> <!-- ngSwitchWhen: VLAN --> <!-- ngSwitchDefault:  --><i ng-switch-default="" class="icon-applications ng-scope"></i></h4></td>
+                                    <td class="col-xs-6"><span class="ng-binding">Floating IP Pool</span></td>
+                                    <td class="col-xs-5"><!-- ngIf: field.value === undefined || field.value.length === 0 --><!-- ngRepeat: value in field.value -->
+                                      <div ng-repeat="value in field.value" class="ng-scope"><!-- ngIf: field.measurable --> <!-- ngIf: !field.measurable && !field.confidential && field.valueType === 'STRING' --> <!-- ngIf: !field.measurable && field.confidential && field.valueType === 'STRING' --> <!-- ngIf: !field.measurable && field.valueType !== 'STRING' --><span ng-if="!field.measurable &amp;&amp; field.valueType !== 'STRING'" class="ng-scope ng-binding">ext-net</span><!-- end ngIf: !field.measurable && field.valueType !== 'STRING' --></div>
+                                      <!-- end ngRepeat: value in field.value --></td>
+                                  </tr>
+                                  <!-- end ngRepeat: field in component.properties | orderBy:['-measurable', 'displayName'] -->
+                                  <tr ng-repeat="field in component.properties | orderBy:['-measurable', 'displayName']" class="ng-scope">
+                                    <td class="compact col-xs-1 text-center"><h4 ng-switch="" on="field.unit"><!-- ngSwitchWhen: CPU --> <!-- ngSwitchWhen: SERVER --> <!-- ngSwitchWhen: MB --> <!-- ngSwitchWhen: GB --> <!-- ngSwitchWhen: KEY --> <!-- ngSwitchWhen: KW --> <!-- ngSwitchWhen: ADDRESS --> <!-- ngSwitchWhen: IP_SUBNET --> <!-- ngSwitchWhen: VLAN --> <!-- ngSwitchDefault:  --><i ng-switch-default="" class="icon-applications ng-scope"></i></h4></td>
+                                    <td class="col-xs-6"><span class="ng-binding">Image Name</span></td>
+                                    <td class="col-xs-5"><!-- ngIf: field.value === undefined || field.value.length === 0 --><!-- ngRepeat: value in field.value -->
+                                      <div ng-repeat="value in field.value" class="ng-scope"><!-- ngIf: field.measurable --> <!-- ngIf: !field.measurable && !field.confidential && field.valueType === 'STRING' --> <!-- ngIf: !field.measurable && field.confidential && field.valueType === 'STRING' --> <!-- ngIf: !field.measurable && field.valueType !== 'STRING' --><span ng-if="!field.measurable &amp;&amp; field.valueType !== 'STRING'" class="ng-scope ng-binding">CentOS-6.5</span><!-- end ngIf: !field.measurable && field.valueType !== 'STRING' --></div>
+                                      <!-- end ngRepeat: value in field.value --></td>
+                                  </tr>
+                                  <!-- end ngRepeat: field in component.properties | orderBy:['-measurable', 'displayName'] -->
+                                  <tr ng-repeat="field in component.properties | orderBy:['-measurable', 'displayName']" class="ng-scope">
+                                    <td class="compact col-xs-1 text-center"><h4 ng-switch="" on="field.unit"><!-- ngSwitchWhen: CPU --> <!-- ngSwitchWhen: SERVER --> <!-- ngSwitchWhen: MB --> <!-- ngSwitchWhen: GB --> <!-- ngSwitchWhen: KEY --> <!-- ngSwitchWhen: KW --> <!-- ngSwitchWhen: ADDRESS --> <!-- ngSwitchWhen: IP_SUBNET --> <!-- ngSwitchWhen: VLAN --> <!-- ngSwitchDefault:  --><i ng-switch-default="" class="icon-applications ng-scope"></i></h4></td>
+                                    <td class="col-xs-6"><span class="ng-binding">Keypair</span></td>
+                                    <td class="col-xs-5"><!-- ngIf: field.value === undefined || field.value.length === 0 --><!-- ngRepeat: value in field.value -->
+                                      <div ng-repeat="value in field.value" class="ng-scope"><!-- ngIf: field.measurable --> <!-- ngIf: !field.measurable && !field.confidential && field.valueType === 'STRING' --> <!-- ngIf: !field.measurable && field.confidential && field.valueType === 'STRING' --> <!-- ngIf: !field.measurable && field.valueType !== 'STRING' --><span ng-if="!field.measurable &amp;&amp; field.valueType !== 'STRING'" class="ng-scope ng-binding">AJ</span><!-- end ngIf: !field.measurable && field.valueType !== 'STRING' --></div>
+                                      <!-- end ngRepeat: value in field.value --></td>
+                                  </tr>
+                                  <!-- end ngRepeat: field in component.properties | orderBy:['-measurable', 'displayName'] -->
+                                  <tr ng-repeat="field in component.properties | orderBy:['-measurable', 'displayName']" class="ng-scope">
+                                    <td class="compact col-xs-1 text-center"><h4 ng-switch="" on="field.unit"><!-- ngSwitchWhen: CPU --> <!-- ngSwitchWhen: SERVER --> <!-- ngSwitchWhen: MB --> <!-- ngSwitchWhen: GB --> <!-- ngSwitchWhen: KEY --> <!-- ngSwitchWhen: KW --> <!-- ngSwitchWhen: ADDRESS --> <!-- ngSwitchWhen: IP_SUBNET --> <!-- ngSwitchWhen: VLAN --> <!-- ngSwitchDefault:  --><i ng-switch-default="" class="icon-applications ng-scope"></i></h4></td>
+                                    <td class="col-xs-6"><span class="ng-binding">Memory (MB)</span></td>
+                                    <td class="col-xs-5"><!-- ngIf: field.value === undefined || field.value.length === 0 --><!-- ngRepeat: value in field.value -->
+                                      <div ng-repeat="value in field.value" class="ng-scope"><!-- ngIf: field.measurable --> <!-- ngIf: !field.measurable && !field.confidential && field.valueType === 'STRING' --> <!-- ngIf: !field.measurable && field.confidential && field.valueType === 'STRING' --> <!-- ngIf: !field.measurable && field.valueType !== 'STRING' --><span ng-if="!field.measurable &amp;&amp; field.valueType !== 'STRING'" class="ng-scope ng-binding">2048</span><!-- end ngIf: !field.measurable && field.valueType !== 'STRING' --></div>
+                                      <!-- end ngRepeat: value in field.value --></td>
+                                  </tr>
+                                  <!-- end ngRepeat: field in component.properties | orderBy:['-measurable', 'displayName'] -->
+                                  <tr ng-repeat="field in component.properties | orderBy:['-measurable', 'displayName']" class="ng-scope">
+                                    <td class="compact col-xs-1 text-center"><h4 ng-switch="" on="field.unit"><!-- ngSwitchWhen: CPU --> <!-- ngSwitchWhen: SERVER --> <!-- ngSwitchWhen: MB --> <!-- ngSwitchWhen: GB --> <!-- ngSwitchWhen: KEY --> <!-- ngSwitchWhen: KW --> <!-- ngSwitchWhen: ADDRESS --> <!-- ngSwitchWhen: IP_SUBNET --> <!-- ngSwitchWhen: VLAN --> <!-- ngSwitchDefault:  --><i ng-switch-default="" class="icon-applications ng-scope"></i></h4></td>
+                                    <td class="col-xs-6"><span class="ng-binding">Network Name</span></td>
+                                    <td class="col-xs-5"><!-- ngIf: field.value === undefined || field.value.length === 0 --><!-- ngRepeat: value in field.value -->
+                                      <div ng-repeat="value in field.value" class="ng-scope"><!-- ngIf: field.measurable --> <!-- ngIf: !field.measurable && !field.confidential && field.valueType === 'STRING' --> <!-- ngIf: !field.measurable && field.confidential && field.valueType === 'STRING' --> <!-- ngIf: !field.measurable && field.valueType !== 'STRING' --><span ng-if="!field.measurable &amp;&amp; field.valueType !== 'STRING'" class="ng-scope ng-binding">default-net</span><!-- end ngIf: !field.measurable && field.valueType !== 'STRING' --></div>
+                                      <!-- end ngRepeat: value in field.value --></td>
+                                  </tr>
+                                  <!-- end ngRepeat: field in component.properties | orderBy:['-measurable', 'displayName'] -->
+                                  <tr ng-repeat="field in component.properties | orderBy:['-measurable', 'displayName']" class="ng-scope">
+                                    <td class="compact col-xs-1 text-center"><h4 ng-switch="" on="field.unit"><!-- ngSwitchWhen: CPU --> <!-- ngSwitchWhen: SERVER --> <!-- ngSwitchWhen: MB --> <!-- ngSwitchWhen: GB --> <!-- ngSwitchWhen: KEY --> <!-- ngSwitchWhen: KW --> <!-- ngSwitchWhen: ADDRESS --> <!-- ngSwitchWhen: IP_SUBNET --> <!-- ngSwitchWhen: VLAN --> <!-- ngSwitchDefault:  --><i ng-switch-default="" class="icon-applications ng-scope"></i></h4></td>
+                                    <td class="col-xs-6"><span class="ng-binding">Number Of CPUs</span></td>
+                                    <td class="col-xs-5"><!-- ngIf: field.value === undefined || field.value.length === 0 --><!-- ngRepeat: value in field.value -->
+                                      <div ng-repeat="value in field.value" class="ng-scope"><!-- ngIf: field.measurable --> <!-- ngIf: !field.measurable && !field.confidential && field.valueType === 'STRING' --> <!-- ngIf: !field.measurable && field.confidential && field.valueType === 'STRING' --> <!-- ngIf: !field.measurable && field.valueType !== 'STRING' --><span ng-if="!field.measurable &amp;&amp; field.valueType !== 'STRING'" class="ng-scope ng-binding">1</span><!-- end ngIf: !field.measurable && field.valueType !== 'STRING' --></div>
+                                      <!-- end ngRepeat: value in field.value --></td>
+                                  </tr>
+                                  <!-- end ngRepeat: field in component.properties | orderBy:['-measurable', 'displayName'] -->
+                                  <tr ng-repeat="field in component.properties | orderBy:['-measurable', 'displayName']" class="ng-scope">
+                                    <td class="compact col-xs-1 text-center"><h4 ng-switch="" on="field.unit"><!-- ngSwitchWhen: CPU --> <!-- ngSwitchWhen: SERVER --> <!-- ngSwitchWhen: MB --> <!-- ngSwitchWhen: GB --> <!-- ngSwitchWhen: KEY --> <!-- ngSwitchWhen: KW --> <!-- ngSwitchWhen: ADDRESS --> <!-- ngSwitchWhen: IP_SUBNET --> <!-- ngSwitchWhen: VLAN --> <!-- ngSwitchDefault:  --><i ng-switch-default="" class="icon-applications ng-scope"></i></h4></td>
+                                    <td class="col-xs-6"><span class="ng-binding">Security Group</span></td>
+                                    <td class="col-xs-5"><!-- ngIf: field.value === undefined || field.value.length === 0 --><!-- ngRepeat: value in field.value -->
+                                      <div ng-repeat="value in field.value" class="ng-scope"><!-- ngIf: field.measurable --> <!-- ngIf: !field.measurable && !field.confidential && field.valueType === 'STRING' --> <!-- ngIf: !field.measurable && field.confidential && field.valueType === 'STRING' --> <!-- ngIf: !field.measurable && field.valueType !== 'STRING' --><span ng-if="!field.measurable &amp;&amp; field.valueType !== 'STRING'" class="ng-scope ng-binding">default</span><!-- end ngIf: !field.measurable && field.valueType !== 'STRING' --></div>
+                                      <!-- end ngRepeat: value in field.value --></td>
+                                  </tr>
+                                  <!-- end ngRepeat: field in component.properties | orderBy:['-measurable', 'displayName'] -->
+                                  <tr ng-repeat="field in component.properties | orderBy:['-measurable', 'displayName']" class="ng-scope">
+                                    <td class="compact col-xs-1 text-center"><h4 ng-switch="" on="field.unit"><!-- ngSwitchWhen: CPU --> <!-- ngSwitchWhen: SERVER --> <!-- ngSwitchWhen: MB --> <!-- ngSwitchWhen: GB --> <!-- ngSwitchWhen: KEY --> <!-- ngSwitchWhen: KW --> <!-- ngSwitchWhen: ADDRESS --> <!-- ngSwitchWhen: IP_SUBNET --> <!-- ngSwitchWhen: VLAN --> <!-- ngSwitchDefault:  --><i ng-switch-default="" class="icon-applications ng-scope"></i></h4></td>
+                                    <td class="col-xs-6"><span class="ng-binding">Server ID</span></td>
+                                    <td class="col-xs-5"><!-- ngIf: field.value === undefined || field.value.length === 0 --><!-- ngRepeat: value in field.value -->
+                                      <div ng-repeat="value in field.value" class="ng-scope"><!-- ngIf: field.measurable --> <!-- ngIf: !field.measurable && !field.confidential && field.valueType === 'STRING' --><span ng-if="!field.measurable &amp;&amp; !field.confidential &amp;&amp; field.valueType === 'STRING'" ng-bind-html="value | linkyPlus:'_blank'" class="ng-scope ng-binding">237ddd68-3497-4489-9b3c-3377ea375299</span><!-- end ngIf: !field.measurable && !field.confidential && field.valueType === 'STRING' --> <!-- ngIf: !field.measurable && field.confidential && field.valueType === 'STRING' --> <!-- ngIf: !field.measurable && field.valueType !== 'STRING' --></div>
+                                      <!-- end ngRepeat: value in field.value --></td>
+                                  </tr>
+                                  <!-- end ngRepeat: field in component.properties | orderBy:['-measurable', 'displayName'] -->
+                                  <tr ng-repeat="field in component.properties | orderBy:['-measurable', 'displayName']" class="ng-scope">
+                                    <td class="compact col-xs-1 text-center"><h4 ng-switch="" on="field.unit"><!-- ngSwitchWhen: CPU --> <!-- ngSwitchWhen: SERVER --> <!-- ngSwitchWhen: MB --> <!-- ngSwitchWhen: GB --> <!-- ngSwitchWhen: KEY --> <!-- ngSwitchWhen: KW --> <!-- ngSwitchWhen: ADDRESS --> <!-- ngSwitchWhen: IP_SUBNET --> <!-- ngSwitchWhen: VLAN --> <!-- ngSwitchDefault:  --><i ng-switch-default="" class="icon-applications ng-scope"></i></h4></td>
+                                    <td class="col-xs-6"><span class="ng-binding">Server Name</span></td>
+                                    <td class="col-xs-5"><!-- ngIf: field.value === undefined || field.value.length === 0 --><!-- ngRepeat: value in field.value -->
+                                      <div ng-repeat="value in field.value" class="ng-scope"><!-- ngIf: field.measurable --> <!-- ngIf: !field.measurable && !field.confidential && field.valueType === 'STRING' --><span ng-if="!field.measurable &amp;&amp; !field.confidential &amp;&amp; field.valueType === 'STRING'" ng-bind-html="value | linkyPlus:'_blank'" class="ng-scope ng-binding">VMec35bc</span><!-- end ngIf: !field.measurable && !field.confidential && field.valueType === 'STRING' --> <!-- ngIf: !field.measurable && field.confidential && field.valueType === 'STRING' --> <!-- ngIf: !field.measurable && field.valueType !== 'STRING' --></div>
+                                      <!-- end ngRepeat: value in field.value --></td>
+                                  </tr>
+                                  <!-- end ngRepeat: field in component.properties | orderBy:['-measurable', 'displayName'] -->
+                                  <tr ng-repeat="field in component.properties | orderBy:['-measurable', 'displayName']" class="ng-scope">
+                                    <td class="compact col-xs-1 text-center"><h4 ng-switch="" on="field.unit"><!-- ngSwitchWhen: CPU --> <!-- ngSwitchWhen: SERVER --> <!-- ngSwitchWhen: MB --> <!-- ngSwitchWhen: GB --> <!-- ngSwitchWhen: KEY --> <!-- ngSwitchWhen: KW --> <!-- ngSwitchWhen: ADDRESS --> <!-- ngSwitchWhen: IP_SUBNET --> <!-- ngSwitchWhen: VLAN --> <!-- ngSwitchDefault:  --><i ng-switch-default="" class="icon-applications ng-scope"></i></h4></td>
+                                    <td class="col-xs-6"><span class="ng-binding">Status</span></td>
+                                    <td class="col-xs-5"><!-- ngIf: field.value === undefined || field.value.length === 0 --><!-- ngRepeat: value in field.value -->
+                                      <div ng-repeat="value in field.value" class="ng-scope"><!-- ngIf: field.measurable --> <!-- ngIf: !field.measurable && !field.confidential && field.valueType === 'STRING' --><span ng-if="!field.measurable &amp;&amp; !field.confidential &amp;&amp; field.valueType === 'STRING'" ng-bind-html="value | linkyPlus:'_blank'" class="ng-scope ng-binding">ACTIVE</span><!-- end ngIf: !field.measurable && !field.confidential && field.valueType === 'STRING' --> <!-- ngIf: !field.measurable && field.confidential && field.valueType === 'STRING' --> <!-- ngIf: !field.measurable && field.valueType !== 'STRING' --></div>
+                                      <!-- end ngRepeat: value in field.value --></td>
+                                  </tr>
+                                  <!-- end ngRepeat: field in component.properties | orderBy:['-measurable', 'displayName'] -->
+                                  <tr ng-repeat="field in component.properties | orderBy:['-measurable', 'displayName']" class="ng-scope">
+                                    <td class="compact col-xs-1 text-center"><h4 ng-switch="" on="field.unit"><!-- ngSwitchWhen: CPU --> <!-- ngSwitchWhen: SERVER --> <!-- ngSwitchWhen: MB --> <!-- ngSwitchWhen: GB --> <!-- ngSwitchWhen: KEY --> <!-- ngSwitchWhen: KW --> <!-- ngSwitchWhen: ADDRESS --> <!-- ngSwitchWhen: IP_SUBNET --> <!-- ngSwitchWhen: VLAN --> <!-- ngSwitchDefault:  --><i ng-switch-default="" class="icon-applications ng-scope"></i></h4></td>
+                                    <td class="col-xs-6"><span class="ng-binding">Tenant Name</span></td>
+                                    <td class="col-xs-5"><!-- ngIf: field.value === undefined || field.value.length === 0 --><!-- ngRepeat: value in field.value -->
+                                      <div ng-repeat="value in field.value" class="ng-scope"><!-- ngIf: field.measurable --> <!-- ngIf: !field.measurable && !field.confidential && field.valueType === 'STRING' --> <!-- ngIf: !field.measurable && field.confidential && field.valueType === 'STRING' --> <!-- ngIf: !field.measurable && field.valueType !== 'STRING' --><span ng-if="!field.measurable &amp;&amp; field.valueType !== 'STRING'" class="ng-scope ng-binding">csa_demo</span><!-- end ngIf: !field.measurable && field.valueType !== 'STRING' --></div>
+                                      <!-- end ngRepeat: value in field.value --></td>
+                                  </tr>
+                                  <!-- end ngRepeat: field in component.properties | orderBy:['-measurable', 'displayName'] -->
+                                </tbody>
+                              </table>
+                            </div>
+                            <div ng-repeat="component in data.components" class="ng-scope">
+                              <table class="table table-striped table-responsive" summary="Component properties table with one level of column headers">
+                                <thead>
+                                  <tr>
+                                    <th class="item-list-image text-left col-xs-2"><img ng-src="images/server.png" height="60" alt="" src="images/crlogo.png"></th>
+                                    <th ><div><b>Cloud Raxak Security &amp; Compliance Services</b></div>
+                                      <h6 id="status_execution" class="text-success ng-binding">Compliance checking in progress</h6></th>
+                                    <th class="text-right"><!-- ngIf: component.actions && component.actions.length && data.status !== 'MODIFYING' -->
+                                 
+                                      <!-- end ngIf: component.actions && component.actions.length && data.status !== 'MODIFYING' --><!-- ngIf: component._specialProperties.launchURL --></th>
+                                  </tr>
+                                  <!-- ngIf: component._specialProperties && component._specialProperties.externalViewURL -->
+                                </thead>
+                                <tbody>
+                                  <!-- ngRepeat: field in component.properties | orderBy:['-measurable', 'displayName'] -->
+                                  <tr ng-repeat="field in component.properties | orderBy:['-measurable', 'displayName']" class="ng-scope">
+                                    <td class="compact col-xs-1 text-center"><h4 ng-switch="" on="field.unit"><!-- ngSwitchWhen: CPU --> <!-- ngSwitchWhen: SERVER --> <!-- ngSwitchWhen: MB --> <!-- ngSwitchWhen: GB --> <!-- ngSwitchWhen: KEY --> <!-- ngSwitchWhen: KW --> <!-- ngSwitchWhen: ADDRESS --> <!-- ngSwitchWhen: IP_SUBNET --> <!-- ngSwitchWhen: VLAN --> <!-- ngSwitchDefault:  --><i ng-switch-default="" class="icon-applications ng-scope"></i></h4></td>
+                                    <td class="col-xs-6"><span class="ng-binding">Successfully passed rule(s): </span></td>
+                                    <td class="col-xs-5"><!-- ngIf: field.value === undefined || field.value.length === 0 --><!-- ngRepeat: value in field.value -->
+                                      <div ng-repeat="value in field.value" class="ng-scope"><!-- ngIf: field.measurable --> <!-- ngIf: !field.measurable && !field.confidential && field.valueType === 'STRING' --> <!-- ngIf: !field.measurable && field.confidential && field.valueType === 'STRING' --> <!-- ngIf: !field.measurable && field.valueType !== 'STRING' -->
+                                          <span ng-if="!field.measurable &amp;&amp; field.valueType !== 'STRING'" class="ng-scope ng-binding"><a id="success_status" class="poplight">Success Rules</a><span style="float:right;cursor:pointer;" id="s_plus" onclick="fnComplianceServicesStatusShow('s')"  >+</span><span style="float:right;cursor:pointer;display:hide" id="s_minus" onclick="fnComplianceServicesStatusHide('s')"  >-</span></span>
+					<!--<div id="s_content" style="display:hide">Success</div> -->
+                                          <!-- end ngIf: !field.measurable && field.valueType !== 'STRING' --></div>
+                                      <!-- end ngRepeat: value in field.value --></td>
+                                  </tr>
+<tr id="s_row" ><td id="s_content" colspan="3"></td></tr>
+                                  <!-- end ngRepeat: field in component.properties | orderBy:['-measurable', 'displayName'] -->
+                                  <tr ng-repeat="field in component.properties | orderBy:['-measurable', 'displayName']" class="ng-scope">
+                                    <td class="compact col-xs-1 text-center"><h4 ng-switch="" on="field.unit"><!-- ngSwitchWhen: CPU --> <!-- ngSwitchWhen: SERVER --> <!-- ngSwitchWhen: MB --> <!-- ngSwitchWhen: GB --> <!-- ngSwitchWhen: KEY --> <!-- ngSwitchWhen: KW --> <!-- ngSwitchWhen: ADDRESS --> <!-- ngSwitchWhen: IP_SUBNET --> <!-- ngSwitchWhen: VLAN --> <!-- ngSwitchDefault:  --><i ng-switch-default="" class="icon-applications ng-scope"></i></h4></td>
+                                    <td class="col-xs-6"><span class="ng-binding">Failed rule(s): </span></td>
+                                    <td class="col-xs-5"><!-- ngIf: field.value === undefined || field.value.length === 0 --><!-- ngRepeat: value in field.value -->
+                                      <div ng-repeat="value in field.value" class="ng-scope"><!-- ngIf: field.measurable --> <!-- ngIf: !field.measurable && !field.confidential && field.valueType === 'STRING' -->
+                                          <span ng-if="!field.measurable &amp;&amp; field.valueType !== 'STRING'" class="ng-scope ng-binding"><a id="failure_status" class="poplight">Failed Rules</a><span style="float:right;cursor:pointer" id="f_plus" onclick="fnComplianceServicesStatusShow('f')"  >+</span><span style="float:right;cursor:pointer;display:hide" id="f_minus" onclick="fnComplianceServicesStatusHide('f')"  >-</span></span>
+					<!--div id="f_content" style="display:hide">Failed</div -->
+                                          <!-- end ngIf: !field.measurable && !field.confidential && field.valueType === 'STRING' --> <!-- ngIf: !field.measurable && field.confidential && field.valueType === 'STRING' --> <!-- ngIf: !field.measurable && field.valueType !== 'STRING' --></div>
+                                      <!-- end ngRepeat: value in field.value --></td>
+                                  </tr>
+<tr id="f_row"><td id="f_content" colspan="3"></td></tr>
+                                  <!-- end ngRepeat: field in component.properties | orderBy:['-measurable', 'displayName'] -->
+                                  <tr ng-repeat="field in component.properties | orderBy:['-measurable', 'displayName']" class="ng-scope">
+                                    <td class="compact col-xs-1 text-center"><h4 ng-switch="" on="field.unit"><!-- ngSwitchWhen: CPU --> <!-- ngSwitchWhen: SERVER --> <!-- ngSwitchWhen: MB --> <!-- ngSwitchWhen: GB --> <!-- ngSwitchWhen: KEY --> <!-- ngSwitchWhen: KW --> <!-- ngSwitchWhen: ADDRESS --> <!-- ngSwitchWhen: IP_SUBNET --> <!-- ngSwitchWhen: VLAN --> <!-- ngSwitchDefault:  --><i ng-switch-default="" class="icon-applications ng-scope"></i></h4></td>
+                                    <td class="col-xs-6"><span class="ng-binding">Rule(s) needing manual:</span></td>
+                                    <td class="col-xs-5"><!-- ngIf: field.value === undefined || field.value.length === 0 --><!-- ngRepeat: value in field.value -->
+                                      <div ng-repeat="value in field.value" class="ng-scope"><!-- ngIf: field.measurable --> <!-- ngIf: !field.measurable && !field.confidential && field.valueType === 'STRING' --> <!-- ngIf: !field.measurable && field.confidential && field.valueType === 'STRING' --> <!-- ngIf: !field.measurable && field.valueType !== 'STRING' -->
+                                          <span ng-if="!field.measurable &amp;&amp; field.valueType !== 'STRING'" class="ng-scope ng-binding"><a id="manual_status" class="poplight">Manual Rules</a><span style="float:right;cursor:pointer" id="m_plus" onclick="fnComplianceServicesStatusShow('m')"  >+</span><span style="float:right;cursor:pointer;display:hide" id="m_minus" onclick="fnComplianceServicesStatusHide('m')">-</span></span>
+					<!--div id="m_content" style="display:hide">Manual</div -->
+                                          <!-- end ngIf: !field.measurable && field.valueType !== 'STRING' --></div>
+                                      <!-- end ngRepeat: value in field.value --></td>
+                                  </tr>
+
+
+                                  
+                                                                 
+<tr id="m_row"><td id="m_content" colspan="3"></td></tr>
+                                  <!-- end ngRepeat: field in component.properties | orderBy:['-measurable', 'displayName'] -->
+                                  <!-- end ngRepeat: field in component.properties | orderBy:['-measurable', 'displayName'] -->
+                                  <!-- end ngRepeat: field in component.properties | orderBy:['-measurable', 'displayName'] -->
+                                  <!-- end ngRepeat: field in component.properties | orderBy:['-measurable', 'displayName'] -->
+                                  <!-- end ngRepeat: field in component.properties | orderBy:['-measurable', 'displayName'] -->
+                                  <!-- end ngRepeat: field in component.properties | orderBy:['-measurable', 'displayName'] -->
+                                  <!-- end ngRepeat: field in component.properties | orderBy:['-measurable', 'displayName'] -->
+                                  <!-- end ngRepeat: field in component.properties | orderBy:['-measurable', 'displayName'] -->
+                                  <!-- end ngRepeat: field in component.properties | orderBy:['-measurable', 'displayName'] -->
+                                  <!-- end ngRepeat: field in component.properties | orderBy:['-measurable', 'displayName'] -->
+                                  <!-- end ngRepeat: field in component.properties | orderBy:['-measurable', 'displayName'] -->
+                                  <!-- end ngRepeat: field in component.properties | orderBy:['-measurable', 'displayName'] -->
+                                  <!-- end ngRepeat: field in component.properties | orderBy:['-measurable', 'displayName'] -->
+                                  
+                                  
+<!-- PGM efforts at adding console log ------------------------------------------------------------------------------------------   -->                                  
+                                  <tr ng-repeat="field in component.properties | orderBy:['-measurable', 'displayName']" class="ng-scope">
+                                    <td class="compact col-xs-1 text-center"><h4 ng-switch="" on="field.unit"><!-- ngSwitchWhen: CPU --> <!-- ngSwitchWhen: SERVER --> <!-- ngSwitchWhen: MB --> <!-- ngSwitchWhen: GB --> <!-- ngSwitchWhen: KEY --> <!-- ngSwitchWhen: KW --> <!-- ngSwitchWhen: ADDRESS --> <!-- ngSwitchWhen: IP_SUBNET --> <!-- ngSwitchWhen: VLAN --> <!-- ngSwitchDefault:  --><i ng-switch-default="" class="icon-applications ng-scope"></i></h4></td>
+                                    <td class="col-xs-6"><span class="ng-binding">Console Log</span></td>
+                                    <td class="col-xs-5"><!-- ngIf: field.value === undefined || field.value.length === 0 --><!-- ngRepeat: value in field.value -->
+                                      <div ng-repeat="value in field.value" class="ng-scope">
+                                      <!-- ngIf: field.measurable --> <!-- ngIf: !field.measurable && !field.confidential && field.valueType === 'STRING' --> 
+                                      <!-- ngIf: !field.measurable && field.confidential && field.valueType === 'STRING' --> 
+                                      <!-- ngIf: !field.measurable && field.valueType !== 'STRING' -->
+                                          <span ng-if="!field.measurable &amp;&amp; field.valueType !== 'STRING'" class="ng-scope ng-binding"><a id="log_status" class="poplight">Click to view</a>
+                                          	<span style="float:right;cursor:pointer" id="l_plus" onclick="fnComplianceServicesStatusShow('l')"  >+</span>
+                                          	<span style="float:right;cursor:pointer;display:hide" id="l_minus" onclick="fnComplianceServicesStatusHide('l')">-</span>
+                                          </span>
+					<!--div id="m_content" style="display:hide">Manual</div -->
+                                          <!-- end ngIf: !field.measurable && field.valueType !== 'STRING' -->
+                                      </div>
+                                      <!-- end ngRepeat: value in field.value -->
+                                    </td>
+                                  </tr> 
+                                  <tr id="l_row"><td id="l_content" colspan="3"></td></tr>
+                                  
+<!-- PGM efforts at adding console log ------------------------------------------------------------------------------------------   -->   
+
+  
+                                </tbody>
+                              </table>
+                            </div>
+                            
+                     
+                          <!-- end ngRepeat: component in data.components --></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="ng-scope">
+                  <mpp-error-page has-error="showError.enabled" retry-callback="showError.action.apply(undefined, showError.params)" key="" params="showError.args" class="ng-isolate-scope">
+                    <div><!-- ngIf: hasError -->
+                      <div class="md-overlay"></div>
+                    </div>
+                  </mpp-error-page>
+                </div>
+              </div>
+            </div>
+            <!-- ngIf: org.securityLevel --></div>
+        </div>
+      </div>
+    </div>
+  </navbar>
+</div>
+<script src="js/jquery.js"></script> 
+<script src="js/angular.js"></script> 
+<script src="js/ui-utils.js"></script> 
+<script src="js/angular-translate.js"></script> 
+<script src="js/angular-translate-interpolation-messageformat.js"></script> 
+<script src="js/messageformat.js"></script> 
+<script src="js/angular-translate-loader-static-files.js"></script> 
+<script src="js/angular-cookies.js"></script> 
+<script src="js/currency-filter.js"></script> 
+<script src="js/sugar-full.development.js"></script> 
+<script src="js/bowser.js"></script> 
+<script src="js/modernizr.js"></script> 
+<!-- <script src="js/8070b853.scripts.js"></script>  -->
+<script src="js/e40f19e4.plugins.js"></script> 
+<script src="js/bfa7d7ae.templates.js"></script> 
+<script src="js/e4a8151c.modules.js"></script>
+<script src="appForHP.js"></script>
+
+<div id="successpopup1" class="popup_block">
+    <div id="content_popup"></div>
+    <!--
+    <pre>&lt;a href=&quot;#?w=500&quot; rel=&quot;popup2&quot; class=&quot;poplight&quot;&gt;</pre>
+
+    <p>Aliquip transverbero loquor esse ille vulputate exerci veniam fatua eros similis illum valde. Praesent, venio conventio rusticus antehabeo lenis. Melior pertineo feugait, praesent hos rusticus et haero facilisis abluo. </p>
+    <p>Veniam tincidunt augue abluo vero, augue nisl melior quidem secundum nobis singularis eum eum.</p><p><strong>Besoin d'inspiration ?</strong> Visitez <a href="http://www.designbombs.com">Design Bombs</a></p>
+    -->
+</div>
+<!--
+<div id="failedpopup1" class="popup_block">
+    <h2 id="failedpopup">Failed Rule(s):</h2>
+</div>
+
+<div id="manualpopup1" class="popup_block">
+    <h2 id="manualpopup">Needs manual intervention rule(s):</h2>
+</div>
+-->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<link rel="stylesheet" href="colorbox.css" />
+<script src="jquery.colorbox.js"></script>
+<script>
+var j10 = $.noConflict();
+j10(document).ready(function(){
+
+j10(".ajax").colorbox();
+});
+</script>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.1/jquery.min.js"></script>
+<script type="text/javascript">
+var ruleid;
+function fnsetruleid(id){
+ruleid=id;
+}
+
+//VM_Username_IP = "root@192.168.0.172"
+VM_Username_IP = "root@15.125.97.169"
+
+function dismiss(rulenum){
+
+//var uri = "/raxakapi/v1/dismiss/V-"+rulenum+"?ip=root@192.168.0.172";
+var uri = "/raxakapi/v1/dismiss/V-"+rulenum+"?ip="+VM_Username_IP;
+
+jQuery.ajax( {
+    url: uri,
+    type: 'GET',
+    beforeSend : function( xhr ) {
+    },
+    success: function( response ) {
+    }
+} );
+
+}
+
+function remediate(rulenum){
+//var uri = "/raxakapi/v1/fixRule/V-"+rulenum+"?ip=root@192.168.0.172";
+var uri = "/raxakapi/v1/fixRule/V-"+rulenum+"?ip="+VM_Username_IP;
+
+jQuery.ajax( {
+    url: uri,
+    type: 'GET',
+    beforeSend : function( xhr ) {
+    },
+    success: function( response ) {
+    }
+} );
+}
+
+function fnrunat(id,flagVal){
+flag='s';
+if(flagVal==1){
+flag='s';
+}else if(flagVal==2){
+flag='f';
+remediate(id)
+}else if(flagVal==3){
+flag='m';
+dismiss(id)
+}else{
+flag='';
+}
+window.location='myservice.html?flag='+flag;
+}
+
+
+
+function getQueryVariable(variable) {
+  var query = window.location.search.substring(1);
+  var vars = query.split("&");
+  for (var i=0;i<vars.length;i++) {
+    var pair = vars[i].split("=");
+    if (pair[0] == variable) {
+      return pair[1];
+    }
+  } 
+//  alert('Query Variable ' + variable + ' not found');
+}
+
+function fnComplianceServicesStatusShow(id){
+$("#"+id+"_plus").hide();
+$("#"+id+"_minus").show();
+$("#"+id+"_row").show();
+$("#"+id+"_content").show();
+if (id == 'l'){
+	$("#log_status").hide();
+}
+	
+
+jQuery.ajax({
+            //url: '/raxakapi/v1/showrun/root@192.168.0.172',
+            url: '/raxakapi/v1/showrun/'+VM_Username_IP,
+            type: 'GET',
+             beforeSend : function( xhr ) {},
+              success: function( response ) {
+
+                            var arrayOfObjects = eval(response);
+                            count = arrayOfObjects.length
+                            success = manual = failed = 0
+                            successtring = failedstring = manualstring = consolestring = "" 
+                                for(var i in arrayOfObjects) {
+                                        var json = JSON.parse(arrayOfObjects[i])
+                                        outcome = json.outcome
+                                        value = json.rule
+                                        rulenum = value.substring(2);
+                                        consolestring += json.console + "\n";
+
+                                        if ((outcome.search("successful")) > -1)
+                                        {
+                                                success++;
+					        if (success == 1)
+						{
+                            				successtring += " <table width='100%' class='table table-striped table-responsive' style='float:right'  border='0' cellspacing='2' cellpadding='2'>"
+						}	
+		                          	successtring += "<tr  class='ng-scope'><td width='70px;'></td><td class='col-xs-6' colspan='2'><a class='ajax' href='content/ajax.html' onclick='fnsetruleid("+rulenum+")' >" + "Rule: V-" + rulenum + " " + json.outcome + "</td>";
+	                                        successtring += "</tr>";
+                                        }
+                                        else if ((outcome.search("manual")) > -1)
+                                        {
+                                            	manual++;
+					        if (manual == 1)
+						{
+                            				manualstring += " <table width='100%' class='table table-striped table-responsive' style='float:right'  border='0' cellspacing='2' cellpadding='2'>"
+						}	
+		                          	manualstring += "<tr  class='ng-scope'><td width='115px;'></td><td class='col-xs-6' colspan='2'><a class='ajax' href='content/ajax.html' onclick='fnsetruleid("+rulenum+")' >" + "Rule: V-" + rulenum + " " + json.outcome + "</a>&nbsp; </td><td align='right'><input type='button' value='Dismiss' onclick='fnrunat("+rulenum+",3)'></td>";
+                                        }
+                                        
+					else if ((outcome.search("failed")) > -1)
+                                        {
+                                                failed++;
+					        if (failed == 1)
+						{
+                            				failedstring += " <table width='100%' class='table table-striped table-responsive' style='float:right'  border='0' cellspacing='2' cellpadding='2'>"
+						}	
+		                          	failedstring += "<tr  class='ng-scope'><td width='115px;'></td><td class='col-xs-6' colspan='2'><a class='ajax' href='content/ajax.html' onclick='fnsetruleid("+rulenum+")' >" + "Rule: V-" + rulenum + " " + json.outcome + "</a>&nbsp; </td><td align='right'><input type='button' value='Remediate' onclick='fnrunat("+rulenum+",2)'></td>";
+                                        }
+                            }
+
+			    if(success > 0)
+                            	successtring += "</table>";
+			    if(failed > 0)
+                            	successtring += "</table>";
+			    if(manual > 0)
+                            	manualstring += "</table>";
+				
+
+                    $("#success_status").text(success);
+                    $("#failure_status").text(failed);
+                    $("#manual_status").text(manual);
+
+                            if(id=='s'){
+                                       $("#s_content").html(successtring);
+                            }else if(id=='f'){
+					$("#f_content").html(failedstring);
+                           
+                            }else if(id=='m'){
+					$("#m_content").html(manualstring);
+                            }else if(id=='l'){
+                            		$("#l_content").html(consolestring);
+                            }
+                      
+                             
+		j10(".ajax").colorbox();
+                }
+                } );
+
+ 
+	
+}
+
+function fnComplianceServicesStatusHide(id){
+$("#"+id+"_plus").show();
+$("#"+id+"_minus").hide();
+$("#"+id+"_row").hide();
+$("#"+id+"_content").hide();
+$("#log_status").show();
+}
+
+$(document).ready(function(){
+$("status_execution").html("Compliance checking in progress");
+var param1var = getQueryVariable("flag");
+if(param1var!=undefined){
+if(param1var=='s'){
+$("#s_minus").hide();
+$("#f_row").hide();
+$("#f_minus").hide();
+$("#f_content").hide();
+$("#m_row").hide();
+$("#m_minus").hide();
+$("#m_content").hide();
+$("#l_row").hide();
+$("#l_minus").hide();
+$("#l_content").hide();
+}else if(param1var=='f'){
+$("#s_row").hide();
+$("#s_content").hide();
+$("#s_minus").hide();
+$("#f_row").hide();
+$("#m_row").hide();
+$("#m_minus").hide();
+$("#m_content").hide();
+$("#l_row").hide();
+$("#l_minus").hide();
+$("#l_content").hide();
+}else if(param1var=='m'){
+$("#s_row").hide();
+$("#s_content").hide();
+$("#s_minus").hide();
+$("#f_row").hide();
+$("#m_row").hide();
+$("#f_minus").hide();
+$("#f_content").hide();
+$("#l_row").hide();
+$("#l_minus").hide();
+$("#l_content").hide();
+}else if(param1var=='l'){
+$("#l_row").hide();
+$("#s_row").hide()
+$("#s_content").hide();
+$("#s_minus").hide();
+$("#f_row").hide();
+$("#f_minus").hide();
+$("#f_content").hide();
+$("#m_row").hide();
+$("#m_minus").hide();
+$("#m_content").hide();
+}else{
+$("#s_row").hide();
+$("#s_content").hide();
+$("#s_minus").hide();
+$("#m_row").hide();
+$("#m_content").hide();
+$("#m_minus").hide();
+$("#m_row").hide();
+$("#m_content").hide();
+$("#m_minus").hide();
+$("#l_row").hide();
+$("#l_minus").hide();
+$("#l_content").hide();
+}
+fnComplianceServicesStatusShow(param1var);
+}else{
+$("#s_row").hide();
+$("#s_content").hide();
+$("#s_minus").hide();
+$("#f_row").hide();
+$("#m_row").hide();
+$("#f_minus").hide();
+$("#f_content").hide();
+$("#m_minus").hide();
+$("#m_content").hide();
+$("#l_row").hide();
+$("#l_minus").hide();
+$("#l_content").hide();
+}
+
+						   		   
+	//When you click on a link with class of poplight and the href starts with a # 
+	
+popupRun();
+	
+});
+
+
+function popupRun(){
+
+$('a.poplight[href^=#]').click(function() {
+		var popID = $(this).attr('rel'); //Get Popup Name
+		var popURL = $(this).attr('href'); //Get Popup href to define size
+				
+		//Pull Query & Variables from href URL
+		var query= popURL.split('?');
+		var dim= query[1].split('&');
+                
+		var popWidth = dim[0].split('=')[1]; //Gets the first query string value
+                var id=dim[1].split('=')[1];//get id parameter
+		//Fade in the Popup and add close button
+		$('#' + popID).fadeIn().css({ 'width': Number( popWidth ) }).prepend('<a href="#" class="close"><img src="images/close_pop.png" class="btn_close" title="Close Window" alt="Close" /></a>');
+		
+		//Define margin for center alignment (vertical + horizontal) - we add 80 to the height/width to accomodate for the padding + border width defined in the css
+		var popMargTop = ($('#' + popID).height() + 80) / 2;
+		var popMargLeft = ($('#' + popID).width() + 80) / 2;
+		
+		//Apply Margin to Popup
+		$('#' + popID).css({ 
+			'margin-top' : -popMargTop,
+			'margin-left' : -popMargLeft
+		});
+
+                var str2 = "asasa";  
+
+                jQuery.ajax( {
+                        //url: '/raxakapi/v1/showrun/root@192.168.0.172',
+                        url: '/raxakapi/v1/showrun/'+VM_Username_IP,
+                        type: 'GET',
+                        beforeSend : function( xhr ) {
+                        },
+                        success: function( response ) {
+                            var arrayOfObjects = eval(response);
+                            count = arrayOfObjects.length
+                            success = manual = failed = 0
+                            successtring = failedstring = manualstring = " <table width='80%' style='float:right' border='1' cellspacing='2' cellpadding='2'>"
+                                for(var i in arrayOfObjects) {
+                                        var json = JSON.parse(arrayOfObjects[i])
+                                        outcome = json.outcome
+                                        value = json.rule
+                                        console.log(value)
+                                        rulenum = value.substring(2);
+                                        successtring += "<tr style='padding-left:50px'><td>" + rulenum + "</td>"
+                                        successtring += "</tr>";
+
+                                        if ((outcome.search("successful")) > -1)
+                                        {
+                                                success++;
+                                        }
+                                        else if ((outcome.search("manual")) > -1)
+                                        {
+                                            manual++;
+                                        }
+                                        else if ((outcome.search("failed")) > -1)
+                                        {
+                                                failed++;
+                                        }
+                            }
+                            successtring += "</table>"
+                    
+                    $("#success_status").text(success);
+                    $("#failure_status").text(failed);
+                    $("#manual_status").text(manual);
+
+                            if(id=='s'){
+                                        $("#content_popup").html(successtring);
+                            }else if(id=='f'){
+                           $("#content_popup").html('<table><tr><td><strong>Failure</strong></td><td><strong>Principle</strong></td><td><strong>Payment</strong></td></tr>');
+                           
+                            }else{
+                            
+                             $("#content_popup").html('<table><tr><td><strong>Manual</strong></td><td><strong>Principle</strong></td><td><strong>Payment</strong></td></tr>');
+                             
+                            } //document.getElementById("status_execution").innerHTML = response;
+                                            }
+                } );
+
+
+
+		
+		//Fade in Background
+		$('body').append('<div id="fade"></div>'); //Add the fade layer to bottom of the body tag.
+		$('#fade').css({'filter' : 'alpha(opacity=80)'}).fadeIn(); //Fade in the fade layer 
+		
+		return false;
+	});
+	
+	
+	//Close Popups and Fade Layer
+	$('a.close, #fade').live('click', function() { //When clicking on the close or fade layer...
+	  	$('#fade , .popup_block').fadeOut(function() {
+			$('#fade, a.close').remove();  
+	}); //fade them both out
+		
+		return false;
+	});
+
+}
+
+</script>
+
+
+
+<a class='ajax' href="content/ajax.html" title="Homer Defined">Outside HTML (Ajax)</a>
+
+
+</body>
+</html>

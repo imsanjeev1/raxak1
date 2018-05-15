@@ -1,0 +1,22 @@
+Accounts, All Security Rules
+Account Management, Accounts
+V-38439 The system must provide automated support for account management functions.
+V-38500 The root account must be the only account having a UID of 0.
+V-38683 All accounts on the system must have unique user or account names
+V-38690 Emergency accounts must be provisioned with an expiration date.
+V-38685 Temporary accounts must be provisioned with an expiration date.
+Locking Accounts, Account Management
+V-38692 Accounts must be locked upon 35 days of inactivity.
+V-38496 Default operating system accounts, other than root, must be locked.
+Logon, Accounts
+Root Limitations, Logon
+V-38613 The system must not permit root logins using remote access programs such as ssh.
+V-38492 The system must prevent the root account from logging in from virtual consoles.
+V-38494 The system must prevent the root account from logging in from serial consoles.
+Unsuccessful Logins, Logon
+V-38501 The system must disable accounts after excessive login failures within a 15-minute interval.
+V-38573 The system must disable accounts after three consecutive unsuccessful logon attempts.
+V-38592 The system must require administrator action to unlock an account locked by excessive failed login attempts.
+Miscellaneous, Logon
+V-38684 The system must limit users to 10 simultaneous system logins, or a site-defined number, in accordance with operational requirements.
+V-38688 A login banner must be displayed immediately prior to, or as part of, graphical desktop environment login prompts.

@@ -1,0 +1,141 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Cloud Service</title>
+        <link href="css/style.css" rel="stylesheet" type="text/css">
+        <link href="css/font-awesome.css" rel="stylesheet" type="text/css">
+        <link href="css/font-awesome.min.css" rel="stylesheet" type="text/css">
+        <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic' rel='stylesheet' type='text/css'>
+    </head>
+
+    <body onload="subscriptionDetailPage();">
+        <div class="header">
+            <div class="h_first_row">
+                <div class="logo">
+                    <a href="#">
+                        <h1><img src="images/logo.png" alt="" />logo text</h1>
+                    </a></div>
+                <div class="top_right">
+                    <div class="cart_box"><a href="#"><span class="ico_bg"><img src="images/cart_ico.png" alt=""></span>0 Items</a></div>
+                    <div class="consumer_box"><a href="#"><span class="consumer_ico_bg"><img src="images/consumer_ico.png" alt=""></span>Consumer</a></div>
+                </div>
+            </div>
+            <div class="menu">Menu</div>
+        </div>
+        <div class="cl"></div>
+        <div class="middle_section">
+            <div class="sub_dtl">
+                <div class="sub_im_bx"><img src="images/cl_logo.png" alt="" /></div>
+                <div class="sub_dtl_left">
+                    <h3>consumer@csaconsumer.com</h3>
+                    <h3>Raxak-CSA Integration (1.0.0)</h3>
+                    <span class="terminated">Terminated Subscription</span>	
+                </div>
+                <div class="sbsc_con">
+                    <div class="cube"><i class="fa fa-cube"></i>Amazon EC2 Simple Compute (1.0.0)</div>
+                    <div class="consumer"><i class="fa fa-user"></i>consumer</div>
+                    <div class="renew"><i class="fa fa-history"></i>March 6, 2015 - March 8, 2015</div>
+                </div>
+                <div class="cl"></div>
+            </div>
+            <div id="subdtl_price" class="ico_lines">
+                <div class="ico_con_left">
+                    <div><i class="fa fa-file"></i>8A7040664C0A81F8014C9421D37F2CD2</div>
+                    <div><i class="fa fa-usd"></i>Initial Price: <b>$ 0.00</b><br />
+                        Recurring Price: <b>$ 0.00 yearly</b></div>
+                    <div><i class="fa fa-folder-open"></i>Application Servers</div>
+
+                </div>
+                <div class="cl"></div>
+            </div>
+            <div id="subdtl_rqst" class="ico_lines">
+                <div class="ico_con_left">
+                    <i class="fa fa-cube"></i><span class="lrg">Linked Request</span>
+                </div>
+                <div class="ico_con_right">
+                    <div class="view_rq_lrg blk_btn"><a href="#">View Request</a></div>
+                </div>
+                <div class="cl"></div>
+            </div>
+            <div id="subdtl_lnksrv" class="ico_lines">
+                <div class="ico_con_left">
+                    <i class="fa fa-folder-open"></i><span class="lrg">View My Linked Service</span>
+                </div>
+                <div class="ico_con_right">
+                    <div class="view_rq_lrg"><a href="#">View My Linked Service</a></div>
+                </div>
+                <div class="cl"></div>
+            </div>
+            <div id="subdtl_dlte" class="ico_lines">
+                <div class="ico_con_left">
+                    <i class="fa fa-trash"></i><span class="lrg">Delete Subscription</span>
+                </div>
+                <div class="ico_con_right">
+                    <div class="view_rq_lrg"><a href="#">Delete Subscription</a></div>
+                </div>
+                <div class="cl"></div>
+            </div>
+            <div class="subscription_history">
+                <div class="sb_his_left"><i class="fa fa-files-o"></i>Subscription History &amp; Notifications
+                </div>
+                <div class="filter">
+                    <input id="filter_input" type="text" onfocus="if (this.value == 'Filter') {
+            this.value = '';
+        }" onblur="if (this.value == 'Filter') {
+                    this.value = 'Filter';
+                }" value="Filter" name="Filter">
+                    <input id="filter_submit" type="submit" value="" name="Submit">
+                </div>
+                <div class="cl"></div>
+            </div>
+            <div class="cl">
+                <table width="100%" border="0" cellspacing="0" cellpadding="5" class="sub_dtl_tbl">
+                    <tbody>
+
+                        <tr>
+                            <td class="tbl_ico_bx">&nbsp;</td>
+                            <td class="tbl_ttl"> Title</td>
+                            <td> Type </td>
+                            <td> Date </td>
+                            <td>Status </td>
+                            <td>&nbsp;</td>
+                        </tr>
+                        <tr>
+                            <td class="tbl_ico_bx"><i class="fa fa-bell"></i></td>
+                            <td class="tbl_ttl">Your subscription has been canceled </td>
+                            <td>Notification </td>
+                            <td> Apr 8, 2015 6:44:42 PM </td>
+                            <td>&nbsp;</td>
+                            <td>&nbsp;</td>
+                        </tr>
+                        <tr>
+                            <td class="tbl_ico_bx">&nbsp;</td>
+                            <td class="tbl_ttl">Cancel Subscription </td>
+                            <td> Request </td>
+                            <td>Apr 8, 2015 6:44:32 PM </td>
+                            <td>Success </td>
+                            <td>&nbsp;</td>
+                        </tr>
+                        <tr>
+                            <td class="tbl_ico_bx"><i class="fa fa-bell"></i></td>
+                            <td class="tbl_ttl">Your subscription has failed </td>
+                            <td>Notification </td>
+                            <td>Apr 7, 2015 7:17:50 PM </td>
+                            <td>&nbsp;</td>
+                            <td>&nbsp;</td>
+                        </tr>
+                        <tr>
+                            <td class="tbl_ico_bx">&nbsp;</td>
+                            <td class="tbl_ttl"> Service Request </td>
+                            <td>Request </td>
+                            <td>Apr 7, 2015 7:16:20 PM </td>
+                            <td>Failure </td>
+                            <td>&nbsp;</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,169 @@
+"Accounts: (16 Rules)","","","","","","","","","",""
+"Account Management:","","","","","","","","","",""
+"V-38439","medium","The system must provide automated support for account management functions.","A comprehensive account management process that includes automation helps to ensure the accounts designated as requiring attention are consistently and promptly addressed. Enterprise environments make user account management challenging and complex. A user management process requiring administrators to manually address account management functions adds risk of potential oversight.","None","SV-50239r1_rule","F-43384r1_fix","Implement an automated system for managing user accounts that minimizes the risk of errors, either intentional or deliberate.  If possible, this system should integrate with an existing enterprise user management system, such as, one based Active Directory or Kerberos.","C-45994r1_chk","Interview the SA to determine if there is an automated system for managing user accounts, preferably integrated with an existing enterprise user management system.
+
+If there is not, this is a finding.",""
+"V-38500","medium","The root account must be the only account having a UID of 0.","An account has root authority if it has a UID of 0. Multiple accounts with a UID of 0 afford more opportunity for potential intruders to guess a password for a privileged account. Proper configuration of sudo is recommended to afford multiple system administrators access to root privileges in an accountable manner.","None","SV-50301r2_rule","F-43447r1_fix","If any account other than root has a UID of 0, this misconfiguration should be investigated and the accounts other than root should be removed or have their UID changed.","C-46057r2_chk","To list all password file entries for accounts with UID 0, run the following command:
+
+# awk -F: '($3 == 0) {print}' /etc/passwd
+
+This should print only one line, for the user root.
+If any account other than root has a UID of 0, this is a finding.",""
+"V-38683","low","All accounts on the system must have unique user or account names","Unique usernames allow for accountability on the system.","None","SV-50484r1_rule","F-43632r1_fix","Change usernames, or delete accounts, so each has a unique name.","C-46245r1_chk","Run the following command to check for duplicate account names:
+
+# pwck -rq
+
+If there are no duplicate names, no line will be returned.
+If a line is returned, this is a finding.",""
+"V-38690","low","Emergency accounts must be provisioned with an expiration date.","When emergency accounts are created, there is a risk they may remain in place and active after the need for them no longer exists. Account expiration greatly reduces the risk of accounts being misused or hijacked.","None","SV-50491r1_rule","F-43639r1_fix","In the event emergency accounts are required, configure the system to terminate them after a documented time period. For every emergency account, run the following command to set an expiration date on it, substituting ""[USER]"" and ""[YYYY-MM-DD]"" appropriately:
+
+# chage -E [YYYY-MM-DD] [USER]
+
+""[YYYY-MM-DD]"" indicates the documented expiration date for the account.","C-46251r1_chk","For every emergency account, run the following command to obtain its account aging and expiration information:
+
+# chage -l [USER]
+
+Verify each of these accounts has an expiration date set as documented.
+If any emergency accounts have no expiration date set or do not expire within a documented time frame, this is a finding.",""
+"V-38685","low","Temporary accounts must be provisioned with an expiration date.","When temporary accounts are created, there is a risk they may remain in place and active after the need for them no longer exists. Account expiration greatly reduces the risk of accounts being misused or hijacked.","None","SV-50486r1_rule","F-43634r1_fix","In the event temporary accounts are required, configure the system to terminate them after a documented time period. For every temporary account, run the following command to set an expiration date on it, substituting ""[USER]"" and ""[YYYY-MM-DD]"" appropriately:
+
+# chage -E [YYYY-MM-DD] [USER]
+
+""[YYYY-MM-DD]"" indicates the documented expiration date for the account.","C-46247r1_chk","For every temporary account, run the following command to obtain its account aging and expiration information:
+
+# chage -l [USER]
+
+Verify each of these accounts has an expiration date set as documented.
+If any temporary accounts have no expiration date set or do not expire within a documented time frame, this is a finding.",""
+"Locking Accounts:","","","","","","","","","",""
+"V-38692","low","Accounts must be locked upon 35 days of inactivity.","Disabling inactive accounts ensures that accounts which may not have been responsibly removed are not available to attackers who may have compromised their credentials.","None","SV-50493r1_rule","F-43641r2_fix","To specify the number of days after a password expires (which signifies inactivity) until an account is permanently disabled, add or correct the following lines in ""/etc/default/useradd"", substituting ""[NUM_DAYS]"" appropriately:
+
+INACTIVE=[NUM_DAYS]
+
+A value of 35 is recommended. If a password is currently on the verge of expiration, then 35 days remain until the account is automatically disabled. However, if the password will not expire for another 60 days, then 95 days could elapse until the account would be automatically disabled. See the ""useradd"" man page for more information. Determining the inactivity timeout must be done with careful consideration of the length of a ""normal"" period of inactivity for users in the particular environment. Setting the timeout too low incurs support costs and also has the potential to impact availability of the system to legitimate users.","C-46254r2_chk","To verify the ""INACTIVE"" setting, run the following command:
+
+grep ""INACTIVE"" /etc/default/useradd
+
+The output should indicate the ""INACTIVE"" configuration option is set to an appropriate integer as shown in the example below:
+
+# grep ""INACTIVE"" /etc/default/useradd
+INACTIVE=35
+
+If it does not, this is a finding.",""
+"V-38496","medium","Default operating system accounts, other than root, must be locked.","Disabling authentication for default system accounts makes it more difficult for attackers to make use of them to compromise a system.","None","SV-50297r3_rule","F-43442r2_fix","Some accounts are not associated with a human user of the system, and exist to perform some administrative function. An attacker should not be able to log into these accounts.
+
+Disable logon access to these accounts with the command:
+
+# passwd -l [SYSACCT]","C-46052r2_chk","To obtain a listing of all users and the contents of their shadow password field, run the command:
+
+$ awk -F: '$1 !~ /^root$/ && $2 !~ /^[!*]/ {print $1 "":"" $2}' /etc/shadow
+
+Identify the operating system accounts from this listing. These will primarily be the accounts with UID numbers less than 500, other than root.
+
+If any default operating system account (other than root) has a valid password hash, this is a finding.",""
+"Logon:","","","","","","","","","",""
+"Root Limitations:","","","","","","","","","",""
+"V-38613","medium","The system must not permit root logins using remote access programs such as ssh.","Permitting direct root login reduces auditable information about who ran privileged commands on the system and also allows direct attack attempts on root's password.","None","SV-50414r1_rule","F-43561r1_fix","The root user should never be allowed to log in to a system directly over a network. To disable root login via SSH, add or correct the following line in ""/etc/ssh/sshd_config"":
+
+PermitRootLogin no","C-46171r1_chk","To determine how the SSH daemon's ""PermitRootLogin"" option is set, run the following command:
+
+# grep -i PermitRootLogin /etc/ssh/sshd_config
+
+If a line indicating ""no"" is returned, then the required value is set.
+If the required value is not set, this is a finding.",""
+"V-38492","medium","The system must prevent the root account from logging in from virtual consoles.","Preventing direct root login to virtual console devices helps ensure accountability for actions taken on the system using the root account. ","None","SV-50293r1_rule","F-43439r2_fix","To restrict root logins through the (deprecated) virtual console devices, ensure lines of this form do not appear in ""/etc/securetty"":
+
+vc/1
+vc/2
+vc/3
+vc/4
+
+Note:  Virtual console entries are not limited to those listed above.  Any lines starting with ""vc/"" followed by numerals should be removed.","C-46049r1_chk","To check for virtual console entries which permit root login, run the following command:
+
+# grep '^vc/[0-9]' /etc/securetty
+
+If any output is returned, then root logins over virtual console devices is permitted.
+If root login over virtual console devices is permitted, this is a finding.",""
+"V-38494","low","The system must prevent the root account from logging in from serial consoles.","Preventing direct root login to serial port interfaces helps ensure accountability for actions taken on the systems using the root account.","None","SV-50295r1_rule","F-43441r1_fix","To restrict root logins on serial ports, ensure lines of this form do not appear in ""/etc/securetty"":
+
+ttyS0
+ttyS1
+
+Note:  Serial port entries are not limited to those listed above.  Any lines starting with ""ttyS"" followed by numerals should be removed","C-46051r1_chk","To check for serial port entries which permit root login, run the following command:
+
+# grep '^ttyS[0-9]' /etc/securetty
+
+If any output is returned, then root login over serial ports is permitted.
+If root login over serial ports is permitted, this is a finding.",""
+"Unsuccessful Logins:","","","","","","","","","",""
+"V-38501","medium","The system must disable accounts after excessive login failures within a 15-minute interval.","Locking out user accounts after a number of incorrect attempts within a specific period of time prevents direct password guessing attacks.","None","SV-50302r3_rule","F-43448r4_fix","Utilizing ""pam_faillock.so"", the ""fail_interval"" directive configures the system to lock out accounts after a number of incorrect logon attempts.
+
+Add the following ""fail_interval"" directives to ""pam_faillock.so"" immediately below the ""pam_unix.so"" statement in ""/etc/pam.d/system-auth"" and ""/etc/pam.d/password-auth"":
+
+auth [default=die] pam_faillock.so authfail deny=3 unlock_time=604800 fail_interval=900
+
+auth required pam_faillock.so authsucc deny=3 unlock_time=604800 fail_interval=900","C-46058r2_chk","To ensure the failed password attempt policy is configured correctly, run the following command:
+
+$ grep pam_faillock /etc/pam.d/system-auth /etc/pam.d/password-auth
+
+For each file, the output should show ""fail_interval=<interval-in-seconds>"" where ""interval-in-seconds"" is 900 (15 minutes) or greater. If the ""fail_interval"" parameter is not set, the default setting of 900 seconds is acceptable. If that is not the case, this is a finding. ",""
+"V-38573","medium","The system must disable accounts after three consecutive unsuccessful logon attempts.","Locking out user accounts after a number of incorrect attempts prevents direct password guessing attacks.","None","SV-50374r3_rule","F-43521r5_fix","To configure the system to lock out accounts after a number of incorrect logon attempts using ""pam_faillock.so"":
+
+Add the following lines immediately below the ""pam_unix.so"" statement in the AUTH section of ""/etc/pam.d/system-auth"" and ""/etc/pam.d/password-auth"":
+
+auth [default=die] pam_faillock.so authfail deny=3 unlock_time=604800 fail_interval=900
+
+auth required pam_faillock.so authsucc deny=3 unlock_time=604800 fail_interval=900
+
+Note that any updates made to ""/etc/pam.d/system-auth"" and ""/etc/pam.d/password-auth"" may be overwritten by the ""authconfig"" program.  The ""authconfig"" program should not be used.","C-46131r3_chk","To ensure the failed password attempt policy is configured correctly, run the following command:
+
+# grep pam_faillock /etc/pam.d/system-auth
+# grep pam_faillock /etc/pam.d/password-auth
+
+The output should show ""deny=3"" for both files.
+If that is not the case, this is a finding.",""
+"V-38592","medium","The system must require administrator action to unlock an account locked by excessive failed login attempts.","Locking out user accounts after a number of incorrect attempts prevents direct password guessing attacks. Ensuring that an administrator is involved in unlocking locked accounts draws appropriate attention to such situations.","None","SV-50393r3_rule","F-43541r4_fix","To configure the system to lock out accounts after a number of incorrect logon attempts and require an administrator to unlock the account using ""pam_faillock.so"":
+
+Add the following lines immediately below the ""pam_unix.so"" statement in the AUTH section of
+""/etc/pam.d/system-auth"" and ""/etc/pam.d/password-auth"":
+
+auth [default=die] pam_faillock.so authfail deny=3 unlock_time=604800 fail_interval=900
+
+auth required pam_faillock.so authsucc deny=3 unlock_time=604800  fail_interval=900
+
+Note that any updates made to ""/etc/pam.d/system-auth"" and ""/etc/pam.d/password-auth"" may be overwritten by the ""authconfig"" program.  The ""authconfig"" program should not be used.","C-46151r4_chk","To ensure the failed password attempt policy is configured correctly, run the following command:
+
+# grep pam_faillock /etc/pam.d/system-auth
+# grep pam_faillock /etc/pam.d/password-auth
+
+The output should show ""unlock_time=<some-large-number>""; the largest acceptable value is 604800 seconds (one week).
+If that is not the case, this is a finding.",""
+"Miscellaneous:","","","","","","","","","",""
+"V-38684","low","The system must limit users to 10 simultaneous system logins, or a site-defined number, in accordance with operational requirements.","Limiting simultaneous user logins can insulate the system from denial of service problems caused by excessive logins. Automated login processes operating improperly or maliciously may result in an exceptional number of simultaneous login sessions.","None","SV-50485r2_rule","F-43633r1_fix","Limiting the number of allowed users and sessions per user can limit risks related to denial of service attacks. This addresses concurrent sessions for a single account and does not address concurrent sessions by a single user via multiple accounts. To set the number of concurrent sessions per user add the following line in ""/etc/security/limits.conf"":
+
+* hard maxlogins 10
+
+A documented site-defined number may be substituted for 10 in the above.","C-46246r2_chk","Run the following command to ensure the ""maxlogins"" value is configured for all users on the system:
+
+$ grep ""maxlogins"" /etc/security/limits.conf /etc/security/limits.d/*.conf
+
+You should receive output similar to the following:
+
+* hard maxlogins 10
+
+If it is not similar, this is a finding. ",""
+"V-38688","medium","A login banner must be displayed immediately prior to, or as part of, graphical desktop environment login prompts.","An appropriate warning message reinforces policy awareness during the logon process and facilitates possible legal action against attackers.","None","SV-50489r3_rule","F-43637r2_fix","To enable displaying a login warning banner in the GNOME Display Manager's login screen, run the following command:
+
+# gconftool-2 --direct \
+--config-source xml:readwrite:/etc/gconf/gconf.xml.mandatory \
+--type bool \
+--set /apps/gdm/simple-greeter/banner_message_enable true
+
+To display a banner, this setting must be enabled and then banner text must also be set.","C-46250r3_chk","If the GConf2 package is not installed, this is not applicable.
+
+To ensure a login warning banner is enabled, run the following:
+
+$ gconftool-2 --direct --config-source xml:readwrite:/etc/gconf/gconf.xml.mandatory --get /apps/gdm/simple-greeter/banner_message_enable
+
+Search for the ""banner_message_enable"" schema. If properly configured, the ""default"" value should be ""true"".
+If it is not, this is a finding.","in miscellaneous GDE as well"

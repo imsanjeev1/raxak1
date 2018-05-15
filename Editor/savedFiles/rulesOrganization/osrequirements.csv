@@ -1,0 +1,768 @@
+"Operating System Requirements (27 Rules)Operating System Requirements (27 Rules)Operating System Requirements (27 Rules)","","","","","","","","","","",""
+"Logon:","","","","","","","","","","",""
+"V-38484","medium","The operating system, upon successful logon, must display to the user the date and time of the last logon or access via ssh.The operating system, upon successful logon, must display to the user the date and time of the last logon or access via ssh.The operating system, upon successful logon, must display to the user the date and time of the last logon or access via ssh.","Users need to be aware of activity that occurs regarding their account. Providing users with information regarding the date and time of their last successful login allows the user to determine if any unauthorized activity has occurred and gives them an opportunity to notify administrators.
+
+At ssh login, a user must be presented with the last successful login date and time.Users need to be aware of activity that occurs regarding their account. Providing users with information regarding the date and time of their last successful login allows the user to determine if any unauthorized activity has occurred and gives them an opportunity to notify administrators.
+
+At ssh login, a user must be presented with the last successful login date and time.Users need to be aware of activity that occurs regarding their account. Providing users with information regarding the date and time of their last successful login allows the user to determine if any unauthorized activity has occurred and gives them an opportunity to notify administrators.
+
+At ssh login, a user must be presented with the last successful login date and time.","None","SV-50285r2_rule","F-43431r2_fix","Update the ""PrintLastLog"" keyword to ""yes"" in /etc/ssh/sshd_config:
+
+PrintLastLog yes
+
+While it is acceptable to remove the keyword entirely since the default action for the SSH daemon is to print the last logon date and time, it is preferred to have the value explicitly documented.Update the ""PrintLastLog"" keyword to ""yes"" in /etc/ssh/sshd_config:
+
+PrintLastLog yes
+
+While it is acceptable to remove the keyword entirely since the default action for the SSH daemon is to print the last logon date and time, it is preferred to have the value explicitly documented.Update the ""PrintLastLog"" keyword to ""yes"" in /etc/ssh/sshd_config:
+
+PrintLastLog yes
+
+While it is acceptable to remove the keyword entirely since the default action for the SSH daemon is to print the last logon date and time, it is preferred to have the value explicitly documented.","C-46041r2_chk","Verify the value associated with the ""PrintLastLog"" keyword in /etc/ssh/sshd_config:
+
+# grep -i ""^PrintLastLog"" /etc/ssh/sshd_config
+
+If the ""PrintLastLog"" keyword is not present, this is not a finding.  If the value is not set to ""yes"", this is a finding.Verify the value associated with the ""PrintLastLog"" keyword in /etc/ssh/sshd_config:
+
+# grep -i ""^PrintLastLog"" /etc/ssh/sshd_config
+
+If the ""PrintLastLog"" keyword is not present, this is not a finding.  If the value is not set to ""yes"", this is a finding.Verify the value associated with the ""PrintLastLog"" keyword in /etc/ssh/sshd_config:
+
+# grep -i ""^PrintLastLog"" /etc/ssh/sshd_config
+
+If the ""PrintLastLog"" keyword is not present, this is not a finding.  If the value is not set to ""yes"", this is a finding.","",""
+"V-51875","medium","The operating system, upon successful logon/access, must display to the user the number of unsuccessful logon/access attempts since the last successful logon/access.The operating system, upon successful logon/access, must display to the user the number of unsuccessful logon/access attempts since the last successful logon/access.The operating system, upon successful logon/access, must display to the user the number of unsuccessful logon/access attempts since the last successful logon/access.","Users need to be aware of activity that occurs regarding their account. Providing users with information regarding the number of unsuccessful attempts that were made to login to their account allows the user to determine if any unauthorized activity has occurred and gives them an opportunity to notify administrators. ","None","SV-66089r1_rule","F-56701r1_fix","To configure the system to notify users of last logon/access using ""pam_lastlog"", add the following line immediately after ""session required pam_limits.so"":
+
+session required pam_lastlog.so showfailedTo configure the system to notify users of last logon/access using ""pam_lastlog"", add the following line immediately after ""session required pam_limits.so"":
+
+session required pam_lastlog.so showfailedTo configure the system to notify users of last logon/access using ""pam_lastlog"", add the following line immediately after ""session required pam_limits.so"":
+
+session required pam_lastlog.so showfailed","C-54013r1_chk","To ensure that last logon/access notification is configured correctly, run the following command:
+
+# grep pam_lastlog.so /etc/pam.d/system-auth
+
+The output should show output ""showfailed"". If that is not the case, this is a finding. To ensure that last logon/access notification is configured correctly, run the following command:
+
+# grep pam_lastlog.so /etc/pam.d/system-auth
+
+The output should show output ""showfailed"". If that is not the case, this is a finding. To ensure that last logon/access notification is configured correctly, run the following command:
+
+# grep pam_lastlog.so /etc/pam.d/system-auth
+
+The output should show output ""showfailed"". If that is not the case, this is a finding. ","",""
+"Network and Connections:","","","","","","","","","","",""
+"V-38490","medium","The operating system must enforce requirements for the connection of mobile devices to operating systems.The operating system must enforce requirements for the connection of mobile devices to operating systems.The operating system must enforce requirements for the connection of mobile devices to operating systems.","USB storage devices such as thumb drives can be used to introduce unauthorized software and other vulnerabilities. Support for these devices should be disabled and the devices themselves should be tightly controlled.","None","SV-50291r3_rule","F-43437r3_fix","To prevent USB storage devices from being used, configure the kernel module loading system to prevent automatic loading of the USB storage driver. To configure the system to prevent the ""usb-storage"" kernel module from being loaded, add the following line to a file in the directory ""/etc/modprobe.d"": 
+
+install usb-storage /bin/true
+
+This will prevent the ""modprobe"" program from loading the ""usb-storage"" module, but will not prevent an administrator (or another program) from using the ""insmod"" program to load the module manually.To prevent USB storage devices from being used, configure the kernel module loading system to prevent automatic loading of the USB storage driver. To configure the system to prevent the ""usb-storage"" kernel module from being loaded, add the following line to a file in the directory ""/etc/modprobe.d"": 
+
+install usb-storage /bin/true
+
+This will prevent the ""modprobe"" program from loading the ""usb-storage"" module, but will not prevent an administrator (or another program) from using the ""insmod"" program to load the module manually.To prevent USB storage devices from being used, configure the kernel module loading system to prevent automatic loading of the USB storage driver. To configure the system to prevent the ""usb-storage"" kernel module from being loaded, add the following line to a file in the directory ""/etc/modprobe.d"": 
+
+install usb-storage /bin/true
+
+This will prevent the ""modprobe"" program from loading the ""usb-storage"" module, but will not prevent an administrator (or another program) from using the ""insmod"" program to load the module manually.","C-46047r3_chk","If the system is configured to prevent the loading of the ""usb-storage"" kernel module, it will contain lines inside any file in ""/etc/modprobe.d"" or the deprecated""/etc/modprobe.conf"". These lines instruct the module loading system to run another program (such as ""/bin/true"") upon a module ""install"" event. Run the following command to search for such lines in all files in ""/etc/modprobe.d"" and the deprecated ""/etc/modprobe.conf"": 
+
+$ grep -r usb-storage /etc/modprobe.conf /etc/modprobe.d
+
+If no line is returned, this is a finding.If the system is configured to prevent the loading of the ""usb-storage"" kernel module, it will contain lines inside any file in ""/etc/modprobe.d"" or the deprecated""/etc/modprobe.conf"". These lines instruct the module loading system to run another program (such as ""/bin/true"") upon a module ""install"" event. Run the following command to search for such lines in all files in ""/etc/modprobe.d"" and the deprecated ""/etc/modprobe.conf"": 
+
+$ grep -r usb-storage /etc/modprobe.conf /etc/modprobe.d
+
+If no line is returned, this is a finding.If the system is configured to prevent the loading of the ""usb-storage"" kernel module, it will contain lines inside any file in ""/etc/modprobe.d"" or the deprecated""/etc/modprobe.conf"". These lines instruct the module loading system to run another program (such as ""/bin/true"") upon a module ""install"" event. Run the following command to search for such lines in all files in ""/etc/modprobe.d"" and the deprecated ""/etc/modprobe.conf"": 
+
+$ grep -r usb-storage /etc/modprobe.conf /etc/modprobe.d
+
+If no line is returned, this is a finding.","",""
+"V-38512","medium","The operating system must prevent public IPv4 access into an organizations internal networks, except as appropriately mediated by managed interfaces employing boundary protection devices.","The ""iptables"" service provides the system's host-based firewalling capability for IPv4 and ICMP.","None","SV-50313r2_rule","F-43459r2_fix","The ""iptables"" service can be enabled with the following commands: 
+
+# chkconfig iptables on
+# service iptables startThe ""iptables"" service can be enabled with the following commands: 
+
+# chkconfig iptables on
+# service iptables startThe ""iptables"" service can be enabled with the following commands: 
+
+# chkconfig iptables on
+# service iptables start","C-46069r2_chk","If the system is a cross-domain system, this is not applicable.
+
+Run the following command to determine the current status of the ""iptables"" service: 
+
+# service iptables status
+
+If the service is not running, it should return the following: 
+
+iptables: Firewall is not running.
+
+
+If the service is not running, this is a finding.If the system is a cross-domain system, this is not applicable.
+
+Run the following command to determine the current status of the ""iptables"" service: 
+
+# service iptables status
+
+If the service is not running, it should return the following: 
+
+iptables: Firewall is not running.
+
+
+If the service is not running, this is a finding.If the system is a cross-domain system, this is not applicable.
+
+Run the following command to determine the current status of the ""iptables"" service: 
+
+# service iptables status
+
+If the service is not running, it should return the following: 
+
+iptables: Firewall is not running.
+
+
+If the service is not running, this is a finding.","protect internal networks from public","IPv4"
+"V-38553","medium","The operating system must prevent public IPv6 access into an organizations internal networks, except as appropriately mediated by managed interfaces employing boundary protection devices.","The ""ip6tables"" service provides the system's host-based firewalling capability for IPv6 and ICMPv6.","None","SV-50354r3_rule","F-43501r2_fix","The ""ip6tables"" service can be enabled with the following commands: 
+
+# chkconfig ip6tables on
+# service ip6tables startThe ""ip6tables"" service can be enabled with the following commands: 
+
+# chkconfig ip6tables on
+# service ip6tables startThe ""ip6tables"" service can be enabled with the following commands: 
+
+# chkconfig ip6tables on
+# service ip6tables start","C-46111r3_chk","If the system is a cross-domain system, this is not applicable.
+
+If IPv6 is disabled, this is not applicable.
+
+Run the following command to determine the current status of the ""ip6tables"" service: 
+
+# service ip6tables status
+
+If the service is not running, it should return the following: 
+
+ip6tables: Firewall is not running.
+
+
+If the service is not running, this is a finding.If the system is a cross-domain system, this is not applicable.
+
+If IPv6 is disabled, this is not applicable.
+
+Run the following command to determine the current status of the ""ip6tables"" service: 
+
+# service ip6tables status
+
+If the service is not running, it should return the following: 
+
+ip6tables: Firewall is not running.
+
+
+If the service is not running, this is a finding.If the system is a cross-domain system, this is not applicable.
+
+If IPv6 is disabled, this is not applicable.
+
+Run the following command to determine the current status of the ""ip6tables"" service: 
+
+# service ip6tables status
+
+If the service is not running, it should return the following: 
+
+ip6tables: Firewall is not running.
+
+
+If the service is not running, this is a finding.","","IPv6"
+"V-38560","medium","The operating system must connect to external networks or information systems only through managed IPv4 interfaces consisting of boundary protection devices arranged in accordance with an organizational security architecture.","The ""iptables"" service provides the system's host-based firewalling capability for IPv4 and ICMP.","None","SV-50361r2_rule","F-43508r2_fix","The ""iptables"" service can be enabled with the following commands: 
+
+# chkconfig iptables on
+# service iptables startThe ""iptables"" service can be enabled with the following commands: 
+
+# chkconfig iptables on
+# service iptables startThe ""iptables"" service can be enabled with the following commands: 
+
+# chkconfig iptables on
+# service iptables start","C-46118r2_chk","If the system is a cross-domain system, this is not applicable.
+
+Run the following command to determine the current status of the ""iptables"" service: 
+
+# service iptables status
+
+If the service is not running, it should return the following: 
+
+iptables: Firewall is not running.
+
+
+If the service is not running, this is a finding.If the system is a cross-domain system, this is not applicable.
+
+Run the following command to determine the current status of the ""iptables"" service: 
+
+# service iptables status
+
+If the service is not running, it should return the following: 
+
+iptables: Firewall is not running.
+
+
+If the service is not running, this is a finding.If the system is a cross-domain system, this is not applicable.
+
+Run the following command to determine the current status of the ""iptables"" service: 
+
+# service iptables status
+
+If the service is not running, it should return the following: 
+
+iptables: Firewall is not running.
+
+
+If the service is not running, this is a finding.","connect to external networks","IPV4"
+"V-38551","medium","The operating system must connect to external networks or information systems only through managed IPv6 interfaces consisting of boundary protection devices arranged in accordance with an organizational security architecture.","The ""ip6tables"" service provides the system's host-based firewalling capability for IPv6 and ICMPv6.","None","SV-50352r3_rule","F-43499r2_fix","The ""ip6tables"" service can be enabled with the following commands: 
+
+# chkconfig ip6tables on
+# service ip6tables startThe ""ip6tables"" service can be enabled with the following commands: 
+
+# chkconfig ip6tables on
+# service ip6tables startThe ""ip6tables"" service can be enabled with the following commands: 
+
+# chkconfig ip6tables on
+# service ip6tables start","C-46109r3_chk","If the system is a cross-domain system, this is not applicable.
+
+If IPV6 is disabled, this is not applicable.
+
+Run the following command to determine the current status of the ""ip6tables"" service: 
+
+# service ip6tables status
+
+If the service is not running, it should return the following: 
+
+ip6tables: Firewall is not running.
+
+
+If the service is not running, this is a finding.If the system is a cross-domain system, this is not applicable.
+
+If IPV6 is disabled, this is not applicable.
+
+Run the following command to determine the current status of the ""ip6tables"" service: 
+
+# service ip6tables status
+
+If the service is not running, it should return the following: 
+
+ip6tables: Firewall is not running.
+
+
+If the service is not running, this is a finding.If the system is a cross-domain system, this is not applicable.
+
+If IPV6 is disabled, this is not applicable.
+
+Run the following command to determine the current status of the ""ip6tables"" service: 
+
+# service ip6tables status
+
+If the service is not running, it should return the following: 
+
+ip6tables: Firewall is not running.
+
+
+If the service is not running, this is a finding.","","IPv6"
+"Unauthorized Changes/Software: ","","","","","","","","","","",""
+"V-38670","medium","The operating system must detect unauthorized changes to software and information. ","By default, AIDE does not install itself for periodic execution. Periodically running AIDE may reveal unexpected changes in installed files.","None","SV-50471r2_rule","F-43619r1_fix","AIDE should be executed on a periodic basis to check for changes. To implement a daily execution of AIDE at 4:05am using cron, add the following line to /etc/crontab: 
+
+05 4 * * * root /usr/sbin/aide --check
+
+AIDE can be executed periodically through other means; this is merely one example.AIDE should be executed on a periodic basis to check for changes. To implement a daily execution of AIDE at 4:05am using cron, add the following line to /etc/crontab: 
+
+05 4 * * * root /usr/sbin/aide --check
+
+AIDE can be executed periodically through other means; this is merely one example.AIDE should be executed on a periodic basis to check for changes. To implement a daily execution of AIDE at 4:05am using cron, add the following line to /etc/crontab: 
+
+05 4 * * * root /usr/sbin/aide --check
+
+AIDE can be executed periodically through other means; this is merely one example.","C-46229r2_chk","To determine that periodic AIDE execution has been scheduled, run the following command: 
+
+# grep aide /etc/crontab /etc/cron.*/*
+
+If there is no output, this is a finding.To determine that periodic AIDE execution has been scheduled, run the following command: 
+
+# grep aide /etc/crontab /etc/cron.*/*
+
+If there is no output, this is a finding.To determine that periodic AIDE execution has been scheduled, run the following command: 
+
+# grep aide /etc/crontab /etc/cron.*/*
+
+If there is no output, this is a finding.","",""
+"V-38673","medium","The operating system must ensure unauthorized, security-relevant configuration changes detected are tracked.","By default, AIDE does not install itself for periodic execution. Periodically running AIDE may reveal unexpected changes in installed files.","None","SV-50474r2_rule","F-43621r1_fix","AIDE should be executed on a periodic basis to check for changes. To implement a daily execution of AIDE at 4:05am using cron, add the following line to /etc/crontab: 
+
+05 4 * * * root /usr/sbin/aide --check
+
+AIDE can be executed periodically through other means; this is merely one example.AIDE should be executed on a periodic basis to check for changes. To implement a daily execution of AIDE at 4:05am using cron, add the following line to /etc/crontab: 
+
+05 4 * * * root /usr/sbin/aide --check
+
+AIDE can be executed periodically through other means; this is merely one example.AIDE should be executed on a periodic basis to check for changes. To implement a daily execution of AIDE at 4:05am using cron, add the following line to /etc/crontab: 
+
+05 4 * * * root /usr/sbin/aide --check
+
+AIDE can be executed periodically through other means; this is merely one example.","C-46232r2_chk","To determine that periodic AIDE execution has been scheduled, run the following command: 
+
+# grep aide /etc/crontab /etc/cron.*/*
+
+If there is no output, this is a finding.To determine that periodic AIDE execution has been scheduled, run the following command: 
+
+# grep aide /etc/crontab /etc/cron.*/*
+
+If there is no output, this is a finding.To determine that periodic AIDE execution has been scheduled, run the following command: 
+
+# grep aide /etc/crontab /etc/cron.*/*
+
+If there is no output, this is a finding.","",""
+"V-38696","medium","The operating system must employ automated mechanisms, per organization defined frequency, to detect the addition of unauthorized components/devices into the operating system.","By default, AIDE does not install itself for periodic execution. Periodically running AIDE may reveal unexpected changes in installed files.","None","SV-50497r2_rule","F-43645r1_fix","AIDE should be executed on a periodic basis to check for changes. To implement a daily execution of AIDE at 4:05am using cron, add the following line to /etc/crontab: 
+
+05 4 * * * root /usr/sbin/aide --check
+
+AIDE can be executed periodically through other means; this is merely one example.AIDE should be executed on a periodic basis to check for changes. To implement a daily execution of AIDE at 4:05am using cron, add the following line to /etc/crontab: 
+
+05 4 * * * root /usr/sbin/aide --check
+
+AIDE can be executed periodically through other means; this is merely one example.AIDE should be executed on a periodic basis to check for changes. To implement a daily execution of AIDE at 4:05am using cron, add the following line to /etc/crontab: 
+
+05 4 * * * root /usr/sbin/aide --check
+
+AIDE can be executed periodically through other means; this is merely one example.","C-46258r2_chk","To determine that periodic AIDE execution has been scheduled, run the following command: 
+
+# grep aide /etc/crontab /etc/cron.*/*
+
+If there is no output, this is a finding.To determine that periodic AIDE execution has been scheduled, run the following command: 
+
+# grep aide /etc/crontab /etc/cron.*/*
+
+If there is no output, this is a finding.To determine that periodic AIDE execution has been scheduled, run the following command: 
+
+# grep aide /etc/crontab /etc/cron.*/*
+
+If there is no output, this is a finding.","",""
+"V-38698","medium","The operating system must employ automated mechanisms to detect the presence of unauthorized software on organizational information systems and notify designated organizational officials in accordance with the organization defined frequency.","By default, AIDE does not install itself for periodic execution. Periodically running AIDE may reveal unexpected changes in installed files.","None","SV-50499r2_rule","F-43647r1_fix","AIDE should be executed on a periodic basis to check for changes. To implement a daily execution of AIDE at 4:05am using cron, add the following line to /etc/crontab: 
+
+05 4 * * * root /usr/sbin/aide --check
+
+AIDE can be executed periodically through other means; this is merely one example.AIDE should be executed on a periodic basis to check for changes. To implement a daily execution of AIDE at 4:05am using cron, add the following line to /etc/crontab: 
+
+05 4 * * * root /usr/sbin/aide --check
+
+AIDE can be executed periodically through other means; this is merely one example.AIDE should be executed on a periodic basis to check for changes. To implement a daily execution of AIDE at 4:05am using cron, add the following line to /etc/crontab: 
+
+05 4 * * * root /usr/sbin/aide --check
+
+AIDE can be executed periodically through other means; this is merely one example.","C-46261r2_chk","To determine that periodic AIDE execution has been scheduled, run the following command: 
+
+# grep aide /etc/crontab /etc/cron.*/*
+
+If there is no output, this is a finding.To determine that periodic AIDE execution has been scheduled, run the following command: 
+
+# grep aide /etc/crontab /etc/cron.*/*
+
+If there is no output, this is a finding.To determine that periodic AIDE execution has been scheduled, run the following command: 
+
+# grep aide /etc/crontab /etc/cron.*/*
+
+If there is no output, this is a finding.","",""
+"V-38700","medium","The operating system must provide a near real-time alert when any of the organization defined list of compromise or potential compromise indicators occurs. ","By default, AIDE does not install itself for periodic execution. Periodically running AIDE may reveal unexpected changes in installed files.","None","SV-50501r2_rule","F-43649r1_fix","AIDE should be executed on a periodic basis to check for changes. To implement a daily execution of AIDE at 4:05am using cron, add the following line to /etc/crontab: 
+
+05 4 * * * root /usr/sbin/aide --check
+
+AIDE can be executed periodically through other means; this is merely one example.AIDE should be executed on a periodic basis to check for changes. To implement a daily execution of AIDE at 4:05am using cron, add the following line to /etc/crontab: 
+
+05 4 * * * root /usr/sbin/aide --check
+
+AIDE can be executed periodically through other means; this is merely one example.AIDE should be executed on a periodic basis to check for changes. To implement a daily execution of AIDE at 4:05am using cron, add the following line to /etc/crontab: 
+
+05 4 * * * root /usr/sbin/aide --check
+
+AIDE can be executed periodically through other means; this is merely one example.","C-46262r2_chk","To determine that periodic AIDE execution has been scheduled, run the following command: 
+
+# grep aide /etc/crontab /etc/cron.*/*
+
+If there is no output, this is a finding.To determine that periodic AIDE execution has been scheduled, run the following command: 
+
+# grep aide /etc/crontab /etc/cron.*/*
+
+If there is no output, this is a finding.To determine that periodic AIDE execution has been scheduled, run the following command: 
+
+# grep aide /etc/crontab /etc/cron.*/*
+
+If there is no output, this is a finding.","",""
+"Backups:","","","","","","","","","","",""
+"V-38486","medium","The operating system must conduct backups of system-level information contained in the information system per organization defined frequency to conduct backups that are consistent with recovery time and recovery point objectives.The operating system must conduct backups of system-level information contained in the information system per organization defined frequency to conduct backups that are consistent with recovery time and recovery point objectives.","Operating system backup is a critical step in maintaining data assurance and availability. System-level information includes system-state information, operating system and application software, and licenses. Backups must be consistent with organizational recovery time and recovery point objectives.","None","SV-50287r1_rule","F-43434r1_fix","Procedures to back up OS data from the system must be established and executed. The Red Hat operating system provides utilities for automating such a process.  Commercial and open-source products are also available.
+
+Implement a process whereby OS data is backed up from the system in accordance with local policies.Procedures to back up OS data from the system must be established and executed. The Red Hat operating system provides utilities for automating such a process.  Commercial and open-source products are also available.
+
+Implement a process whereby OS data is backed up from the system in accordance with local policies.","C-46044r1_chk","Ask an administrator if a process exists to back up OS data from the system, including configuration data. 
+
+If such a process does not exist, this is a finding.Ask an administrator if a process exists to back up OS data from the system, including configuration data. 
+
+If such a process does not exist, this is a finding.","",""
+"V-38488","medium","The operating system must conduct backups of user-level information contained in the operating system per organization defined frequency to conduct backups consistent with recovery time and recovery point objectives.The operating system must conduct backups of user-level information contained in the operating system per organization defined frequency to conduct backups consistent with recovery time and recovery point objectives.","Operating system backup is a critical step in maintaining data assurance and availability. User-level information is data generated by information system and/or application users. Backups shall be consistent with organizational recovery time and recovery point objectives.","None","SV-50289r1_rule","F-43435r1_fix","Procedures to back up user data from the system must be established and executed. The Red Hat operating system provides utilities for automating such a process.  Commercial and open-source products are also available.
+
+Implement a process whereby user data is backed up from the system in accordance with local policies.Procedures to back up user data from the system must be established and executed. The Red Hat operating system provides utilities for automating such a process.  Commercial and open-source products are also available.
+
+Implement a process whereby user data is backed up from the system in accordance with local policies.","C-46045r1_chk","Ask an administrator if a process exists to back up user data from the system. 
+
+If such a process does not exist, this is a finding.Ask an administrator if a process exists to back up user data from the system. 
+
+If such a process does not exist, this is a finding.","",""
+"V-38520","medium","The operating system must back up audit records on an organization defined frequency onto a different system or media than the system being audited.The operating system must back up audit records on an organization defined frequency onto a different system or media than the system being audited.","A log server (loghost) receives syslog messages from one or more systems. This data can be used as an additional log source in the event a system is compromised and its local logs are suspect. Forwarding log messages to a remote loghost also provides system administrators with a centralized place to view the status of multiple hosts within the enterprise.","None","SV-50321r1_rule","F-43468r1_fix","To configure rsyslog to send logs to a remote log server, open ""/etc/rsyslog.conf"" and read and understand the last section of the file, which describes the multiple directives necessary to activate remote logging. Along with these other directives, the system can be configured to forward its logs to a particular log server by adding or correcting one of the following lines, substituting ""[loghost.example.com]"" appropriately. The choice of protocol depends on the environment of the system; although TCP and RELP provide more reliable message delivery, they may not be supported in all environments. 
+To use UDP for log message delivery: 
+
+*.* @[loghost.example.com]
+
+
+To use TCP for log message delivery: 
+
+*.* @@[loghost.example.com]
+
+
+To use RELP for log message delivery: 
+
+*.* :omrelp:[loghost.example.com]To configure rsyslog to send logs to a remote log server, open ""/etc/rsyslog.conf"" and read and understand the last section of the file, which describes the multiple directives necessary to activate remote logging. Along with these other directives, the system can be configured to forward its logs to a particular log server by adding or correcting one of the following lines, substituting ""[loghost.example.com]"" appropriately. The choice of protocol depends on the environment of the system; although TCP and RELP provide more reliable message delivery, they may not be supported in all environments. 
+To use UDP for log message delivery: 
+
+*.* @[loghost.example.com]
+
+
+To use TCP for log message delivery: 
+
+*.* @@[loghost.example.com]
+
+
+To use RELP for log message delivery: 
+
+*.* :omrelp:[loghost.example.com]","C-46078r1_chk","To ensure logs are sent to a remote host, examine the file ""/etc/rsyslog.conf"". If using UDP, a line similar to the following should be present: 
+
+*.* @[loghost.example.com]
+
+If using TCP, a line similar to the following should be present: 
+
+*.* @@[loghost.example.com]
+
+If using RELP, a line similar to the following should be present: 
+
+*.* :omrelp:[loghost.example.com]
+
+
+If none of these are present, this is a finding.To ensure logs are sent to a remote host, examine the file ""/etc/rsyslog.conf"". If using UDP, a line similar to the following should be present: 
+
+*.* @[loghost.example.com]
+
+If using TCP, a line similar to the following should be present: 
+
+*.* @@[loghost.example.com]
+
+If using RELP, a line similar to the following should be present: 
+
+*.* :omrelp:[loghost.example.com]
+
+
+If none of these are present, this is a finding.","audit records, ","loghost"
+"Audit:","","","","","","","","","","",""
+"V-38521","medium","The operating system must support the requirement to centrally manage the content of audit records generated by organization defined information system components.","A log server (loghost) receives syslog messages from one or more systems. This data can be used as an additional log source in the event a system is compromised and its local logs are suspect. Forwarding log messages to a remote loghost also provides system administrators with a centralized place to view the status of multiple hosts within the enterprise.","None","SV-50322r1_rule","F-43656r1_fix","To configure rsyslog to send logs to a remote log server, open ""/etc/rsyslog.conf"" and read and understand the last section of the file, which describes the multiple directives necessary to activate remote logging. Along with these other directives, the system can be configured to forward its logs to a particular log server by adding or correcting one of the following lines, substituting ""[loghost.example.com]"" appropriately. The choice of protocol depends on the environment of the system; although TCP and RELP provide more reliable message delivery, they may not be supported in all environments. 
+To use UDP for log message delivery: 
+
+*.* @[loghost.example.com]
+
+
+To use TCP for log message delivery: 
+
+*.* @@[loghost.example.com]
+
+
+To use RELP for log message delivery: 
+
+*.* :omrelp:[loghost.example.com]To configure rsyslog to send logs to a remote log server, open ""/etc/rsyslog.conf"" and read and understand the last section of the file, which describes the multiple directives necessary to activate remote logging. Along with these other directives, the system can be configured to forward its logs to a particular log server by adding or correcting one of the following lines, substituting ""[loghost.example.com]"" appropriately. The choice of protocol depends on the environment of the system; although TCP and RELP provide more reliable message delivery, they may not be supported in all environments. 
+To use UDP for log message delivery: 
+
+*.* @[loghost.example.com]
+
+
+To use TCP for log message delivery: 
+
+*.* @@[loghost.example.com]
+
+
+To use RELP for log message delivery: 
+
+*.* :omrelp:[loghost.example.com]","C-46269r1_chk","To ensure logs are sent to a remote host, examine the file ""/etc/rsyslog.conf"". If using UDP, a line similar to the following should be present: 
+
+*.* @[loghost.example.com]
+
+If using TCP, a line similar to the following should be present: 
+
+*.* @@[loghost.example.com]
+
+If using RELP, a line similar to the following should be present: 
+
+*.* :omrelp:[loghost.example.com]
+
+
+If none of these are present, this is a finding.To ensure logs are sent to a remote host, examine the file ""/etc/rsyslog.conf"". If using UDP, a line similar to the following should be present: 
+
+*.* @[loghost.example.com]
+
+If using TCP, a line similar to the following should be present: 
+
+*.* @@[loghost.example.com]
+
+If using RELP, a line similar to the following should be present: 
+
+*.* :omrelp:[loghost.example.com]
+
+
+If none of these are present, this is a finding.","",""
+"V-38628","medium","The operating system must produce audit records containing sufficient information to establish the identity of any user/subject associated with the event.","Ensuring the ""auditd"" service is active ensures audit records generated by the kernel can be written to disk, or that appropriate actions will be taken if other obstacles exist.","None","SV-50429r2_rule","F-43576r2_fix","The ""auditd"" service is an essential userspace component of the Linux Auditing System, as it is responsible for writing audit records to disk. The ""auditd"" service can be enabled with the following commands: 
+
+# chkconfig auditd on
+# service auditd startThe ""auditd"" service is an essential userspace component of the Linux Auditing System, as it is responsible for writing audit records to disk. The ""auditd"" service can be enabled with the following commands: 
+
+# chkconfig auditd on
+# service auditd start","C-46186r1_chk","Run the following command to determine the current status of the ""auditd"" service: 
+
+# service auditd status
+
+If the service is enabled, it should return the following: 
+
+auditd is running...
+
+
+If the service is not running, this is a finding.Run the following command to determine the current status of the ""auditd"" service: 
+
+# service auditd status
+
+If the service is enabled, it should return the following: 
+
+auditd is running...
+
+
+If the service is not running, this is a finding.","","auditd service"
+"V-38632","medium","The operating system must produce audit records containing sufficient information to establish what type of events occurred.","Ensuring the ""auditd"" service is active ensures audit records generated by the kernel can be written to disk, or that appropriate actions will be taken if other obstacles exist.","None","SV-50433r2_rule","F-43581r2_fix","The ""auditd"" service is an essential userspace component of the Linux Auditing System, as it is responsible for writing audit records to disk. The ""auditd"" service can be enabled with the following commands: 
+
+# chkconfig auditd on
+# service auditd startThe ""auditd"" service is an essential userspace component of the Linux Auditing System, as it is responsible for writing audit records to disk. The ""auditd"" service can be enabled with the following commands: 
+
+# chkconfig auditd on
+# service auditd start","C-46191r1_chk","Run the following command to determine the current status of the ""auditd"" service: 
+
+# service auditd status
+
+If the service is enabled, it should return the following: 
+
+auditd is running...
+
+
+If the service is not running, this is a finding.Run the following command to determine the current status of the ""auditd"" service: 
+
+# service auditd status
+
+If the service is enabled, it should return the following: 
+
+auditd is running...
+
+
+If the service is not running, this is a finding.","",""
+"V-38631","medium","The operating system must employ automated mechanisms to facilitate the monitoring and control of remote access methods.","Ensuring the ""auditd"" service is active ensures audit records generated by the kernel can be written to disk, or that appropriate actions will be taken if other obstacles exist.","None","SV-50432r2_rule","F-43580r2_fix","The ""auditd"" service is an essential userspace component of the Linux Auditing System, as it is responsible for writing audit records to disk. The ""auditd"" service can be enabled with the following commands: 
+
+# chkconfig auditd on
+# service auditd startThe ""auditd"" service is an essential userspace component of the Linux Auditing System, as it is responsible for writing audit records to disk. The ""auditd"" service can be enabled with the following commands: 
+
+# chkconfig auditd on
+# service auditd start","C-46190r1_chk","Run the following command to determine the current status of the ""auditd"" service: 
+
+# service auditd status
+
+If the service is enabled, it should return the following: 
+
+auditd is running...
+
+
+If the service is not running, this is a finding.Run the following command to determine the current status of the ""auditd"" service: 
+
+# service auditd status
+
+If the service is enabled, it should return the following: 
+
+auditd is running...
+
+
+If the service is not running, this is a finding.","",""
+"V-38531","low","The operating system must automatically audit account creation.","In addition to auditing new user and group accounts, these watches will alert the system administrator(s) to any modifications. Any unexpected users, groups, or modifications should be investigated for legitimacy.","None","SV-50332r1_rule","F-43480r1_fix","Add the following to ""/etc/audit/audit.rules"", in order to capture events that modify account changes: 
+
+# audit_account_changes
+-w /etc/group -p wa -k audit_account_changes
+-w /etc/passwd -p wa -k audit_account_changes
+-w /etc/gshadow -p wa -k audit_account_changes
+-w /etc/shadow -p wa -k audit_account_changes
+-w /etc/security/opasswd -p wa -k audit_account_changesAdd the following to ""/etc/audit/audit.rules"", in order to capture events that modify account changes: 
+
+# audit_account_changes
+-w /etc/group -p wa -k audit_account_changes
+-w /etc/passwd -p wa -k audit_account_changes
+-w /etc/gshadow -p wa -k audit_account_changes
+-w /etc/shadow -p wa -k audit_account_changes
+-w /etc/security/opasswd -p wa -k audit_account_changes","C-46090r1_chk","To determine if the system is configured to audit account changes, run the following command: 
+
+auditctl -l | egrep '(/etc/passwd|/etc/shadow|/etc/group|/etc/gshadow|/etc/security/opasswd)'
+
+If the system is configured to watch for account changes, lines should be returned for each file specified (and with ""perm=wa"" for each). 
+If the system is not configured to audit account changes, this is a finding.To determine if the system is configured to audit account changes, run the following command: 
+
+auditctl -l | egrep '(/etc/passwd|/etc/shadow|/etc/group|/etc/gshadow|/etc/security/opasswd)'
+
+If the system is configured to watch for account changes, lines should be returned for each file specified (and with ""perm=wa"" for each). 
+If the system is not configured to audit account changes, this is a finding.","audit account",""
+"V-38534","low","The operating system must automatically audit account modification.","In addition to auditing new user and group accounts, these watches will alert the system administrator(s) to any modifications. Any unexpected users, groups, or modifications should be investigated for legitimacy.","None","SV-50335r1_rule","F-43482r1_fix","Add the following to ""/etc/audit/audit.rules"", in order to capture events that modify account changes: 
+
+# audit_account_changes
+-w /etc/group -p wa -k audit_account_changes
+-w /etc/passwd -p wa -k audit_account_changes
+-w /etc/gshadow -p wa -k audit_account_changes
+-w /etc/shadow -p wa -k audit_account_changes
+-w /etc/security/opasswd -p wa -k audit_account_changesAdd the following to ""/etc/audit/audit.rules"", in order to capture events that modify account changes: 
+
+# audit_account_changes
+-w /etc/group -p wa -k audit_account_changes
+-w /etc/passwd -p wa -k audit_account_changes
+-w /etc/gshadow -p wa -k audit_account_changes
+-w /etc/shadow -p wa -k audit_account_changes
+-w /etc/security/opasswd -p wa -k audit_account_changes","C-46092r1_chk","To determine if the system is configured to audit account changes, run the following command: 
+
+auditctl -l | egrep '(/etc/passwd|/etc/shadow|/etc/group|/etc/gshadow|/etc/security/opasswd)'
+
+If the system is configured to watch for account changes, lines should be returned for each file specified (and with ""perm=wa"" for each). 
+If the system is not configured to audit account changes, this is a finding.To determine if the system is configured to audit account changes, run the following command: 
+
+auditctl -l | egrep '(/etc/passwd|/etc/shadow|/etc/group|/etc/gshadow|/etc/security/opasswd)'
+
+If the system is configured to watch for account changes, lines should be returned for each file specified (and with ""perm=wa"" for each). 
+If the system is not configured to audit account changes, this is a finding.","",""
+"V-38536","low","The operating system must automatically audit account disabling actions.","In addition to auditing new user and group accounts, these watches will alert the system administrator(s) to any modifications. Any unexpected users, groups, or modifications should be investigated for legitimacy.","None","SV-50337r1_rule","F-43484r1_fix","Add the following to ""/etc/audit/audit.rules"", in order to capture events that modify account changes: 
+
+# audit_account_changes
+-w /etc/group -p wa -k audit_account_changes
+-w /etc/passwd -p wa -k audit_account_changes
+-w /etc/gshadow -p wa -k audit_account_changes
+-w /etc/shadow -p wa -k audit_account_changes
+-w /etc/security/opasswd -p wa -k audit_account_changesAdd the following to ""/etc/audit/audit.rules"", in order to capture events that modify account changes: 
+
+# audit_account_changes
+-w /etc/group -p wa -k audit_account_changes
+-w /etc/passwd -p wa -k audit_account_changes
+-w /etc/gshadow -p wa -k audit_account_changes
+-w /etc/shadow -p wa -k audit_account_changes
+-w /etc/security/opasswd -p wa -k audit_account_changes","C-46094r1_chk","To determine if the system is configured to audit account changes, run the following command: 
+
+auditctl -l | egrep '(/etc/passwd|/etc/shadow|/etc/group|/etc/gshadow|/etc/security/opasswd)'
+
+If the system is configured to watch for account changes, lines should be returned for each file specified (and with ""perm=wa"" for each). 
+If the system is not configured to audit account changes, this is a finding.To determine if the system is configured to audit account changes, run the following command: 
+
+auditctl -l | egrep '(/etc/passwd|/etc/shadow|/etc/group|/etc/gshadow|/etc/security/opasswd)'
+
+If the system is configured to watch for account changes, lines should be returned for each file specified (and with ""perm=wa"" for each). 
+If the system is not configured to audit account changes, this is a finding.","",""
+"V-38538","low","The operating system must automatically audit account termination.","In addition to auditing new user and group accounts, these watches will alert the system administrator(s) to any modifications. Any unexpected users, groups, or modifications should be investigated for legitimacy.","None","SV-50339r1_rule","F-43486r1_fix","Add the following to ""/etc/audit/audit.rules"", in order to capture events that modify account changes: 
+
+# audit_account_changes
+-w /etc/group -p wa -k audit_account_changes
+-w /etc/passwd -p wa -k audit_account_changes
+-w /etc/gshadow -p wa -k audit_account_changes
+-w /etc/shadow -p wa -k audit_account_changes
+-w /etc/security/opasswd -p wa -k audit_account_changesAdd the following to ""/etc/audit/audit.rules"", in order to capture events that modify account changes: 
+
+# audit_account_changes
+-w /etc/group -p wa -k audit_account_changes
+-w /etc/passwd -p wa -k audit_account_changes
+-w /etc/gshadow -p wa -k audit_account_changes
+-w /etc/shadow -p wa -k audit_account_changes
+-w /etc/security/opasswd -p wa -k audit_account_changes","C-46096r1_chk","To determine if the system is configured to audit account changes, run the following command: 
+
+auditctl -l | egrep '(/etc/passwd|/etc/shadow|/etc/group|/etc/gshadow|/etc/security/opasswd)'
+
+If the system is configured to watch for account changes, lines should be returned for each file specified (and with ""perm=wa"" for each). 
+If the system is not configured to audit account changes, this is a finding.To determine if the system is configured to audit account changes, run the following command: 
+
+auditctl -l | egrep '(/etc/passwd|/etc/shadow|/etc/group|/etc/gshadow|/etc/security/opasswd)'
+
+If the system is configured to watch for account changes, lines should be returned for each file specified (and with ""perm=wa"" for each). 
+If the system is not configured to audit account changes, this is a finding.","",""
+"Securing Data:","","","","","","","","","","",""
+"V-38659","low","The operating system must employ cryptographic mechanisms to protect information in storage.The operating system must employ cryptographic mechanisms to protect information in storage.","The risk of a system's physical compromise, particularly mobile systems such as laptops, places its data at risk of compromise. Encrypting this data mitigates the risk of its loss if the system is lost.","None","SV-50460r1_rule","F-43609r1_fix","Red Hat Enterprise Linux 6 natively supports partition encryption through the Linux Unified Key Setup-on-disk-format (LUKS) technology. The easiest way to encrypt a partition is during installation time. 
+
+For manual installations, select the ""Encrypt"" checkbox during partition creation to encrypt the partition. When this option is selected the system will prompt for a passphrase to use in decrypting the partition. The passphrase will subsequently need to be entered manually every time the system boots. 
+
+For automated/unattended installations, it is possible to use Kickstart by adding the ""--encrypted"" and ""--passphrase="" options to the definition of each partition to be encrypted. For example, the following line would encrypt the root partition: 
+
+part / --fstype=ext3 --size=100 --onpart=hda1 --encrypted --passphrase=[PASSPHRASE]
+
+Any [PASSPHRASE] is stored in the Kickstart in plaintext, and the Kickstart must then be protected accordingly. Omitting the ""--passphrase="" option from the partition definition will cause the installer to pause and interactively ask for the passphrase during installation. 
+
+Detailed information on encrypting partitions using LUKS can be found on the Red Had Documentation web site:
+https://docs.redhat.com/docs/en-US/Red_Hat_Enterprise_Linux/6/html/Security_Guide/sect-Security_Guide-LUKS_Disk_Encryption.htmlRed Hat Enterprise Linux 6 natively supports partition encryption through the Linux Unified Key Setup-on-disk-format (LUKS) technology. The easiest way to encrypt a partition is during installation time. 
+
+For manual installations, select the ""Encrypt"" checkbox during partition creation to encrypt the partition. When this option is selected the system will prompt for a passphrase to use in decrypting the partition. The passphrase will subsequently need to be entered manually every time the system boots. 
+
+For automated/unattended installations, it is possible to use Kickstart by adding the ""--encrypted"" and ""--passphrase="" options to the definition of each partition to be encrypted. For example, the following line would encrypt the root partition: 
+
+part / --fstype=ext3 --size=100 --onpart=hda1 --encrypted --passphrase=[PASSPHRASE]
+
+Any [PASSPHRASE] is stored in the Kickstart in plaintext, and the Kickstart must then be protected accordingly. Omitting the ""--passphrase="" option from the partition definition will cause the installer to pause and interactively ask for the passphrase during installation. 
+
+Detailed information on encrypting partitions using LUKS can be found on the Red Had Documentation web site:
+https://docs.redhat.com/docs/en-US/Red_Hat_Enterprise_Linux/6/html/Security_Guide/sect-Security_Guide-LUKS_Disk_Encryption.html","C-46220r1_chk","Determine if encryption must be used to protect data on the system. 
+If encryption must be used and is not employed, this is a finding.Determine if encryption must be used to protect data on the system. 
+If encryption must be used and is not employed, this is a finding.","",""
+"V-38662","low","The operating system must employ cryptographic mechanisms to prevent unauthorized disclosure of data at rest unless otherwise protected by alternative physical measures.The operating system must employ cryptographic mechanisms to prevent unauthorized disclosure of data at rest unless otherwise protected by alternative physical measures.","The risk of a system's physical compromise, particularly mobile systems such as laptops, places its data at risk of compromise. Encrypting this data mitigates the risk of its loss if the system is lost.","None","SV-50463r1_rule","F-43611r1_fix","Red Hat Enterprise Linux 6 natively supports partition encryption through the Linux Unified Key Setup-on-disk-format (LUKS) technology. The easiest way to encrypt a partition is during installation time. 
+
+For manual installations, select the ""Encrypt"" checkbox during partition creation to encrypt the partition. When this option is selected the system will prompt for a passphrase to use in decrypting the partition. The passphrase will subsequently need to be entered manually every time the system boots. 
+
+For automated/unattended installations, it is possible to use Kickstart by adding the ""--encrypted"" and ""--passphrase="" options to the definition of each partition to be encrypted. For example, the following line would encrypt the root partition: 
+
+part / --fstype=ext3 --size=100 --onpart=hda1 --encrypted --passphrase=[PASSPHRASE]
+
+Any [PASSPHRASE] is stored in the Kickstart in plaintext, and the Kickstart must then be protected accordingly. Omitting the ""--passphrase="" option from the partition definition will cause the installer to pause and interactively ask for the passphrase during installation. 
+
+Detailed information on encrypting partitions using LUKS can be found on the Red Had Documentation web site:
+https://docs.redhat.com/docs/en-US/Red_Hat_Enterprise_Linux/6/html/Security_Guide/sect-Security_Guide-LUKS_Disk_Encryption.htmlRed Hat Enterprise Linux 6 natively supports partition encryption through the Linux Unified Key Setup-on-disk-format (LUKS) technology. The easiest way to encrypt a partition is during installation time. 
+
+For manual installations, select the ""Encrypt"" checkbox during partition creation to encrypt the partition. When this option is selected the system will prompt for a passphrase to use in decrypting the partition. The passphrase will subsequently need to be entered manually every time the system boots. 
+
+For automated/unattended installations, it is possible to use Kickstart by adding the ""--encrypted"" and ""--passphrase="" options to the definition of each partition to be encrypted. For example, the following line would encrypt the root partition: 
+
+part / --fstype=ext3 --size=100 --onpart=hda1 --encrypted --passphrase=[PASSPHRASE]
+
+Any [PASSPHRASE] is stored in the Kickstart in plaintext, and the Kickstart must then be protected accordingly. Omitting the ""--passphrase="" option from the partition definition will cause the installer to pause and interactively ask for the passphrase during installation. 
+
+Detailed information on encrypting partitions using LUKS can be found on the Red Had Documentation web site:
+https://docs.redhat.com/docs/en-US/Red_Hat_Enterprise_Linux/6/html/Security_Guide/sect-Security_Guide-LUKS_Disk_Encryption.html","C-46222r1_chk","Determine if encryption must be used to protect data on the system. 
+If encryption must be used and is not employed, this is a finding.Determine if encryption must be used to protect data on the system. 
+If encryption must be used and is not employed, this is a finding.","",""
+"V-38661","low","The operating system must protect the confidentiality and integrity of data at rest. ","The risk of a system's physical compromise, particularly mobile systems such as laptops, places its data at risk of compromise. Encrypting this data mitigates the risk of its loss if the system is lost.","None","SV-50462r1_rule","F-43610r1_fix","Red Hat Enterprise Linux 6 natively supports partition encryption through the Linux Unified Key Setup-on-disk-format (LUKS) technology. The easiest way to encrypt a partition is during installation time. 
+
+For manual installations, select the ""Encrypt"" checkbox during partition creation to encrypt the partition. When this option is selected the system will prompt for a passphrase to use in decrypting the partition. The passphrase will subsequently need to be entered manually every time the system boots. 
+
+For automated/unattended installations, it is possible to use Kickstart by adding the ""--encrypted"" and ""--passphrase="" options to the definition of each partition to be encrypted. For example, the following line would encrypt the root partition: 
+
+part / --fstype=ext3 --size=100 --onpart=hda1 --encrypted --passphrase=[PASSPHRASE]
+
+Any [PASSPHRASE] is stored in the Kickstart in plaintext, and the Kickstart must then be protected accordingly. Omitting the ""--passphrase="" option from the partition definition will cause the installer to pause and interactively ask for the passphrase during installation. 
+
+Detailed information on encrypting partitions using LUKS can be found on the Red Had Documentation web site:
+https://docs.redhat.com/docs/en-US/Red_Hat_Enterprise_Linux/6/html/Security_Guide/sect-Security_Guide-LUKS_Disk_Encryption.html","C-46221r1_chk","Determine if encryption must be used to protect data on the system. 
+If encryption must be used and is not employed, this is a finding.","",""
+"Inactivity: ","","","","","","","","","","",""
+"V-38694","low","The operating system must manage information system identifiers for users and devices by disabling the user identifier after an organization defined time period of inactivity.","Disabling inactive accounts ensures that accounts which may not have been responsibly removed are not available to attackers who may have compromised their credentials.","None","SV-50495r1_rule","F-43643r2_fix","To specify the number of days after a password expires (which signifies inactivity) until an account is permanently disabled, add or correct the following lines in ""/etc/default/useradd"", substituting ""[NUM_DAYS]"" appropriately: 
+
+INACTIVE=[NUM_DAYS]
+
+A value of 35 is recommended. If a password is currently on the verge of expiration, then 35 days remain until the account is automatically disabled. However, if the password will not expire for another 60 days, then 95 days could elapse until the account would be automatically disabled. See the ""useradd"" man page for more information. Determining the inactivity timeout must be done with careful consideration of the length of a ""normal"" period of inactivity for users in the particular environment. Setting the timeout too low incurs support costs and also has the potential to impact availability of the system to legitimate users.","C-46256r1_chk","To verify the ""INACTIVE"" setting, run the following command: 
+
+grep ""INACTIVE"" /etc/default/useradd
+
+The output should indicate the ""INACTIVE"" configuration option is set to an appropriate integer as shown in the example below: 
+
+# grep ""INACTIVE"" /etc/default/useradd
+INACTIVE=35
+
+If it does not, this is a finding.","",""

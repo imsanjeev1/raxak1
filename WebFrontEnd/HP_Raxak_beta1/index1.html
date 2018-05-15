@@ -1,0 +1,63 @@
+<!doctype html>
+<html>
+    <head>
+        <title>Cloud Service</title>
+        <meta charset="utf-8">
+        <link href="css/style.css" rel="stylesheet" type="text/css">
+        <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic' rel='stylesheet' type='text/css'>
+        <script src="js/jquery.js"></script>
+        <script src="js/jquery.cookie.js"></script>
+        <script src="js/applogin.js"></script>
+        <script src="js/apphp.js"></script>
+    </head>
+
+    <body>
+        <!-- Start: Header-->
+        <div class="header">
+            <div class="h_first_row">
+                <div class="logo">
+                    <a href="#">
+                        <h1><img src="images/logo.png" alt="" />logo text</h1>
+                    </a></div>
+                <div class="top_right">
+                    <div class="cart_box"><a href="#"><span class="ico_bg"><img src="images/cart_ico.png" alt=""></span>0 Items</a></div>
+                    <div class="consumer_box"><a href="#"><span class="consumer_ico_bg"><img src="images/consumer_ico.png" alt=""></span>Consumer</a>
+                        <span id="logout" onclick="logout()">logout</span>
+                    </div>
+                </div>
+            </div>
+            <div class="menu">Menu</div>
+        </div>
+        <!-- End: Header-->
+        
+        <div class="cl"></div>
+        
+        <!-- Start: Content -->
+        <div class="middle_section">
+            <div class="sr_row">
+                <div class="sr_box" style="display: none;">
+                    <input id="search_input" type="text" onfocus="if (this.value == 'Search') { this.value = '';
+        }" onblur="if (this.value == 'Search') {
+                    this.value = 'Search';
+                }" value="Search " name="Search">
+                    <input id="search_submit" type="submit" value="" name="Submit">
+                </div>
+                
+                <div class="select_box">
+                    <select id="select_category">
+<!--                        <option value="1">All Categories</option>-->
+                        <option value="2">Application Services</option>
+                        <option value="5">Raxak Services</option>
+                    </select>
+                </div>
+                
+                <div style="margin-top: 5px;"> OR <a href="subscription.html">Check Previous Subscription(s)</a></div>
+                <div class="cl"></div>
+            </div>
+            
+            <div id="cat_vmachine"></div>
+        </div>
+        <!-- End: Content -->
+        
+    </body>
+</html>

@@ -1,0 +1,213 @@
+*{font-size: 14px; font-family:arial;}
+
+a{
+    color: #3378c8;
+    text-decoration: none;
+}
+
+ a:hover {text-decoration:underline}
+
+table {
+    border-collapse: collapse;
+}
+
+table.report_container{margin: auto;width: 700px;border-collapse:collapse; border: 1px solid #CCC; -moz-border: 1px solid #CCC; -webkit-border: 1px solid #CCC; -o-border: 1px solid #CCC;}
+thead.thead{}
+
+/*table table{margin-bottom: 20px;}*/
+
+table table table{margin-bottom: 0px;}
+
+table td{
+    border-color: #ccc;
+    border-image: none;
+    border-collapse: collapse;
+}
+.report_container table td{
+    vertical-align:text-top;	
+    border:1px solid #ccc !important; -moz-border: 1px solid #CCC !important; -webkit-border: 1px solid #CCC !important; -o-border: 1px solid #CCC !important;
+    -moz-box-sizing: border-box;
+    padding: 6px;
+}
+
+.table_head1{background-color:#6b6a6a;font-size:18px;height:25px;text-align: center; color:#fff;font-weight: bolder;letter-spacing:0.8px;word-spacing:5px;}
+.table_head2 {
+     background-color: #eaeaea;
+     text-transform:uppercase;
+     font-weight: bolder;
+     letter-spacing:0.8px;word-spacing:5px;
+}
+
+.rule_id{font-weight: bolder;}
+.rule_title{
+    border-color: #ccc;
+    border-style: none none dotted;
+    border-width: 0 0 2px;
+    padding-bottom: 14px;
+    font-weight: bolder;
+}
+.rule_console{}
+.report_container table td.last_execution_result_container{
+    border: 1px solid #ccc;
+    margin: 0 !important;
+    padding: 0;
+    vertical-align: top;
+}
+.last_execution_result{
+    text-align: center;
+}
+.thead th{
+    padding-bottom: 20px;
+    border: medium none;	
+}
+
+.rule_desc{display:none;}
+.rule_desc_title{
+    background: red none repeat scroll 0 0;
+    margin: -25px -25px 28px;
+    padding: 10px;
+    background-color: #6b6a6a;
+    color: #fff;
+    font-size: 18px;
+    /*text-align: center;
+    text-transform: uppercase;*/
+}
+
+.print_button{cursor: pointer;width:44px;margin-right:41px;margin-top: 12px;float:right;}
+
+
+.table thead tr th{
+    cursor: pointer;
+  background-image: url('../../images/up-down_new.png');
+  background-repeat: no-repeat;
+  background-position:99%;
+  cursor:pointer;
+  text-align:left;
+
+}
+
+.table thead tr th.headerSortUp {
+  background-image: url('../../images/up_new1.png');
+  background-color:#8dbdd8;
+  background-repeat: no-repeat;
+  cursor:pointer;
+  	
+
+}
+
+
+.table thead tr th.headerSortDown {
+  background-image: url('../../images/down_new1.png');
+  background-color:#8dbdd8;
+  background-repeat: no-repeat;
+  cursor:pointer;
+
+}
+.rule_font{
+ color:#009ea1;
+ width:88px;
+ text-align:center;
+    }
+        .tr_heading{
+        background-color:#EAEAEA;
+        }
+        .low_severity{
+        background-color:#Dff0d8;
+        }
+.header{
+padding:4px 0;
+text-align: left !important;
+}
+
+.desc_head{
+ /*   border: 1px solid #ccc;*/
+    display: block;
+    margin-left: -1px;
+    margin-top: -11px;
+    padding: 10px 0 10px 5px;
+    position: relative;
+text-align: left !important;
+
+}
+
+TABLE.nifty {
+
+ BORDER-LEFT-COLOR: #ccc;
+
+ BORDER-BOTTOM-COLOR: #ccc;
+
+ BORDER-TOP-STYLE: solid;
+
+ BORDER-TOP-COLOR: #ccc;
+
+ BORDER-RIGHT-STYLE: solid;
+
+ BORDER-LEFT-STYLE: solid;
+
+ BORDER-RIGHT-COLOR: #ccc;
+
+ BORDER-BOTTOM-STYLE: solid; 
+
+}
+
+TABLE.nifty TD {
+
+ BORDER-LEFT-COLOR: #ccc;
+
+ BORDER-BOTTOM-COLOR: #ccc;
+
+ BORDER-TOP-STYLE: solid;
+
+ BORDER-TOP-COLOR: #ccc;
+
+ BORDER-RIGHT-STYLE: solid;
+
+ BORDER-LEFT-STYLE: solid;
+
+ BORDER-RIGHT-COLOR: #ccc;
+
+ BORDER-BOTTOM-STYLE: solid
+
+}
+
+TABLE.nifty {
+
+ BORDER-TOP-WIDTH: 0px;
+
+ BORDER-LEFT-WIDTH: 1px;
+
+ BORDER-BOTTOM-WIDTH: 1px;
+
+ BORDER-COLLAPSE: collapse;
+
+ BORDER-RIGHT-WIDTH: 0px;
+
+ border-spacing: 0
+
+}
+
+TABLE.nifty TD {
+
+ BORDER-TOP-WIDTH: 1px;
+
+ PADDING-RIGHT: 0px;
+
+ PADDING-LEFT: 0px;
+
+ BORDER-LEFT-WIDTH: 0px;
+
+ BORDER-BOTTOM-WIDTH: 0px;
+
+ PADDING-BOTTOM: 0px;
+
+ MARGIN: 0px;
+
+ PADDING-TOP: 0px;
+
+ BACKGROUND-COLOR: none;
+
+ BORDER-RIGHT-WIDTH: 1px;
+
+  line-height:28px;
+
+}

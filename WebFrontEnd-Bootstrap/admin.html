@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Raxak Protect - Admin Console</title>
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="font-awesome/css/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="css/sb-admin.css" type="text/css">
+    <link rel="stylesheet" href="css/login.css" rel="stylesheet">
+    <style>
+      .contact_form {margin-left:35px;}
+      .contact_form input {color:#343434; background:#fff}
+    </style>
+  </head>
+  <body class="register_bg">
+    <div id="wrapper" style="padding-left:0px !important">
+      <!-- Navigation -->
+      <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation"> 
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="row">
+          <div class="col-lg-6">
+            <div class="navbar-header"> <a class="navbar-brand" href="index.html"><span style="color:#0096d6"> <strong>Raxak Protect</strong> &trade;</span></a> </div>
+          </div>
+        </div>
+      </nav>
+      <div class="container">
+        <div class="row">
+          <!-- Page Heading -->
+          <div class="col-md-5 col-md-offset-4">
+            <div class="login-panel panel panel-default" style="background:rgba(255,255,255,0.8);">
+              <div class="panel-body">
+                <div class="center_div" style="background:none">
+                  <div class="col-lg-12 text-left">
+                    <form class="contact_form" id="login-admin-form" method="post" name="contact_form" style="width:100%; background:none">
+                      <h4>Admin Panel</h4>
+                      <span id="error_message" class="redText" style="position: absolute;"></span>
+                      <ul>
+
+                        <li>
+                          <input type="email" class="textbox1" name="email" id="email" placeholder="Please enter email address" required />
+                          <span class="form_hint">Enter a valid email</span>
+                          <p><i class="fa fa-fw fa-user"></i></p>
+                        </li>
+                        <li>
+                          <input type="password" class="textbox2"  name="password" id="password" placeholder="password">
+                          <p><i class="fa fa-fw fa-lock"></i></p>
+                        </li>
+                      </ul>
+                      <div class="clear"></div>	
+                      <button type="submit" class="btn btn-default">Sign In</button>
+                      <div class="forgot"></div>	
+                      <div class="clear"></div>	
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- /.row --> 
+        </div>
+        <!-- /.container-fluid --> 
+      </div>
+      <!-- /#page-wrapper -->
+      <div class="footer navbar navbar-inverse navbar-fixed-bottom">&copy; 2014-15 Cloud Raxak Inc. All Rights Reserved </div>
+      <!-- /#wrapper --> 
+    </div>
+    <!-- JS -->
+    <script type="text/javascript" src="js/jquery-1.10.2.js"></script>
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/jquery.validate.js"></script>
+    <script type="text/javascript" src="js/rxk_admin_signin.js"></script>
+    <script type="text/javascript">
+      $(function () {
+          //-- Redirect to raxak dashboard if user is logged in and change url to login.html
+          var isLoggedUser = sessionStorage.getItem('logged_user');
+          var is_admin = sessionStorage.getItem('is_admin');
+
+          if (isLoggedUser && is_admin == "true") {
+              window.location.href = 'dashboard.html';
+          }
+      });
+    </script>
+  </body>
+</html>

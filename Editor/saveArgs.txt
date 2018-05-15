@@ -1,0 +1,11 @@
+START
+V-38469
+ownerRead, True
+ownerWrite, True
+ownerEx, True
+groupRead, True
+groupWrite, False
+groupEx, False
+otherRead, True
+otherWrite, False
+otherEx, True

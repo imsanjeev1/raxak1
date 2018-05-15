@@ -1,0 +1,29 @@
+START
+V-38445
+START
+V-38449
+ownerRead, True
+ownerWrite, True
+ownerEx, True
+groupRead, True
+groupWrite, False
+groupEx, True
+otherRead, True
+otherWrite, False
+otherEx, True
+START
+V-38455
+START
+V-38623
+ownerRead, True
+ownerWrite, False
+ownerEx, False
+groupRead, False
+groupWrite, False
+groupEx, False
+otherRead, False
+otherWrite, False
+otherEx, False
+START
+V-38642
+077

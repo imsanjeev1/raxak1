@@ -1,0 +1,73 @@
+<!doctype html>
+<html>
+    <head>
+        <title>Cloud Service</title>
+        <meta charset="utf-8">
+        <link href="css/style.css" rel="stylesheet" type="text/css">
+        <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic' rel='stylesheet' type='text/css'>
+        <script src="js/jquery.js"></script> 
+        <script src="js/jquery.cookie.js"></script>
+        <script src="js/applogin.js"></script>
+        <style>
+            .login_box{
+                margin: 100px 400px;
+                float: left;
+                padding: 15px;
+                border: 1px solid cornflowerblue;
+                border-radius: 10px;
+            }
+            .err_log_detail{
+                color: red;
+            }
+            .frgt_log_detail{
+                font-size: 10px;
+                float: right;
+                color: #0005ff;
+            }
+        </style>
+    </head>
+
+    <body>
+        <!-- Start: Header-->
+        <div class="loginheader">
+            <div class="h_first_row">
+                <div class="logo">
+                    <a href="#"><h1><img src="images/logo.png" alt="" />logo text</h1></a>
+                </div>
+            </div>
+        </div>
+        <!-- End: Header-->
+        
+        <div class="cl"></div>
+        
+        <!-- Start: Content -->
+        <div class="middle_container">
+            <div class="login_box" id="loginform">
+                <table border="0" cellspacing="0" cellpadding="2">
+                    <tbody>
+                        <tr>
+                            <td class="static_content">Username :</td>
+                            <td class="field_entry"><input type="text" name="username" value="username" /></td>
+                        </tr>
+                        <tr>
+                            <td class="static_content">Password :</td>
+                            <td class="field_entry"><input type="password" name="password" value="" /></td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <input type="button" value="Submit" name="submit" onclick="loginuser();" />
+                                <input type="button" value="Cancel" name="cancel" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="err_log_detail"></td>
+                            <td class="frgt_log_detail">forgot details?</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <!-- End: Content -->
+        
+    </body>
+</html>

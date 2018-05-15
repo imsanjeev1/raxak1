@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Raxak-Dashboard</title>
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="css/DT_bootstrap.css" />
+    <link rel="stylesheet" href="css/datatables.css" type="text/css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" type="text/css" href="css/sb-admin.css">
+    <link rel="stylesheet" type="text/css" href="font-awesome/css/font-awesome.min.css">
+  </head>
+  <body>
+    <div id="wrapper">
+      <div id="admin_nav"></div>
+      <!-- Navigation -->
+      <div id="page-wrapper">
+        <div class="container-fluid"> 
+          <!-- Page Heading -->
+          <div class="row">
+            <div class="col-lg-12">
+              <h1 class="page-header">Dashboard</h1>
+              <ol id="enrolled_server_breadcrumb" class="breadcrumb">
+                <li> <i class="fa fa-dashboard"></i> <a href="index.html">Dashboard</a></li>
+              </ol>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-lg-12">
+              <div class="col-lg-4"><div class="panel panel-primary"  id ="tm_machine">
+                  <div class="panel-heading">
+                    <div class="row">
+                      <div class="col-xs-3">
+                        <i class="fa fa-server fa-5x"></i>
+                      </div>
+                      <div class="col-xs-9 text-right">
+                        <div class="huge"><span id="enrolledIPs"></span></div>
+                        <div>Enrolled Servers</div>
+                      </div>
+                    </div>
+                  </div>
+                  <a href="#" data-toggle="modal" data-target="#enrolledInfo">
+                    <div class="panel-footer">
+                      <span class="pull-left">View Details</span>
+                      <div class="clearfix"></div>
+                    </div>
+                  </a>
+                </div></div>
+              <div class="col-lg-4"><div class="panel panel-primary"  id ="tm_machine">
+                  <div class="panel-heading">
+                    <div class="row">
+                      <div class="col-xs-3">
+                        <i class="fa fa-server fa-5x"></i>
+                      </div>
+                      <div class="col-xs-9 text-right">
+                        <div class="huge"><span id="enrolledIPs"></span></div>
+                        <div>Enrolled Servers</div>
+                      </div>
+                    </div>
+                  </div>
+                  <a href="#" data-toggle="modal" data-target="#enrolledInfo">
+                    <div class="panel-footer">
+                      <span class="pull-left">View Details</span>
+                      <div class="clearfix"></div>
+                    </div>
+                  </a>
+                </div></div>
+              <div class="col-lg-4"><div class="panel panel-primary"  id ="tm_machine">
+                  <div class="panel-heading">
+                    <div class="row">
+                      <div class="col-xs-3">
+                        <i class="fa fa-server fa-5x"></i>
+                      </div>
+                      <div class="col-xs-9 text-right">
+                        <div class="huge"><span id="enrolledIPs"></span></div>
+                        <div>Enrolled Servers</div>
+                      </div>
+                    </div>
+                  </div>
+                  <a href="#" data-toggle="modal" data-target="#enrolledInfo">
+                    <div class="panel-footer">
+                      <span class="pull-left">View Details</span>
+                      <div class="clearfix"></div>
+                    </div>
+                  </a>
+                </div></div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="widget-content">
+              <div class="shortcuts"> 
+                <a href="javascript:;" class="shortcut"> <i class="fa fa-list-alt fa-3x"></i> <span class="shortcut-label">Apps</span> </a>
+                <a href="javascript:;" class="shortcut"> <i class="fa fa-file fa-3x"></i> <span class="shortcut-label">Reports</span> </a> 
+                <a href="javascript:;" class="shortcut"> <i class="fa fa-comments fa-3x"></i> <span class="shortcut-label">Comments</span> </a> 
+                <a href="javascript:;" class="shortcut"> <i class="fa fa-users fa-3x"></i> <span class="shortcut-label">Users</span> </a> 
+                <a href="javascript:;" class="shortcut"> <i class="fa fa-envelope fa-3x"></i> <span class="shortcut-label">Email</span> </a>
+                <a href="javascript:;" class="shortcut"> <i class="fa fa-list fa-3x"></i> <span class="shortcut-label">Clients</span> </a> 
+                <a href="javascript:;" class="shortcut"> <i class="fa fa-file-text fa-3x"></i> <span class="shortcut-label">Messages</span> </a> 
+                <a href="javascript:;" class="shortcut"> <i class="fa fa-server fa-3x"></i> <span class="shortcut-label">Servers</span> </a> 
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal fade" id="enrolledInfo" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+              <i class="fa fa-times fa-fw"></i>
+            </button>
+            <h4 class="modal-title" id="myModalLabel">Enrolled Servers</h4>
+          </div>
+          <div class="modal-body">
+            <div id="enrolledInfoBody"></div>
+          </div>
+          <div class="modal-footer">
+
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="footer_content" class="navbar navbar-inverse navbar-fixed-bottom"></div>
+    <!-- js -->
+    <script type="text/javascript" src="js/jquery-1.10.2.js"></script>
+    <script type="text/javascript" src="js/jquery-migrate-1.2.1.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <script type="text/javascript">
+      $(function () {
+          $("#admin_nav").load("admin_nav.html");
+          $("#footer_content").load("footer.html");
+      });
+    </script>
+    <!-- include the custom and each page js file after left nav and footer -->
+    <script type="text/javascript" src="js/rxk_admincommon.js"></script>
+  </body>
+</html>

@@ -1,0 +1,32 @@
+Security, NONE
+Authentication, Security
+V-38585 The system boot loader must require authentication.
+V-38586 The system must require authentication upon booting into single-user and maintenance modes.
+V-38595 The system must be configured to require the use of a CAC, PIV compliant hardware token, or Alternate Logon Token (ALT) for authentication.
+V-58901 The sudo command must require authentication.
+V-38483 The system package management tool must cryptographically verify the authenticity of system software packages during installation.
+V-38487 The system package management tool must cryptographically verify the authenticity of all software packages during installation.
+Integrity, Security
+V-38489 A file integrity tool must be installed.
+V-38695 A file integrity tool must be used at least weekly to check for unauthorized file changes, particularly the addition of unauthorized system libraries or binaries, or for unauthorized modification to authorized system libraries or binaries.
+V-51391 A file integrity baseline must be created.
+Cryptography/Certificates, Security
+V-38483 The system package management tool must cryptographically verify the authenticity of system software packages during installation.
+V-38476 Vendor-provided cryptographic certificates must be installed to verify the integrity of system software.
+V-38574 The system must use a FIPS 140-2 approved cryptographic hashing algorithm for generating account password hashes (system-auth).
+V-38576 The system must use a FIPS 140-2 approved cryptographic hashing algorithm for generating account password hashes (login.defs).
+V-38577 The system must use a FIPS 140-2 approved cryptographic hashing algorithm for generating account password hashes (libuser.conf).
+V-38625 If the system is using LDAP for authentication or account information, the system must use a TLS connection using FIPS 140-2 approved cryptographic algorithms.
+V-38626 The LDAP client must use a TLS connection using trust certificates signed by the site CA.
+V-38659 The operating system must employ cryptographic mechanisms to protect information in storage.
+DoD, Security
+V-38666 The system must use and update a DoD-approved virus scan program.
+V-38621 The system clock must be synchronized to an authoritative DoD time source.
+V-38593+A70 The Department of Defense (DoD) login banner must be displayed immediately prior to, or as part of, console login prompts.
+V-38689 The Department of Defense (DoD) login banner must be displayed immediately prior to, or as part of, graphical desktop environment login prompts.
+RPM, Security
+V-38462 The RPM package management tool must cryptographically verify the authenticity of all software packages during installation.
+V-38447 The system package management tool must verify contents of all files associated with packages.
+V-38452 The system package management tool must verify permissions on all files and directories associated with packages.
+V-38453 The system package management tool must verify group-ownership on all files and directories associated with packages.
+V-38454 The system package management tool must verify ownership on all files and directories associated with packages.

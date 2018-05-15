@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="">
+        <meta name="author" content="">
+        <title>SB Admin - Bootstrap Admin Template</title>
+
+        <!-- Bootstrap Core CSS -->
+        <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css">
+        <link href="css/sb-admin.css" rel="stylesheet" type="text/css">
+        <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+        <!-- Custom CSS -->
+        <script type="text/javascript" src="js/jquery-1.10.2.js"></script>
+        <script type="text/javascript">
+            $(function () {
+                $("#left_nav").load("left_nav.html");
+                $("#footer_content").load("footer.html");
+
+            });
+        </script>
+        <style>
+            .resp-tab-content  .form-group {padding-top: 25px;}
+			.resp-tabs-list li {line-height:60px;}
+        </style>
+    </head>
+    <body>
+        <div id="wrapper">
+            <!-- Navigation -->
+            <div id="left_nav"></div>
+            <div id="page-wrapper">
+                <div class="container-fluid"> 
+                    <!-- Page Heading -->
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <h1 class="page-header"> Blank Page <small>Subheading</small> </h1>
+                            <ol class="breadcrumb">
+                                <li> <i class="fa fa-dashboard"></i> <a href="index.html">Dashboard</a> </li>
+                                <li class="active"> <a href="listing.html"> <i class="fa fa-align-justify"></i> Listing </a> </li>
+                                <li class="active"> <i class="fa fa-list"></i> CR-56a21a5f </li>
+                            </ol>
+                        </div>
+                    </div>
+                    <!-- /.row -->
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div id="horizontalTab">
+                                <ul class="resp-tabs-list">
+                                    <li  class="tab-success">Select Profile<span class="tab_text_s" >(DISA - Mission Critical Classified)</span></li>
+                                    <li  class="tab-success">Remediation Mode<span class="tab_text_s" >(Automatic)</span></li>
+                                    <li class="tab-success"> Frequency<span class="tab_text_s" >(One Time)</span></li>
+                                    <li class="tab-success">Apply Profile</li>
+                                </ul>
+                                <div class="resp-tabs-container">
+                                    <div>
+                                        <div class="col-md-12" style="padding:0px">
+                                            <div class="panel panel-default  border-success">
+                                                <div class="panel-body ">
+                                                    <div class="form-group">
+                                                        <div class="col-md-12">
+                                                            <div class="col-md-1"  style="padding-left:0px">
+                                                                <label>Select Profile</label>
+                                                            </div>
+                                                            <div class="col-md-4">
+                                                                <select class="form-control" id="selectedprofile" style="display: flex;"><option rules="1" value="Boot-TXT for OpenStack Controller">Boot-TXT for OpenStack Controller</option><option rules="255" selected="selected" value="DISA - Mission Critical Classified">DISA - Mission Critical Classified</option><option rules="46" value="Demonstration Profile">Demonstration Profile</option><option rules="5" value="PCI for OpenStack Controller">PCI for OpenStack Controller</option><option rules="109" value="PCI-DSS Compliance">PCI-DSS Compliance</option><option rules="15" value="Undo Demonstration Profile">Undo Demonstration Profile</option></select>
+                                                            </div>
+                                                            <div class="col-md-4"> <strong>( Profile count )</strong> </div>
+                                                        </div>
+                                                        <div class="col-md-12">
+                                                            <label><strong>Description :</strong></label>
+                                                            <p>disse blandit velit Integer laoreet placerat suscipit. Sed sodales scelerisque commodo. Nam porta cursus lectus. Proin nunc erat, gravida a facilisis quis, ornare id lectus. Proin consectetur nibh quis Integer laoreet placerat suscipit. Sed sodales scelerisque commodo. Nam porta cursus lectus. Proin nunc erat, gravida a facilisis quis, ornare id lectus. Proin consectetur nibh quis urna gravid urna gravid eget erat suscipit in malesuada odio venenatis.</p>
+                                                        </div>
+                                                        <div class="col-md-12	 text-right" style="vertical-align:bottom !important; margin-bottom:">
+                                                            <button title="test" id="" class="btn btn-default" type="button">Next</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <div class="col-md-12" style="padding:0px">
+                                            <div class="panel panel-default border-success">
+                                                <div class="panel-body">
+                                                    <div class="form-group">
+                                                        <label style="padding-left: 10px;">
+                                                            <input type="radio" value="option1"  checked="checked" id="optionsRadiosautmetic" name="optionsRadiosInline">
+                                                            <span class="label_span">Automatic</span> </label>
+                                                        <label style="padding-left:10px;">
+                                                            <input type="radio" value="option2" id="optionsRadiosmanual" name="optionsRadiosInline">
+                                                            <span class="label_span">Manual</span> </label>
+                                                    </div>
+                                                    <div class="col-md-12">
+                                                        <label><strong>Description :</strong></label>
+                                                        <p>disse blandit velit Integer laoreet placerat suscipit. Sed sodales scelerisque commodo. Nam porta cursus lectus. Proin nunc erat, gravida a facilisis quis, ornare id lectus. Proin consectetur nibh quis Integer laoreet placerat suscipit. Sed sodales scelerisque commodo. Nam porta cursus lectus. Proin nunc erat, gravida a facilisis quis, ornare id lectus. Proin consectetur nibh quis urna gravid urna gravid eget erat suscipit in malesuada odio venenatis.</p>
+                                                    </div>
+                                                    <div class="col-md-12	 text-right" style="vertical-align:bottom !important; margin-bottom:">
+                                                        <button title="test" id="" class="btn btn-default" type="button">Back</button>
+                                                        <button title="test" id="" class="btn btn-default" type="button">Next</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <div class="col-md-12" style="padding:0px">
+                                            <div class="panel panel-default border-success">
+                                                <div class="panel-body">
+                                                    <div class="form-group">
+                                                        <div class="col-md-12">
+                                                            <div class="col-md-2" style="padding-left:0px">Compliance Frequency :</div>
+                                                            <div class="col-md-3">
+                                                                <div class="styled-select">
+                                                                    <select style="display: flex;" id="select_croninterval" class="form-control">
+                                                                        <option value="One time">&nbsp;One time</option>
+                                                                        <option value="Hourly">&nbsp;Hourly</option>
+                                                                        <option value="Daily">&nbsp;Daily</option>
+                                                                        <option value="Weekly">&nbsp;Weekly</option>
+                                                                        <option value="Monthly">&nbsp;Monthly</option>
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-12">
+                                                            <label><strong>Description :</strong></label>
+                                                            <p>disse blandit velit Integer laoreet placerat suscipit. Sed sodales scelerisque commodo. Nam porta cursus lectus. Proin nunc erat, gravida a facilisis quis, ornare id lectus. Proin consectetur nibh quis Integer laoreet placerat suscipit. Sed sodales scelerisque commodo. Nam porta cursus lectus. Proin nunc erat, gravida a facilisis quis, ornare id lectus. Proin consectetur nibh quis urna gravid urna gravid eget erat suscipit in malesuada odio venenatis.</p>
+                                                        </div>
+                                                        <div class="col-md-12	 text-right" style="vertical-align:bottom !important; margin-bottom:">
+                                                            <button title="test" id="" class="btn btn-default" type="button">Back</button>
+                                                            <button title="test" id="" class="btn btn-default" type="button">Next</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <div class="col-md-12" style="padding:0px">
+                                            <div class="panel panel-default border-success">
+                                                <div class="panel-body">
+                                                    <div class="form-group">
+                                                    <div class="col-md-12">
+                                                   <strong> </strong>
+                                                    <div class="bs-example">
+                                                        
+                                                      <div class="adv-table table-responsive">
+                                                   <table width="100%" border="0" cellspacing="0" cellpadding="5" class="">
+                                                     <tr>
+                                                       <td width="17%"><strong>Selected Profile :</strong></td>
+                                                       <td width="83%">DISA - Mission Critical Classified </td>
+                                                     </tr>
+                                                     <tr>
+                                                       <td><strong>Remediation Mode : </strong></td>
+                                                       <td>Automatic </td>
+                                                     </tr>
+                                                     <tr>
+                                                       <td><strong>Frequency :</strong></td>
+                                                       <td>One Time </td>
+                                                     </tr>
+                                                   </table>
+                                                   </div>
+                                                   </div>
+                                                   
+                                                    </div>
+                                                    <div class="clear"></div>
+                                                        <div class="col-md-6">
+                                                          <label style="padding-left: 0px;">
+                                                                <input type="radio" value="option1" id="optionsRadiosautmetic" name="optionsRadiosInline">
+                                                              <span class="label_span"><strong>Group</strong></span> </label>
+                                                            <br>
+                                                            <div class="styled-select col-md-8"  style="padding-left: 0px;">
+                                                                <select style="display: flex;" id="select_croninterval" class="form-control">
+                                                                    <option value="One time">&nbsp;One time</option>
+                                                                    <option value="Hourly">&nbsp;Hourly</option>
+                                                                    <option value="Daily">&nbsp;Daily</option>
+                                                                    <option value="Weekly">&nbsp;Weekly</option>
+                                                                    <option value="Monthly">&nbsp;Monthly</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-md-6">
+                                                          <label style="padding-left:0px;">
+                                                                <input type="radio" checked="checked" value="option2" id="optionsRadiosmanual" name="optionsRadiosInline">
+                                                              <span class="label_span"><strong>VM</strong></span> </label>
+                                                            <br>
+                                                            <div class="styled-select col-md-8" style="padding-left: 0px;">
+                                                                <select style="display: flex;" id="select_croninterval" class="form-control" >
+                                                                    <option value="One time">&nbsp;One time</option>
+                                                                    <option value="Hourly">&nbsp;Hourly</option>
+                                                                    <option value="Daily">&nbsp;Daily</option>
+                                                                    <option value="Weekly">&nbsp;Weekly</option>
+                                                                    <option value="Monthly">&nbsp;Monthly</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-12">
+                                                        <label><strong>Description :</strong></label>
+                                                        <p>disse blandit velit Integer laoreet placerat suscipit. Sed sodales scelerisque commodo. Nam porta cursus lectus. Proin nunc erat, gravida a facilisis quis, ornare id lectus. Proin consectetur nibh quis Integer laoreet placerat suscipit. Sed sodales scelerisque commodo. Nam porta cursus lectus. Proin nunc erat, gravida a facilisis quis, ornare id lectus. Proin consectetur nibh quis urna gravid urna gravid eget erat suscipit in malesuada odio venenatis.</p>
+                                                    </div>
+                                                    <div class="col-md-12	 text-right" style="vertical-align:bottom !important; margin-bottom:">
+                                                        <button title="test" id="" class="btn btn-default" type="button">Back</button>
+                                                        <button title="test" id="" class="btn btn-default" type="button">Apply</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>                    <!-- /.container-fluid --> 
+                </div>                <!-- /#page-wrapper -->
+                <div id="footer_content" class="navbar navbar-inverse navbar-fixed-bottom"></div>
+            </div>
+        </div><!-- /#wrapper --> 
+        <!-- js--> 
+        <script type="text/javascript" src="js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="js/easyresponsivetabs.js"></script> 
+        <script>
+            $(document).ready(function () {
+                $('#horizontalTab').easyResponsiveTabs({
+                    type: 'default', //Types: default, vertical, accordion           
+                    width: 'auto', //auto or any width like 600px
+                    fit: true, // 100% fit in a container
+                    closed: 'accordion', // Start closed if in accordion view
+                    activate: function (event) { // Callback function if tab is switched
+                        var $tab = $(this);
+                        var $info = $('#tabInfo');
+                        var $name = $('span', $info);
+                        $name.text($tab.text());
+                        $info.show();
+                    }
+                });
+                $('#verticalTab').easyResponsiveTabs({
+                    type: 'vertical',
+                    width: 'auto',
+                    fit: true
+                });
+            });
+        </script>
+    </body>
+</html>

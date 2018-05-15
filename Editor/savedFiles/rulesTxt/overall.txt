@@ -1,0 +1,295 @@
+All Security Rules, NONE
+Accounts, All Security Rules
+Account Management, Accounts
+V-38439 The system must provide automated support for account management functions.
+V-38500 The root account must be the only account having a UID of 0.
+V-38683 All accounts on the system must have unique user or account names
+V-38690 Emergency accounts must be provisioned with an expiration date.
+V-38685 Temporary accounts must be provisioned with an expiration date.
+Locking Accounts, Account Management
+V-38692 Accounts must be locked upon 35 days of inactivity.
+V-38496 Default operating system accounts, other than root, must be locked.
+AccountsLogon, Accounts
+Root Limitations, AccountsLogon
+V-38613 The system must not permit root logins using remote access programs such as ssh.
+V-38492 The system must prevent the root account from logging in from virtual consoles.
+V-38494 The system must prevent the root account from logging in from serial consoles.
+Unsuccessful Logins, AccountsLogon
+V-38501 The system must disable accounts after excessive login failures within a 15-minute interval.
+V-38573 The system must disable accounts after three consecutive unsuccessful logon attempts.
+V-38592 The system must require administrator action to unlock an account locked by excessive failed login attempts.
+AccountsMiscellaneous, AccountsLogon
+V-38684 The system must limit users to 10 simultaneous system logins, or a site-defined number, in accordance with operational requirements.
+V-38688 A login banner must be displayed immediately prior to, or as part of, graphical desktop environment login prompts.
+Miscellaneous, All Security Rules
+Graphical Desktop Environment, Miscellaneous
+V-38688-2 A login banner must be displayed immediately prior to, or as part of, graphical desktop environment login prompts.
+V-38689 The Department of Defense (DoD) login banner must be displayed immediately prior to, or as part of, graphical desktop environment login prompts.
+V-38638 The graphical desktop environment must have automatic lock enabled.
+V-38630 The graphical desktop environment must automatically lock after 15 minutes of inactivity and the system must require user reauthentication to unlock the environment.
+V-38629 The graphical desktop environment must set the idle timeout to no more than 15 minutes.
+V-38639 The system must display a publicly-viewable pattern during a graphical desktop environment session lock.
+V-38474 The system must allow locking of graphical desktop sessions.
+Clock, Miscellaneous
+V-38620 The system clock must be synchronized continuously, or at least daily.
+V-38621 The system clock must be synchronized to an authoritative DoD time source.
+V-38624 System logs must be rotated daily.
+System Requirements, Miscellaneous
+V-38588 The system must not permit interactive boot.
+V-38596 The system must implement virtual address space randomization.
+V-38597 The system must limit the ability of processes to have simultaneous write and execute access to memory.
+V-38590 The system must allow locking of the console screen in text mode.
+V-38437 Automated file system mounting tools must not be enabled unless needed.
+V-38438 Auditing must be enabled at boot by setting a kernel parameter.
+Mail, Miscellaneous
+V-38622 Mail relaying must be restricted.
+V-38446 The mail system must forward all mail for root to one or more system administrators.
+Network Connections, All Security Rules
+Overall, Network Connections
+V-38686 The systems local firewall must implement a deny-all, allow-by-exception policy for forwarded packets.
+V-38687 The system must provide VPN connectivity for communications over untrusted networks.
+V-38528 The system must log Martian packets.
+IPv4, Network Connections
+V-38511 IP forwarding for IPv4 must not be enabled, unless the system is a router.
+V-38513 The systems local IPv4 firewall must implement a deny-all, allow-by-exception policy for inbound packets.
+V-38523 The system must not accept IPv4 source-routed packets on any interface.
+V-38529 The system must not accept IPv4 source-routed packets by default.
+V-38542 The system must use a reverse-path filter for IPv4 network traffic when possible on all interfaces.
+V-38544 The system must use a reverse-path filter for IPv4 network traffic when possible by default.
+V-38555 The system must employ a local IPv4 firewall.
+ICMPv4, Network Connections
+V-38524 The system must not accept ICMPv4 redirect packets on any interface.
+V-38526 The system must not accept ICMPv4 secure redirect packets on any interface.
+V-38532 The system must not accept ICMPv4 secure redirect packets by default.
+V-38600 The system must not send ICMPv4 redirects by default.
+V-38601 The system must not send ICMPv4 redirects from any interface.
+V-38533 The system must ignore ICMPv4 redirect messages by default.
+V-38535 The system must not respond to ICMPv4 sent to a broadcast address.
+V-38537 The system must ignore ICMPv4 bogus error responses.
+IPv6, Network Connections
+V-38549 The system must employ a local IPv6 firewall.
+V-38444 The systems local IPv6 firewall must implement a deny-all, allow-by-exception policy for inbound packets.
+V-38546 The IPv6 protocol handler must not be bound to the network stack unless needed.
+ICMPv6, Network Connections
+V-38548 The system must ignore ICMPv6 redirects by default.
+OS Requirements, All Security Rules
+Logon, OS Requirements
+V-38484 The operating system, upon successful logon, must display to the user the date and time of the last logon or access via ssh.The operating system, upon successful logon, must display to the user the date and time of the last logon or access via ssh.The operating system, upon successful logon, must display to the user the date and time of the last logon or access via ssh.
+V-51875 The operating system, upon successful logon/access, must display to the user the number of unsuccessful logon/access attempts since the last successful logon/access.The operating system, upon successful logon/access, must display to the user the number of unsuccessful logon/access attempts since the last successful logon/access.The operating system, upon successful logon/access, must display to the user the number of unsuccessful logon/access attempts since the last successful logon/access.
+Network and Connections, OS Requirements
+V-38490 The operating system must enforce requirements for the connection of mobile devices to operating systems.The operating system must enforce requirements for the connection of mobile devices to operating systems.The operating system must enforce requirements for the connection of mobile devices to operating systems.
+V-38512 The operating system must prevent public IPv4 access into an organizations internal networks, except as appropriately mediated by managed interfaces employing boundary protection devices.
+V-38553 The operating system must prevent public IPv6 access into an organizations internal networks, except as appropriately mediated by managed interfaces employing boundary protection devices.
+V-38560 The operating system must connect to external networks or information systems only through managed IPv4 interfaces consisting of boundary protection devices arranged in accordance with an organizational security architecture.
+V-38551 The operating system must connect to external networks or information systems only through managed IPv6 interfaces consisting of boundary protection devices arranged in accordance with an organizational security architecture.
+Unauthorized Changes And Software, OS Requirements
+V-38670 The operating system must detect unauthorized changes to software and information.
+V-38673 The operating system must ensure unauthorized, security-relevant configuration changes detected are tracked.
+V-38696 The operating system must employ automated mechanisms, per organization defined frequency, to detect the addition of unauthorized components/devices into the operating system.
+V-38698 The operating system must employ automated mechanisms to detect the presence of unauthorized software on organizational information systems and notify designated organizational officials in accordance with the organization defined frequency.
+V-38700 The operating system must provide a near real-time alert when any of the organization defined list of compromise or potential compromise indicators occurs.
+Backups, OS Requirements
+V-38486 The operating system must conduct backups of system-level information contained in the information system per organization defined frequency to conduct backups that are consistent with recovery time and recovery point objectives.The operating system must conduct backups of system-level information contained in the information system per organization defined frequency to conduct backups that are consistent with recovery time and recovery point objectives.
+V-38488 The operating system must conduct backups of user-level information contained in the operating system per organization defined frequency to conduct backups consistent with recovery time and recovery point objectives.The operating system must conduct backups of user-level information contained in the operating system per organization defined frequency to conduct backups consistent with recovery time and recovery point objectives.
+V-38520 The operating system must back up audit records on an organization defined frequency onto a different system or media than the system being audited.The operating system must back up audit records on an organization defined frequency onto a different system or media than the system being audited.
+Audit, OS Requirements
+V-38521 The operating system must support the requirement to centrally manage the content of audit records generated by organization defined information system components.
+V-38628 The operating system must produce audit records containing sufficient information to establish the identity of any user/subject associated with the event.
+V-38632 The operating system must produce audit records containing sufficient information to establish what type of events occurred.
+V-38631 The operating system must employ automated mechanisms to facilitate the monitoring and control of remote access methods.
+V-38531 The operating system must automatically audit account creation.
+V-38534 The operating system must automatically audit account modification.
+V-38536 The operating system must automatically audit account disabling actions.
+V-38538 The operating system must automatically audit account termination.
+Securing Data, OS Requirements
+V-38659 The operating system must employ cryptographic mechanisms to protect information in storage.The operating system must employ cryptographic mechanisms to protect information in storage.
+V-38662 The operating system must employ cryptographic mechanisms to prevent unauthorized disclosure of data at rest unless otherwise protected by alternative physical measures.The operating system must employ cryptographic mechanisms to prevent unauthorized disclosure of data at rest unless otherwise protected by alternative physical measures.
+V-38661 The operating system must protect the confidentiality and integrity of data at rest.
+Inactivity, OS Requirements
+V-38694 The operating system must manage information system identifiers for users and devices by disabling the user identifier after an organization defined time period of inactivity.
+Password, All Security Rules
+V-38497 The system must not have accounts configured with blank or null passwords.
+V-38499 The /etc/passwd file must not contain password hashes.C28
+V-38614 The SSH daemon must not allow authentication using an empty password.
+V-38653 The snmpd service must not use a default password.
+Password Changes, Password
+V-38658 The system must prohibit the reuse of passwords within twenty-four iterations.
+V-38477 Users must not be able to change passwords more than once every 24 hours.
+V-38479 User passwords must be changed at least every 60 days.
+V-38480 Users must be warned 7 days in advance of password expiration.
+V-38572 The system must require at least four characters be changed between the old and new passwords during a password change.
+Password String Requirements, Password
+V-38475 The system must require passwords to contain a minimum of 14 characters.
+V-38482 The system must require passwords to contain at least one numeric character.
+V-38569 The system must require passwords to contain at least one uppercase alphabetic character.
+V-38570 The system must require passwords to contain at least one special character.
+V-38571 The system must require passwords to contain at least one lowercase alphabetic character.
+V-38693 The system must require passwords to contain no more than three consecutive repeating characters.
+Password Hashes, Password
+V-38576-2 The system must use a FIPS 140-2 approved cryptographic hashing algorithm for generating account password hashes (login.defs).
+V-38577-2 The system must use a FIPS 140-2 approved cryptographic hashing algorithm for generating account password hashes (libuser.conf).
+Security, All Security Rules
+Authentication, Security
+V-38585 The system boot loader must require authentication.
+V-38586 The system must require authentication upon booting into single-user and maintenance modes.
+V-38595 The system must be configured to require the use of a CAC, PIV compliant hardware token, or Alternate Logon Token (ALT) for authentication.
+V-58901 The sudo command must require authentication.
+V-38483 The system package management tool must cryptographically verify the authenticity of system software packages during installation.
+V-38487 The system package management tool must cryptographically verify the authenticity of all software packages during installation.
+Integrity, Security
+V-38489 A file integrity tool must be installed.
+V-38695 A file integrity tool must be used at least weekly to check for unauthorized file changes, particularly the addition of unauthorized system libraries or binaries, or for unauthorized modification to authorized system libraries or binaries.
+V-51391 A file integrity baseline must be created.
+Cryptography And Certificates, Security
+V-38476 Vendor-provided cryptographic certificates must be installed to verify the integrity of system software.
+V-38574 The system must use a FIPS 140-2 approved cryptographic hashing algorithm for generating account password hashes (system-auth).
+V-38576 The system must use a FIPS 140-2 approved cryptographic hashing algorithm for generating account password hashes (login.defs).
+V-38577 The system must use a FIPS 140-2 approved cryptographic hashing algorithm for generating account password hashes (libuser.conf).
+V-38625 If the system is using LDAP for authentication or account information, the system must use a TLS connection using FIPS 140-2 approved cryptographic algorithms.
+V-38626 The LDAP client must use a TLS connection using trust certificates signed by the site CA.
+V-38659-2 The operating system must employ cryptographic mechanisms to protect information in storage.
+DoD, Security
+V-38666 The system must use and update a DoD-approved virus scan program.
+V-38621-2 The system clock must be synchronized to an authoritative DoD time source.
+V-38593 The Department of Defense (DoD) login banner must be displayed immediately prior to, or as part of, console login prompts.
+V-38689-2 The Department of Defense (DoD) login banner must be displayed immediately prior to, or as part of, graphical desktop environment login prompts.
+RPM, Security
+V-38462 The RPM package management tool must cryptographically verify the authenticity of all software packages during installation.
+V-38447 The system package management tool must verify contents of all files associated with packages.
+V-38452 The system package management tool must verify permissions on all files and directories associated with packages.
+V-38453 The system package management tool must verify group-ownership on all files and directories associated with packages.
+V-38454 The system package management tool must verify ownership on all files and directories associated with packages.
+Services and Packages, All Security Rules
+V-38481 System security patches and updates must be installed and up-to-date.
+Should Not Be Enabled, Services and Packages
+V-38587 The telnet-server package must not be installed.
+V-38589 The telnet daemon must not be running.
+V-38591 The rsh-server package must not be installed.C16
+V-38594 The rshd service must not be running.
+V-38598 The rexecd service must not be running.
+V-38602 The rlogind service must not be running.
+V-38679 The DHCP client must be disabled if not needed.
+V-38603 The ypserv package must not be installed.
+V-38604 The ypbind service must not be running.
+V-38606 The tftp-server package must not be installed unless required.
+V-38609 The TFTP service must not be running.
+V-38701 The TFTP daemon must operate in secure mode which provides access only to a single directory on the host file system.
+V-38582 The xinetd service must be disabled if no network services utilizing it are enabled.
+V-38584 The xinetd service must be uninstalled if no network services utilizing it are enabled.
+V-38514 The Datagram Congestion Control Protocol (DCCP) must be disabled unless required.
+V-38515 The Stream Control Transmission Protocol (SCTP) must be disabled unless required.
+V-38517 The Transparent Inter-Process Communication (TIPC) protocol must be disabled unless required.
+V-38516 The Reliable Datagram Sockets (RDS) protocol must be disabled unless required.
+V-38618 The avahi service must be disabled.
+V-38674 X Windows must not be enabled unless required.
+V-38676 The xorg-x11-server-common (X Windows) package must not be installed, unless required.
+V-38605 The cron service must be running.
+V-38641 The atd service must be disabled.
+V-38627 The openldap-servers package must not be installed unless required.
+V-38640 The Automatic Bug Reporting Tool (abrtd) service must not be running.
+V-38644 The ntpdate service must not be running.
+V-38646 The oddjobd service must not be running.
+V-38648 The qpidd service must not be running.
+V-38650 The rdisc service must not be running.
+V-38668 The x86 Ctrl-Alt-Delete key sequence must be disabled.
+V-38671 The sendmail package must be removed.
+V-38672 The netconsole service must be disabled unless required.
+V-38675 Process core dumps must be disabled unless needed.
+V-38682 The Bluetooth kernel module must be disabled.
+V-38691 The Bluetooth service must be disabled.
+V-38478 The Red Hat Network Service (rhnsd) service must not be running, unless using RHN or an RHN Satellite.
+V-43150 The login user list must be disabled.
+Should Be Used, Services and Packages
+V-38539 The system must be configured to use TCP syncookies when experiencing a TCP SYN flood.
+V-51337 The system must use a Linux Security Module at boot time.
+V-51363 The system must use a Linux Security Module configured to enforce limits on system services.
+V-51369 The system must use a Linux Security Module configured to limit the privileges of system services.
+V-51379 All device files must be monitored by the system Linux Security Module.
+V-38669 The postfix service must be enabled for mail delivery.
+V-38660 The snmpd service must use only SNMP protocol version 3 or newer.
+V-38653-2 The snmpd service must not use a default password.
+V-38667 The system must have a host-based intrusion detection tool installed.
+Storage, Services and Packages
+NFS Server, Storage
+V-38677 The NFS server must not have the insecure file locking option enabled.
+V-38460 The NFS server must not have the all_squash option enabled.
+Sambda Server, Storage
+V-38656 The system must use SMB client signing for connecting to samba servers using smbclient.
+V-38657 The system must use SMB client signing for connecting to samba servers using mount.cifs.
+Daemon Requirements, Services and Packages
+V-38607 The SSH daemon must be configured to use only the SSHv2 protocol.
+V-38614-2 The SSH daemon must not allow authentication using an empty password.
+V-38611 The SSH daemon must ignore .rhosts files.
+V-38612 The SSH daemon must not allow host-based authentication.
+V-38617 The SSH daemon must be configured to use only FIPS 140-2 approved ciphers.
+V-38608 The SSH daemon must set a timeout interval on idle sessions.
+V-38610 The SSH daemon must set a timeout count on idle sessions.
+V-38616 The SSH daemon must not permit user environment settings.
+V-38615 The SSH daemon must be configured with the Department of Defense (DoD) login banner.
+V-38599 The FTPS/FTP service on the system must be configured with the Department of Defense (DoD) login banner.
+V-38702 The FTP daemon must be configured for logging or verbose mode.
+UNIX File Permissions, All Security Rules
+Ownership, UNIX File Permissions
+V-38443 The /etc/gshadow file must be owned by root.
+V-38450 The /etc/passwd file must be owned by root.
+V-38458 The /etc/group file must be owned by root.
+V-38466 Library files must be owned by root.
+V-38472 All system command files must be owned by root.
+V-38495 Audit log files must be owned by root.
+V-38502 The /etc/shadow file must be owned by root.
+V-38518 All rsyslog-generated log files must be owned by root.
+V-38579 The system boot loader configuration file(s) must be owned by root.
+Group Ownership, UNIX File Permissions
+V-38445 Audit log files must be group-owned by root.
+V-38448 The /etc/gshadow file must be group-owned by root.
+V-38451 The /etc/passwd file must be group-owned by root.
+V-38459 The /etc/group file must be group-owned by root.
+V-38503 The /etc/shadow file must be group-owned by root.
+V-38519 All rsyslog-generated log files must be group-owned by root.
+V-38581 The system boot loader configuration file(s) must be group-owned by root.
+Permission, UNIX File Permissions
+V-38449 The /etc/gshadow file must have mode 0000.
+V-38457 The /etc/passwd file must have mode 0644 or less permissive.
+V-38461 The /etc/group file must have mode 0644 or less permissive.
+V-38465 Library files must have mode 0755 or less permissive.
+V-38469 All system command files must have mode 755 or less permissive.
+V-38493 Audit log directories must have mode 0755 or less permissive.
+V-38498 Audit log files must have mode 0640 or less permissive.
+V-38504 The /etc/shadow file must have mode 0000.
+V-38583 The system boot loader configuration file(s) must have mode 0600 or less permissive.
+V-38623 All rsyslog-generated log files must have mode 0600 or less permissive.
+Umask, UNIX File Permissions
+V-38642 The system default umask for daemons must be 027 or 022.
+V-38645 The system default umask in /etc/login.defs must be 077.
+V-38647 The system default umask in /etc/profile must be 077.
+V-38649 The system default umask for the csh shell must be 077.
+V-38651 The system default umask for the bash shell must be 077.
+File System Requirements, UNIX File Permissions
+V-38491 There must be no .rhosts or hosts.equiv files on the system.
+V-38652 Remote file systems must be mounted with the nodev option.
+V-38654 Remote file systems must be mounted with the nosuid option.
+V-57569 The noexec option must be added to the /tmp partition.
+V-38619 There must be no .netrc files on the system.
+V-38643 There must be no world-writable files on the system.
+V-38655 The noexec option must be added to removable media partitions.
+V-38681 All GIDs referenced in /etc/passwd must be defined in /etc/group
+Public Directories, File System Requirements
+V-38697 The sticky bit must be set on all public directories.
+V-38699 All public directories must be owned by a system account.
+Partition, File System Requirements
+V-38455 The system must use a separate file system for /tmp.
+V-38456 The system must use a separate file system for /var.
+V-38463 The system must use a separate file system for /var/log.
+V-38467 The system must use a separate file system for the system audit data path.
+V-38473 The system must use a separate file system for user home directories.
+System Package Management Tool, File System Requirements
+V-38483-2 The system package management tool must cryptographically verify the authenticity of system software packages during installation.
+V-38487-2 The system package management tool must cryptographically verify the authenticity of all software packages during installation.
+V-38637 The system package management tool must verify contents of all files associated with the audit package.
+V-38663 The system package management tool must verify permissions on all files and directories associated with the audit package.
+V-38664 The system package management tool must verify ownership on all files and directories associated with the audit package.
+V-38665 The system package management tool must verify group-ownership on all files and directories associated with the audit package.
+V-38447-2 The system package management tool must verify contents of all files associated with packages.
+V-38452-2 The system package management tool must verify permissions on all files and directories associated with packages.
+V-38453-2 The system package management tool must verify group-ownership on all files and directories associated with packages.
+V-38454-2 The system package management tool must verify ownership on all files and directories associated with packages.

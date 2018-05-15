@@ -1,0 +1,38 @@
+<html>
+    <head>
+        <title>Cloud Raxak Console</title>
+        <meta charset="utf-8"/>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+        <script>
+            var protocol = window.location.protocol;
+            var hostname = window.location.hostname;
+            var xmlhttp;
+
+            if((hostname == 'www.cloudraxak.net') || (hostname == 'cloudraxak.net') ||
+                    (hostname == 'dev.cloudraxak.net')){
+                protocol = 'https:';
+            }
+
+            if (window.XMLHttpRequest) {// code for IE7+, Firefox, Chrome, Opera, Safari
+                xmlhttp=new XMLHttpRequest();
+            } else {// code for IE6, IE5
+                xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+            }
+
+            xmlhttp.onreadystatechange = function() {
+                if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                    if(!xmlhttp.responseText){
+                        //window.location = "https://www.cloudraxak.net/login.html";
+                        window.location = protocol + '//' + hostname + "/login.html";
+                    }else{
+                        //window.location = "https://www.cloudraxak.net/raxak.html";
+                        window.location = protocol + '//' + hostname + "/raxak.html";
+                    }
+                }
+            }
+            xmlhttp.open("GET", "/raxakapi/v1/whoAmI/", true);
+            xmlhttp.send();
+        </script>
+    </head>
+    <body></body>
+</html>

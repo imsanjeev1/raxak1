@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Raxak-Profile-Details</title>
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="css/sb-admin.css">
+    <link rel="stylesheet" href="css/sweetalert2.css" >
+    <link rel="stylesheet" type="text/css" href="css/DT_bootstrap.css" />
+    <link rel="stylesheet" href="css/datatables.css" type="text/css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" type="text/css" href="font-awesome/css/font-awesome.min.css">
+    <!-- js -->
+    <style>
+      #errmsg1      {
+          color: red;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="wrapper"> 
+      <div id="left_nav"></div> 
+      <!-- Navigation -->
+      <div id="page-wrapper">
+        <div class="container-fluid"> 
+          <!-- Page Heading -->
+          <div class="row">
+            <div class="col-lg-12">
+              <h1 class="page-header">Profile Details</h1>
+              <ol id="enrolled_server_breadcrumb" class="breadcrumb">
+                <li> <i class="fa fa-dashboard"></i> <a href="index.html">Dashboard</a> </li>
+                <li class="active"><i class="fa fa-fw fa-user"></i>Profile Details</li>
+              </ol>
+            </div>
+          </div>
+          <div class="row" style="margin-top:10px;" >
+            <div class="col-md-12">
+              <div class="panel panel-default">
+                <div class="panel-body">
+                  <div class="table-responsive">
+                    <table class="table table-bordered" width="100%" cellspacing="0" cellpadding="0" id="exp">
+                      <tr>
+                        <Td width="25%">First Name :</Td>
+                        <Td width="75%" id="firstname"></Td>
+                      </tr>
+                      <tr>
+                        <Td>Last name :</Td>
+                        <Td id="lastname"></Td>
+                      </tr>
+                      <tr>
+                        <Td>Email :</Td>
+                        <Td id="email"></Td>
+                      </tr>
+                      <tr>
+                        <Td>Comapny :</Td>
+                        <Td id="company"></Td>
+                      </tr>
+                      <tr>
+                        <Td>Phone :</Td>
+                        <Td id="phone"></Td>
+                      </tr>
+                      <tr>
+                        <Td>Country :</Td>
+                        <Td id="country"></Td>
+                      </tr>
+                      <tr>
+                        <Td>Date of Registration :</Td>
+                        <Td id="date"></Td>
+                      </tr>
+                      <tr id="subscription">
+                        <Td>Subscription :</Td>
+                        <Td><div class="progress-group ng-scope" data-ng-repeat="skill in vm.home.skills">
+                            <span class="progress-text ng-binding"> Day(s) Remaining</span>
+                            <span class="progress-number"><b class="ng-binding" id="period"></b></span>
+                            <div class="progress sm border-radius-5" style="height:10px;">
+                              <div class="progress-bar progress-bar-aqua"></div>
+                            </div>
+                          </div></Td>
+                      </tr>
+                      <tr>
+                        <Td colspan="2"><button class="btn btn-default" title="Change Details" type="submit" id="but">Edit</button></Td>
+
+                      </tr>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-lg-12"> </div>
+          </div>
+        </div>
+      </div>
+    </div>    
+    <div id="footer_content" class="navbar navbar-inverse navbar-fixed-bottom"></div>
+    <div aria-hidden="false" aria-labelledby="basicModal" role="dialog" tabindex="-1" id="edit_profiledetail" class="modal fade in">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button aria-hidden="true" data-dismiss="modal" class="close" type="button"><i class="fa fa-times fa-fw"></i></button>
+            <h4 id="myModalLabel" class="modal-title">Edit Profile Details</h4>
+          </div>
+          <form method="post" name="profileform" id="profileform">
+          <div class="modal-body">
+            <div>
+              <label for="First Mame" style="float: left;">First Name :<span class="redText">*</span> </label>
+              <input type="text" maxlength="40" required name="e_firstname" id="e_firstname" class="form-control" />
+              <label for="Last Mame" style="float: left;"> last Name :<span class="redText">*</span> </label>
+              <input type="text" maxlength="40" required name="e_lastname" id="e_lastname" class="form-control">
+              <label for="Company" style="float: left;">Company :<span class="redText">*</span></label>
+              <input type="text" maxlength="100" name="e_company" id="e_company" class="form-control">
+              <label for="Phone" style="float: left;">Phone :<span class="redText">*</span></label>
+              <input type="text" maxlength="210" name="e_phone" id="e_phone" class="form-control">&nbsp;<span id="errmsg1"></span>
+            </div>
+           
+          </div>
+          <div class="modal-footer">
+            <button title="Add User" class="btn btn-default" type="submit" id="addtargetedip" Onclick="modifyUserDetails();">Update</button>
+            <button class="btn btn-default" type="reset" onclick="CloseHide();">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    </form>
+  </body>
+  <script type="text/javascript" src="js/jquery-1.10.2.js"></script>
+  <script type="text/javascript" src="js/jquery-migrate-1.2.1.min.js"></script>
+  <script type="text/javascript" src="js/sweetalert2.min.js"></script>
+  <script type="text/javascript" src="js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="js/jquery.dataTables.js"></script>
+  <script type="text/javascript" src="js/users-table.js"></script>
+  <script type="text/javascript" src="js/DT_bootstrap.js"></script>
+  <script type="text/javascript" src="js/jquery.validate.js"></script>
+
+  <script type="text/javascript">
+              $(function () {
+                  $("#left_nav").load("left_nav.html");
+                  $("#footer_content").load("footer.html");
+//                EditableTable.init(); 
+              });
+  </script>
+  <script type="text/javascript" src="js/rxk_common.js"></script>
+  <script type="text/javascript" src="js/rxk_userdetails.js"></script>
+</html>

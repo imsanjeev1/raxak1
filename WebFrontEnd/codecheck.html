@@ -1,0 +1,167 @@
+<html>
+<head>
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>Raxak Protect Code Check</title>
+
+  <!-- Bootstrap Core CSS -->
+  <link href="bs/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Custom CSS -->
+  <link href="bs/css/modern-business.css" rel="stylesheet">
+
+  <!-- Custom Fonts -->
+  <link href="bs/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--<mark>[if lt IE 9]</mark>
+>
+<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+<!<mark>[endif]</mark>
+-->
+<script src="lib/js/param.js"></script>
+</head>
+
+<body>
+<script>
+var d = document;
+/* Obtain query string parameters. */
+var q = param();
+var argdict = [];
+
+for (var k in q)
+	{
+	for (i=0; i<q[k].length; i++)
+		argdict[entify(k)] = entify(q[k][i]);
+
+	}
+
+if (argdict['redo'] === undefined)
+	d.write('<p id="banner"><h2>Thank you for your interest in Cloud Raxak products. If you have an access code, enter it here.</h2></p>')
+else
+	d.write('<p id="banner"><h2>Incorrect code entered.</h2><h3>', argdict['redo'], '</h3></p>')
+</script>
+<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+<div class="container">
+  <!-- Brand and toggle get grouped for better mobile display -->
+  <div class="navbar-header">
+    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+      <span class="sr-only">Toggle navigation</span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </button>
+    <a class="navbar-brand" href="#">Code Check</a>
+
+  </div>
+  <!-- Collect the nav links, forms, and other content for toggling -->
+  <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+    <ul class="nav navbar-nav navbar-right">
+      <li>
+        <a href="http://www.cloudraxak.com">Cloud Raxak</a>
+      </li>
+      <li>
+        <a href="http://www.cloudraxak.com/contact-us">Contact Us</a>
+      </li>
+      <li>
+        <a href="http://www.cloudraxak.com/product">Products</a>
+      </li>
+
+    </ul>
+  </div>
+  <!-- /.navbar-collapse -->
+</div>
+<!-- /.container -->
+</nav>
+
+<div class="container">
+	<div class="row">
+		<div class="col-md-12">
+			<center>
+				<h1 class="page-header">Please Enter Your Code</h1>
+				<img src="crlogo-white.png"><br>
+                <h4>
+				<p>Thank you for your interest in Cloud Raxak's products. If you have a product code,
+                please enter it here.</p>
+
+                <form action="/raxakapi/v1/checkCode" method="post">
+                <input type="hidden" name="token" id="token">
+                <input type="hidden" name="code"  id="code">
+                Your code: <input type="text" name="entry" id="entry">
+                <input type="submit" value="Check Code">
+                </form>
+
+<script>
+var token = "undefined";
+if (argdict['token'] === undefined)
+	token = "undefined";
+else
+	token = argdict['token'];
+document.getElementById('token').value = token;	
+var code="";
+if (argdict['code'] === undefined)
+	code = "undefined";
+else
+	code = argdict['code'];
+document.getElementById('code').value = code;
+</script>
+
+				<p>If you do not have a code, please contact our sales team.
+                </p>
+
+				<p> Or <a href="mailto:sales@cloudraxak.com?Subject=Need%20Code
+				&Body=Please%20make%20sure%20that%20<from>%20is%20a%20valid%20email%20address
+				%20tied%20to%20a%20Google%20or%20Amazon%20account." target="_top">Click Here</a>
+
+                </h4>
+			</center>
+		</div>
+	</div>
+</div>
+<nav class="navbar navbar-default navbar-fixed-bottom" role="navigation">
+<div class="container">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="#"><small>Copyright &copy; Cloud Raxak, Inc. 2014-2015</small></a>
+    </div>
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav navbar-right">
+            <li>
+                <a href="terms-of-use.html">Terms of Use</a>
+            </li>
+            <li>
+                <a href="http://www.cloudraxak.com/privacy-statement/">Privacy Statement</a>
+            </li>
+        </ul>
+    </div>
+    <!-- /.navbar-collapse -->
+</div>
+<!-- /.container -->
+</nav>
+
+<!-- /.container -->
+
+<!-- jQuery -->
+<script src="bs/js/jquery.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="bs/js/bootstrap.min.js"></script>
+
+</body>
+</html>
+

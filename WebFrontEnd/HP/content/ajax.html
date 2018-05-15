@@ -1,0 +1,61 @@
+<div id='homer' style="height:500px; width:600px; padding:30px 10px;">
+    <strong>Homer</strong><br/>
+    <em>\noun\</em><br/>
+    <strong>1.</strong> American bonehead<br/>
+    <strong>2. Pull a Homer-</strong><br/>
+    to succeed despite<br/>
+    idiocy
+</div>
+<script>
+/*
+$('a.ajax').click( function() {
+         $.get( $(this).attr('href'), function(msg) {
+              alert( "Data Saved: " + msg );
+         });
+         return false; // don't follow the link!
+});
+*/
+
+//var uri = "/raxakapi/showCheckRule/"+rulenum
+var uri = "/raxakapi/showCheckRule/"+ruleid;
+ 
+jQuery.ajax( {
+    url: uri,
+    type: 'GET',
+    beforeSend : function( xhr ) {
+    },
+    success: function( response ) {
+
+	var res = response.split("\n");
+        //checkString = "<h2><b>Rule V-38443</b></h2><br><h4><b>Check Description: </b></h4>"
+        checkString = "<h2><b>Rule V-"+ruleid+"</b></h2><br><h4><b>Check Description: </b></h4>"
+        for(i=0;i<res.length;i++)
+        {
+                checkString = checkString + "<p>" + res[i] + "<\p>";
+        }
+
+	//var uri = "/raxakapi/showFixRule/"+rulenum
+	var uri = "/raxakapi/showFixRule/"+ruleid;
+
+	jQuery.ajax( {
+	    url: uri,
+	    type: 'GET',
+	    beforeSend : function( xhr ) {
+	    },
+	    success: function( response ) {
+		var res = response.split("\n");
+		fixString = "<br><h4><b>Fix Description: </b></h4>"
+		for(i=0;i<res.length;i++)
+		{
+		        fixString = fixString + "<p>" + res[i] + "<\p>";
+		}
+		newString = checkString + fixString
+		$('#homer strong').css({color:'red'});
+		$('#homer').html(newString);
+	    }
+	} );
+
+    }
+} );
+
+</script>

@@ -1,0 +1,60 @@
+<html>
+    <head>
+        <title>Cloud Raxak Console</title>
+        <meta charset="utf-8"/>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+        <script>
+            var protocol = window.location.protocol;
+            var hostname = window.location.hostname;
+            var xmlhttp;
+            if((hostname == 'www.cloudraxak.net') || (hostname == 'cloudraxak.net') ||
+                    (hostname == 'dev.cloudraxak.net')){
+                protocol = 'https:';
+            }
+
+            if (window.XMLHttpRequest) {// code for IE7+, Firefox, Chrome, Opera, Safari
+                xmlhttp=new XMLHttpRequest();
+            } else {// code for IE6, IE5
+                xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+            }
+
+            xmlhttp.onreadystatechange = function() {
+                if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                    var responseData = xmlhttp.responseText;
+                    if(responseData == "{}"){
+                        //window.location = "https://www.cloudraxak.net/login.html";
+                        window.location = protocol + '//' + hostname + "/login.html";
+                    }else{
+                        //window.location = "https://www.cloudraxak.net/raxak.html";
+                        window.location = protocol + '//' + hostname + "/raxak.html";
+                    }
+                }
+                else if(xmlhttp.status == 502)
+                {
+                    window.location = protocol + '//' + hostname + "/maintenance.html"
+                }
+            }
+            xmlhttp.open("GET", "/raxakapi/v1/whoAmI/", true);
+            xmlhttp.send();
+        </script>
+	<style>
+	.noscriptdiv { background-color: #fcf8e3;
+   	border: 1px solid #ededed;
+    border-radius: 4px;
+    font-size: 14px;
+    list-style: outside none none;
+    padding: 12px 15px;}
+	</style>
+	<link href="css/bootstrap.min.css" rel="stylesheet">
+	<link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    </head>
+	
+    <body>
+	<noscript>
+<div class=" col-md-6 col-md-offset-3">
+        <div class="noscriptdiv"><div class="col-md-1 text-center " style="border:0px solid #ccc; margin-top:0px;"><i class="fa fa-exclamation-triangle fa-4x" aria-hidden="true"></i></div><strong>JavaScript seems to be disabled in your browser.</strong><br>You must have JavaScript enabled in your browser to utilize the functionality of this GUI
+</div>
+        </div>
+</noscript>
+ </body>
+</html>

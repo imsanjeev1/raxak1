@@ -1,0 +1,207 @@
+<!doctype html>
+<html>
+    <head>
+        <title>Cloud Service page 2</title>
+        <meta charset="utf-8">
+        <link href="css/style.css" rel="stylesheet" type="text/css">
+        <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic' rel='stylesheet' type='text/css'>
+        <script src="js/jquery.js"></script> 
+        <script src="js/jquery.cookie.js"></script>
+        <script src="js/applogin.js"></script>
+        <script src="js/apphp.js"></script>
+    </head>
+
+    <body onload="serviceOptions();">
+        <!-- Start: Header-->
+        <div class="header">
+            <div class="h_first_row">
+                <div class="logo">
+                    <a href="#">
+                        <h1><img src="images/logo.png" alt="" />logo text</h1>
+                    </a></div>
+                <div class="top_right">
+                    <div class="cart_box"><a href="#"><span class="ico_bg"><img src="images/cart_ico.png" alt=""></span>0 Items</a></div>
+                    <div class="consumer_box"><a href="#"><span class="consumer_ico_bg"><img src="images/consumer_ico.png" alt=""></span>Consumer</a>
+                    <span id="logout" onclick="logout()">logout</span></div>
+                </div>
+            </div>
+            <div class="menu">Menu</div>
+        </div>
+        <!-- End: Header-->
+        
+        <div class="cl"></div>
+        
+        <!-- Start: Content -->
+        <div class="middle_section">
+            <div class="list"></div>
+            <div class="pro_d">
+                <div class="pro_d_im"><img src="images/default.png" alt="" /></div>
+                <div class="pro_d_con"><h3>Amazon EC2</h3>
+                    Amazon EC2</div>
+            </div>
+            <div class="cl"></div>
+
+            <div id="grey_box_wp" class="grey_box_wp">
+                <div class="grey_wp_left"><input type="radio" checked>
+                    Server Specification<br /><span>Server Specification</span>
+                </div>
+                <div class="grey_wp_left price_b">Initial Price: <b>$ 0.00</b><br>
+                    Recurring Price: <b>$ 0.00 monthly</b> 
+                </div>
+                <div class="cl"></div>
+
+                <div class="grey_box">
+                    <div class="select_row">
+                        <h5>1. Region  </h5>
+                        <h6>Regions</h6>
+                        <select class="select_account">
+                            <option>--- Select a Value From List---</option>
+                            <option>us-west-2</option>
+                        </select>
+                    </div>
+                    <div class="select_row">
+                        <h5>2. Availability Zone    </h5>
+                        <h6>Availability Zone based on region</h6>
+                        <select class="select_AvailabilityZone">
+                            <option>--- Select a Value From List---</option>
+
+
+                        </select>
+                    </div>
+                    <div class="select_row">
+                        <h5>3. Key Pair  </h5>
+                        <h6>Key Pair</h6>
+                        <select class="select_keypair">
+                            <option>--- Select a Value From List---</option>
+
+
+                        </select>
+                    </div>
+                    <div class="select_row">
+                        <h5>4. Platform Type </h5>
+                        <h6>Platform Type based on region</h6>
+                        <select class="select_PlatformType">
+                            <option>--- Select a Value From List---</option>
+
+
+                        </select>
+                    </div>
+                    <div class="select_row">
+                        <h5>5. Image  </h5>
+                        <h6>Image for region</h6>
+                        <select class="select_image">
+                            <option>--- Select a Value From List---</option>
+
+
+                        </select>
+                    </div>
+                    <div class="select_row">
+                        <h5>8.Add Load Balancing </h5>
+                        <h6>Choose from No load balancing, Create a new load balancer or Use an existing load balancer</h6>
+                        <select class="select_elb">
+                            <option>No, I dont want to add Load Balancing!</option>
+                            <option>Yes, Create a New Elastic Load Balancer</option>
+
+
+                        </select>
+                    </div>
+                    <div class="select_row">
+                        <h5>6. Server Size  </h5>
+                        <select class="select_ServerSize">
+                            <option>Large &mdash; $ 0.00 + $ 0.00 yearly</option>
+                            <option>Medium &mdash; $ 0.00 + $ 0.00 yearly</option>
+                            <option>Micro &mdash; $ 0.00 + $ 0.00 yearly</option>
+                            <option>Small &mdash; $ 0.00 + $ 0.00 yearly</option>
+
+
+                        </select>
+                    </div>
+                    <div class="select_row">
+                        <h5>7. Number Of Servers  </h5>
+                        <h6>Number Of Servers</h6>
+                        <input type="text" value="1">
+                    </div>
+                    <div class="select_row">
+                        <h5>8a. Load Balancer Protocol</h5>
+                        <h6>If you have chosen to create a new load balancer, then choose a protocol.</h6>
+                        <select class="select_elbProtocol">
+                            <option>No, I dont want to add Load Balancing!</option>
+                            <option>Yes, Create a New Elastic Load Balancer</option>
+                        </select>
+                    </div>
+                    <div class="select_row">
+                        <h5>8c. Instance Protocol  </h5>
+                        <h6>Based on option selected for 8a</h6>
+                        <select class="select_ec2Protocol">
+                            <option>No, I dont want to add Load Balancing!</option>
+                            <option>Yes, Create a New Elastic Load Balancer</option>
+                        </select>
+                    </div>
+                    <div class="select_row">
+                        <h5>8b. Load Balancer Port  </h5>
+                        <input type="text" class="large_inp">
+                    </div>
+                    <div class="select_row">
+                        <h5>8d. Instance Port  </h5>
+                        <input type="text" class="large_inp">
+                    </div>
+                </div>
+            </div>
+            
+            <div class="btm_bx">
+                <div class="pro_d">
+                    <div class="pro_d_im"><img src="images/default.png" alt="" /></div>
+                    <div class="pro_d_con"><h3>Amazon EC2</h3>
+                        Amazon EC2</div>
+                    <div class="cl"></div>
+                </div>
+
+                <div class="cl"></div>
+                <div id="grey_box_wp_btm" class="grey_box_wp">
+                    <div class="grey_wp_left"><input type="radio" checked="">
+                        Server Specification<br /><span>Server Specification</span>
+                    </div>
+                    <div class="grey_wp_left price_b">Initial Price: <b>$ 0.00</b><br>
+                        Recurring Price: <b>$ 0.00 monthly</b> 
+                    </div>
+                    <div class="cl"></div>
+                    <div class="grey_box">
+                        <div class="select_row">
+                            <h5>Compliance Frequency  </h5>
+
+                            <select class="select_complianceFreq">
+                                <option>Daily &mdash; $ 0.00 + $ 0.00 yearly</option>
+                                <option>Hourly &mdash; $ 0.00 + $ 0.00 yearly</option>
+                                <option>Monthly &mdash; $ 0.00 + $ 0.00 yearly</option>
+                                <option>Weekly &mdash; $ 0.00 + $ 0.00 yearly</option>
+                            </select>
+                        </div>
+                        <div class="select_row">
+                            <h5>Compliance Type</h5>
+                            <select class="select_complianceType">
+                                <option>Gold &mdash; $ 0.00 + $ 0.00 yearly</option>
+                                <option>Platinum &mdash; $ 0.00 + $ 0.00 yearly</option>
+                                <option>Silver &mdash; $ 0.00 + $ 0.00 yearly</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="cl"></div>
+                </div>
+            </div>
+        </div>
+        <!-- End: Content -->
+        
+        <!-- Start: Footer -->
+        <div class="footer">
+            <div class="footer_main">
+                <div class="footer_left">Total Initial Price: <b>$ 0.00</b><br />
+                    Total Recurring Price: <b>$ 0.00 yearly</b></div>
+                <div class="footer_right">
+                    <div class="btn"><a href="index3.html" id="checkoutButton"><img src="images/lock.png" alt="" />Checkout</a></div>
+                </div>
+            </div>
+        </div>
+        <!-- End: Footer -->
+        
+    </body>
+</html>
